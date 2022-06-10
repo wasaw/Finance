@@ -21,7 +21,7 @@ class TabBarController: UITabBarController {
         homeVC.tabBarItem.title = "Домашняя"
         
         let profileVC = UINavigationController(rootViewController: HomeController())
-        profileVC.tabBarItem.image = UIImage(systemName: "person.fillgi")
+        profileVC.tabBarItem.image = UIImage(systemName: "person.fill")
         profileVC.tabBarItem.title = "Профиль"
         
         viewControllers = [homeVC, profileVC]

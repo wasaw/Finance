@@ -15,6 +15,12 @@
 		BB61DE992850A33800A08AC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB61DE972850A33800A08AC6 /* LaunchScreen.storyboard */; };
 		BB61DEA52850A3C200A08AC6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEA42850A3C200A08AC6 /* TabBarController.swift */; };
 		BB61DEA72850A3D400A08AC6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEA62850A3D400A08AC6 /* HomeController.swift */; };
+		BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */; };
+		BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */; };
+		BB61DEAF2850F8E800A08AC6 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEAE2850F8E800A08AC6 /* ProfileHeaderView.swift */; };
+		BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */; };
+		BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC052851F3FF003F9197 /* TitleView.swift */; };
+		BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,12 @@
 		BB61DE9A2850A33800A08AC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB61DEA42850A3C200A08AC6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BB61DEA62850A3D400A08AC6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalAccountView.swift; sourceTree = "<group>"; };
+		BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		BB61DEAE2850F8E800A08AC6 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
+		BBCFDC052851F3FF003F9197 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +76,7 @@
 				BB61DEA22850A39400A08AC6 /* View */,
 				BB61DEA12850A37D00A08AC6 /* ViewController */,
 				BB61DEA02850A37200A08AC6 /* Controller */,
+				BB61DEAB2850DE2F00A08AC6 /* Utils */,
 				BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */,
 				BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */,
 				BB61DE902850A33300A08AC6 /* ViewController.swift */,
@@ -94,6 +107,11 @@
 		BB61DEA22850A39400A08AC6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */,
+				BB61DEAE2850F8E800A08AC6 /* ProfileHeaderView.swift */,
+				BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */,
+				BBCFDC052851F3FF003F9197 /* TitleView.swift */,
+				BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -103,6 +121,14 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BB61DEAB2850DE2F00A08AC6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,8 +205,14 @@
 				BB61DE912850A33300A08AC6 /* ViewController.swift in Sources */,
 				BB61DEA52850A3C200A08AC6 /* TabBarController.swift in Sources */,
 				BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */,
+				BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */,
 				BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */,
 				BB61DEA72850A3D400A08AC6 /* HomeController.swift in Sources */,
+				BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */,
+				BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */,
+				BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */,
+				BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */,
+				BB61DEAF2850F8E800A08AC6 /* ProfileHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
