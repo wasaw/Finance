@@ -63,7 +63,7 @@ class ServicesCell: UICollectionViewCell {
         titleLable.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         titleLable.heightAnchor.constraint(equalToConstant: 15).isActive = true
         
-        backgroundColor = .backgroundColor
+        backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {

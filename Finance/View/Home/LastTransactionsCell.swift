@@ -73,7 +73,7 @@ class LastTransactionCell: UICollectionViewCell {
         stack.rightAnchor.constraint(equalTo: costLabel.leftAnchor, constant: -20).isActive = true
         stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
         
-        backgroundColor = .backgroundColor
+        backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {

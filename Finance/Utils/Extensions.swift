@@ -14,5 +14,19 @@ extension UIColor {
     static let totalAccountBackground = UIColor(displayP3Red: 255/255, green: 191/255, blue: 0, alpha: 1)
     static let servicesCellImageBackground = UIColor(displayP3Red: 228/255, green: 252/255, blue: 255/255, alpha: 1)
     static let tabBarBackgroundColor = UIColor(displayP3Red: 26/255, green: 35/255, blue: 75/255, alpha: 1)
-    static let backgroundColor = UIColor(displayP3Red: 233/255, green: 236/255, blue: 239/255, alpha: 1)
+//    LogIn
+    static let logInButtonBackground = UIColor(displayP3Red: 2/255, green: 62/255, blue: 255/255, alpha: 1)
+    static let logInBackgroundColor = UIColor(displayP3Red: 245/255, green: 246/255, blue: 255/255, alpha: 1)
+}
+
+//  MARK: - UITextField
+
+extension UITextField {
+    func addLine() {
+        let textFieldLine = CALayer()
+        textFieldLine.frame = CGRect(x: 0, y: self.frame.height - 1, width: self.frame.width, height: 1)
+        textFieldLine.backgroundColor = UIColor.black.cgColor
+        self.borderStyle = .none
+        self.layer.addSublayer(textFieldLine)
+    }
 }

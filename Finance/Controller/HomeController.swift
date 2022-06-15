@@ -26,7 +26,7 @@ class HomeController: UIViewController {
         
         configureUI()
         
-        view.backgroundColor = .backgroundColor
+        view.backgroundColor = .white
     }
     
 //    MARK: - Helpers
@@ -89,7 +89,7 @@ class HomeController: UIViewController {
         servicesCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         servicesCollectionView.heightAnchor.constraint(equalToConstant: 140).isActive = true
         
-        servicesCollectionView.backgroundColor = .backgroundColor
+        servicesCollectionView.backgroundColor = .white
     }
     
     private func configureTransactionTitleView() {
@@ -119,7 +119,7 @@ class HomeController: UIViewController {
         lastTransactionsCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         lastTransactionsCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5).isActive = true
         
-        lastTransactionsCollectionView.backgroundColor = .backgroundColor
+        lastTransactionsCollectionView.backgroundColor = .white
     }
 }
 

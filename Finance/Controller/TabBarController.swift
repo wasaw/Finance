@@ -27,13 +27,13 @@ class TabBarController: UITabBarController {
                 
         tabBar.backgroundColor = .tabBarBackgroundColor
         tabBar.tintColor = .totalAccountBackground
-        tabBar.barTintColor = .backgroundColor
+        tabBar.barTintColor = .white
         
         let homeVC = UINavigationController(rootViewController: HomeController())
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = "Домашняя"
         
-        let profileVC = UINavigationController(rootViewController: HomeController())
+        let profileVC = UINavigationController(rootViewController: LogInController())
         profileVC.tabBarItem.image = UIImage(systemName: "person.fill")
         profileVC.tabBarItem.title = "Профиль"
         
