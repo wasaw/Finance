@@ -33,10 +33,14 @@ class TabBarController: UITabBarController {
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = "Домашняя"
         
+        let addVC = UINavigationController(rootViewController: AddTransactionController())
+        addVC.tabBarItem.image = UIImage(named: "plus-1.png")?.withRenderingMode(.alwaysOriginal)
+        addVC.tabBarItem.imageInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        
         let profileVC = UINavigationController(rootViewController: LogInController())
         profileVC.tabBarItem.image = UIImage(systemName: "person.fill")
         profileVC.tabBarItem.title = "Профиль"
         
-        viewControllers = [homeVC, profileVC]
+        viewControllers = [homeVC, addVC, profileVC]
     }
 }

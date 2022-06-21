@@ -29,9 +29,7 @@ class TitleView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-//        setTitle(title: "Сервисы")
-        
+                
         addSubview(titleLable)
         titleLable.translatesAutoresizingMaskIntoConstraints = false
         titleLable.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
