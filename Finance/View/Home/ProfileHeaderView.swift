@@ -20,7 +20,7 @@ class ProfileHeaderView: UIView {
     
     private let fullNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Full Name"
+        label.text = "Ваше имя"
         label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()

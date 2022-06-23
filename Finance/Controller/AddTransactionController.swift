@@ -19,6 +19,7 @@ class AddTransactionController: UIViewController {
     
     private let revenueView = RevenueView()
     private let ammountView = AmmountView()
+    
 //    MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -53,11 +54,13 @@ class AddTransactionController: UIViewController {
     
     private func configureTypeCollectionView() {
         let typeLayout = UICollectionViewFlowLayout()
+        typeLayout.scrollDirection = .horizontal
         typeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: typeLayout)
         guard let typeCollectionView = typeCollectionView else { return }
         typeCollectionView.register(AddCell.self, forCellWithReuseIdentifier: AddCell.identifire)
         typeCollectionView.delegate = self
         typeCollectionView.dataSource = self
+        typeCollectionView.showsHorizontalScrollIndicator = false
         view.addSubview(typeCollectionView)
         
         typeCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -80,11 +83,13 @@ class AddTransactionController: UIViewController {
     
     private func configureCategoryCollectionView() {
         let categoryLayout = UICollectionViewFlowLayout()
+        categoryLayout.scrollDirection = .horizontal
         categoryCollectionView = UICollectionView(frame: .zero, collectionViewLayout: categoryLayout)
         guard let categotyCollectionView = categoryCollectionView else { return }
         categotyCollectionView.register(AddCell.self, forCellWithReuseIdentifier: AddCell.identifire)
         categotyCollectionView.delegate = self
         categotyCollectionView.dataSource = self
+        categotyCollectionView.showsHorizontalScrollIndicator = false
         view.addSubview(categotyCollectionView)
         
         categotyCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -99,7 +104,7 @@ class AddTransactionController: UIViewController {
         
         revenueView.translatesAutoresizingMaskIntoConstraints = false
         revenueView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        revenueView.topAnchor.constraint(equalTo: categoryCollectionView!.bottomAnchor, constant: 10).isActive = true
+        revenueView.topAnchor.constraint(equalTo: categoryCollectionView!.bottomAnchor).isActive = true
         revenueView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
         revenueView.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
@@ -124,22 +129,29 @@ extension AddTransactionController: UICollectionViewDelegate {
 extension AddTransactionController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.typeCollectionView {
-            return 4
-        } else {
-            return 8
+            return revenue.count
         }
+        if collectionView == self.categoryCollectionView {
+            return category.count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.typeCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddCell.identifire, for: indexPath) as? AddCell else { return UICollectionViewCell() }
-            
-            return cell
-        } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddCell.identifire, for: indexPath) as? AddCell else { return UICollectionViewCell() }
-            
+            cell.setTitle(revenue[indexPath.row].name)
+            cell.setImage(img: revenue[indexPath.row].img)
             return cell
         }
+        if collectionView == self.categoryCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddCell.identifire, for: indexPath) as? AddCell else { return UICollectionViewCell() }
+            cell.setTitle(category[indexPath.row].name)
+            cell.setImage(img: category[indexPath.row].img)
+            cell.hideCost(true)
+            return cell
+        }
+        return UICollectionViewCell()
     }
 }
 

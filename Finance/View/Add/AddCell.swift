@@ -15,16 +15,14 @@ class AddCell: UICollectionViewCell {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Наличка"
+//        label.text = "Наличка"
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     
-    private let circleView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 25
-        view.backgroundColor = .cyan
-        return view
+    private let imageView: UIImageView = {
+        let iv = UIImageView()
+        return iv
     }()
     
     private let costLabel: UILabel = {
@@ -47,27 +45,41 @@ class AddCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+//    MARK: - Helpers
+    
     private func configureUI() {
         addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: 12).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
         
-        addSubview(circleView)
+        addSubview(imageView)
         
-        circleView.translatesAutoresizingMaskIntoConstraints = false
-        circleView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        circleView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
-        circleView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        circleView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         
         addSubview(costLabel)
         
         costLabel.translatesAutoresizingMaskIntoConstraints = false
         costLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        costLabel.topAnchor.constraint(equalTo: circleView.bottomAnchor).isActive = true
+        costLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true
         costLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    }
+    
+    func setTitle(_ title: String) {
+        titleLabel.text = title
+    }
+    
+    func hideCost(_ isHidden: Bool) {
+        costLabel.isHidden = isHidden
+    }
+    
+    func setImage(img: String) {
+        imageView.image = UIImage(named: img)
     }
 }

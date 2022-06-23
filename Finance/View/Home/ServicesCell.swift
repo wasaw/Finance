@@ -30,7 +30,8 @@ class ServicesCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 15)
         label.textColor = .totalAccountTintColor
         label.textAlignment = .center
-        label.text = "Название"
+        label.numberOfLines = 0
+        label.lineBreakMode = .byClipping
         return label
     }()
     
@@ -61,7 +62,7 @@ class ServicesCell: UICollectionViewCell {
         titleLable.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         titleLable.topAnchor.constraint(equalTo: viewForImage.bottomAnchor, constant: 10).isActive = true
         titleLable.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        titleLable.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        titleLable.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         backgroundColor = .white
     }
@@ -70,4 +71,13 @@ class ServicesCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+//    MARK: - Helpers
+    
+    func setTitle(_ title: String) {
+        titleLable.text = title
+    }
+    
+    func setImage(_ img: String) {
+        imageView.image = UIImage(named: img)
+    }
 }

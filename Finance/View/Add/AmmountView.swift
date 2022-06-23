@@ -37,6 +37,13 @@ class AmmountView: UIView {
     
 //    MARK: - Lifecycle
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        ammountTextField.addLine()
+        commentTextField.addLine()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -50,26 +57,41 @@ class AmmountView: UIView {
 //    MARK: - Helpers
     
     private func configureUI() {
-        let stack = UIStackView(arrangedSubviews: [ammountTitle, ammountTextField, commentTitle, commentTextField, doneButton])
-        stack.axis = .vertical
-        stack.spacing = 10
-        stack.distribution = .fillProportionally
-        addSubview(stack)
-        
+        addSubview(ammountTitle)
+        ammountTitle.translatesAutoresizingMaskIntoConstraints = false
+        ammountTitle.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        ammountTitle.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        ammountTitle.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         ammountTitle.heightAnchor.constraint(equalToConstant: 20).isActive = true
         ammountTitle.setTitle(title: "Сумма")
-        ammountTextField.layer.borderWidth = 1
-        ammountTextField.layer.borderColor = UIColor.lightGray.cgColor
+        
+        addSubview(ammountTextField)
+        ammountTextField.translatesAutoresizingMaskIntoConstraints = false
+        ammountTextField.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        ammountTextField.topAnchor.constraint(equalTo: ammountTitle.bottomAnchor, constant: 10).isActive = true
+        ammountTextField.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        ammountTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        addSubview(commentTitle)
+        commentTitle.translatesAutoresizingMaskIntoConstraints = false
+        commentTitle.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        commentTitle.topAnchor.constraint(equalTo: ammountTextField.bottomAnchor, constant: 25).isActive = true
+        commentTitle.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         commentTitle.heightAnchor.constraint(equalToConstant: 20).isActive = true
         commentTitle.setTitle(title: "Комментарий")
-        commentTextField.layer.borderWidth = 1
-        commentTextField.layer.borderColor = UIColor.lightGray.cgColor
-        doneButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        stack.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        stack.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        stack.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        addSubview(commentTextField)
+        commentTextField.translatesAutoresizingMaskIntoConstraints = false
+        commentTextField.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        commentTextField.topAnchor.constraint(equalTo: commentTitle.bottomAnchor, constant: 10).isActive = true
+        commentTextField.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        commentTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        addSubview(doneButton)
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        doneButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        doneButton.topAnchor.constraint(equalTo: commentTextField.bottomAnchor, constant: 20).isActive = true
+        doneButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        doneButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
 }

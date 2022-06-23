@@ -131,20 +131,28 @@ extension HomeController: UICollectionViewDelegate {
 
 extension HomeController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if collectionView == self.servicesCollectionView {
+            return service.count
+        }
+        if collectionView == self.lastTransactionsCollectionView {
+            return 5
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.servicesCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ServicesCell.identifire, for: indexPath) as? ServicesCell else { return UICollectionViewCell() }
-
-
+            cell.setTitle(service[indexPath.row].name)
+            cell.setImage(service[indexPath.row].img)
             return cell
-        } else {
+        }
+        if collectionView == self.lastTransactionsCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LastTransactionCell.identifire, for: indexPath) as? LastTransactionCell else { return UICollectionViewCell() }
             
             return cell
         }
+        return UICollectionViewCell()
     }
 }
 
