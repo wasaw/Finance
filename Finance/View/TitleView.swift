@@ -36,11 +36,8 @@ class TitleView: UIView {
         titleLable.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         addSubview(arrowImage)
-        arrowImage.translatesAutoresizingMaskIntoConstraints = false
-        arrowImage.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        arrowImage.anchor(right: rightAnchor, width: 20, height: 20)
         arrowImage.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        arrowImage.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        arrowImage.widthAnchor.constraint(equalToConstant: 20).isActive = true
     }
     
     required init?(coder: NSCoder) {

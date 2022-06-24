@@ -41,28 +41,15 @@ class ServicesCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(viewForImage)
-        
-        viewForImage.translatesAutoresizingMaskIntoConstraints = false
-        viewForImage.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        viewForImage.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        viewForImage.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        viewForImage.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        viewForImage.anchor(left: leftAnchor, top: topAnchor, right: rightAnchor, height: 80)
         
         viewForImage.addSubview(imageView)
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.anchor(width: 30, height: 30)
         imageView.centerXAnchor.constraint(equalTo: viewForImage.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: viewForImage.centerYAnchor).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         addSubview(titleLable)
-        
-        titleLable.translatesAutoresizingMaskIntoConstraints = false
-        titleLable.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        titleLable.topAnchor.constraint(equalTo: viewForImage.bottomAnchor, constant: 10).isActive = true
-        titleLable.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        titleLable.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        titleLable.anchor(left: leftAnchor, top: viewForImage.bottomAnchor, right: rightAnchor, paddingTop: 10, height: 20)
         
         backgroundColor = .white
     }

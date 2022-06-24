@@ -60,33 +60,20 @@ class TotalAccountView: UIView {
     
     private func configureUI() {
         addSubview(titleLable)
-        
-        titleLable.translatesAutoresizingMaskIntoConstraints = false
+        titleLable.anchor(top: topAnchor, paddingTop: 15, height: 25)
         titleLable.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        titleLable.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
-        titleLable.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        
+
         addSubview(totalAccountLabel)
-        
-        totalAccountLabel.translatesAutoresizingMaskIntoConstraints = false
-        totalAccountLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        totalAccountLabel.topAnchor.constraint(equalTo: titleLable.bottomAnchor, constant: 10).isActive = true
-        totalAccountLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
+        totalAccountLabel.anchor(top: titleLable.bottomAnchor, paddingTop: 10, height: 40)
+        totalAccountLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+    
         addSubview(arrowDownImage)
-        
-        arrowDownImage.translatesAutoresizingMaskIntoConstraints = false
+        arrowDownImage.anchor(left: totalAccountLabel.rightAnchor, paddingLeft: 10, width: 25, height: 25)
         arrowDownImage.centerYAnchor.constraint(equalTo: totalAccountLabel.centerYAnchor).isActive = true
-        arrowDownImage.leftAnchor.constraint(equalTo: totalAccountLabel.rightAnchor, constant: 10).isActive = true
-        arrowDownImage.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        arrowDownImage.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        
+       
         addSubview(plusImage)
-        
-        plusImage.translatesAutoresizingMaskIntoConstraints = false
+        plusImage.anchor(top: totalAccountLabel.bottomAnchor, paddingTop: 25, width: 40, height: 40)
         plusImage.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        plusImage.topAnchor.constraint(equalTo: totalAccountLabel.bottomAnchor, constant: 25).isActive = true
-        plusImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
         plusImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
 }

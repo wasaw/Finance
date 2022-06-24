@@ -44,11 +44,7 @@ class AddTransactionController: UIViewController {
     private func configureTypeTitleView() {
         view.addSubview(typeTitleView)
         
-        typeTitleView.translatesAutoresizingMaskIntoConstraints = false
-        typeTitleView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        typeTitleView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
-        typeTitleView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        typeTitleView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        typeTitleView.anchor(left: view.leftAnchor, top: view.topAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 50, paddingRight: -10, height: 50)
         typeTitleView.setTitle(title: "Выбрать тип")
     }
     
@@ -62,22 +58,12 @@ class AddTransactionController: UIViewController {
         typeCollectionView.dataSource = self
         typeCollectionView.showsHorizontalScrollIndicator = false
         view.addSubview(typeCollectionView)
-        
-        typeCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        typeCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        typeCollectionView.topAnchor.constraint(equalTo: typeTitleView.bottomAnchor, constant: 10).isActive = true
-        typeCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        typeCollectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        typeCollectionView.anchor(left: view.leftAnchor, top: typeTitleView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 100)
     }
     
     private func configureCategoryTitleView() {
         view.addSubview(categoryTitleView)
-        
-        categoryTitleView.translatesAutoresizingMaskIntoConstraints = false
-        categoryTitleView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        categoryTitleView.topAnchor.constraint(equalTo: typeCollectionView!.bottomAnchor, constant: 15).isActive = true
-        categoryTitleView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        categoryTitleView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        categoryTitleView.anchor(left: view.leftAnchor, top: typeCollectionView!.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 15, paddingRight: -10, height: 50)
         categoryTitleView.setTitle(title: "Выбрать категорию")
     }
     
@@ -91,32 +77,17 @@ class AddTransactionController: UIViewController {
         categotyCollectionView.dataSource = self
         categotyCollectionView.showsHorizontalScrollIndicator = false
         view.addSubview(categotyCollectionView)
-        
-        categotyCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        categotyCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        categotyCollectionView.topAnchor.constraint(equalTo: categoryTitleView.bottomAnchor, constant: 10).isActive = true
-        categotyCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        categotyCollectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        categotyCollectionView.anchor(left: view.leftAnchor, top: categoryTitleView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 200)
     }
     
     private func configureRevenueView() {
         view.addSubview(revenueView)
-        
-        revenueView.translatesAutoresizingMaskIntoConstraints = false
-        revenueView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        revenueView.topAnchor.constraint(equalTo: categoryCollectionView!.bottomAnchor).isActive = true
-        revenueView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-        revenueView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        revenueView.anchor(left: view.leftAnchor, top: categoryCollectionView!.bottomAnchor, right: view.rightAnchor, paddingLeft: 20, paddingRight: -20, height: 40)
     }
     
     private func configureAmmountView() {
         view.addSubview(ammountView)
-        
-        ammountView.translatesAutoresizingMaskIntoConstraints = false
-        ammountView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        ammountView.topAnchor.constraint(equalTo: revenueView.bottomAnchor, constant: 10).isActive = true
-        ammountView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        ammountView.heightAnchor.constraint(equalToConstant: 270).isActive = true
+        ammountView.anchor(left: view.leftAnchor, top: revenueView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 270)
     }
 }
 

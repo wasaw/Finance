@@ -27,11 +27,7 @@ class LogInController: UIViewController {
     
     private func configureUI() {
         view.addSubview(logInView)
-        
-        logInView.translatesAutoresizingMaskIntoConstraints = false
-        logInView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
-        logInView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        logInView.anchor(left: view.leftAnchor, right: view.rightAnchor, paddingLeft: 30, paddingRight: -30, height: 510)
         logInView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        logInView.heightAnchor.constraint(equalToConstant: 510).isActive = true
     }
 }

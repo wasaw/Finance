@@ -42,17 +42,9 @@ class ProfileHeaderView: UIView {
     
     private func configureUI() {
         addSubview(profileImage)
-        
-        profileImage.translatesAutoresizingMaskIntoConstraints = false
-        profileImage.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        profileImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        profileImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        profileImage.anchor(left: leftAnchor, width: 50, height: 50)
         
         addSubview(fullNameLabel)
-        
-        fullNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        fullNameLabel.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 10).isActive = true
-        fullNameLabel.topAnchor.constraint(equalTo: profileImage.topAnchor).isActive = true
-        fullNameLabel.widthAnchor.constraint(equalToConstant: 140).isActive = true
+        fullNameLabel.anchor(left: profileImage.rightAnchor, top: profileImage.topAnchor, paddingLeft: 10, width: 140)
     }
 }

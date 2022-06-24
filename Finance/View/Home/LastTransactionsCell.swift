@@ -47,31 +47,18 @@ class LastTransactionCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(imageView)
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.leftAnchor.constraint(equalTo: leftAnchor, constant:  20).isActive = true
+        imageView.anchor(left: leftAnchor, paddingLeft: 20, width: 25, height: 25)
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 25).isActive = true
         
         addSubview(costLabel)
-        
-        costLabel.translatesAutoresizingMaskIntoConstraints = false
+        costLabel.anchor(right: rightAnchor, width: 70)
         costLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        costLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        costLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
         
         let stack = UIStackView(arrangedSubviews: [reasonLabel, dateLabel])
         stack.axis = .vertical
         stack.distribution = .fillProportionally
-        
         addSubview(stack)
-        
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 20).isActive = true
-        stack.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        stack.rightAnchor.constraint(equalTo: costLabel.leftAnchor, constant: -20).isActive = true
-        stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+        stack.anchor(left: imageView.rightAnchor, top: topAnchor, right: costLabel.leftAnchor, bottom: bottomAnchor, paddingLeft: 20, paddingTop: 10, paddingRight: -20, paddingBottom: -10)
         
         backgroundColor = .white
     }

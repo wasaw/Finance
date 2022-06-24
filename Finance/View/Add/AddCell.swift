@@ -49,26 +49,16 @@ class AddCell: UICollectionViewCell {
     
     private func configureUI() {
         addSubview(titleLabel)
-        
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.anchor(top: topAnchor, height: 15)
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
         
         addSubview(imageView)
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.anchor(top: titleLabel.bottomAnchor, paddingTop: 10, width: 30, height: 30)
         imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         
         addSubview(costLabel)
-        
-        costLabel.translatesAutoresizingMaskIntoConstraints = false
+        costLabel.anchor(top: imageView.bottomAnchor, height: 20)
         costLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        costLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true
-        costLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
     
     func setTitle(_ title: String) {

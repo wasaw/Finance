@@ -128,22 +128,13 @@ class LogInView: UIView {
     
     private func configureTitle() {
         addSubview(titleLabel)
-
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: 20).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        titleLabel.anchor(left: leftAnchor, top: topAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 20, paddingRight: 20, height: 30)
     }
     
     private func configureSegmentedControl() {
         addSubview(segmentedController)
-        
-        segmentedController.translatesAutoresizingMaskIntoConstraints = false
+        segmentedController.anchor(top: titleLabel.bottomAnchor, paddingTop: 30, width: 270, height: 45)
         segmentedController.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        segmentedController.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
-        segmentedController.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        segmentedController.widthAnchor.constraint(equalToConstant: 270).isActive = true
         
         segmentedController.selectedSegmentIndex = 0
         segmentedController.layer.borderWidth = 1
@@ -159,69 +150,34 @@ class LogInView: UIView {
     private func configureLogInField() {
 
         addSubview(emailTextField)
-
-        emailTextField.translatesAutoresizingMaskIntoConstraints = false
-        emailTextField.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        emailTextField.topAnchor.constraint(equalTo: segmentedController.bottomAnchor, constant: 50).isActive = true
-        emailTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        emailTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        emailTextField.anchor(left: leftAnchor, top: segmentedController.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 50, paddingRight: -20, height: 50)
 
         addSubview(passTextField)
-        
-        passTextField.translatesAutoresizingMaskIntoConstraints = false
-        passTextField.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        passTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 40).isActive = true
-        passTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        passTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        passTextField.anchor(left: leftAnchor, top: emailTextField.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 40, paddingRight: -20, height: 50)
     }
     
     private func configureRegField() {
         
         addSubview(loginTextField)
-        
-        loginTextField.translatesAutoresizingMaskIntoConstraints = false
-        loginTextField.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        loginTextField.topAnchor.constraint(equalTo: segmentedController.bottomAnchor, constant: 20).isActive = true
-        loginTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        loginTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        loginTextField.anchor(left: leftAnchor, top: segmentedController.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 20, paddingRight: -20, height: 50)
         loginTextField.alpha = 0
         
         addSubview(emailRegTextField)
-        
-        emailRegTextField.translatesAutoresizingMaskIntoConstraints = false
-        emailRegTextField.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        emailRegTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 20).isActive = true
-        emailRegTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        emailRegTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        emailRegTextField.anchor(left: leftAnchor, top: loginTextField.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 20, paddingRight: -20, height: 50)
         emailRegTextField.alpha = 0
         
         addSubview(passRegTextField)
-        
-        passRegTextField.translatesAutoresizingMaskIntoConstraints = false
-        passRegTextField.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        passRegTextField.topAnchor.constraint(equalTo: emailRegTextField.bottomAnchor, constant: 20).isActive = true
-        passRegTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        passRegTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        passRegTextField.anchor(left: leftAnchor, top: emailRegTextField.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 20, paddingRight: -20, height: 50)
         passRegTextField.alpha = 0
         
         addSubview(confirmPassTextField)
-        
-        confirmPassTextField.translatesAutoresizingMaskIntoConstraints = false
-        confirmPassTextField.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        confirmPassTextField.topAnchor.constraint(equalTo: passRegTextField.bottomAnchor, constant: 20).isActive = true
-        confirmPassTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        confirmPassTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        confirmPassTextField.anchor(left: leftAnchor, top: passRegTextField.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 20, paddingRight: -20, height: 50)
         confirmPassTextField.alpha = 0
     }
         
     private func configureButton() {
         addSubview(logInButton)
-
-        logInButton.translatesAutoresizingMaskIntoConstraints = false
-        logInButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
-        logInButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30).isActive = true
-        logInButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
-        logInButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        logInButton.anchor(left: leftAnchor, right: rightAnchor, bottom: bottomAnchor, paddingLeft: 10, paddingRight: -10, paddingBottom: -30, height: 55)
     }
     
 //    MARK: - Helpers
