@@ -19,17 +19,32 @@ class HomeController: UIViewController {
     private var servicesCollectionView: UICollectionView?
     private var lastTransactionsCollectionView: UICollectionView?
     
+    private var heightView: CGFloat = 0
+    private let databaseService = DatabaseService.shared
+    private var service = [ServiceDescription]() {
+        didSet {
+            servicesCollectionView?.reloadData()
+        }
+    }
+
 //    MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        loadInformation()
+        heightView = view.frame.height
         configureUI()
-        
         view.backgroundColor = .white
     }
     
 //    MARK: - Helpers
+    
+    private func loadInformation() {
+        DispatchQueue.main.async {
+            self.service = self.databaseService.getServiceInformation()
+        }
+    }
     
     private func configureUI() {
         configureProfileHeaderView()
@@ -47,7 +62,8 @@ class HomeController: UIViewController {
     
     private func configureTotalAccountView() {
         view.addSubview(totalAccountView)
-        totalAccountView.anchor(left: view.leftAnchor, top: profileHeaderView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 20, paddingRight: -10, height: 180)
+        let height = heightView / 5.5
+        totalAccountView.anchor(left: view.leftAnchor, top: profileHeaderView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 20, paddingRight: -10, height: height)
     }
     
     private func configureServicesTitleView() {
@@ -84,6 +100,7 @@ class HomeController: UIViewController {
         lastTransactionsCollectionView.register(LastTransactionCell.self, forCellWithReuseIdentifier: LastTransactionCell.identifire)
         lastTransactionsCollectionView.delegate = self
         lastTransactionsCollectionView.dataSource = self
+        lastTransactionsCollectionView.showsVerticalScrollIndicator = false
         view.addSubview(lastTransactionsCollectionView)
         lastTransactionsCollectionView.anchor(left: view.leftAnchor, top: transactionTitleView.bottomAnchor, right: view.rightAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingLeft: 10, paddingTop: 15, paddingRight: -10, paddingBottom: -25)
         lastTransactionsCollectionView.backgroundColor = .white

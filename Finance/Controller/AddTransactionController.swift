@@ -10,7 +10,7 @@ import UIKit
 class AddTransactionController: UIViewController {
     
 //    MARK: - Properties
-    
+        
     private let typeTitleView = TitleView()
     private var typeCollectionView: UICollectionView?
     
@@ -20,17 +20,37 @@ class AddTransactionController: UIViewController {
     private let revenueView = RevenueView()
     private let ammountView = AmmountView()
     
+    private let databaseService = DatabaseService.shared
+    private var category = [CategoryExpense]() {
+        didSet {
+            categoryCollectionView?.reloadData()
+        }
+    }
+    private var revenue = [TypeRevenue]() {
+        didSet {
+            typeCollectionView?.reloadData()
+        }
+    }
+
 //    MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadInformation()
         configureUI()
         
         view.backgroundColor = .white
     }
     
 //    MARK: - Helpers
+    
+    private func loadInformation() {
+        DispatchQueue.main.async {
+            self.category = self.databaseService.getCategoryInformation()
+            self.revenue = self.databaseService.getTypeInformation()
+        }
+    }
     
     private func configureUI() {
         configureTypeTitleView()
@@ -43,8 +63,8 @@ class AddTransactionController: UIViewController {
     
     private func configureTypeTitleView() {
         view.addSubview(typeTitleView)
-        
-        typeTitleView.anchor(left: view.leftAnchor, top: view.topAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 50, paddingRight: -10, height: 50)
+        let paddingTop: CGFloat = (view.frame.height < 700) ? 30 : 50
+        typeTitleView.anchor(left: view.leftAnchor, top: view.topAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: paddingTop, paddingRight: -10, height: 30)
         typeTitleView.setTitle(title: "Выбрать тип")
     }
     
@@ -58,12 +78,12 @@ class AddTransactionController: UIViewController {
         typeCollectionView.dataSource = self
         typeCollectionView.showsHorizontalScrollIndicator = false
         view.addSubview(typeCollectionView)
-        typeCollectionView.anchor(left: view.leftAnchor, top: typeTitleView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 100)
+        typeCollectionView.anchor(left: view.leftAnchor, top: typeTitleView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 90)
     }
     
     private func configureCategoryTitleView() {
         view.addSubview(categoryTitleView)
-        categoryTitleView.anchor(left: view.leftAnchor, top: typeCollectionView!.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 15, paddingRight: -10, height: 50)
+        categoryTitleView.anchor(left: view.leftAnchor, top: typeCollectionView!.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 5, paddingRight: -10, height: 30)
         categoryTitleView.setTitle(title: "Выбрать категорию")
     }
     
@@ -77,12 +97,13 @@ class AddTransactionController: UIViewController {
         categotyCollectionView.dataSource = self
         categotyCollectionView.showsHorizontalScrollIndicator = false
         view.addSubview(categotyCollectionView)
-        categotyCollectionView.anchor(left: view.leftAnchor, top: categoryTitleView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 200)
+        let height: CGFloat = (view.frame.height < 700) ? 90 : 200
+        categotyCollectionView.anchor(left: view.leftAnchor, top: categoryTitleView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: height)
     }
     
     private func configureRevenueView() {
         view.addSubview(revenueView)
-        revenueView.anchor(left: view.leftAnchor, top: categoryCollectionView!.bottomAnchor, right: view.rightAnchor, paddingLeft: 20, paddingRight: -20, height: 40)
+        revenueView.anchor(left: view.leftAnchor, top: categoryCollectionView!.bottomAnchor, right: view.rightAnchor, paddingLeft: 20, paddingRight: -20, height: 20)
     }
     
     private func configureAmmountView() {
