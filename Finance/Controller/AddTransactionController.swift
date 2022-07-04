@@ -21,22 +21,26 @@ class AddTransactionController: UIViewController {
     private let ammountView = AmmountView()
     
     private let databaseService = DatabaseService.shared
-    private var category = [CategoryExpense]() {
+    private var category = [ChoiceCategoryExpense]() {
         didSet {
             categoryCollectionView?.reloadData()
         }
     }
-    private var revenue = [TypeRevenue]() {
+    private var revenue = [ChoiceTypeRevenue]() {
         didSet {
             typeCollectionView?.reloadData()
         }
     }
+    private var isCheckedType = false
+    private var isCheckedCategory = false
+    private var addTransaction = LastTransaction(type: "", ammount: 0, comment: "", category: "")
 
 //    MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ammountView.delegate = self
         loadInformation()
         configureUI()
         
@@ -65,7 +69,7 @@ class AddTransactionController: UIViewController {
         view.addSubview(typeTitleView)
         let paddingTop: CGFloat = (view.frame.height < 700) ? 30 : 50
         typeTitleView.anchor(left: view.leftAnchor, top: view.topAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: paddingTop, paddingRight: -10, height: 30)
-        typeTitleView.setTitle(title: "Выбрать тип")
+        typeTitleView.setTitle(title: "Выбрать тип дохода")
     }
     
     private func configureTypeCollectionView() {
@@ -84,7 +88,7 @@ class AddTransactionController: UIViewController {
     private func configureCategoryTitleView() {
         view.addSubview(categoryTitleView)
         categoryTitleView.anchor(left: view.leftAnchor, top: typeCollectionView!.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 5, paddingRight: -10, height: 30)
-        categoryTitleView.setTitle(title: "Выбрать категорию")
+        categoryTitleView.setTitle(title: "Выбрать категорию трат")
     }
     
     private func configureCategoryCollectionView() {
@@ -115,7 +119,36 @@ class AddTransactionController: UIViewController {
 //  MARK: - Extensions
 
 extension AddTransactionController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.typeCollectionView {
+//            guard let _ = collectionView.cellForItem(at: indexPath) as? AddCell else { return }
+            if isCheckedType {
+                if revenue[indexPath.row].isChecked  {
+                    isCheckedType = false
+                    revenue[indexPath.row].isChecked = false
+                    addTransaction.type = ""
+                }
+            } else {
+                isCheckedType = true
+                revenue[indexPath.row].isChecked = true
+                addTransaction.type = revenue[indexPath.row].name
+            }
+        }
+        if collectionView == self.categoryCollectionView {
+//            guard let _ = collectionView.cellForItem(at: indexPath) as? AddCell else { return }
+            if isCheckedCategory {
+                if category[indexPath.row].isChecked  {
+                    isCheckedCategory = false
+                    category[indexPath.row].isChecked = false
+                    addTransaction.category = ""
+                }
+            } else {
+                isCheckedCategory = true
+                category[indexPath.row].isChecked = true
+                addTransaction.category = category[indexPath.row].name
+            }
+        }
+    }
 }
 
 extension AddTransactionController: UICollectionViewDataSource {
@@ -134,6 +167,11 @@ extension AddTransactionController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddCell.identifire, for: indexPath) as? AddCell else { return UICollectionViewCell() }
             cell.setTitle(revenue[indexPath.row].name)
             cell.setImage(img: revenue[indexPath.row].img)
+            if revenue[indexPath.row].isChecked {
+                cell.setSelect()
+            } else {
+                cell.disableSelect()
+            }
             return cell
         }
         if collectionView == self.categoryCollectionView {
@@ -141,6 +179,11 @@ extension AddTransactionController: UICollectionViewDataSource {
             cell.setTitle(category[indexPath.row].name)
             cell.setImage(img: category[indexPath.row].img)
             cell.hideCost(true)
+            if category[indexPath.row].isChecked {
+                cell.setSelect()
+            } else {
+                cell.disableSelect()
+            }
             return cell
         }
         return UICollectionViewCell()
@@ -150,5 +193,13 @@ extension AddTransactionController: UICollectionViewDataSource {
 extension AddTransactionController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 90, height: 95)
+    }
+}
+
+extension AddTransactionController: HandleDoneDelegate {
+    func saveInformation(ammount: Int, comment: String) {
+        addTransaction.ammount = ammount
+        addTransaction.comment = comment
+        databaseService.saveTransaction(transaction: addTransaction)
     }
 }

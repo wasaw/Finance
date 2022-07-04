@@ -18,7 +18,7 @@ class LastTransactionCell: UICollectionViewCell {
         return img
     }()
     
-    private let costLabel: UILabel = {
+    private let ammountLabel: UILabel = {
         let label = UILabel()
         label.text = "-520$"
         return label
@@ -50,15 +50,15 @@ class LastTransactionCell: UICollectionViewCell {
         imageView.anchor(left: leftAnchor, paddingLeft: 20, width: 25, height: 25)
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        addSubview(costLabel)
-        costLabel.anchor(right: rightAnchor, width: 70)
-        costLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        addSubview(ammountLabel)
+        ammountLabel.anchor(right: rightAnchor, width: 70)
+        ammountLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         let stack = UIStackView(arrangedSubviews: [reasonLabel, dateLabel])
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         addSubview(stack)
-        stack.anchor(left: imageView.rightAnchor, top: topAnchor, right: costLabel.leftAnchor, bottom: bottomAnchor, paddingLeft: 20, paddingTop: 10, paddingRight: -20, paddingBottom: -10)
+        stack.anchor(left: imageView.rightAnchor, top: topAnchor, right: ammountLabel.leftAnchor, bottom: bottomAnchor, paddingLeft: 20, paddingTop: 10, paddingRight: -20, paddingBottom: -10)
         
         backgroundColor = .white
     }

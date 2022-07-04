@@ -17,6 +17,8 @@ extension UIColor {
 //    LogIn
     static let logInButtonBackground = UIColor(displayP3Red: 2/255, green: 62/255, blue: 255/255, alpha: 1)
     static let logInBackgroundColor = UIColor(displayP3Red: 245/255, green: 246/255, blue: 255/255, alpha: 1)
+//    Add
+    static let selectedCellBackground = UIColor(displayP3Red: 228/255, green: 252/255, blue: 255/255, alpha: 1)
 }
 
 //  MARK: - UITextField

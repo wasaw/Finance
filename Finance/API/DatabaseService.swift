@@ -31,7 +31,7 @@ class DatabaseService {
     }
     
 //    MARK: - Add
-    func addCategoryInfornation(category: [CategoryExpense]) {
+    func addCategoryInfornation(category: [ChoiceCategoryExpense]) {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
         
@@ -58,7 +58,7 @@ class DatabaseService {
         }
     }
     
-    func addTypeInformation(type: [TypeRevenue]) {
+    func addTypeInformation(type: [ChoiceTypeRevenue]) {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Type")
         
@@ -86,7 +86,7 @@ class DatabaseService {
         }
     }
     
-    func addServiceInformation(service: [ServiceDescription]) {
+    func addServiceInformation(service: [ChoiceService]) {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Service")
         
@@ -113,12 +113,31 @@ class DatabaseService {
         }
     }
     
+    func saveTransaction(transaction: LastTransaction) {
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
+        
+        do {
+            guard let entity = NSEntityDescription.entity(forEntityName: "Transaction", in: context) else { return }
+            
+            let newTransaction  = NSManagedObject(entity: entity, insertInto: context)
+            newTransaction.setValue(transaction.type, forKey: "type")
+            newTransaction.setValue(transaction.category, forKey: "category")
+            newTransaction.setValue(transaction.ammount, forKey: "ammount")
+            newTransaction.setValue(transaction.comment, forKey: "comment")
+            
+            try context.save()
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
 //    MARK: - Get
     
-    func getCategoryInformation() -> [CategoryExpense] {
+    func getCategoryInformation() -> [ChoiceCategoryExpense] {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
-        var category = [CategoryExpense]()
+        var category = [ChoiceCategoryExpense]()
         
         do {
             let result = try context.fetch(fetchRequest)
@@ -126,7 +145,7 @@ class DatabaseService {
                 if let data = data as? NSManagedObject {
                     let name = data.value(forKey: "name") as? String ?? ""
                     let img = data.value(forKey: "img") as? String ?? ""
-                    let item = CategoryExpense(name: name, img: img)
+                    let item = ChoiceCategoryExpense(name: name, img: img)
                     category.append(item)
                 }
             }
@@ -136,10 +155,10 @@ class DatabaseService {
         return category
     }
     
-    func getTypeInformation() -> [TypeRevenue]{
+    func getTypeInformation() -> [ChoiceTypeRevenue]{
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Type")
-        var type = [TypeRevenue]()
+        var type = [ChoiceTypeRevenue]()
         
         do {
             let result = try context.fetch(fetchRequest)
@@ -147,7 +166,7 @@ class DatabaseService {
                 if let data = data as? NSManagedObject {
                     let name = data.value(forKey: "name") as? String ?? ""
                     let img = data.value(forKey: "img") as? String ?? ""
-                    let item = TypeRevenue(name: name, img: img)
+                    let item = ChoiceTypeRevenue(name: name, img: img)
                     type.append(item)
                 }
             }
@@ -157,10 +176,10 @@ class DatabaseService {
         return type
     }
     
-    func getServiceInformation() -> [ServiceDescription] {
+    func getServiceInformation() -> [ChoiceService] {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Service")
-        var service = [ServiceDescription]()
+        var service = [ChoiceService]()
         
         do {
             let result = try context.fetch(fetchRequest)
@@ -168,7 +187,7 @@ class DatabaseService {
                 if let data = data as? NSManagedObject {
                     let name = data.value(forKey: "name") as? String ?? ""
                     let img = data.value(forKey: "img") as? String ?? ""
-                    let item = ServiceDescription(name: name, img: img)
+                    let item = ChoiceService(name: name, img: img)
                     service.append(item)
                 }
             }

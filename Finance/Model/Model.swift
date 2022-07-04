@@ -7,15 +7,23 @@
 
 import Foundation
 
-struct ServiceDescription {
+struct ChoiceService {
     let name: String
     let img: String
 }
-struct TypeRevenue {
+struct ChoiceTypeRevenue {
     let name: String
     let img: String
+    var isChecked = false
 }
-struct CategoryExpense {
+struct ChoiceCategoryExpense {
     let name: String
     let img: String
+    var isChecked = false
+}
+struct LastTransaction {
+    var type: String
+    var ammount: Int
+    var comment: String
+    var category: String
 }

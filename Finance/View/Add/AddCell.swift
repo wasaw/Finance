@@ -15,7 +15,6 @@ class AddCell: UICollectionViewCell {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-//        label.text = "Наличка"
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
@@ -29,6 +28,13 @@ class AddCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "0 руб."
         return label
+    }()
+    
+    private let circleView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 45
+        view.backgroundColor = .selectedCellBackground
+        return view
     }()
     
 //    MARK: - Lifecycle
@@ -48,6 +54,12 @@ class AddCell: UICollectionViewCell {
 //    MARK: - Helpers
     
     private func configureUI() {
+        addSubview(circleView)
+        circleView.anchor(width: bounds.width, height: bounds.height)
+        circleView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        circleView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10).isActive = true
+        circleView.isHidden = true
+        
         addSubview(titleLabel)
         titleLabel.anchor(top: topAnchor, height: 15)
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -71,5 +83,13 @@ class AddCell: UICollectionViewCell {
     
     func setImage(img: String) {
         imageView.image = UIImage(named: img)
+    }
+    
+    func setSelect() {
+        circleView.isHidden = false
+    }
+    
+    func disableSelect() {
+        circleView.isHidden = true
     }
 }

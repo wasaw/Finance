@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol HandleDoneDelegate: AnyObject {
+    func saveInformation(ammount: Int, comment: String)
+}
+
 class AmmountView: UIView {
     
 //    MARK: - Properties
@@ -32,8 +36,11 @@ class AmmountView: UIView {
         btn.setTitleColor(UIColor.white, for: .normal)
         btn.layer.cornerRadius = 20
         btn.backgroundColor = .systemGreen
+        btn.addTarget(self, action: #selector(handleDoneButton), for: .touchUpInside)
         return btn
     }()
+    
+    weak var delegate: HandleDoneDelegate?
     
 //    MARK: - Lifecycle
     
@@ -73,5 +80,12 @@ class AmmountView: UIView {
         
         addSubview(doneButton)
         doneButton.anchor(left: leftAnchor, top: commentTextField.bottomAnchor, right: rightAnchor, paddingTop: 20, height: 80)
+    }
+    
+//    MARK: - Selectors
+    
+    @objc private func handleDoneButton() {
+        let cost = ammountTextField.text ?? "0"
+        delegate?.saveInformation(ammount: Int(cost) ?? 0, comment: commentTextField.text ?? "")
     }
 }

@@ -21,7 +21,7 @@ class HomeController: UIViewController {
     
     private var heightView: CGFloat = 0
     private let databaseService = DatabaseService.shared
-    private var service = [ServiceDescription]() {
+    private var service = [ChoiceService]() {
         didSet {
             servicesCollectionView?.reloadData()
         }
@@ -31,7 +31,7 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         loadInformation()
         heightView = view.frame.height
         configureUI()
