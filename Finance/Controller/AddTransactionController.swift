@@ -33,7 +33,15 @@ class AddTransactionController: UIViewController {
     }
     private var isCheckedType = false
     private var isCheckedCategory = false
-    private var addTransaction = LastTransaction(type: "", ammount: 0, comment: "", category: "")
+    private var addTransaction = LastTransaction()
+    
+    private let datePicker = UIDatePicker()
+    private var isRevenue = false
+    private let savedImage: UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: "savings.png")
+        return img
+    }()
 
 //    MARK: - Lifecycle
     
@@ -43,6 +51,7 @@ class AddTransactionController: UIViewController {
         ammountView.delegate = self
         loadInformation()
         configureUI()
+        setDate()
         
         view.backgroundColor = .white
     }
@@ -63,6 +72,7 @@ class AddTransactionController: UIViewController {
         configureCategoryCollectionView()
         configureRevenueView()
         configureAmmountView()
+        configureSavedView()
     }
     
     private func configureTypeTitleView() {
@@ -107,12 +117,49 @@ class AddTransactionController: UIViewController {
     
     private func configureRevenueView() {
         view.addSubview(revenueView)
+        revenueView.delegate = self
         revenueView.anchor(left: view.leftAnchor, top: categoryCollectionView!.bottomAnchor, right: view.rightAnchor, paddingLeft: 20, paddingRight: -20, height: 20)
     }
     
     private func configureAmmountView() {
         view.addSubview(ammountView)
-        ammountView.anchor(left: view.leftAnchor, top: revenueView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 270)
+        ammountView.anchor(left: view.leftAnchor, top: revenueView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 370)
+    }
+    
+    private func configureSavedView() {
+        view.addSubview(savedImage)
+        savedImage.anchor(width: 250, height: 250)
+        savedImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        savedImage.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        savedImage.layer.opacity = 0
+    }
+    
+    private func setDate() {
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAction))
+        toolBar.setItems([cancelButton, flexSpace, doneButton], animated: true)
+        
+        ammountView.setDateConfiguration(datePicket: datePicker, toolBar: toolBar)
+    }
+    
+//    MARK: - Selectors
+    
+    @objc private func doneAction() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        ammountView.setDateInformation(date: formatter.string(from: datePicker.date))
+        addTransaction.date = datePicker.date
+        view.endEditing(true)
+    }
+    
+    @objc private func cancelAction() {
+        view.endEditing(true)
     }
 }
 
@@ -198,8 +245,32 @@ extension AddTransactionController: UICollectionViewDelegateFlowLayout {
 
 extension AddTransactionController: HandleDoneDelegate {
     func saveInformation(ammount: Int, comment: String) {
-        addTransaction.ammount = ammount
+        addTransaction.ammount = isRevenue ? ammount : -1 * ammount
         addTransaction.comment = comment
-        databaseService.saveTransaction(transaction: addTransaction)
+        if databaseService.saveTransaction(transaction: addTransaction) {
+            UIView.animate(withDuration: 1.75, delay: 0, options: []) {
+                self.savedImage.layer.opacity = 1
+            } completion: { _ in
+                for i in 0..<self.revenue.count {
+                    self.revenue[i].isChecked = false
+                }
+                for i in 0..<self.category.count {
+                    self.category[i].isChecked = false
+                }
+                self.typeCollectionView?.reloadData()
+                self.categoryCollectionView?.reloadData()
+                self.revenueView.turnOffSwitcher()
+                self.ammountView.refreshInformation()
+                UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
+                    self.savedImage.layer.opacity = 0
+                }, completion: nil)
+            }
+        }
+    }
+}
+
+extension AddTransactionController: SwitcherValueDelegate {
+    func switchChanged(value: Bool) {
+        isRevenue = value
     }
 }

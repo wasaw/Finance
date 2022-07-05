@@ -22,6 +22,13 @@ class AmmountView: UIView {
         return tf
     }()
     
+    private let dateTitle = TitleView()
+    private let dateTextField: UITextField = {
+       let tf = UITextField()
+        tf.placeholder = "Дата"
+        return tf
+    }()
+    
     private let commentTitle = TitleView()
     private let commentTextField: UITextField = {
         let tv = UITextField()
@@ -49,6 +56,7 @@ class AmmountView: UIView {
         
         ammountTextField.addLine()
         commentTextField.addLine()
+        dateTextField.addLine()
     }
     
     override init(frame: CGRect) {
@@ -71,8 +79,15 @@ class AmmountView: UIView {
         addSubview(ammountTextField)
         ammountTextField.anchor(left: leftAnchor, top: ammountTitle.bottomAnchor, right: rightAnchor, paddingTop: 10, height: 40)
         
+        addSubview(dateTitle)
+        dateTitle.anchor(left: leftAnchor, top: ammountTextField.bottomAnchor, right: rightAnchor, paddingTop: 25, height: 20)
+        dateTitle.setTitle(title: "Дата")
+        
+        addSubview(dateTextField)
+        dateTextField.anchor(left: leftAnchor, top: dateTitle.bottomAnchor, right: rightAnchor, paddingTop: 10, height: 40)
+        
         addSubview(commentTitle)
-        commentTitle.anchor(left: leftAnchor, top: ammountTextField.bottomAnchor, right: rightAnchor, paddingTop: 25, height: 20)
+        commentTitle.anchor(left: leftAnchor, top: dateTextField.bottomAnchor, right: rightAnchor, paddingTop: 25, height: 20)
         commentTitle.setTitle(title: "Комментарий")
         
         addSubview(commentTextField)
@@ -80,6 +95,21 @@ class AmmountView: UIView {
         
         addSubview(doneButton)
         doneButton.anchor(left: leftAnchor, top: commentTextField.bottomAnchor, right: rightAnchor, paddingTop: 20, height: 80)
+    }
+    
+    func setDateConfiguration(datePicket: UIDatePicker, toolBar: UIToolbar) {
+        dateTextField.inputView = datePicket
+        dateTextField.inputAccessoryView = toolBar
+    }
+    
+    func setDateInformation(date: String) {
+        dateTextField.text = date
+    }
+    
+    func refreshInformation() {
+        ammountTextField.text = ""
+        dateTextField.text = ""
+        commentTextField.text = ""
     }
     
 //    MARK: - Selectors

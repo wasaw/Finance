@@ -22,8 +22,10 @@ struct ChoiceCategoryExpense {
     var isChecked = false
 }
 struct LastTransaction {
-    var type: String
-    var ammount: Int
-    var comment: String
-    var category: String
+    var type: String = "Зарплата"
+    var ammount: Int = 0
+    var img: String = "other.png"
+    var date: Date = Date(timeIntervalSinceNow: 0)
+    var comment: String = ""
+    var category: String = "Прочее"
 }

@@ -113,12 +113,13 @@ class DatabaseService {
         }
     }
     
-    func saveTransaction(transaction: LastTransaction) {
+    func saveTransaction(transaction: LastTransaction) -> Bool{
+        var sucess = false
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
         
         do {
-            guard let entity = NSEntityDescription.entity(forEntityName: "Transaction", in: context) else { return }
+            guard let entity = NSEntityDescription.entity(forEntityName: "Transaction", in: context) else { return false }
             
             let newTransaction  = NSManagedObject(entity: entity, insertInto: context)
             newTransaction.setValue(transaction.type, forKey: "type")
@@ -127,9 +128,11 @@ class DatabaseService {
             newTransaction.setValue(transaction.comment, forKey: "comment")
             
             try context.save()
+            sucess = true
         } catch let error as NSError {
             print(error)
         }
+        return sucess
     }
     
 //    MARK: - Get
@@ -196,4 +199,5 @@ class DatabaseService {
         }
         return service
     }
+
 }

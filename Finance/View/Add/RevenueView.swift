@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SwitcherValueDelegate: AnyObject {
+    func switchChanged(value: Bool)
+}
+
 class RevenueView: UIView {
     
 //    MARK: - Properties
@@ -15,6 +19,7 @@ class RevenueView: UIView {
         let sw = UISwitch()
         sw.isOn = false
         sw.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        sw.addTarget(self, action: #selector(tapSwitcher), for: .valueChanged)
         return sw
     }()
     private let textLabel: UILabel = {
@@ -23,6 +28,8 @@ class RevenueView: UIView {
         label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
+    
+    weak var delegate: SwitcherValueDelegate?
     
 //    MARK: - Lifecycle
     
@@ -47,5 +54,15 @@ class RevenueView: UIView {
         addSubview(textLabel)
         textLabel.anchor(left: switcher.rightAnchor, right: rightAnchor, paddingLeft: 10)
         textLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    }
+    
+    func turnOffSwitcher() {
+        switcher.isOn = false
+    }
+    
+//    MARK: - Selectors
+    
+    @objc private func tapSwitcher() {
+        delegate?.switchChanged(value: switcher.isOn)
     }
 }

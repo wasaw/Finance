@@ -12,6 +12,8 @@
         <attribute name="ammount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="comment" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="img" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Type" representedClassName="Type" syncable="YES" codeGenerationType="class">
@@ -23,6 +25,6 @@
         <element name="Category" positionX="-63" positionY="-18" width="128" height="59"/>
         <element name="Type" positionX="-54" positionY="9" width="128" height="74"/>
         <element name="Service" positionX="-36" positionY="27" width="128" height="59"/>
-        <element name="Transaction" positionX="-18" positionY="45" width="128" height="89"/>
+        <element name="Transaction" positionX="-18" positionY="45" width="128" height="119"/>
     </elements>
 </model>
