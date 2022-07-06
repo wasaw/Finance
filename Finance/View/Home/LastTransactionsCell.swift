@@ -14,19 +14,16 @@ class LastTransactionCell: UICollectionViewCell {
     
     private let imageView: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "light-bulb.png")
         return img
     }()
     
     private let ammountLabel: UILabel = {
         let label = UILabel()
-        label.text = "-520$"
         return label
     }()
     
     private let reasonLabel: UILabel = {
         let label = UILabel()
-        label.text = "Electricity payment"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .totalAccountTintColor
         return label
@@ -34,7 +31,6 @@ class LastTransactionCell: UICollectionViewCell {
     
     private let dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "19:01, 02/10/2021"
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .totalAccountTintColor
         label.layer.opacity = 0.7
@@ -47,7 +43,7 @@ class LastTransactionCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(imageView)
-        imageView.anchor(left: leftAnchor, paddingLeft: 20, width: 25, height: 25)
+        imageView.anchor(left: leftAnchor, paddingLeft: 20, width: 35, height: 35)
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         addSubview(ammountLabel)
@@ -65,5 +61,16 @@ class LastTransactionCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+//    MARK: - Helpers
+    
+    func setInformation(lastTransaction: LastTransaction) {
+        ammountLabel.text = String(lastTransaction.ammount)
+        reasonLabel.text = lastTransaction.comment
+        imageView.image = UIImage(named: lastTransaction.img)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        dateLabel.text = formatter.string(from: lastTransaction.date)
     }
 }

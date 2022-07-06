@@ -124,6 +124,8 @@ class DatabaseService {
             let newTransaction  = NSManagedObject(entity: entity, insertInto: context)
             newTransaction.setValue(transaction.type, forKey: "type")
             newTransaction.setValue(transaction.category, forKey: "category")
+            newTransaction.setValue(transaction.img, forKey: "img")
+            newTransaction.setValue(transaction.date, forKey: "date")
             newTransaction.setValue(transaction.ammount, forKey: "ammount")
             newTransaction.setValue(transaction.comment, forKey: "comment")
             
@@ -199,5 +201,33 @@ class DatabaseService {
         }
         return service
     }
-
+    
+    func getTransactionInformation() -> [LastTransaction] {
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
+        var lastTransaction = [LastTransaction]()
+        let sort = NSSortDescriptor(key: "date", ascending: false)
+        fetchRequest.sortDescriptors = [sort]
+        fetchRequest.fetchLimit = 5
+        
+        do {
+            let result = try context.fetch(fetchRequest)
+            for data in result {
+                if let data = data as? NSManagedObject {
+                    let type = data.value(forKey: "type") as? String ?? ""
+                    let category = data.value(forKey: "category") as? String ?? ""
+                    let img = data.value(forKey: "img") as? String ?? ""
+                    let ammount = data.value(forKey: "ammount") as? Int ?? 0
+                    let date = data.value(forKey: "date") as? Date ?? Date(timeIntervalSinceNow: 0)
+                    let comment = data.value(forKey: "comment") as? String ?? ""
+                    let item = LastTransaction(type: type, ammount: ammount, img: img, date: date, comment: comment, category: category)
+                    lastTransaction.append(item)
+                }
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        return lastTransaction
+    }
 }

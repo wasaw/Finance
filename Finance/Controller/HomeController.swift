@@ -26,8 +26,18 @@ class HomeController: UIViewController {
             servicesCollectionView?.reloadData()
         }
     }
+    private var lastTransaction = [LastTransaction]() {
+        didSet {
+            lastTransactionsCollectionView?.reloadData()
+        }
+    }
 
 //    MARK: - Lifecycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadInformation()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +53,7 @@ class HomeController: UIViewController {
     private func loadInformation() {
         DispatchQueue.main.async {
             self.service = self.databaseService.getServiceInformation()
+            self.lastTransaction = self.databaseService.getTransactionInformation()
         }
     }
     
@@ -119,7 +130,7 @@ extension HomeController: UICollectionViewDataSource {
             return service.count
         }
         if collectionView == self.lastTransactionsCollectionView {
-            return 5
+            return lastTransaction.count
         }
         return 0
     }
@@ -133,7 +144,7 @@ extension HomeController: UICollectionViewDataSource {
         }
         if collectionView == self.lastTransactionsCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LastTransactionCell.identifire, for: indexPath) as? LastTransactionCell else { return UICollectionViewCell() }
-            
+            cell.setInformation(lastTransaction: lastTransaction[indexPath.row])
             return cell
         }
         return UICollectionViewCell()

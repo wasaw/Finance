@@ -168,7 +168,6 @@ class AddTransactionController: UIViewController {
 extension AddTransactionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.typeCollectionView {
-//            guard let _ = collectionView.cellForItem(at: indexPath) as? AddCell else { return }
             if isCheckedType {
                 if revenue[indexPath.row].isChecked  {
                     isCheckedType = false
@@ -182,7 +181,6 @@ extension AddTransactionController: UICollectionViewDelegate {
             }
         }
         if collectionView == self.categoryCollectionView {
-//            guard let _ = collectionView.cellForItem(at: indexPath) as? AddCell else { return }
             if isCheckedCategory {
                 if category[indexPath.row].isChecked  {
                     isCheckedCategory = false
@@ -228,6 +226,7 @@ extension AddTransactionController: UICollectionViewDataSource {
             cell.hideCost(true)
             if category[indexPath.row].isChecked {
                 cell.setSelect()
+                addTransaction.img = category[indexPath.row].img
             } else {
                 cell.disableSelect()
             }
