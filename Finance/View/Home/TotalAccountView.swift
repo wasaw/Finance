@@ -24,7 +24,6 @@ class TotalAccountView: UIView {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 38)
         label.textColor = .totalAccountTintColor
-        label.text = "5700 $"
         return label
     }()
     
@@ -71,5 +70,9 @@ class TotalAccountView: UIView {
         addSubview(arrowDownImage)
         arrowDownImage.anchor(left: totalAccountLabel.rightAnchor, paddingLeft: 10, width: 25, height: 25)
         arrowDownImage.centerYAnchor.constraint(equalTo: totalAccountLabel.centerYAnchor).isActive = true
+    }
+    
+    func setAccountLabel(total: Int) {
+        totalAccountLabel.text = String(total) + " ₽"
     }
 }

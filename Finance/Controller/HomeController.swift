@@ -54,6 +54,12 @@ class HomeController: UIViewController {
         DispatchQueue.main.async {
             self.service = self.databaseService.getServiceInformation()
             self.lastTransaction = self.databaseService.getTransactionInformation()
+            let revenueArray = self.databaseService.getTypeInformation()
+            var revenue = 0
+            for item in revenueArray {
+                revenue += item.amount
+            }
+            self.totalAccountView.setAccountLabel(total: revenue)
         }
     }
     
