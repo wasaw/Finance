@@ -14,6 +14,7 @@ struct ChoiceService {
 struct ChoiceTypeRevenue {
     let name: String
     let img: String
+    var amount: Int = 0
     var isChecked = false
 }
 struct ChoiceCategoryExpense {
@@ -23,7 +24,7 @@ struct ChoiceCategoryExpense {
 }
 struct LastTransaction {
     var type: String = "Зарплата"
-    var ammount: Int = 0
+    var amount: Int = 0
     var img: String = "other.png"
     var date: Date = Date(timeIntervalSinceNow: 0)
     var comment: String = ""

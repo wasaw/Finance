@@ -18,7 +18,7 @@ class AddTransactionController: UIViewController {
     private var categoryCollectionView: UICollectionView?
     
     private let revenueView = RevenueView()
-    private let ammountView = AmmountView()
+    private let amountView = AmountView()
     
     private let databaseService = DatabaseService.shared
     private var category = [ChoiceCategoryExpense]() {
@@ -48,7 +48,7 @@ class AddTransactionController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ammountView.delegate = self
+        amountView.delegate = self
         loadInformation()
         configureUI()
         setDate()
@@ -71,7 +71,7 @@ class AddTransactionController: UIViewController {
         configureCategoryTitleView()
         configureCategoryCollectionView()
         configureRevenueView()
-        configureAmmountView()
+        configureAmountView()
         configureSavedView()
     }
     
@@ -121,9 +121,9 @@ class AddTransactionController: UIViewController {
         revenueView.anchor(left: view.leftAnchor, top: categoryCollectionView!.bottomAnchor, right: view.rightAnchor, paddingLeft: 20, paddingRight: -20, height: 20)
     }
     
-    private func configureAmmountView() {
-        view.addSubview(ammountView)
-        ammountView.anchor(left: view.leftAnchor, top: revenueView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 370)
+    private func configureAmountView() {
+        view.addSubview(amountView)
+        amountView.anchor(left: view.leftAnchor, top: revenueView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 370)
     }
     
     private func configureSavedView() {
@@ -145,7 +145,7 @@ class AddTransactionController: UIViewController {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAction))
         toolBar.setItems([cancelButton, flexSpace, doneButton], animated: true)
         
-        ammountView.setDateConfiguration(datePicket: datePicker, toolBar: toolBar)
+        amountView.setDateConfiguration(datePicket: datePicker, toolBar: toolBar)
     }
     
 //    MARK: - Selectors
@@ -153,7 +153,7 @@ class AddTransactionController: UIViewController {
     @objc private func doneAction() {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
-        ammountView.setDateInformation(date: formatter.string(from: datePicker.date))
+        amountView.setDateInformation(date: formatter.string(from: datePicker.date))
         addTransaction.date = datePicker.date
         view.endEditing(true)
     }
@@ -210,9 +210,9 @@ extension AddTransactionController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.typeCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddCell.identifire, for: indexPath) as? AddCell else { return UICollectionViewCell() }
-            cell.setTitle(revenue[indexPath.row].name)
-            cell.setImage(img: revenue[indexPath.row].img)
-            if revenue[indexPath.row].isChecked {
+            let currentRevenue = revenue[indexPath.row]
+            cell.setInfornation(title: currentRevenue.name, img: currentRevenue.img, amount: currentRevenue.amount)
+            if currentRevenue.isChecked {
                 cell.setSelect()
             } else {
                 cell.disableSelect()
@@ -221,10 +221,10 @@ extension AddTransactionController: UICollectionViewDataSource {
         }
         if collectionView == self.categoryCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddCell.identifire, for: indexPath) as? AddCell else { return UICollectionViewCell() }
-            cell.setTitle(category[indexPath.row].name)
-            cell.setImage(img: category[indexPath.row].img)
-            cell.hideCost(true)
-            if category[indexPath.row].isChecked {
+            let currentCategory = category[indexPath.row]
+            cell.setInfornation(title: currentCategory.name, img: currentCategory.img)
+            cell.hideAmount(true)
+            if currentCategory.isChecked {
                 cell.setSelect()
                 addTransaction.img = category[indexPath.row].img
             } else {
@@ -243,8 +243,8 @@ extension AddTransactionController: UICollectionViewDelegateFlowLayout {
 }
 
 extension AddTransactionController: HandleDoneDelegate {
-    func saveInformation(ammount: Int, comment: String) {
-        addTransaction.ammount = isRevenue ? ammount : -1 * ammount
+    func saveInformation(amount: Int, comment: String) {
+        addTransaction.amount = isRevenue ? amount : -1 * amount
         addTransaction.comment = comment
         if databaseService.saveTransaction(transaction: addTransaction) {
             UIView.animate(withDuration: 1.75, delay: 0, options: []) {
@@ -256,10 +256,11 @@ extension AddTransactionController: HandleDoneDelegate {
                 for i in 0..<self.category.count {
                     self.category[i].isChecked = false
                 }
-                self.typeCollectionView?.reloadData()
-                self.categoryCollectionView?.reloadData()
+                self.loadInformation()
                 self.revenueView.turnOffSwitcher()
-                self.ammountView.refreshInformation()
+                self.amountView.refreshInformation()
+                self.isCheckedType = false
+                self.isCheckedCategory = false
                 UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
                     self.savedImage.layer.opacity = 0
                 }, completion: nil)

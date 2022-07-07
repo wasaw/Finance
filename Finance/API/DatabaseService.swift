@@ -72,7 +72,7 @@ class DatabaseService {
                     
                     newType.setValue(item.name, forKey: "name")
                     newType.setValue(item.img, forKey: "img")
-                    newType.setValue(0, forKey: "count")
+                    newType.setValue(0, forKey: "amount")
                     
                     do {
                         try context.save()
@@ -117,17 +117,29 @@ class DatabaseService {
         var sucess = false
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
+        let fetchRequestType = NSFetchRequest<NSFetchRequestResult>(entityName: "Type")
+        fetchRequestType.predicate = NSPredicate(format: "name == %@", transaction.type)
         
         do {
             guard let entity = NSEntityDescription.entity(forEntityName: "Transaction", in: context) else { return false }
+            guard let entityType = NSEntityDescription.entity(forEntityName: "Type", in: context) else { return false }
             
             let newTransaction  = NSManagedObject(entity: entity, insertInto: context)
             newTransaction.setValue(transaction.type, forKey: "type")
             newTransaction.setValue(transaction.category, forKey: "category")
             newTransaction.setValue(transaction.img, forKey: "img")
             newTransaction.setValue(transaction.date, forKey: "date")
-            newTransaction.setValue(transaction.ammount, forKey: "ammount")
+            newTransaction.setValue(transaction.amount, forKey: "amount")
             newTransaction.setValue(transaction.comment, forKey: "comment")
+            
+            let result = try context.fetch(fetchRequestType)
+            var amount = 0
+            for data in result {
+                if let data = data as? NSManagedObject {
+                    amount = data.value(forKey: "amount") as? Int ?? -1
+                    data.setValue(transaction.amount + amount, forKey: "amount")
+                }
+            }
             
             try context.save()
             sucess = true
@@ -171,7 +183,8 @@ class DatabaseService {
                 if let data = data as? NSManagedObject {
                     let name = data.value(forKey: "name") as? String ?? ""
                     let img = data.value(forKey: "img") as? String ?? ""
-                    let item = ChoiceTypeRevenue(name: name, img: img)
+                    let amount = data.value(forKey: "amount") as? Int ?? 0
+                    let item = ChoiceTypeRevenue(name: name, img: img, amount: amount)
                     type.append(item)
                 }
             }
@@ -217,10 +230,10 @@ class DatabaseService {
                     let type = data.value(forKey: "type") as? String ?? ""
                     let category = data.value(forKey: "category") as? String ?? ""
                     let img = data.value(forKey: "img") as? String ?? ""
-                    let ammount = data.value(forKey: "ammount") as? Int ?? 0
+                    let amount = data.value(forKey: "amount") as? Int ?? 0
                     let date = data.value(forKey: "date") as? Date ?? Date(timeIntervalSinceNow: 0)
                     let comment = data.value(forKey: "comment") as? String ?? ""
-                    let item = LastTransaction(type: type, ammount: ammount, img: img, date: date, comment: comment, category: category)
+                    let item = LastTransaction(type: type, amount: amount, img: img, date: date, comment: comment, category: category)
                     lastTransaction.append(item)
                 }
             }

@@ -24,9 +24,8 @@ class AddCell: UICollectionViewCell {
         return iv
     }()
     
-    private let costLabel: UILabel = {
+    private let amountLabel: UILabel = {
         let label = UILabel()
-        label.text = "0 руб."
         return label
     }()
     
@@ -68,21 +67,19 @@ class AddCell: UICollectionViewCell {
         imageView.anchor(top: titleLabel.bottomAnchor, paddingTop: 10, width: 30, height: 30)
         imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
-        addSubview(costLabel)
-        costLabel.anchor(top: imageView.bottomAnchor, height: 20)
-        costLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        addSubview(amountLabel)
+        amountLabel.anchor(top: imageView.bottomAnchor, height: 20)
+        amountLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
-    func setTitle(_ title: String) {
+    func setInfornation(title: String, img: String, amount: Int = 0) {
         titleLabel.text = title
-    }
-    
-    func hideCost(_ isHidden: Bool) {
-        costLabel.isHidden = isHidden
-    }
-    
-    func setImage(img: String) {
         imageView.image = UIImage(named: img)
+        amountLabel.text = String(amount) + " руб."
+    }
+    
+    func hideAmount(_ isHidden: Bool) {
+        amountLabel.isHidden = isHidden
     }
     
     func setSelect() {

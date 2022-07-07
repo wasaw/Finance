@@ -1,5 +1,5 @@
 //
-//  AmmountView.swift
+//  AmountView.swift
 //  Finance
 //
 //  Created by Александр Меренков on 21.06.2022.
@@ -8,15 +8,15 @@
 import UIKit
 
 protocol HandleDoneDelegate: AnyObject {
-    func saveInformation(ammount: Int, comment: String)
+    func saveInformation(amount: Int, comment: String)
 }
 
-class AmmountView: UIView {
+class AmountView: UIView {
     
 //    MARK: - Properties
     
-    private let ammountTitle = TitleView()
-    private let ammountTextField: UITextField = {
+    private let amountTitle = TitleView()
+    private let amountTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Сумма"
         return tf
@@ -54,7 +54,7 @@ class AmmountView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        ammountTextField.addLine()
+        amountTextField.addLine()
         commentTextField.addLine()
         dateTextField.addLine()
     }
@@ -72,15 +72,15 @@ class AmmountView: UIView {
 //    MARK: - Helpers
     
     private func configureUI() {
-        addSubview(ammountTitle)
-        ammountTitle.anchor(left: leftAnchor, top: topAnchor, right: rightAnchor, height: 20)
-        ammountTitle.setTitle(title: "Сумма")
+        addSubview(amountTitle)
+        amountTitle.anchor(left: leftAnchor, top: topAnchor, right: rightAnchor, height: 20)
+        amountTitle.setTitle(title: "Сумма")
         
-        addSubview(ammountTextField)
-        ammountTextField.anchor(left: leftAnchor, top: ammountTitle.bottomAnchor, right: rightAnchor, paddingTop: 10, height: 40)
+        addSubview(amountTextField)
+        amountTextField.anchor(left: leftAnchor, top: amountTitle.bottomAnchor, right: rightAnchor, paddingTop: 10, height: 40)
         
         addSubview(dateTitle)
-        dateTitle.anchor(left: leftAnchor, top: ammountTextField.bottomAnchor, right: rightAnchor, paddingTop: 25, height: 20)
+        dateTitle.anchor(left: leftAnchor, top: amountTextField.bottomAnchor, right: rightAnchor, paddingTop: 25, height: 20)
         dateTitle.setTitle(title: "Дата")
         
         addSubview(dateTextField)
@@ -107,7 +107,7 @@ class AmmountView: UIView {
     }
     
     func refreshInformation() {
-        ammountTextField.text = ""
+        amountTextField.text = ""
         dateTextField.text = ""
         commentTextField.text = ""
     }
@@ -115,7 +115,7 @@ class AmmountView: UIView {
 //    MARK: - Selectors
     
     @objc private func handleDoneButton() {
-        let cost = ammountTextField.text ?? "0"
-        delegate?.saveInformation(ammount: Int(cost) ?? 0, comment: commentTextField.text ?? "")
+        let amount = amountTextField.text ?? "0"
+        delegate?.saveInformation(amount: Int(amount) ?? 0, comment: commentTextField.text ?? "")
     }
 }
