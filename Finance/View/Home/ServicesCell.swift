@@ -60,11 +60,8 @@ class ServicesCell: UICollectionViewCell {
     
 //    MARK: - Helpers
     
-    func setTitle(_ title: String) {
-        titleLable.text = title
-    }
-    
-    func setImage(_ img: String) {
-        imageView.image = UIImage(named: img)
+    func setInformation(service: ChoiceService) {
+        titleLable.text = service.name
+        imageView.image = UIImage(named: service.img)
     }
 }

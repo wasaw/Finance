@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 struct ChoiceService {
     let name: String
     let img: String
+    let vc: UIViewController
 }
 struct ChoiceTypeRevenue {
     let name: String

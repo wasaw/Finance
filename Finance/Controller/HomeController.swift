@@ -21,11 +21,8 @@ class HomeController: UIViewController {
     
     private var heightView: CGFloat = 0
     private let databaseService = DatabaseService.shared
-    private var service = [ChoiceService]() {
-        didSet {
-            servicesCollectionView?.reloadData()
-        }
-    }
+    private let service = [ChoiceService(name: "Курс валют", img: "exchange-rate.png", vc: ExchangeRateController()), ChoiceService(name: "Акции", img: "stock-market.png", vc: StocksController())]
+
     private var lastTransaction = [LastTransaction]() {
         didSet {
             lastTransactionsCollectionView?.reloadData()
@@ -52,7 +49,6 @@ class HomeController: UIViewController {
     
     private func loadInformation() {
         DispatchQueue.main.async {
-            self.service = self.databaseService.getServiceInformation()
             self.lastTransaction = self.databaseService.getTransactionInformation()
             let revenueArray = self.databaseService.getTypeInformation()
             var revenue = 0
@@ -127,7 +123,11 @@ class HomeController: UIViewController {
 //  MARK: - Extensions
 
 extension HomeController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.servicesCollectionView {
+            navigationController?.pushViewController(service[indexPath.row].vc, animated: true)
+        }
+    }
 }
 
 extension HomeController: UICollectionViewDataSource {
@@ -144,8 +144,7 @@ extension HomeController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.servicesCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ServicesCell.identifire, for: indexPath) as? ServicesCell else { return UICollectionViewCell() }
-            cell.setTitle(service[indexPath.row].name)
-            cell.setImage(service[indexPath.row].img)
+            cell.setInformation(service: service[indexPath.row])
             return cell
         }
         if collectionView == self.lastTransactionsCollectionView {

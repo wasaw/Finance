@@ -62,7 +62,7 @@ class RevenueView: UIView {
     
 //    MARK: - Selectors
     
-    @objc private func tapSwitcher() {
+    @objc private func tapSwitcher(sender: UISwitch) {
         delegate?.switchChanged(value: switcher.isOn)
     }
 }

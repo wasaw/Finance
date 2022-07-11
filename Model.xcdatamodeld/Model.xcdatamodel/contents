@@ -4,10 +4,6 @@
         <attribute name="img" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="Service" representedClassName="Service" syncable="YES" codeGenerationType="class">
-        <attribute name="img" optional="YES" attributeType="String"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-    </entity>
     <entity name="Transaction" representedClassName="Transaction" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="category" optional="YES" attributeType="String"/>
@@ -24,7 +20,6 @@
     <elements>
         <element name="Category" positionX="-63" positionY="-18" width="128" height="59"/>
         <element name="Type" positionX="-54" positionY="9" width="128" height="74"/>
-        <element name="Service" positionX="-36" positionY="27" width="128" height="59"/>
         <element name="Transaction" positionX="-18" positionY="45" width="128" height="119"/>
     </elements>
 </model>

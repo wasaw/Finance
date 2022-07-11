@@ -86,33 +86,6 @@ class DatabaseService {
         }
     }
     
-    func addServiceInformation(service: [ChoiceService]) {
-        let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Service")
-        
-        do {
-            let result = try context.fetch(fetchRequest)
-            if (result.first as? NSManagedObject) == nil {
-                guard let entity = NSEntityDescription.entity(forEntityName: "Service", in: context) else { return }
-                
-                for item in service {
-                    let newService = NSManagedObject(entity: entity, insertInto: context)
-                    
-                    newService.setValue(item.name, forKey: "name")
-                    newService.setValue(item.img, forKey: "img")
-                    
-                    do {
-                        try context.save()
-                    } catch let error as NSError {
-                        print(error)
-                    }
-                }
-            }
-        } catch let error as NSError {
-            print(error)
-        }
-    }
-    
     func saveTransaction(transaction: LastTransaction) -> Bool{
         var sucess = false
         let context = appDelegate.persistentContainer.viewContext
@@ -192,27 +165,6 @@ class DatabaseService {
             print(error)
         }
         return type
-    }
-    
-    func getServiceInformation() -> [ChoiceService] {
-        let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Service")
-        var service = [ChoiceService]()
-        
-        do {
-            let result = try context.fetch(fetchRequest)
-            for data in result {
-                if let data = data as? NSManagedObject {
-                    let name = data.value(forKey: "name") as? String ?? ""
-                    let img = data.value(forKey: "img") as? String ?? ""
-                    let item = ChoiceService(name: name, img: img)
-                    service.append(item)
-                }
-            }
-        } catch let error as NSError {
-            print(error)
-        }
-        return service
     }
     
     func getTransactionInformation() -> [LastTransaction] {
