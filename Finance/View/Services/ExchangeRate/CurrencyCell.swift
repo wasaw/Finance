@@ -15,26 +15,22 @@ class CurrencyCell: UICollectionViewCell {
     
     private let currencyImage: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "light-bulb.png")
         return img
     }()
     
     private let shortTitle: UILabel = {
         let label = UILabel()
-        label.text = "DLR"
         label.font = UIFont.boldSystemFont(ofSize: 15)
         return label
     }()
     
     private let fullTitle: UILabel = {
         let label = UILabel()
-        label.text = "Dollar"
         return label
     }()
     
     private let valueLabel: UILabel = {
         let label = UILabel()
-        label.text = "23 руб"
         label.font = UIFont.boldSystemFont(ofSize: 21)
         return label
     }()
@@ -64,18 +60,25 @@ class CurrencyCell: UICollectionViewCell {
     
     private func configureUI() {
         addSubview(currencyImage)
-        currencyImage.anchor(left: leftAnchor, top: topAnchor, bottom: bottomAnchor, paddingLeft: 20, paddingTop: 20, paddingBottom: -20, width: 50, height: 50)
+        currencyImage.anchor(left: leftAnchor, top: topAnchor, bottom: bottomAnchor, paddingLeft: 20, paddingTop: 20, paddingBottom: -20, width: 40, height: 40)
         
         let titleStack = UIStackView(arrangedSubviews: [shortTitle, fullTitle])
         titleStack.axis = .vertical
         titleStack.distribution = .equalSpacing
         addSubview(titleStack)
-        titleStack.anchor(left: currencyImage.rightAnchor, top: topAnchor, bottom: bottomAnchor, paddingLeft: 15, paddingTop: 20, paddingBottom: -20, width: 120)
+        titleStack.anchor(left: currencyImage.rightAnchor, top: topAnchor, bottom: bottomAnchor, paddingLeft: 15, paddingTop: 20, paddingBottom: -20, width: 200)
         
         addSubview(valueLabel)
-        valueLabel.anchor(top: topAnchor, right: rightAnchor, bottom: bottomAnchor, paddingTop: 20, paddingRight: -20, paddingBottom: -20, width: 80)
+        valueLabel.anchor(top: topAnchor, right: rightAnchor, bottom: bottomAnchor, paddingTop: 20, paddingRight: -20, paddingBottom: -20, width: 110)
         
         addSubview(dividingLine)
         dividingLine.anchor(left: leftAnchor, top: currencyImage.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 15, paddingRight: -20, height: 1)
+    }
+    
+    func setInformation(currency: CurrentExchangeRate) {
+        shortTitle.text = currency.name
+        valueLabel.text = String(format: "%.3f", currency.amount)
+        fullTitle.text = currency.fullName
+        currencyImage.image = UIImage(named: currency.img)
     }
 }

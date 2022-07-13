@@ -13,12 +13,31 @@ class ExchangeRateController: UIViewController {
     
     private let topView = TopView()
     private var listCurrencyCollectionView: UICollectionView?
+    private let networkService = NetworkService.shared
+    private let databaseService = DatabaseService.shared
+    private var exchangeRate = [CurrentExchangeRate]()
+    private let fullName = ["Болгарский лев", "Чешская крона", "Евро", "Фунт стерлингов", "Казахстанский тенге", "Новозеландский доллар", "Рубль", "Доллар"]
+    private let img = ["bulgarian-lev.png", "czech-republic.png", "euro.png", "pound-sterling.png", "kazakhstani-tenge.png", "new-zealand.png", "ruble-currency.png", "dollar.png"]
+    private var revenue = 0
+    private var currentRate: Double = 0
+    private var requestCurrency = "USD"
+    private var isLoadExchange = false {
+        didSet {
+            setTotalAccount()
+        }
+    }
+    private var isLoadRevenue = false {
+        didSet {
+            setTotalAccount()
+        }
+    }
     
 //    MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadInformation(requestCurrency)
         configureUI()
         configureCollectionView()
         
@@ -26,6 +45,34 @@ class ExchangeRateController: UIViewController {
     }
     
 //    MARK: - Helpers
+    
+    private func loadInformation(_ requestCurrency: String) {
+        networkService.loadExchangeRates(requestCurrency: requestCurrency, complition: { response in
+            var index = 0
+            self.exchangeRate = []
+            for item in response.conversion_rates {
+                let currency = CurrentExchangeRate(name: item.0, amount: item.1, fullName: self.fullName[index], img: self.img[index])
+                self.exchangeRate.append(currency)
+                if currency.name == "RUB" {
+                    self.topView.setCurrency(currency, requestCurrency: requestCurrency)
+                    self.currentRate = currency.amount
+                }
+                index += 1
+            }
+            self.isLoadExchange = true
+            self.listCurrencyCollectionView?.reloadData()
+        })
+        
+        DispatchQueue.main.async {
+            let revenueArray = self.databaseService.getTypeInformation()
+            var amount = 0
+            for item in revenueArray {
+                amount += item.amount
+            }
+            self.revenue = amount
+            self.isLoadRevenue = true
+        }
+    }
     
     private func configureUI() {
         view.addSubview(topView)
@@ -44,22 +91,32 @@ class ExchangeRateController: UIViewController {
         
         listCurrencyCollectionView.anchor(left: view.leftAnchor, top: topView.bottomAnchor, right: view.rightAnchor, bottom: view.bottomAnchor, paddingTop: -15)
     }
+    
+    private func setTotalAccount() {
+        if isLoadExchange && isLoadRevenue {
+            let total =  Double(revenue) / currentRate
+            topView.setTotalAccount(total)
+        }
+    }
 }
 
 //  MARK: - Extension
 
 extension ExchangeRateController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        requestCurrency = exchangeRate[indexPath.row].name
+        loadInformation(requestCurrency)
+    }
 }
 
 extension ExchangeRateController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return exchangeRate.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurrencyCell.identifire, for: indexPath) as? CurrencyCell else { return UICollectionViewCell() }
-        
+        cell.setInformation(currency: exchangeRate[indexPath.row])
         return cell
     }
 }
