@@ -127,6 +127,15 @@ extension HomeController: UICollectionViewDelegate {
         if collectionView == self.servicesCollectionView {
             navigationController?.pushViewController(service[indexPath.row].vc, animated: true)
         }
+        
+        if collectionView == self.lastTransactionsCollectionView {
+            let vc = LastTransactionModalController(transaction: lastTransaction[indexPath.row])
+            if let sheet = vc.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.preferredCornerRadius = 26
+            }
+            self.present(vc, animated: false)
+        }
     }
 }
 
