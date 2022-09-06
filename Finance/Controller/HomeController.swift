@@ -19,6 +19,14 @@ class HomeController: UIViewController {
     private var servicesCollectionView: UICollectionView?
     private var lastTransactionsCollectionView: UICollectionView?
     
+    private let noTransactionsLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.text = "Пока нет ни одной записи"
+        label.textColor = .totalAccountTintColor
+        return label
+    }()
+    
     private var heightView: CGFloat = 0
     private let databaseService = DatabaseService.shared
     private let service = [ChoiceService(name: "Курс валют", img: "exchange-rate.png", vc: ExchangeRateController()), ChoiceService(name: "Акции", img: "stock-market.png", vc: StocksController())]
@@ -38,7 +46,6 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loadInformation()
         heightView = view.frame.height
         configureUI()
@@ -50,6 +57,9 @@ class HomeController: UIViewController {
     private func loadInformation() {
         DispatchQueue.main.async {
             self.lastTransaction = self.databaseService.getTransactionInformation()
+            if !self.lastTransaction.isEmpty {
+                self.lastTransactionsCollectionView?.isHidden = false
+            }
             let revenueArray = self.databaseService.getTypeInformation()
             var revenue = 0
             for item in revenueArray {
@@ -104,6 +114,10 @@ class HomeController: UIViewController {
         view.addSubview(transactionTitleView)
         transactionTitleView.anchor(left: view.leftAnchor, top: servicesCollectionView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 20)
         transactionTitleView.setTitle(title: "Последние транзакции")
+        
+        view.addSubview(noTransactionsLabel)
+        noTransactionsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        noTransactionsLabel.anchor(top: transactionTitleView.bottomAnchor, paddingTop: 25, height: 20)
     }
     
     private func configureLastTransactionsCollectionView() {
@@ -117,6 +131,7 @@ class HomeController: UIViewController {
         view.addSubview(lastTransactionsCollectionView)
         lastTransactionsCollectionView.anchor(left: view.leftAnchor, top: transactionTitleView.bottomAnchor, right: view.rightAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingLeft: 10, paddingTop: 15, paddingRight: -10, paddingBottom: -25)
         lastTransactionsCollectionView.backgroundColor = .white
+        lastTransactionsCollectionView.isHidden = true
     }
 }
 

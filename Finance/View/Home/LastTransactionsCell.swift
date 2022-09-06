@@ -22,7 +22,7 @@ class LastTransactionCell: UICollectionViewCell {
         return label
     }()
     
-    private let reasonLabel: UILabel = {
+    private let categoryLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .totalAccountTintColor
@@ -50,7 +50,7 @@ class LastTransactionCell: UICollectionViewCell {
         amountLabel.anchor(right: rightAnchor, width: 70)
         amountLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        let stack = UIStackView(arrangedSubviews: [reasonLabel, dateLabel])
+        let stack = UIStackView(arrangedSubviews: [categoryLabel, dateLabel])
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         addSubview(stack)
@@ -67,7 +67,7 @@ class LastTransactionCell: UICollectionViewCell {
     
     func setInformation(lastTransaction: LastTransaction) {
         amountLabel.text = String(lastTransaction.amount) + " ₽"
-        reasonLabel.text = lastTransaction.comment
+        categoryLabel.text = lastTransaction.category
         imageView.image = UIImage(named: lastTransaction.img)
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"

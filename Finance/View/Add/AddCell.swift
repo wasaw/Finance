@@ -31,7 +31,7 @@ class AddCell: UICollectionViewCell {
     
     private let circleView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 45
+        view.layer.cornerRadius = 20
         view.backgroundColor = .selectedCellBackground
         return view
     }()
@@ -54,21 +54,22 @@ class AddCell: UICollectionViewCell {
     
     private func configureUI() {
         addSubview(circleView)
-        circleView.anchor(width: bounds.width, height: bounds.height)
+        circleView.anchor(width: bounds.width + 10, height: bounds.height + 10)
         circleView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        circleView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10).isActive = true
+        circleView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         circleView.isHidden = true
         
         addSubview(titleLabel)
         titleLabel.anchor(top: topAnchor, height: 15)
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        
+
         addSubview(imageView)
+        
         imageView.anchor(top: titleLabel.bottomAnchor, paddingTop: 10, width: 30, height: 30)
         imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        
+
         addSubview(amountLabel)
-        amountLabel.anchor(top: imageView.bottomAnchor, height: 20)
+        amountLabel.anchor(top: imageView.bottomAnchor, paddingTop: 5, height: 20)
         amountLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     

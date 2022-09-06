@@ -64,7 +64,7 @@ class TotalAccountView: UIView {
         totalAccountLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         addSubview(titleLable)
-        titleLable.anchor(bottom: totalAccountLabel.topAnchor, paddingBottom: -15, height: 25)
+        titleLable.anchor(bottom: totalAccountLabel.topAnchor, paddingBottom: -10, height: 25)
         titleLable.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     
         addSubview(arrowDownImage)

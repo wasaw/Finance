@@ -25,6 +25,7 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.delegate = self
         tabBar.backgroundColor = .tabBarBackgroundColor
         tabBar.tintColor = .totalAccountBackground
         tabBar.barTintColor = .white
@@ -33,15 +34,34 @@ class TabBarController: UITabBarController {
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = "Домашняя"
         
-        let addVC = UINavigationController(rootViewController: AddTransactionController())
-        addVC.tabBarItem.image = UIImage(named: "plus-1.png")?.withRenderingMode(.alwaysOriginal)
+        let addVC = AddTransactionController()
+        let named = (view.frame.height < 700) ? "plus-2.png" : "plus-1.png"
+        addVC.tabBarItem.image = UIImage(named: named)?.withRenderingMode(.alwaysOriginal)
         let top: CGFloat = (view.frame.height < 700) ? 10 : 20
         addVC.tabBarItem.imageInsets = UIEdgeInsets(top: top, left: 0, bottom: 0, right: 0)
-        
+
         let profileVC = UINavigationController(rootViewController: LogInController())
         profileVC.tabBarItem.image = UIImage(systemName: "person.fill")
         profileVC.tabBarItem.title = "Профиль"
         
         viewControllers = [homeVC, addVC, profileVC]
+    }
+}
+
+//  MARK: - Extensions
+
+extension TabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let isAddVC = viewController is AddTransactionController
+
+        if isAddVC {
+            let addVC = AddTransactionController()
+            if let sheet = addVC.sheetPresentationController {
+                sheet.detents = [.large()]
+            }
+            self.present(addVC, animated: true)
+            return false
+        }
+        return true
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HandleDoneDelegate: AnyObject {
-    func saveInformation(amount: Int, comment: String)
+    func saveInformation(amount: String, date: String, comment: String)
 }
 
 class AmountView: UIView {
@@ -115,7 +115,6 @@ class AmountView: UIView {
 //    MARK: - Selectors
     
     @objc private func handleDoneButton() {
-        let amount = amountTextField.text ?? "0"
-        delegate?.saveInformation(amount: Int(amount) ?? 0, comment: commentTextField.text ?? "")
+        delegate?.saveInformation(amount: amountTextField.text ?? "", date: dateTextField.text ?? "", comment: commentTextField.text ?? "")
     }
 }

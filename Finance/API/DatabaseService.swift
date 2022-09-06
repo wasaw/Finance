@@ -86,16 +86,15 @@ class DatabaseService {
         }
     }
     
-    func saveTransaction(transaction: LastTransaction) -> Bool{
-        var sucess = false
+    func saveTransaction(transaction: LastTransaction) {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
         let fetchRequestType = NSFetchRequest<NSFetchRequestResult>(entityName: "Type")
         fetchRequestType.predicate = NSPredicate(format: "name == %@", transaction.type)
         
         do {
-            guard let entity = NSEntityDescription.entity(forEntityName: "Transaction", in: context) else { return false }
-            guard let entityType = NSEntityDescription.entity(forEntityName: "Type", in: context) else { return false }
+            guard let entity = NSEntityDescription.entity(forEntityName: "Transaction", in: context) else { return  }
+            guard let entityType = NSEntityDescription.entity(forEntityName: "Type", in: context) else { return  }
             
             let newTransaction  = NSManagedObject(entity: entity, insertInto: context)
             newTransaction.setValue(transaction.type, forKey: "type")
@@ -115,11 +114,9 @@ class DatabaseService {
             }
             
             try context.save()
-            sucess = true
         } catch let error as NSError {
             print(error)
         }
-        return sucess
     }
     
 //    MARK: - Get

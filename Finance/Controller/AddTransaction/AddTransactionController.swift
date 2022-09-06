@@ -10,49 +10,54 @@ import UIKit
 class AddTransactionController: UIViewController {
     
 //    MARK: - Properties
-        
+    
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    
     private let typeTitleView = TitleView()
     private var typeCollectionView: UICollectionView?
     
     private let categoryTitleView = TitleView()
     private var categoryCollectionView: UICollectionView?
-    
+   
     private let revenueView = RevenueView()
     private let amountView = AmountView()
     
+    private var addTransaction = LastTransaction()
+
     private let databaseService = DatabaseService.shared
-    private var category = [ChoiceCategoryExpense]() {
-        didSet {
-            categoryCollectionView?.reloadData()
-        }
-    }
     private var revenue = [ChoiceTypeRevenue]() {
         didSet {
             typeCollectionView?.reloadData()
         }
     }
-    private var isCheckedType = false
-    private var isCheckedCategory = false
-    private var addTransaction = LastTransaction()
-    
-    private let datePicker = UIDatePicker()
+    private var category = [ChoiceCategoryExpense]() {
+        didSet {
+            categoryCollectionView?.reloadData()
+        }
+    }
     private var isRevenue = false
-    private let savedImage: UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: "savings.png")
-        return img
-    }()
+    private let datePicker = UIDatePicker()
+    private var selectedType: Int? = nil {
+        didSet {
+            typeCollectionView?.reloadData()
+        }
+    }
+    private var selectedCategory: Int? = nil {
+        didSet {
+            categoryCollectionView?.reloadData()
+        }
+    }
 
 //    MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        amountView.delegate = self
+                
         loadInformation()
+        amountView.delegate = self
         configureUI()
         setDate()
-        
         view.backgroundColor = .white
     }
     
@@ -66,19 +71,27 @@ class AddTransactionController: UIViewController {
     }
     
     private func configureUI() {
+        configureScrollView()
         configureTypeTitleView()
         configureTypeCollectionView()
         configureCategoryTitleView()
         configureCategoryCollectionView()
         configureRevenueView()
         configureAmountView()
-        configureSavedView()
     }
     
+    func configureScrollView(){
+        view.addSubview(scrollView)
+        scrollView.anchor(left: view.leftAnchor, top: view.topAnchor, right: view.rightAnchor, bottom: view.bottomAnchor)
+
+        scrollView.addSubview(contentView)
+        contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+        contentView.anchor(left: scrollView.leftAnchor, top: scrollView.topAnchor, right: scrollView.rightAnchor, bottom: scrollView.bottomAnchor, height: 830)
+    }
+
     private func configureTypeTitleView() {
-        view.addSubview(typeTitleView)
-        let paddingTop: CGFloat = (view.frame.height < 700) ? 30 : 50
-        typeTitleView.anchor(left: view.leftAnchor, top: view.topAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: paddingTop, paddingRight: -10, height: 30)
+        contentView.addSubview(typeTitleView)
+        typeTitleView.anchor(left: contentView.leftAnchor, top: contentView.topAnchor, right: contentView.rightAnchor, paddingLeft: 10, paddingTop: 20, paddingRight: -10, height: 30)
         typeTitleView.setTitle(title: "Выбрать тип дохода")
     }
     
@@ -91,13 +104,14 @@ class AddTransactionController: UIViewController {
         typeCollectionView.delegate = self
         typeCollectionView.dataSource = self
         typeCollectionView.showsHorizontalScrollIndicator = false
-        view.addSubview(typeCollectionView)
-        typeCollectionView.anchor(left: view.leftAnchor, top: typeTitleView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 90)
+        contentView.addSubview(typeCollectionView)
+        typeCollectionView.anchor(left: contentView.leftAnchor, top: typeTitleView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 90)
     }
-    
+   
     private func configureCategoryTitleView() {
-        view.addSubview(categoryTitleView)
-        categoryTitleView.anchor(left: view.leftAnchor, top: typeCollectionView!.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 5, paddingRight: -10, height: 30)
+        contentView.addSubview(categoryTitleView)
+        guard let typeCollectionView = typeCollectionView else { return }
+        categoryTitleView.anchor(left: contentView.leftAnchor, top: typeCollectionView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 30)
         categoryTitleView.setTitle(title: "Выбрать категорию трат")
     }
     
@@ -110,28 +124,20 @@ class AddTransactionController: UIViewController {
         categotyCollectionView.delegate = self
         categotyCollectionView.dataSource = self
         categotyCollectionView.showsHorizontalScrollIndicator = false
-        view.addSubview(categotyCollectionView)
-        let height: CGFloat = (view.frame.height < 700) ? 90 : 200
-        categotyCollectionView.anchor(left: view.leftAnchor, top: categoryTitleView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: height)
+        contentView.addSubview(categotyCollectionView)
+        categotyCollectionView.anchor(left: contentView.leftAnchor, top: categoryTitleView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 185)
     }
     
     private func configureRevenueView() {
-        view.addSubview(revenueView)
+        contentView.addSubview(revenueView)
         revenueView.delegate = self
-        revenueView.anchor(left: view.leftAnchor, top: categoryCollectionView!.bottomAnchor, right: view.rightAnchor, paddingLeft: 20, paddingRight: -20, height: 20)
+        guard let categoryCollectionView = categoryCollectionView else { return }
+        revenueView.anchor(left: contentView.leftAnchor, top: categoryCollectionView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 20, paddingTop: 10, paddingRight: -20, height: 20)
     }
     
     private func configureAmountView() {
-        view.addSubview(amountView)
-        amountView.anchor(left: view.leftAnchor, top: revenueView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 370)
-    }
-    
-    private func configureSavedView() {
-        view.addSubview(savedImage)
-        savedImage.anchor(width: 250, height: 250)
-        savedImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        savedImage.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        savedImage.layer.opacity = 0
+        contentView.addSubview(amountView)
+        amountView.anchor(left: contentView.leftAnchor, top: revenueView.bottomAnchor, right: contentView.rightAnchor, bottom: contentView.safeAreaLayoutGuide.bottomAnchor, paddingLeft: 10, paddingTop: 20, paddingRight: -10)
     }
     
     private func setDate() {
@@ -148,13 +154,25 @@ class AddTransactionController: UIViewController {
         amountView.setDateConfiguration(datePicket: datePicker, toolBar: toolBar)
     }
     
+    private func checkCompleted(_ amount: String, _ date: String) -> (Bool, [String]) {
+        var listForCompleted: [String] = []
+        if selectedType == nil { listForCompleted.append("выберите тип дохода") }
+        if selectedCategory == nil { listForCompleted.append("выберите категорию") }
+        if amount == "" { listForCompleted.append("введите сумму")}
+        if date == "" { listForCompleted.append("выберите дату")}
+        if listForCompleted.isEmpty {
+            return (true, [])
+        } else {
+            return (false, listForCompleted)
+        }
+    }
+    
 //    MARK: - Selectors
     
     @objc private func doneAction() {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         amountView.setDateInformation(date: formatter.string(from: datePicker.date))
-        addTransaction.date = datePicker.date
         view.endEditing(true)
     }
     
@@ -168,30 +186,10 @@ class AddTransactionController: UIViewController {
 extension AddTransactionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.typeCollectionView {
-            if isCheckedType {
-                if revenue[indexPath.row].isChecked  {
-                    isCheckedType = false
-                    revenue[indexPath.row].isChecked = false
-                    addTransaction.type = ""
-                }
-            } else {
-                isCheckedType = true
-                revenue[indexPath.row].isChecked = true
-                addTransaction.type = revenue[indexPath.row].name
-            }
+            selectedType = indexPath.row
         }
         if collectionView == self.categoryCollectionView {
-            if isCheckedCategory {
-                if category[indexPath.row].isChecked  {
-                    isCheckedCategory = false
-                    category[indexPath.row].isChecked = false
-                    addTransaction.category = ""
-                }
-            } else {
-                isCheckedCategory = true
-                category[indexPath.row].isChecked = true
-                addTransaction.category = category[indexPath.row].name
-            }
+            selectedCategory = indexPath.row
         }
     }
 }
@@ -212,10 +210,9 @@ extension AddTransactionController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddCell.identifire, for: indexPath) as? AddCell else { return UICollectionViewCell() }
             let currentRevenue = revenue[indexPath.row]
             cell.setInfornation(title: currentRevenue.name, img: currentRevenue.img, amount: currentRevenue.amount)
-            if currentRevenue.isChecked {
+            cell.disableSelect()
+            if selectedType == indexPath.row {
                 cell.setSelect()
-            } else {
-                cell.disableSelect()
             }
             return cell
         }
@@ -224,11 +221,10 @@ extension AddTransactionController: UICollectionViewDataSource {
             let currentCategory = category[indexPath.row]
             cell.setInfornation(title: currentCategory.name, img: currentCategory.img)
             cell.hideAmount(true)
-            if currentCategory.isChecked {
+            cell.disableSelect()
+            if selectedCategory == indexPath.row {
                 cell.setSelect()
                 addTransaction.img = category[indexPath.row].img
-            } else {
-                cell.disableSelect()
             }
             return cell
         }
@@ -238,33 +234,28 @@ extension AddTransactionController: UICollectionViewDataSource {
 
 extension AddTransactionController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 90, height: 95)
+        return CGSize(width: 90, height: 80)
     }
 }
 
 extension AddTransactionController: HandleDoneDelegate {
-    func saveInformation(amount: Int, comment: String) {
-        addTransaction.amount = isRevenue ? amount : -1 * amount
-        addTransaction.comment = comment
-        if databaseService.saveTransaction(transaction: addTransaction) {
-            UIView.animate(withDuration: 1.75, delay: 0, options: []) {
-                self.savedImage.layer.opacity = 1
-            } completion: { _ in
-                for i in 0..<self.revenue.count {
-                    self.revenue[i].isChecked = false
-                }
-                for i in 0..<self.category.count {
-                    self.category[i].isChecked = false
-                }
-                self.loadInformation()
-                self.revenueView.turnOffSwitcher()
-                self.amountView.refreshInformation()
-                self.isCheckedType = false
-                self.isCheckedCategory = false
-                UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
-                    self.savedImage.layer.opacity = 0
-                }, completion: nil)
+    func saveInformation(amount: String, date: String, comment: String) {
+        let isFillingCompleted = checkCompleted(amount, date)
+        if isFillingCompleted.0 {
+            let amountInt = Int(amount) ?? 0
+            addTransaction.amount = isRevenue ? amountInt : -1 * amountInt
+            addTransaction.comment = comment
+            databaseService.saveTransaction(transaction: addTransaction)
+            self.dismiss(animated: true)
+        } else {
+            var alertText = "Вы не выполнили следующие действия:\n"
+            for alert in isFillingCompleted.1 {
+                alertText += alert + "\n"
             }
+            alertText.removeLast(1)
+            let alert = UIAlertController(title: "Внимание", message: alertText, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ок", style: .default))
+            self.present(alert, animated: true, completion: nil)
         }
     }
 }

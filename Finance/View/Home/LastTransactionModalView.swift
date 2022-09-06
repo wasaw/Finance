@@ -12,28 +12,24 @@ class LastTransactionModalView: UIView {
         
     private let typeLabel: UILabel = {
         let label = UILabel()
-//        label.text = "Зарплата"
         label.font = UIFont.boldSystemFont(ofSize: 32)
         return label
     }()
     
     private let amountLabel: UILabel = {
         let label = UILabel()
-//        label.text = "1022 руб."
         label.font = UIFont.systemFont(ofSize: 23)
         return label
     }()
     
     private let categoryLabel: UILabel = {
         let label = UILabel()
-//        label.text = "Прочее"
         label.font = UIFont.systemFont(ofSize: 23)
         return label
     }()
     
     private let commentLabel: UILabel = {
         let label = UILabel()
-//        label.text = "Выводим сюда дополнительный комментарий, позволяющий понять назначений трат."
         label.font = UIFont.systemFont(ofSize: 23)
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -42,7 +38,6 @@ class LastTransactionModalView: UIView {
     
     private let dateLabel: UILabel = {
         let label = UILabel()
-//        label.text = "23.08.2022"
         label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()
