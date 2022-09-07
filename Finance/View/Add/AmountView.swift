@@ -16,9 +16,10 @@ class AmountView: UIView {
 //    MARK: - Properties
     
     private let amountTitle = TitleView()
-    private let amountTextField: UITextField = {
+    let amountTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Сумма"
+        tf.keyboardType = .asciiCapableNumberPad
         return tf
     }()
     
@@ -30,10 +31,11 @@ class AmountView: UIView {
     }()
     
     private let commentTitle = TitleView()
-    private let commentTextField: UITextField = {
-        let tv = UITextField()
-        tv.placeholder = "Комментарий"
-        return tv
+    let commentTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Комментарий"
+        tf.returnKeyType = .done
+        return tf
     }()
     
     private let doneButton: UIButton = {

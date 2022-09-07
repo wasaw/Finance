@@ -138,6 +138,17 @@ class AddTransactionController: UIViewController {
     private func configureAmountView() {
         contentView.addSubview(amountView)
         amountView.anchor(left: contentView.leftAnchor, top: revenueView.bottomAnchor, right: contentView.rightAnchor, bottom: contentView.safeAreaLayoutGuide.bottomAnchor, paddingLeft: 10, paddingTop: 20, paddingRight: -10)
+        configureKeyboard()
+    }
+    
+    private func configureKeyboard() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(cancelAction))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        toolBar.setItems([flexSpace, doneButton], animated: true)
+        amountView.amountTextField.inputAccessoryView = toolBar
+        amountView.commentTextField.delegate = self
     }
     
     private func setDate() {
@@ -173,6 +184,7 @@ class AddTransactionController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         amountView.setDateInformation(date: formatter.string(from: datePicker.date))
+        addTransaction.date = datePicker.date
         view.endEditing(true)
     }
     
@@ -213,6 +225,7 @@ extension AddTransactionController: UICollectionViewDataSource {
             cell.disableSelect()
             if selectedType == indexPath.row {
                 cell.setSelect()
+                addTransaction.type = revenue[indexPath.row].name
             }
             return cell
         }
@@ -224,6 +237,7 @@ extension AddTransactionController: UICollectionViewDataSource {
             cell.disableSelect()
             if selectedCategory == indexPath.row {
                 cell.setSelect()
+                addTransaction.category = category[indexPath.row].name
                 addTransaction.img = category[indexPath.row].img
             }
             return cell
@@ -263,5 +277,12 @@ extension AddTransactionController: HandleDoneDelegate {
 extension AddTransactionController: SwitcherValueDelegate {
     func switchChanged(value: Bool) {
         isRevenue = value
+    }
+}
+
+extension AddTransactionController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        amountView.commentTextField.resignFirstResponder()
+        return true
     }
 }
