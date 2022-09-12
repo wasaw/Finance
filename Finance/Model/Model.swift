@@ -5,7 +5,6 @@
 //  Created by Александр Меренков on 16.06.2022.
 //
 
-import Foundation
 import UIKit
 
 struct ChoiceService {
@@ -38,6 +37,13 @@ struct CurrentExchangeRate {
     let amount: Double
     let fullName: String
     let img: String
+}
+
+
+struct AuthCredentials {
+    let username: String
+    let email: String
+    let password: String
 }
 
 //  MARK: - Decodable

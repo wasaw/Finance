@@ -1,5 +1,5 @@
 //
-//  LogInView.swift
+//  AuthView.swift
 //  Finance
 //
 //  Created by Александр Меренков on 14.06.2022.
@@ -7,9 +7,15 @@
 
 import UIKit
 
-class LogInView: UIView {
+protocol AuthFormDelegate: AnyObject {
+    func handleAuthButton(segment: Int, credentials: AuthCredentials)
+}
+
+class AuthView: UIView {
     
 //    MARK: - Properties
+    
+    weak var delegate: AuthFormDelegate?
         
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -18,14 +24,14 @@ class LogInView: UIView {
         return label
     }()
     
-    private let loginTextField: UITextField = {
+    let loginTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Имя пользователя"
         tf.font = UIFont.systemFont(ofSize: 19)
         return tf
     }()
     
-    private let emailTextField: UITextField = {
+    let emailTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Почта"
         tf.keyboardType = .emailAddress
@@ -33,7 +39,7 @@ class LogInView: UIView {
         return tf
     }()
     
-    private let emailRegTextField: UITextField = {
+    let emailRegTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Почта"
         tf.keyboardType = .emailAddress
@@ -41,7 +47,7 @@ class LogInView: UIView {
         return tf
     }()
     
-    private let passTextField: UITextField = {
+    let passTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Пароль"
         tf.isSecureTextEntry = true
@@ -49,7 +55,7 @@ class LogInView: UIView {
         return tf
     }()
     
-    private let passRegTextField: UITextField = {
+    let passRegTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Пароль"
         tf.isSecureTextEntry = true
@@ -57,7 +63,7 @@ class LogInView: UIView {
         return tf
     }()
     
-    private let confirmPassTextField: UITextField = {
+    let confirmPassTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Подтверждение пароля"
         tf.isSecureTextEntry = true
@@ -78,6 +84,7 @@ class LogInView: UIView {
         btn.layer.shadowOpacity = 0.3
         btn.layer.masksToBounds = false
         btn.clipsToBounds = false
+        btn.addTarget(self, action: #selector(handleButton), for: .touchUpInside)
         return btn
     }()
     
@@ -210,5 +217,24 @@ class LogInView: UIView {
                 self.confirmPassTextField.alpha = 1
             }
         }
+    }
+    
+    @objc private func handleButton() {
+        if segmentedController.selectedSegmentIndex == 0 {
+            guard let email = emailTextField.text else { return }
+            guard let password = passTextField.text else { return }
+            let credentials = AuthCredentials(username: "", email: email, password: password)
+            delegate?.handleAuthButton(segment: 0, credentials: credentials)
+        } else {
+            guard let login = loginTextField.text else { return }
+            guard let email = emailRegTextField.text else { return }
+            guard let password = passRegTextField.text else { return }
+            guard let confirmPass = confirmPassTextField.text else { return }
+            let credentials = AuthCredentials(username: login, email: email, password: password)
+            if password == confirmPass {
+                delegate?.handleAuthButton(segment: segmentedController.selectedSegmentIndex, credentials: credentials)
+            }
+        }
+
     }
 }
