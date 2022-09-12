@@ -41,34 +41,78 @@ class AuthController: UIViewController {
         authView.passRegTextField.delegate = self
         authView.confirmPassTextField.delegate = self
     }
+    
+    private func checkCompleted(segment: Int, credentials: AuthCredentials) -> Bool {
+        let emailPattern = #"^\S+@\S+\.\S+$"#
+        let resultEmailPattern = credentials.email.range(of: emailPattern, options: .regularExpression)
+        if credentials.email == "" || credentials.password == "" {
+            let alert = UIAlertController(title: "Внимание", message: "Заполнены не все поля", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true)
+            return false
+        }
+        if resultEmailPattern == nil {
+            let alert = UIAlertController(title: "Внимание", message: "Неправильно введен email", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true)
+            return false
+        }
+        switch segment {
+        case 0:
+            return true
+        case 1:
+            if credentials.password == "" || credentials.confirmPass == "" {
+                let alert = UIAlertController(title: "Внимание", message: "Заполнены не все поля", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(alert, animated: true)
+                return false
+            }
+            if credentials.password != credentials.confirmPass {
+                let alert = UIAlertController(title: "Внимание", message: "Пароли не совпадают", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(alert, animated: true)
+            }
+            if credentials.password.count < 6 {
+                let alert = UIAlertController(title: "Внимание", message: "Длина пароля минимум 6 символов", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(alert, animated: true)
+            }
+            return true
+        default:
+            return false
+        }
+        return false
+    }
 }
 
 //  MARK: - Extensions
 
 extension AuthController: AuthFormDelegate {
     func handleAuthButton(segment: Int, credentials: AuthCredentials) {
-        switch segment {
-        case 0:
-            let email = credentials.email
-            let password = credentials.password
-            
-            AuthService.shared.logInUser(email: email, password: password) { result, error in
-                if let error = error {
-                    print("Logging error is \(error.localizedDescription)")
-                }
+        if checkCompleted(segment: segment, credentials: credentials) {
+            switch segment {
+            case 0:
+                let email = credentials.email
+                let password = credentials.password
                 
-                self.dismiss(animated: true)
-            }
-        case 1:
-            AuthService.shared.registerUser(credentials: credentials) { error, ref in
-                if let error = error {
-                    print("Save error is \(error.localizedDescription)")
+                AuthService.shared.logInUser(email: email, password: password) { result, error in
+                    if let error = error {
+                        print("Logging error is \(error.localizedDescription)")
+                    }
+                    
+                    self.dismiss(animated: true)
                 }
-                
-                self.dismiss(animated: true)
+            case 1:
+                AuthService.shared.registerUser(credentials: credentials) { error, ref in
+                    if let error = error {
+                        print("Save error is \(error.localizedDescription)")
+                    }
+                    
+                    self.dismiss(animated: true)
+                }
+            default:
+                return
             }
-        default:
-            return
         }
     }
 }

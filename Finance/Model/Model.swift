@@ -44,6 +44,7 @@ struct AuthCredentials {
     let username: String
     let email: String
     let password: String
+    var confirmPass: String = ""
 }
 
 //  MARK: - Decodable
