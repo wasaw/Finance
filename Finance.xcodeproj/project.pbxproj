@@ -25,10 +25,12 @@
 		BB6EEDEC287C5DC200245997 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EEDEB287C5DC200245997 /* NetworkService.swift */; };
 		BB74FA2A2858C58A00EA2CD8 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA292858C58A00EA2CD8 /* AuthController.swift */; };
 		BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */; };
+		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
 		BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */; };
 		BB9B6FCF28CB5A59000B1D53 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCE28CB5A59000B1D53 /* Constants.swift */; };
 		BB9B6FD228CB5E45000B1D53 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FD128CB5E45000B1D53 /* ProfileController.swift */; };
+		BB9B6FD828CF79E9000B1D53 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FD728CF79E9000B1D53 /* ProfileImageView.swift */; };
 		BB9EFC0A285E2A9200305776 /* AddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC09285E2A9200305776 /* AddCell.swift */; };
 		BB9EFC0C2861AADF00305776 /* RevenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC0B2861AADF00305776 /* RevenueView.swift */; };
 		BB9EFC0E2861B2AC00305776 /* AmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC0D2861B2AC00305776 /* AmountView.swift */; };
@@ -67,10 +69,12 @@
 		BB6EEDEB287C5DC200245997 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		BB74FA292858C58A00EA2CD8 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		BB9B6FCE28CB5A59000B1D53 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BB9B6FD128CB5E45000B1D53 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		BB9B6FD728CF79E9000B1D53 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		BB9EFC09285E2A9200305776 /* AddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCell.swift; sourceTree = "<group>"; };
 		BB9EFC0B2861AADF00305776 /* RevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueView.swift; sourceTree = "<group>"; };
 		BB9EFC0D2861B2AC00305776 /* AmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountView.swift; sourceTree = "<group>"; };
@@ -171,10 +175,10 @@
 		BB61DEA22850A39400A08AC6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BB9B6FD628CF79C1000B1D53 /* Auth */,
 				BB9EFC1A2878309D00305776 /* Services */,
 				BB9EFC08285E249800305776 /* Add */,
 				BB74FA262858C09E00EA2CD8 /* Home */,
-				BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */,
 				BBCFDC052851F3FF003F9197 /* TitleView.swift */,
 			);
 			path = View;
@@ -193,6 +197,7 @@
 			children = (
 				BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */,
 				BB9B6FCE28CB5A59000B1D53 /* Constants.swift */,
+				BB836F7028D1BECA008F22C7 /* Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -216,6 +221,15 @@
 				BB9B6FD128CB5E45000B1D53 /* ProfileController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		BB9B6FD628CF79C1000B1D53 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */,
+				BB9B6FD728CF79E9000B1D53 /* ProfileImageView.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		BB9EFC08285E249800305776 /* Add */ = {
@@ -421,7 +435,9 @@
 				BB9EFC13286B234700305776 /* DatabaseService.swift in Sources */,
 				BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */,
 				BB9EFC0C2861AADF00305776 /* RevenueView.swift in Sources */,
+				BB9B6FD828CF79E9000B1D53 /* ProfileImageView.swift in Sources */,
 				BB66934F285C7FFF002DFAAD /* AddTransactionController.swift in Sources */,
+				BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */,
 				BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */,
 				BB61DEAF2850F8E800A08AC6 /* ProfileHeaderView.swift in Sources */,
 				BB9EFC1D287830E800305776 /* TopView.swift in Sources */,
