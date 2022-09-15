@@ -72,7 +72,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "FF41DF36-BA91-4C4E-B09B-B311F54ADBB7"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Finance/Controller/TabBarController.swift"
@@ -88,7 +88,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "91573C11-3AE8-4FF2-BEEF-021B054E4D79"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Finance/Controller/HomeController.swift"
@@ -104,7 +104,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "949466DD-131E-4846-9C79-A30DCAFDBE8C"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Finance/Controller/HomeController.swift"
@@ -116,7 +116,7 @@
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "949466DD-131E-4846-9C79-A30DCAFDBE8C - 2a604131661660bc"
+                  uuid = "949466DD-131E-4846-9C79-A30DCAFDBE8C - 2a6041316616617a"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -126,12 +126,12 @@
                   urlString = "file:///Users/aleksandrmerenkov/Documents/Develop/Finance/Finance/Controller/HomeController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
                   offsetFromSymbolStart = "90">
                </Location>
                <Location
-                  uuid = "949466DD-131E-4846-9C79-A30DCAFDBE8C - d3a4d7630870a8"
+                  uuid = "949466DD-131E-4846-9C79-A30DCAFDBE8C - d3a4d76308716e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -141,12 +141,12 @@
                   urlString = "file:///Users/aleksandrmerenkov/Documents/Develop/Finance/Finance/Controller/HomeController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
                   offsetFromSymbolStart = "121">
                </Location>
                <Location
-                  uuid = "949466DD-131E-4846-9C79-A30DCAFDBE8C - 472def518493f4b9"
+                  uuid = "949466DD-131E-4846-9C79-A30DCAFDBE8C - 472def518493f57f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -156,12 +156,12 @@
                   urlString = "file:///Users/aleksandrmerenkov/Documents/Develop/Finance/Finance/Controller/HomeController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
-                  uuid = "949466DD-131E-4846-9C79-A30DCAFDBE8C - 17bd02183c94c023"
+                  uuid = "949466DD-131E-4846-9C79-A30DCAFDBE8C - 17bd02183c94c1e5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -171,12 +171,12 @@
                   urlString = "file:///Users/aleksandrmerenkov/Documents/Develop/Finance/Finance/Controller/HomeController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
                   offsetFromSymbolStart = "17">
                </Location>
                <Location
-                  uuid = "949466DD-131E-4846-9C79-A30DCAFDBE8C - d812dc495a0beab0"
+                  uuid = "949466DD-131E-4846-9C79-A30DCAFDBE8C - d812dc495a0beb76"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -186,12 +186,12 @@
                   urlString = "file:///Users/aleksandrmerenkov/Documents/Develop/Finance/Finance/Controller/HomeController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "1092">
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "1057">
                </Location>
                <Location
-                  uuid = "949466DD-131E-4846-9C79-A30DCAFDBE8C - 3111967a141abe6"
+                  uuid = "949466DD-131E-4846-9C79-A30DCAFDBE8C - 3111967a141aa20"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -201,9 +201,9 @@
                   urlString = "file:///Users/aleksandrmerenkov/Documents/Develop/Finance/Finance/Controller/HomeController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "1040">
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "1005">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -212,7 +212,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "A37FA72A-77AA-46C8-BB84-E41B501892AF"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Finance/Controller/HomeController.swift"
@@ -228,7 +228,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "70EADF17-D641-4D0A-ACB8-B419343AEAB4"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Finance/Controller/HomeController.swift"
@@ -237,6 +237,22 @@
             startingLineNumber = "176"
             endingLineNumber = "176"
             landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "89A32955-43B6-4528-B381-20380766187B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Finance/API/UserService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "uploadDate(complition:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

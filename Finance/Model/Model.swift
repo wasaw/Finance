@@ -47,6 +47,23 @@ struct AuthCredentials {
     var confirmPass: String = ""
 }
 
+struct User {
+    let login: String
+    let email: String
+    var profileImageUrl: URL?
+    let uid: String
+    
+    init(uid: String, dictionary: [String: AnyObject]) {
+        self.uid = uid
+        self.login = dictionary["login"] as? String ?? ""
+        self.email = dictionary["email"] as? String ?? ""
+        if let profileImageString = dictionary["profileImageUrl"] as? String {
+            guard let url = URL(string: profileImageString) else { return }
+            self.profileImageUrl = url
+        }
+    }
+}
+
 //  MARK: - Decodable
 
 struct ConversionRates: Decodable {

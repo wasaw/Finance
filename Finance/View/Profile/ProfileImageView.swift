@@ -7,15 +7,22 @@
 
 import UIKit
 
+protocol ProfileImageSelectDelegate: AnyObject {
+    func selectImage()
+}
+
 class ProfileImageView: UIView {
     
 //    MARK: - Properties
+    
+    weak var delegate: ProfileImageSelectDelegate?
             
     private let imageButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(named: "add-photo.pgn")?.withRenderingMode(.alwaysOriginal), for: .normal)
         btn.imageView?.contentMode = .center
         btn.layer.borderWidth = 3
+        btn.addTarget(self, action: #selector(handleAddPhoto), for: .touchUpInside)
         return btn
     }()
     
@@ -41,5 +48,14 @@ class ProfileImageView: UIView {
         imageButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
         imageButton.imageView?.contentMode = .scaleAspectFill
         imageButton.layer.masksToBounds = true
+    }
+    
+    func setImage(complition: @escaping (UIButton) -> Void) {
+        complition(imageButton)
+    }
+    //    MARK: - Selectors
+
+    @objc private func handleAddPhoto() {
+        delegate?.selectImage()
     }
 }

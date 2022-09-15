@@ -26,6 +26,7 @@
 		BB74FA2A2858C58A00EA2CD8 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA292858C58A00EA2CD8 /* AuthController.swift */; };
 		BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
+		BB836F7328D20D9C008F22C7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7228D20D9C008F22C7 /* UserService.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
 		BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */; };
 		BB9B6FCF28CB5A59000B1D53 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCE28CB5A59000B1D53 /* Constants.swift */; };
@@ -70,6 +71,7 @@
 		BB74FA292858C58A00EA2CD8 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		BB836F7228D20D9C008F22C7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		BB9B6FCE28CB5A59000B1D53 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -175,7 +177,7 @@
 		BB61DEA22850A39400A08AC6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BB9B6FD628CF79C1000B1D53 /* Auth */,
+				BB9B6FD628CF79C1000B1D53 /* Profile */,
 				BB9EFC1A2878309D00305776 /* Services */,
 				BB9EFC08285E249800305776 /* Add */,
 				BB74FA262858C09E00EA2CD8 /* Home */,
@@ -223,13 +225,13 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		BB9B6FD628CF79C1000B1D53 /* Auth */ = {
+		BB9B6FD628CF79C1000B1D53 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */,
 				BB9B6FD728CF79E9000B1D53 /* ProfileImageView.swift */,
 			);
-			path = Auth;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		BB9EFC08285E249800305776 /* Add */ = {
@@ -248,6 +250,7 @@
 				BB9EFC12286B234600305776 /* DatabaseService.swift */,
 				BB6EEDEB287C5DC200245997 /* NetworkService.swift */,
 				BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */,
+				BB836F7228D20D9C008F22C7 /* UserService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */,
 				BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */,
 				BB6EEDEC287C5DC200245997 /* NetworkService.swift in Sources */,
+				BB836F7328D20D9C008F22C7 /* UserService.swift in Sources */,
 				BB61DEA72850A3D400A08AC6 /* HomeController.swift in Sources */,
 				BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */,
 				BB74FA2A2858C58A00EA2CD8 /* AuthController.swift in Sources */,

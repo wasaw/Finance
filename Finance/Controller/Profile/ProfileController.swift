@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 class ProfileController: UIViewController {
 
@@ -42,7 +43,19 @@ class ProfileController: UIViewController {
             vc.modalPresentationStyle = .currentContext
             present(vc, animated: false)
         }
-
+        
+        UserService.shared.uploadDate { [weak self] user in
+            self?.imageView.setImage { button in
+                let transformer = SDImageResizingTransformer(size: CGSize(width: 140, height: 140), scaleMode: .fill)
+                button.sd_setImage(with: user.profileImageUrl, for: .normal, placeholderImage: nil, context: [.imageTransformer: transformer])
+                button.layer.masksToBounds = true
+            }
+            self?.loginLabel.text = user.login
+        }
+        
+        imageView.delegate = self
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         view.addSubview(imageView)
         imageView.anchor(left: view.leftAnchor, top: view.safeAreaLayoutGuide.topAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 15, paddingRight: -10, height: 150)
         
@@ -61,6 +74,36 @@ class ProfileController: UIViewController {
             try Auth.auth().signOut()
         } catch let error {
             print("Error is \(error.localizedDescription)")
+        }
+    }
+}
+
+//  MARK: - Extensions
+
+extension ProfileController: ProfileImageSelectDelegate {
+    func selectImage() {
+        present(imagePicker, animated: true)
+    }
+}
+
+extension ProfileController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let profileImage = info[.editedImage] as? UIImage else { return }
+        
+        imageView.setImage(image: profileImage)
+        dismiss(animated: true)
+
+        guard let dataImage = profileImage.jpegData(compressionQuality: 0.3) else { return }
+        let filename = UUID().uuidString
+        let storageImageRef = REF_PROFILE_IMAGE.child(filename)
+        
+        storageImageRef.putData(dataImage) { meta, error in
+            storageImageRef.downloadURL { url, error in
+                guard let profileImageUrl = url?.absoluteString else { return }
+                guard let uid = Auth.auth().currentUser?.uid else { return }
+                let values = ["profileImageUrl": profileImageUrl]
+                REF_USERS.child(uid).updateChildValues(values)
+            }
         }
     }
 }
