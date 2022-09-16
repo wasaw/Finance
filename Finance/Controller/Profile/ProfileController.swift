@@ -13,24 +13,25 @@ class ProfileController: UIViewController {
 
 //    MARK: - Properties
     
+    private var currentCurrency: Currency = .rub
+    
     private let imagePicker = UIImagePickerController()
     private let imageView = ProfileImageView()
     private let loginLabel: UILabel = {
         let label = UILabel()
-        label.text = "username"
         label.font = UIFont.boldSystemFont(ofSize: 23)
         label.textAlignment = .center
         return label
     }()
     
-    private let currentCurrencyBtn = Utils().menuItemButton(image: "currencies.png", label: "Текущая валюта")
-    private let logOutBtn = Utils().menuItemButton(image: "logout.png", label: "Выход")
+    private var currentCurrencyBtn = Utils().menuItemButton(image: "currencies.png", title: "Текущая валюта")
+    private let logOutBtn = Utils().menuItemButton(image: "logout.png", title: "Выход")
 
 //    MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        logOut()
+
         authAndConfigureUI()
         view.backgroundColor = .white
     }
@@ -45,10 +46,12 @@ class ProfileController: UIViewController {
         }
         
         UserService.shared.uploadDate { [weak self] user in
-            self?.imageView.setImage { button in
-                let transformer = SDImageResizingTransformer(size: CGSize(width: 140, height: 140), scaleMode: .fill)
-                button.sd_setImage(with: user.profileImageUrl, for: .normal, placeholderImage: nil, context: [.imageTransformer: transformer])
-                button.layer.masksToBounds = true
+            if user.profileImageUrl != nil {
+                self?.imageView.setImage { button in
+                    let transformer = SDImageResizingTransformer(size: CGSize(width: 140, height: 140), scaleMode: .fill)
+                    button.sd_setImage(with: user.profileImageUrl, for: .normal, placeholderImage: nil, context: [.imageTransformer: transformer])
+                    button.layer.masksToBounds = true
+                }
             }
             self?.loginLabel.text = user.login
         }
@@ -67,11 +70,37 @@ class ProfileController: UIViewController {
         stack.spacing = 15
         view.addSubview(stack)
         stack.anchor(left: view.leftAnchor, top: loginLabel.bottomAnchor, right: view.rightAnchor, paddingLeft: 20, paddingTop: 130, paddingRight: -20)
+
+        currentCurrencyBtn.menu = generationMenu()
+        currentCurrencyBtn.showsMenuAsPrimaryAction = true
     }
     
-    private func logOut() {
+    private func generationMenu() -> UIMenu {
+        let first = createUIAction(title: "Рубль", image: "ruble-currency.png", displayedCurrency: .rub)
+        let second = createUIAction(title: "Доллар", image: "dollar.png", displayedCurrency: .dollar)
+        let third = createUIAction(title: "Евро", image: "euro.png", displayedCurrency: .euro)
+        let elements = [first, second, third]
+        let menu = UIMenu(children: elements)
+        return menu
+    }
+    
+    private func createUIAction(title: String, image: String, displayedCurrency: Currency) -> UIAction {
+        return UIAction(title: title, image: UIImage(named: image), state: checkCurrency(currency: displayedCurrency) ? .on : .off) { _ in
+            self.currentCurrency = displayedCurrency
+            self.currentCurrencyBtn.menu = self.generationMenu()
+        }
+    }
+    
+    private func checkCurrency(currency: Currency) -> Bool {
+        return currency == currentCurrency ? true : false
+    }
+    
+//    MARK: - Selecters
+    
+    @objc private func handleLogOutBtn() {
         do {
             try Auth.auth().signOut()
+            authAndConfigureUI()
         } catch let error {
             print("Error is \(error.localizedDescription)")
         }

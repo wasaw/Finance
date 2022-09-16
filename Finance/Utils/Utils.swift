@@ -8,7 +8,7 @@
 import UIKit
 
 class Utils {
-    func menuItemButton(image name: String, label title: String) -> UIButton {
+    func menuItemButton(image name: String, title: String) -> UIButton {
         let button = UIButton()
         button.backgroundColor = .white
         button.anchor(height: 60)
@@ -17,14 +17,14 @@ class Utils {
         button.addSubview(imageView)
         imageView.centerYAnchor.constraint(equalTo: button.centerYAnchor).isActive = true
         imageView.anchor(left: button.leftAnchor, width: 40, height: 40)
-        
+
         let label = UILabel()
         label.text = title
-        label.font = UIFont.systemFont(ofSize: 21)
+        label.font = UIFont.boldSystemFont(ofSize: 21)
         button.addSubview(label)
         label.centerYAnchor.constraint(equalTo: button.centerYAnchor).isActive = true
         label.anchor(left: imageView.rightAnchor, paddingLeft: 15)
-        
+
         let viewLine = UIView()
         viewLine.backgroundColor = .lightGray
         button.addSubview(viewLine)

@@ -64,6 +64,12 @@ struct User {
     }
 }
 
+enum Currency: String {
+    case rub = "рубли"
+    case dollar = "доллары"
+    case euro = "евро"
+}
+
 //  MARK: - Decodable
 
 struct ConversionRates: Decodable {
