@@ -14,6 +14,7 @@ class ProfileController: UIViewController {
 //    MARK: - Properties
     
     private var currentCurrency: Currency = .rub
+    private var currentUser = CurrentUser()
     
     private let imagePicker = UIImagePickerController()
     private let imageView = ProfileImageView()
@@ -29,6 +30,17 @@ class ProfileController: UIViewController {
 
 //    MARK: - Lifecycle
     
+    init(_ currentUser: CurrentUser) {
+        super.init(nibName: nil, bundle: nil)
+
+        self.currentUser = currentUser
+        self.currentUser.subscribe(self)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,22 +50,12 @@ class ProfileController: UIViewController {
     
 //    MARK: - Helpers
     
-    private func authAndConfigureUI() {
+    func authAndConfigureUI() {
         if Auth.auth().currentUser == nil {
             let vc = AuthController()
+            vc.delegate = self
             vc.modalPresentationStyle = .currentContext
             present(vc, animated: false)
-        }
-        
-        UserService.shared.uploadDate { [weak self] user in
-            if user.profileImageUrl != nil {
-                self?.imageView.setImage { button in
-                    let transformer = SDImageResizingTransformer(size: CGSize(width: 140, height: 140), scaleMode: .fill)
-                    button.sd_setImage(with: user.profileImageUrl, for: .normal, placeholderImage: nil, context: [.imageTransformer: transformer])
-                    button.layer.masksToBounds = true
-                }
-            }
-            self?.loginLabel.text = user.login
         }
         
         imageView.delegate = self
@@ -63,7 +65,7 @@ class ProfileController: UIViewController {
         imageView.anchor(left: view.leftAnchor, top: view.safeAreaLayoutGuide.topAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 15, paddingRight: -10, height: 150)
         
         view.addSubview(loginLabel)
-        loginLabel.anchor(left: view.leftAnchor, top: imageView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 20)
+        loginLabel.anchor(left: view.leftAnchor, top: imageView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 40)
         
         let stack = UIStackView(arrangedSubviews: [currentCurrencyBtn, logOutBtn])
         stack.axis = .vertical
@@ -73,6 +75,7 @@ class ProfileController: UIViewController {
 
         currentCurrencyBtn.menu = generationMenu()
         currentCurrencyBtn.showsMenuAsPrimaryAction = true
+        logOutBtn.addTarget(self, action: #selector(handleLogOutBtn), for: .touchUpInside)
     }
     
     private func generationMenu() -> UIMenu {
@@ -100,6 +103,7 @@ class ProfileController: UIViewController {
     @objc private func handleLogOutBtn() {
         do {
             try Auth.auth().signOut()
+            currentUser.deleteValue()
             authAndConfigureUI()
         } catch let error {
             print("Error is \(error.localizedDescription)")
@@ -134,5 +138,29 @@ extension ProfileController: UIImagePickerControllerDelegate, UINavigationContro
                 REF_USERS.child(uid).updateChildValues(values)
             }
         }
+    }
+}
+
+extension ProfileController: Subscriber {
+    func update(subject: User?) {
+        guard let user = subject else { return }
+        loginLabel.text = user.login
+        
+        UserService.shared.uploadDate { [weak self] user in
+            if user.profileImageUrl != nil {
+                self?.imageView.setImage { button in
+                    let transformer = SDImageResizingTransformer(size: CGSize(width: 140, height: 140), scaleMode: .fill)
+                    button.sd_setImage(with: user.profileImageUrl, for: .normal, placeholderImage: nil, context: [.imageTransformer: transformer])
+                    button.layer.masksToBounds = true
+                }
+            }
+        }
+    }
+}
+
+extension ProfileController: SendUidDelegate {
+    func sendUid(uid: String) {
+        let user = DatabaseService.shared.getUserInformation(uid: uid)
+        self.currentUser.setValue(user: user)
     }
 }

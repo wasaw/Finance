@@ -119,6 +119,31 @@ class DatabaseService {
         }
     }
     
+    func saveUser(user: User) {
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LoginUser")
+        
+        do {
+            guard let entity = NSEntityDescription.entity(forEntityName: "LoginUser", in: context) else { return }
+                    
+            let newTransaction = NSManagedObject(entity: entity, insertInto: context)
+            newTransaction.setValue(user.login, forKey: "login")
+            newTransaction.setValue(user.uid, forKey: "uid")
+            newTransaction.setValue(user.email, forKey: "email")
+            let profileImageUrl = user.profileImageUrl?.absoluteString ?? ""
+            newTransaction.setValue(profileImageUrl, forKey: "profileImageUrl")
+            newTransaction.setValue(user.authorized, forKey: "authorized")
+            
+            do {
+                try context.save()
+            } catch let error as NSError {
+                print(error)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
 //    MARK: - Get
     
     func getCategoryInformation() -> [ChoiceCategoryExpense] {
@@ -191,5 +216,30 @@ class DatabaseService {
         }
         
         return lastTransaction
+    }
+    
+    func getUserInformation(uid: String) -> User? {
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LoginUser")
+        fetchRequest.predicate = NSPredicate(format: "uid == %@", uid)
+        
+        do {
+            let result = try context.fetch(fetchRequest)
+            for data in result {
+                if let data = data as? NSManagedObject {
+                    let uid = data.value(forKey: "uid") as? String ?? ""
+                    let login = data.value(forKey: "login") as? String ?? ""
+                    let email = data.value(forKey: "email") as? String ?? ""
+                    let profileImageUrl = data.value(forKey: "profileImageUrl") as? String ?? ""
+                    let authorized = data.value(forKey: "authorized") as? Bool ?? false
+                    let user = User(uid: uid, login: login, email: email, profileImageUrl: profileImageUrl, authorized: authorized)
+                    return user
+                }
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        return nil
     }
 }

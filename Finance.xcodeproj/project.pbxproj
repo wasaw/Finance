@@ -18,13 +18,13 @@
 		BB61DEA72850A3D400A08AC6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEA62850A3D400A08AC6 /* HomeController.swift */; };
 		BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */; };
 		BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */; };
-		BB61DEAF2850F8E800A08AC6 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEAE2850F8E800A08AC6 /* ProfileHeaderView.swift */; };
 		BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */; };
 		BB66934D285B885A002DFAAD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66934C285B885A002DFAAD /* Model.swift */; };
 		BB66934F285C7FFF002DFAAD /* AddTransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66934E285C7FFF002DFAAD /* AddTransactionController.swift */; };
 		BB6EEDEC287C5DC200245997 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EEDEB287C5DC200245997 /* NetworkService.swift */; };
 		BB74FA2A2858C58A00EA2CD8 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA292858C58A00EA2CD8 /* AuthController.swift */; };
 		BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */; };
+		BB80CA0528D9A96F00AE5A8B /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80CA0428D9A96F00AE5A8B /* CurrentUser.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
 		BB836F7328D20D9C008F22C7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7228D20D9C008F22C7 /* UserService.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
@@ -63,13 +63,13 @@
 		BB61DEA62850A3D400A08AC6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalAccountView.swift; sourceTree = "<group>"; };
 		BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		BB61DEAE2850F8E800A08AC6 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
 		BB66934C285B885A002DFAAD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		BB66934E285C7FFF002DFAAD /* AddTransactionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionController.swift; sourceTree = "<group>"; };
 		BB6EEDEB287C5DC200245997 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		BB74FA292858C58A00EA2CD8 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		BB80CA0428D9A96F00AE5A8B /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BB836F7228D20D9C008F22C7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -189,6 +189,7 @@
 		BB61DEA32850A39800A08AC6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BB80CA0428D9A96F00AE5A8B /* CurrentUser.swift */,
 				BB66934C285B885A002DFAAD /* Model.swift */,
 			);
 			path = Model;
@@ -208,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */,
-				BB61DEAE2850F8E800A08AC6 /* ProfileHeaderView.swift */,
 				BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */,
 				BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */,
 				BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */,
@@ -425,6 +425,7 @@
 				BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */,
 				BBB9D94B28B651E90037CC24 /* StocksController.swift in Sources */,
 				BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */,
+				BB80CA0528D9A96F00AE5A8B /* CurrentUser.swift in Sources */,
 				BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */,
 				BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */,
 				BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */,
@@ -443,7 +444,6 @@
 				BB66934F285C7FFF002DFAAD /* AddTransactionController.swift in Sources */,
 				BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */,
 				BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */,
-				BB61DEAF2850F8E800A08AC6 /* ProfileHeaderView.swift in Sources */,
 				BB9EFC1D287830E800305776 /* TopView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

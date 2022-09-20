@@ -27,12 +27,6 @@ class TotalAccountView: UIView {
         return label
     }()
     
-    private let arrowDownImage: UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: "arrow-down")?.withTintColor(.totalAccountTintColor)
-        return img
-    }()
-    
     private let plusImage: UIImageView = {
         let img = UIImageView()
         img.image = UIImage(named: "plus.png")?.withTintColor(.totalAccountTintColor)
@@ -66,10 +60,6 @@ class TotalAccountView: UIView {
         addSubview(titleLable)
         titleLable.anchor(bottom: totalAccountLabel.topAnchor, paddingBottom: -10, height: 25)
         titleLable.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-    
-        addSubview(arrowDownImage)
-        arrowDownImage.anchor(left: totalAccountLabel.rightAnchor, paddingLeft: 10, width: 25, height: 25)
-        arrowDownImage.centerYAnchor.constraint(equalTo: totalAccountLabel.centerYAnchor).isActive = true
     }
     
     func setAccountLabel(total: Int) {

@@ -41,7 +41,7 @@ struct CurrentExchangeRate {
 
 
 struct AuthCredentials {
-    let username: String
+    let login: String
     let email: String
     let password: String
     var confirmPass: String = ""
@@ -52,6 +52,7 @@ struct User {
     let email: String
     var profileImageUrl: URL?
     let uid: String
+    var authorized: Bool = true
     
     init(uid: String, dictionary: [String: AnyObject]) {
         self.uid = uid
@@ -60,6 +61,16 @@ struct User {
         if let profileImageString = dictionary["profileImageUrl"] as? String {
             guard let url = URL(string: profileImageString) else { return }
             self.profileImageUrl = url
+        }
+    }
+    
+    init(uid: String, login: String, email: String, profileImageUrl: String, authorized: Bool) {
+        self.uid = uid
+        self.login = login
+        self.email = email
+        self.authorized = authorized
+        if profileImageUrl != "" {
+            self.profileImageUrl = URL(string: profileImageUrl)
         }
     }
 }

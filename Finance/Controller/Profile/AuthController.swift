@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol SendUidDelegate: AnyObject {
+    func sendUid(uid: String)
+}
+
 class AuthController: UIViewController {
     
 //    MARK: - Properties
-    
+        
     private let authView = AuthView()
+    var delegate: SendUidDelegate?
     
 //    MARK: - Lifecycle
     
@@ -20,7 +25,7 @@ class AuthController: UIViewController {
         
         configureDelegate()
         configureUI()
-
+        
         view.backgroundColor = .white
     }
     
@@ -99,16 +104,24 @@ extension AuthController: AuthFormDelegate {
                     if let error = error {
                         print("Logging error is \(error.localizedDescription)")
                     }
-                    
-                    self.dismiss(animated: true)
+                    if let uid = result?.user.uid {
+                        self.delegate?.sendUid(uid: uid)
+                    }
+//                    self.dismiss(animated: true)
+                    self.presentingViewController?.dismiss(animated: true)
                 }
             case 1:
                 AuthService.shared.registerUser(credentials: credentials) { error, ref in
                     if let error = error {
                         print("Save error is \(error.localizedDescription)")
+                    } else {
+                        let uid = ref.url.suffix(28)
+                        let user = User(uid: String(uid), login: credentials.login, email: credentials.email, profileImageUrl: "", authorized: true)
+                        DatabaseService.shared.saveUser(user: user)
+                        self.delegate?.sendUid(uid: String(uid))
+//                        self.dismiss(animated: true)
+                        self.presentingViewController?.dismiss(animated: true)
                     }
-                    
-                    self.dismiss(animated: true)
                 }
             default:
                 return

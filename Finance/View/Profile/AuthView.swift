@@ -223,14 +223,14 @@ class AuthView: UIView {
         if segmentedController.selectedSegmentIndex == 0 {
             guard let email = emailTextField.text else { return }
             guard let password = passTextField.text else { return }
-            let credentials = AuthCredentials(username: "", email: email, password: password)
+            let credentials = AuthCredentials(login: "", email: email, password: password)
             delegate?.handleAuthButton(segment: 0, credentials: credentials)
         } else {
             guard let login = loginTextField.text else { return }
             guard let email = emailRegTextField.text else { return }
             guard let password = passRegTextField.text else { return }
             guard let confirmPass = confirmPassTextField.text else { return }
-            let credentials = AuthCredentials(username: login, email: email, password: password, confirmPass: confirmPass)
+            let credentials = AuthCredentials(login: login, email: email, password: password, confirmPass: confirmPass)
             delegate?.handleAuthButton(segment: segmentedController.selectedSegmentIndex, credentials: credentials)
         }
 

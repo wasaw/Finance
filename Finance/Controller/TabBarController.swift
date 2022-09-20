@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import Firebase
 
 class TabBarController: UITabBarController {
+    
+//    MARK: - Properties
+    
+    private var currentUser = CurrentUser()
     
 //    MARK: - Lifecycle
     
@@ -24,13 +29,13 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                        
         self.delegate = self
         tabBar.backgroundColor = .tabBarBackgroundColor
         tabBar.tintColor = .totalAccountBackground
         tabBar.barTintColor = .white
         
-        let homeVC = UINavigationController(rootViewController: HomeController())
+        let homeVC = UINavigationController(rootViewController: HomeController(currentUser))
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = "Домашняя"
         
@@ -40,11 +45,23 @@ class TabBarController: UITabBarController {
         let top: CGFloat = (view.frame.height < 700) ? 10 : 20
         addVC.tabBarItem.imageInsets = UIEdgeInsets(top: top, left: 0, bottom: 0, right: 0)
 
-        let profileVC = UINavigationController(rootViewController: ProfileController())
+        let profileVC = UINavigationController(rootViewController: ProfileController(currentUser))
         profileVC.tabBarItem.image = UIImage(systemName: "person.fill")
         profileVC.tabBarItem.title = "Профиль"
-        
+
+        authUser()
+
         viewControllers = [homeVC, addVC, profileVC]
+    }
+    
+//    MARK: - Helpers
+    
+    private func authUser() {
+        let uid = Auth.auth().currentUser?.uid
+        if uid != nil {
+            let user = DatabaseService.shared.getUserInformation(uid: uid!)
+            self.currentUser.setValue(user: user)
+        }
     }
 }
 

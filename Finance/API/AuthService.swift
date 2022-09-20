@@ -17,7 +17,7 @@ struct AuthService {
     }
     
     func registerUser(credentials: AuthCredentials, completion: @escaping (Error?,DatabaseReference) -> Void) {
-        let login = credentials.username
+        let login = credentials.login
         let email = credentials.email
         let password = credentials.password
                 
@@ -31,5 +31,9 @@ struct AuthService {
             
             REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)
         }
+    }
+    
+    func checkAuthUser() -> String? {
+        return Auth.auth().currentUser?.uid
     }
 }

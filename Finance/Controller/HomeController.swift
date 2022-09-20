@@ -10,8 +10,13 @@ import UIKit
 class HomeController: UIViewController {
     
 //    MARK: - Properties
+    private let fullNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Ваше имя"
+        label.font = UIFont.boldSystemFont(ofSize: 27)
+        return label
+    }()
     
-    private let profileHeaderView = ProfileHeaderView()
     private let totalAccountView = TotalAccountView()
     private let servicesTitleView = TitleView()
     private let transactionTitleView = TitleView()
@@ -36,8 +41,21 @@ class HomeController: UIViewController {
             lastTransactionsCollectionView?.reloadData()
         }
     }
-
+    
+    private var currentUser = CurrentUser()
+    
 //    MARK: - Lifecycle
+    
+    init(_ currentUser: CurrentUser) {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.currentUser = currentUser
+        self.currentUser.subscribe(self)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,6 +64,7 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         loadInformation()
         heightView = view.frame.height
         configureUI()
@@ -70,7 +89,7 @@ class HomeController: UIViewController {
     }
     
     private func configureUI() {
-        configureProfileHeaderView()
+        configurefullNameLabel()
         configureTotalAccountView()
         configureServicesTitleView()
         configureServicesCollectionView()
@@ -78,15 +97,15 @@ class HomeController: UIViewController {
         configureLastTransactionsCollectionView()
     }
     
-    private func configureProfileHeaderView() {
-        view.addSubview(profileHeaderView)
-        profileHeaderView.anchor(left: view.leftAnchor, top: view.safeAreaLayoutGuide.topAnchor, right: view.rightAnchor, paddingLeft: 10, paddingRight: -15, height: 50)
+    private func configurefullNameLabel() {
+        view.addSubview(fullNameLabel)
+        fullNameLabel.anchor(left: view.leftAnchor, top: view.safeAreaLayoutGuide.topAnchor, right: view.rightAnchor, paddingLeft: 10, paddingRight: -15, height: 50)
     }
     
     private func configureTotalAccountView() {
         view.addSubview(totalAccountView)
         let height = heightView / 5.5
-        totalAccountView.anchor(left: view.leftAnchor, top: profileHeaderView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 20, paddingRight: -10, height: height)
+        totalAccountView.anchor(left: view.leftAnchor, top: fullNameLabel.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 20, paddingRight: -10, height: height)
     }
     
     private func configureServicesTitleView() {
@@ -194,5 +213,15 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
             return 25
         }
         return 5
+    }
+}
+
+extension HomeController: Subscriber {
+    func update(subject: User?) {
+        if let user = subject {
+            fullNameLabel.text = user.login
+        } else {
+            fullNameLabel.text = "Ваше имя"
+        }
     }
 }
