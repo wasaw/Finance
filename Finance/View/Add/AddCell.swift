@@ -16,6 +16,7 @@ class AddCell: UICollectionViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .black
         return label
     }()
     
@@ -26,6 +27,7 @@ class AddCell: UICollectionViewCell {
     
     private let amountLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .black
         return label
     }()
     

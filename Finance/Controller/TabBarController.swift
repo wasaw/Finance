@@ -18,13 +18,12 @@ class TabBarController: UITabBarController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let lessWidth: CGFloat = (view.frame.height < 700) ? 15 : 20
-        let lessHeight: CGFloat = (view.frame.height < 700) ? 5 : 15
-        tabBar.frame.size.width = view.frame.width - lessWidth
-        tabBar.frame.size.height = tabBar.frame.size.height - lessHeight
-        tabBar.frame.origin.y = tabBar.frame.origin.y - lessHeight / 2
-        tabBar.frame.origin.x = lessWidth / 2
-        tabBar.layer.cornerRadius = lessWidth
+        let boundWidth: CGFloat = 20
+        tabBar.frame.size.width = view.frame.width - boundWidth
+        tabBar.frame.size.height = tabBar.frame.size.height * 0.9
+        tabBar.frame.origin.y = tabBar.frame.origin.y - 10
+        tabBar.frame.origin.x = boundWidth / 2
+        tabBar.layer.cornerRadius = boundWidth
     }
     
     override func viewDidLoad() {
@@ -32,7 +31,7 @@ class TabBarController: UITabBarController {
                         
         self.delegate = self
         tabBar.backgroundColor = .tabBarBackgroundColor
-        tabBar.tintColor = .totalAccountBackground
+        tabBar.tintColor = .selectViewBackground
         tabBar.barTintColor = .white
         
         let homeVC = UINavigationController(rootViewController: HomeController(currentUser))
@@ -42,7 +41,7 @@ class TabBarController: UITabBarController {
         let addVC = AddTransactionController()
         let named = (view.frame.height < 700) ? "plus-2.png" : "plus-1.png"
         addVC.tabBarItem.image = UIImage(named: named)?.withRenderingMode(.alwaysOriginal)
-        let top: CGFloat = (view.frame.height < 700) ? 10 : 20
+        let top: CGFloat = (view.frame.height < 700) ? 10 : 25
         addVC.tabBarItem.imageInsets = UIEdgeInsets(top: top, left: 0, bottom: 0, right: 0)
 
         let profileVC = UINavigationController(rootViewController: ProfileController(currentUser))

@@ -20,6 +20,7 @@ class AmountView: UIView {
         let tf = UITextField()
         tf.placeholder = "Сумма"
         tf.keyboardType = .asciiCapableNumberPad
+        tf.textColor = .black
         return tf
     }()
     
@@ -27,6 +28,7 @@ class AmountView: UIView {
     private let dateTextField: UITextField = {
        let tf = UITextField()
         tf.placeholder = "Дата"
+        tf.textColor = .black
         return tf
     }()
     
@@ -34,11 +36,12 @@ class AmountView: UIView {
     let commentTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Комментарий"
+        tf.textColor = .black
         tf.returnKeyType = .done
         return tf
     }()
     
-    private let doneButton: UIButton = {
+    private lazy var doneButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("Готово", for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 27)

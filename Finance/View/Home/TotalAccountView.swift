@@ -14,7 +14,7 @@ class TotalAccountView: UIView {
     private let titleLable: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 19)
-        label.textColor = .totalAccountTintColor
+        label.textColor = .totalTintColor
         label.alpha = 0.4
         label.text = "Ваш баланс"
         return label
@@ -23,13 +23,13 @@ class TotalAccountView: UIView {
     private let totalAccountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 38)
-        label.textColor = .totalAccountTintColor
+        label.textColor = .totalTintColor
         return label
     }()
     
     private let plusImage: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "plus.png")?.withTintColor(.totalAccountTintColor)
+        img.image = UIImage(named: "plus.png")?.withTintColor(.totalTintColor)
         return img
     }()
     
@@ -42,7 +42,7 @@ class TotalAccountView: UIView {
         
         layer.cornerRadius = 20
         
-        backgroundColor = .totalAccountBackground
+        backgroundColor = .selectViewBackground
     }
     
     required init?(coder: NSCoder) {

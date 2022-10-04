@@ -28,7 +28,7 @@ class ServicesCell: UICollectionViewCell {
     private let titleLable: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = .totalAccountTintColor
+        label.textColor = .totalTintColor
         label.textAlignment = .center
         label.numberOfLines = 0
         label.lineBreakMode = .byClipping

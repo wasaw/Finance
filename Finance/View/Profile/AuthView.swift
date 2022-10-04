@@ -21,6 +21,7 @@ class AuthView: UIView {
         let label = UILabel()
         label.text = "Вход"
         label.font = UIFont.boldSystemFont(ofSize: 27)
+        label.textColor = .totalTintColor
         return label
     }()
     
@@ -28,6 +29,7 @@ class AuthView: UIView {
         let tf = UITextField()
         tf.placeholder = "Имя пользователя"
         tf.font = UIFont.systemFont(ofSize: 19)
+        tf.textColor = .black
         return tf
     }()
     
@@ -36,6 +38,7 @@ class AuthView: UIView {
         tf.placeholder = "Почта"
         tf.keyboardType = .emailAddress
         tf.font = UIFont.systemFont(ofSize: 19)
+        tf.textColor = .black
         return tf
     }()
     
@@ -44,6 +47,7 @@ class AuthView: UIView {
         tf.placeholder = "Почта"
         tf.keyboardType = .emailAddress
         tf.font = UIFont.systemFont(ofSize: 19)
+        tf.textColor = .black
         return tf
     }()
     
@@ -52,6 +56,7 @@ class AuthView: UIView {
         tf.placeholder = "Пароль"
         tf.isSecureTextEntry = true
         tf.font = UIFont.systemFont(ofSize: 19)
+        tf.textColor = .black
         return tf
     }()
     
@@ -60,6 +65,7 @@ class AuthView: UIView {
         tf.placeholder = "Пароль"
         tf.isSecureTextEntry = true
         tf.font = UIFont.systemFont(ofSize: 19)
+        tf.textColor = .black
         return tf
     }()
     
@@ -68,10 +74,11 @@ class AuthView: UIView {
         tf.placeholder = "Подтверждение пароля"
         tf.isSecureTextEntry = true
         tf.font = UIFont.systemFont(ofSize: 19)
+        tf.textColor = .black
         return tf
     }()
             
-    private let logInButton: UIButton = {
+    private lazy var logInButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("Войти", for: .normal)
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 27)

@@ -14,7 +14,7 @@ class NetworkService {
 //    MARK: - Properties
     
     private let url = "https://v6.exchangerate-api.com/v6/"
-    private let apiKey = "64972d5a886b4d18e01b722f"
+    private let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String ?? ""
     private let end = "/latest/"
     
 //    MARK: - Helpers

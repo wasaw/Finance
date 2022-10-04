@@ -86,7 +86,6 @@ class AuthController: UIViewController {
         default:
             return false
         }
-        return false
     }
 }
 

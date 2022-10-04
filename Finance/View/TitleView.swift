@@ -14,13 +14,13 @@ class TitleView: UIView {
     private let titleLable: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 21)
-        label.textColor = .totalAccountTintColor
+        label.textColor = .totalTintColor
         return label
     }()
     
     private let arrowImage: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "arrow-down.png")?.withTintColor(.totalAccountTintColor)
+        img.image = UIImage(named: "arrow-down.png")?.withTintColor(.totalTintColor)
         img.transform = CGAffineTransform(rotationAngle: -CGFloat(Double.pi / 2))
         return img
     }()

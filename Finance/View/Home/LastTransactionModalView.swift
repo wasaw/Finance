@@ -13,24 +13,28 @@ class LastTransactionModalView: UIView {
     private let typeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 32)
+        label.textColor = .totalTintColor
         return label
     }()
     
     private let amountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 23)
+        label.textColor = .totalTintColor
         return label
     }()
     
     private let categoryLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 23)
+        label.textColor = .totalTintColor
         return label
     }()
     
     private let commentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 23)
+        label.textColor = .totalTintColor
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         return label
@@ -39,6 +43,7 @@ class LastTransactionModalView: UIView {
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .totalTintColor
         return label
     }()
     

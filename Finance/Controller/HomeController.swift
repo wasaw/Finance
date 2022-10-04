@@ -13,6 +13,7 @@ class HomeController: UIViewController {
     private let fullNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Ваше имя"
+        label.textColor = .totalTintColor
         label.font = UIFont.boldSystemFont(ofSize: 27)
         return label
     }()
@@ -28,7 +29,7 @@ class HomeController: UIViewController {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.text = "Пока нет ни одной записи"
-        label.textColor = .totalAccountTintColor
+        label.textColor = .totalTintColor
         return label
     }()
     

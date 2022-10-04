@@ -25,14 +25,14 @@ class LastTransactionCell: UICollectionViewCell {
     private let categoryLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .totalAccountTintColor
+        label.textColor = .totalTintColor
         return label
     }()
     
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = .totalAccountTintColor
+        label.textColor = .totalTintColor
         label.layer.opacity = 0.7
         return label
     }()

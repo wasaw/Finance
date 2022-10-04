@@ -104,6 +104,7 @@ class AddTransactionController: UIViewController {
         typeCollectionView.delegate = self
         typeCollectionView.dataSource = self
         typeCollectionView.showsHorizontalScrollIndicator = false
+        typeCollectionView.backgroundColor = .white
         contentView.addSubview(typeCollectionView)
         typeCollectionView.anchor(left: contentView.leftAnchor, top: typeTitleView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 90)
     }
@@ -124,6 +125,7 @@ class AddTransactionController: UIViewController {
         categotyCollectionView.delegate = self
         categotyCollectionView.dataSource = self
         categotyCollectionView.showsHorizontalScrollIndicator = false
+        categotyCollectionView.backgroundColor = .white
         contentView.addSubview(categotyCollectionView)
         categotyCollectionView.anchor(left: contentView.leftAnchor, top: categoryTitleView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 185)
     }

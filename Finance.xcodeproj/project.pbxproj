@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9AF4048141F3230E754689C8 /* Pods_Finance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53022AC9E214609030662D0 /* Pods_Finance.framework */; };
+		BB2F661A28DC54FC0068E7CE /* StocksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2F661928DC54FC0068E7CE /* StocksController.swift */; };
 		BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */; };
 		BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */; };
 		BB61DE912850A33300A08AC6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DE902850A33300A08AC6 /* ViewController.swift */; };
@@ -40,7 +41,6 @@
 		BB9EFC172878221000305776 /* ExchangeRateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC162878221000305776 /* ExchangeRateController.swift */; };
 		BB9EFC1D287830E800305776 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC1C287830E800305776 /* TopView.swift */; };
 		BB9EFC21287869D000305776 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC20287869D000305776 /* CurrencyCell.swift */; };
-		BBB9D94B28B651E90037CC24 /* StocksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9D94A28B651E90037CC24 /* StocksController.swift */; };
 		BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */; };
 		BBB9D95228B653F30037CC24 /* LastTransactionModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9D95128B653F30037CC24 /* LastTransactionModalController.swift */; };
 		BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC052851F3FF003F9197 /* TitleView.swift */; };
@@ -51,6 +51,7 @@
 		2CE0EEA6404BF9FB495CD737 /* Pods-Finance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finance.release.xcconfig"; path = "Target Support Files/Pods-Finance/Pods-Finance.release.xcconfig"; sourceTree = "<group>"; };
 		8B68B2028077D098EA217496 /* Pods-Finance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finance.debug.xcconfig"; path = "Target Support Files/Pods-Finance/Pods-Finance.debug.xcconfig"; sourceTree = "<group>"; };
 		A53022AC9E214609030662D0 /* Pods_Finance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Finance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB2F661928DC54FC0068E7CE /* StocksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksController.swift; sourceTree = "<group>"; };
 		BB61DE892850A33300A08AC6 /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +65,7 @@
 		BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalAccountView.swift; sourceTree = "<group>"; };
 		BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
+		BB640D9228E19CD300F789B6 /* ApiKey.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ApiKey.xcconfig; sourceTree = "<group>"; };
 		BB66934C285B885A002DFAAD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		BB66934E285C7FFF002DFAAD /* AddTransactionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionController.swift; sourceTree = "<group>"; };
 		BB6EEDEB287C5DC200245997 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -85,7 +87,6 @@
 		BB9EFC162878221000305776 /* ExchangeRateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateController.swift; sourceTree = "<group>"; };
 		BB9EFC1C287830E800305776 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		BB9EFC20287869D000305776 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
-		BBB9D94A28B651E90037CC24 /* StocksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksController.swift; sourceTree = "<group>"; };
 		BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionModalView.swift; sourceTree = "<group>"; };
 		BBB9D95128B653F30037CC24 /* LastTransactionModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionModalController.swift; sourceTree = "<group>"; };
 		BBCFDC052851F3FF003F9197 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
@@ -145,12 +146,12 @@
 			children = (
 				BB61DEA32850A39800A08AC6 /* Model */,
 				BB61DEA22850A39400A08AC6 /* View */,
-				BBB9D94928B651CB0037CC24 /* ViewController */,
 				BB61DEA02850A37200A08AC6 /* Controller */,
 				BB61DEAB2850DE2F00A08AC6 /* Utils */,
 				BB9EFC14286B2A7500305776 /* API */,
 				BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */,
 				BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */,
+				BB640D9228E19CD300F789B6 /* ApiKey.xcconfig */,
 				BB61DE902850A33300A08AC6 /* ViewController.swift */,
 				BB61DE922850A33300A08AC6 /* Main.storyboard */,
 				BB61DE952850A33800A08AC6 /* Assets.xcassets */,
@@ -259,7 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				BB9EFC162878221000305776 /* ExchangeRateController.swift */,
-				BBB9D94A28B651E90037CC24 /* StocksController.swift */,
+				BB2F661928DC54FC0068E7CE /* StocksController.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -279,13 +280,6 @@
 				BB9EFC20287869D000305776 /* CurrencyCell.swift */,
 			);
 			path = ExchangeRate;
-			sourceTree = "<group>";
-		};
-		BBB9D94928B651CB0037CC24 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		BBB9D95028B653480037CC24 /* AddTransaction */ = {
@@ -423,12 +417,12 @@
 				BB61DEA52850A3C200A08AC6 /* TabBarController.swift in Sources */,
 				BB9EFC0A285E2A9200305776 /* AddCell.swift in Sources */,
 				BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */,
-				BBB9D94B28B651E90037CC24 /* StocksController.swift in Sources */,
 				BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */,
 				BB80CA0528D9A96F00AE5A8B /* CurrentUser.swift in Sources */,
 				BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */,
 				BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */,
 				BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */,
+				BB2F661A28DC54FC0068E7CE /* StocksController.swift in Sources */,
 				BB6EEDEC287C5DC200245997 /* NetworkService.swift in Sources */,
 				BB836F7328D20D9C008F22C7 /* UserService.swift in Sources */,
 				BB61DEA72850A3D400A08AC6 /* HomeController.swift in Sources */,
@@ -472,6 +466,7 @@
 /* Begin XCBuildConfiguration section */
 		BB61DE9B2850A33800A08AC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB640D9228E19CD300F789B6 /* ApiKey.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -600,6 +595,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -629,6 +625,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

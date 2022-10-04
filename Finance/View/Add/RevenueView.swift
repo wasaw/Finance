@@ -15,7 +15,7 @@ class RevenueView: UIView {
     
 //    MARK: - Properties
     
-    private let switcher: UISwitch = {
+    private lazy var switcher: UISwitch = {
         let sw = UISwitch()
         sw.isOn = false
         sw.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
@@ -26,6 +26,7 @@ class RevenueView: UIView {
         let label = UILabel()
         label.text = "Доход"
         label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = .black
         return label
     }()
     

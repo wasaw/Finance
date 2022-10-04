@@ -14,7 +14,7 @@ class TopView: UIView {
     private let rateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 38)
-        label.textColor = .totalAccountTintColor
+        label.textColor = .totalTintColor
         return label
     }()
     

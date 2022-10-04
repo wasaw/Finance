@@ -17,7 +17,7 @@ class ProfileImageView: UIView {
     
     weak var delegate: ProfileImageSelectDelegate?
             
-    private let imageButton: UIButton = {
+    private lazy var imageButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(named: "add-photo.pgn")?.withRenderingMode(.alwaysOriginal), for: .normal)
         btn.imageView?.contentMode = .center
