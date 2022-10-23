@@ -25,8 +25,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             let category = [ChoiceCategoryExpense(name: "Продукты", img: "products.png"), ChoiceCategoryExpense(name: "Транспорт", img: "transportation.png"), ChoiceCategoryExpense(name: "Образование", img: "education.png"), ChoiceCategoryExpense(name: "Подписки", img: "subscription.png"), ChoiceCategoryExpense(name: "Прочее", img: "other.png"), ChoiceCategoryExpense(name: "Связь", img: "chat.png"), ChoiceCategoryExpense(name: "Развлечения", img: "cinema.png"), ChoiceCategoryExpense(name: "Ресторан", img: "fast-food.png"), ChoiceCategoryExpense(name: "Здоровье", img: "healthcare.png")]
             
-            databaseService.addTypeInformation(type: revenue)
-            databaseService.addCategoryInfornation(category: category)
+            DispatchQueue.main.async {
+                databaseService.addTypeInformation(type: revenue)
+                databaseService.addCategoryInfornation(category: category)
+            }
+        }
+        
+        DispatchQueue.main.async {
+            NetworkService.shared.loadExchangeRates(requestCurrency: "USD") { response in
+                for item in response.conversion_rates {
+                    if item.0 == "RUB" {
+                        CurrencyRate.usd = item.1
+                    }
+                }
+            }
+            
+            NetworkService.shared.loadExchangeRates(requestCurrency: "EUR") { response in
+                for item in response.conversion_rates {
+                    if item.0 == "RUB" {
+                        CurrencyRate.eur = item.1
+                    }
+                }
+            }
         }
         return true
     }

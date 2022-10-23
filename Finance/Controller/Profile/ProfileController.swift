@@ -13,9 +13,8 @@ class ProfileController: UIViewController {
 
 //    MARK: - Properties
     
-    private var currentCurrency: Currency = .rub
     private var currentUser = CurrentUser()
-    
+
     private let imagePicker = UIImagePickerController()
     private let imageView = ProfileImageView()
     private let loginLabel: UILabel = {
@@ -89,13 +88,13 @@ class ProfileController: UIViewController {
     
     private func createUIAction(title: String, image: String, displayedCurrency: Currency) -> UIAction {
         return UIAction(title: title, image: UIImage(named: image), state: checkCurrency(currency: displayedCurrency) ? .on : .off) { _ in
-            self.currentCurrency = displayedCurrency
+            CurrencyRate.currentCurrency = displayedCurrency
             self.currentCurrencyBtn.menu = self.generationMenu()
         }
     }
     
     private func checkCurrency(currency: Currency) -> Bool {
-        return currency == currentCurrency ? true : false
+        return currency == CurrencyRate.currentCurrency ? true : false
     }
     
 //    MARK: - Selecters

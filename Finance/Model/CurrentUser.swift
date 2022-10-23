@@ -5,15 +5,18 @@
 //  Created by Александр Меренков on 20.09.2022.
 //
 
-import Foundation
-
 protocol Subscriber: AnyObject {
     func update(subject: User?)
 }
 
 class CurrentUser {
+    
+//    MARK: - Properties
+    
     private lazy var subscribers: [WeakSubscriber] = []
     private var subject: User? = nil
+        
+//    MARK: - Helpers
     
     func setValue(user: User?) {
         self.subject = user

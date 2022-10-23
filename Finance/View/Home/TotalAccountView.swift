@@ -62,7 +62,7 @@ class TotalAccountView: UIView {
         titleLable.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
-    func setAccountLabel(total: Int) {
-        totalAccountLabel.text = String(total) + " ₽"
+    func setAccountLabel(total: Double, currency: Currency) {
+        totalAccountLabel.text = String(format: "%.2f", total) + currency.getMark()
     }
 }

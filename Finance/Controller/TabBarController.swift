@@ -13,7 +13,7 @@ class TabBarController: UITabBarController {
 //    MARK: - Properties
     
     private var currentUser = CurrentUser()
-    
+        
 //    MARK: - Lifecycle
     
     override func viewDidLayoutSubviews() {
@@ -28,7 +28,7 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                        
+        
         self.delegate = self
         tabBar.backgroundColor = .tabBarBackgroundColor
         tabBar.tintColor = .selectViewBackground
@@ -38,7 +38,7 @@ class TabBarController: UITabBarController {
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = "Домашняя"
         
-        let addVC = AddTransactionController()
+        let addVC = AddTransactionController(currentUser)
         let named = (view.frame.height < 700) ? "plus-2.png" : "plus-1.png"
         addVC.tabBarItem.image = UIImage(named: named)?.withRenderingMode(.alwaysOriginal)
         let top: CGFloat = (view.frame.height < 700) ? 10 : 25
@@ -47,9 +47,9 @@ class TabBarController: UITabBarController {
         let profileVC = UINavigationController(rootViewController: ProfileController(currentUser))
         profileVC.tabBarItem.image = UIImage(systemName: "person.fill")
         profileVC.tabBarItem.title = "Профиль"
-
+        
         authUser()
-
+        
         viewControllers = [homeVC, addVC, profileVC]
     }
     
@@ -71,7 +71,7 @@ extension TabBarController: UITabBarControllerDelegate {
         let isAddVC = viewController is AddTransactionController
 
         if isAddVC {
-            let addVC = AddTransactionController()
+            let addVC = AddTransactionController(currentUser)
             if let sheet = addVC.sheetPresentationController {
                 sheet.detents = [.large()]
             }

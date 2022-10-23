@@ -75,10 +75,10 @@ class AddCell: UICollectionViewCell {
         amountLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
-    func setInfornation(title: String, img: String, amount: Int = 0) {
+    func setInfornation(title: String, img: String, amount: Double = 0, currency: Currency) {
         titleLabel.text = title
         imageView.image = UIImage(named: img)
-        amountLabel.text = String(amount) + " руб."
+        amountLabel.text = String(format: "%.0f", amount) + currency.getMark()
     }
     
     func hideAmount(_ isHidden: Bool) {

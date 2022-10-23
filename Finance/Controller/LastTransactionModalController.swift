@@ -11,12 +11,16 @@ class LastTransactionModalController: UIViewController {
 //    MARK: - Properties
     
     private let transaction: LastTransaction
+    private let currency: Currency
+    private let rate: Double
     private let textView = LastTransactionModalView()
     
 //    MARK: - Lifecycle
     
-    init(transaction: LastTransaction) {
+    init(transaction: LastTransaction, currency: Currency, rate: Double) {
         self.transaction = transaction
+        self.currency = currency
+        self.rate = rate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -37,6 +41,6 @@ class LastTransactionModalController: UIViewController {
     private func configureUI() {
         view.addSubview(textView)
         textView.anchor(left: view.leftAnchor, top: view.topAnchor, right: view.rightAnchor, bottom: view.bottomAnchor)
-        textView.setInformation(transaction)
+        textView.setInformation(transaction, currency: currency, rate: rate)
     }
 }

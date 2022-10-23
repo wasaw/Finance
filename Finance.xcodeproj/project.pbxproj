@@ -20,6 +20,7 @@
 		BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */; };
 		BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */; };
 		BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */; };
+		BB63FDA52902D3B800D28166 /* CurrencyRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB63FDA42902D3B800D28166 /* CurrencyRate.swift */; };
 		BB66934D285B885A002DFAAD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66934C285B885A002DFAAD /* Model.swift */; };
 		BB66934F285C7FFF002DFAAD /* AddTransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66934E285C7FFF002DFAAD /* AddTransactionController.swift */; };
 		BB6EEDEC287C5DC200245997 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EEDEB287C5DC200245997 /* NetworkService.swift */; };
@@ -65,6 +66,7 @@
 		BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalAccountView.swift; sourceTree = "<group>"; };
 		BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
+		BB63FDA42902D3B800D28166 /* CurrencyRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRate.swift; sourceTree = "<group>"; };
 		BB640D9228E19CD300F789B6 /* ApiKey.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ApiKey.xcconfig; sourceTree = "<group>"; };
 		BB66934C285B885A002DFAAD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		BB66934E285C7FFF002DFAAD /* AddTransactionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionController.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			children = (
 				BB80CA0428D9A96F00AE5A8B /* CurrentUser.swift */,
 				BB66934C285B885A002DFAAD /* Model.swift */,
+				BB63FDA42902D3B800D28166 /* CurrencyRate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				BB9EFC0C2861AADF00305776 /* RevenueView.swift in Sources */,
 				BB9B6FD828CF79E9000B1D53 /* ProfileImageView.swift in Sources */,
 				BB66934F285C7FFF002DFAAD /* AddTransactionController.swift in Sources */,
+				BB63FDA52902D3B800D28166 /* CurrencyRate.swift in Sources */,
 				BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */,
 				BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */,
 				BB9EFC1D287830E800305776 /* TopView.swift in Sources */,

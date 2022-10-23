@@ -19,6 +19,7 @@ class LastTransactionCell: UICollectionViewCell {
     
     private let amountLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .right
         return label
     }()
     
@@ -47,7 +48,7 @@ class LastTransactionCell: UICollectionViewCell {
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         addSubview(amountLabel)
-        amountLabel.anchor(right: rightAnchor, width: 70)
+        amountLabel.anchor(right: rightAnchor)
         amountLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         let stack = UIStackView(arrangedSubviews: [categoryLabel, dateLabel])
@@ -65,8 +66,9 @@ class LastTransactionCell: UICollectionViewCell {
     
 //    MARK: - Helpers
     
-    func setInformation(lastTransaction: LastTransaction) {
-        amountLabel.text = String(lastTransaction.amount) + " ₽"
+    func setInformation(lastTransaction: LastTransaction, currency: Currency, rate: Double) {
+        let transaction = lastTransaction.amount / rate
+        amountLabel.text = String(format: "%.2f", transaction) + currency.getMark()
         categoryLabel.text = lastTransaction.category
         imageView.image = UIImage(named: lastTransaction.img)
         let formatter = DateFormatter()

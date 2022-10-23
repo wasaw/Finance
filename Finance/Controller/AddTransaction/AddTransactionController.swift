@@ -11,6 +11,8 @@ class AddTransactionController: UIViewController {
     
 //    MARK: - Properties
     
+    private var currentUser = CurrentUser()
+    
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
@@ -50,6 +52,16 @@ class AddTransactionController: UIViewController {
     }
 
 //    MARK: - Lifecycle
+    
+    init(_ currentUser: CurrentUser) {
+        super.init(nibName: nil, bundle: nil)
+
+        self.currentUser = currentUser
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -223,7 +235,8 @@ extension AddTransactionController: UICollectionViewDataSource {
         if collectionView == self.typeCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddCell.identifire, for: indexPath) as? AddCell else { return UICollectionViewCell() }
             let currentRevenue = revenue[indexPath.row]
-            cell.setInfornation(title: currentRevenue.name, img: currentRevenue.img, amount: currentRevenue.amount)
+            let amount = currentRevenue.amount / CurrencyRate.rate
+            cell.setInfornation(title: currentRevenue.name, img: currentRevenue.img, amount: amount, currency: CurrencyRate.currentCurrency)
             cell.disableSelect()
             if selectedType == indexPath.row {
                 cell.setSelect()
@@ -234,7 +247,7 @@ extension AddTransactionController: UICollectionViewDataSource {
         if collectionView == self.categoryCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddCell.identifire, for: indexPath) as? AddCell else { return UICollectionViewCell() }
             let currentCategory = category[indexPath.row]
-            cell.setInfornation(title: currentCategory.name, img: currentCategory.img)
+            cell.setInfornation(title: currentCategory.name, img: currentCategory.img, currency: CurrencyRate.currentCurrency)
             cell.hideAmount(true)
             cell.disableSelect()
             if selectedCategory == indexPath.row {
@@ -258,8 +271,9 @@ extension AddTransactionController: HandleDoneDelegate {
     func saveInformation(amount: String, date: String, comment: String) {
         let isFillingCompleted = checkCompleted(amount, date)
         if isFillingCompleted.0 {
-            let amountInt = Int(amount) ?? 0
-            addTransaction.amount = isRevenue ? amountInt : -1 * amountInt
+            let amountDouble = Double(amount) ?? 0
+            addTransaction.amount = isRevenue ? amountDouble : -1 * amountDouble
+            addTransaction.amount = addTransaction.amount * CurrencyRate.rate
             addTransaction.comment = comment
             databaseService.saveTransaction(transaction: addTransaction)
             self.dismiss(animated: true)

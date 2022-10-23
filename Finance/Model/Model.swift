@@ -15,7 +15,7 @@ struct ChoiceService {
 struct ChoiceTypeRevenue {
     let name: String
     let img: String
-    var amount: Int = 0
+    var amount: Double = 0
     var isChecked = false
 }
 struct ChoiceCategoryExpense {
@@ -25,7 +25,7 @@ struct ChoiceCategoryExpense {
 }
 struct LastTransaction {
     var type: String = "Зарплата"
-    var amount: Int = 0
+    var amount: Double = 0
     var img: String = "other.png"
     var date: Date = Date(timeIntervalSinceNow: 0)
     var comment: String = ""
@@ -79,6 +79,17 @@ enum Currency: String {
     case rub = "рубли"
     case dollar = "доллары"
     case euro = "евро"
+    
+    func getMark() -> String {
+        switch self {
+        case .rub:
+            return " ₽"
+        case .dollar:
+            return " $"
+        case .euro:
+            return " €"
+        }
+    }
 }
 
 //  MARK: - Decodable

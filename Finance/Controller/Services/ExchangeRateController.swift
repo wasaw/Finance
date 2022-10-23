@@ -18,7 +18,7 @@ class ExchangeRateController: UIViewController {
     private var exchangeRate = [CurrentExchangeRate]()
     private let fullName = ["Болгарский лев", "Чешская крона", "Евро", "Фунт стерлингов", "Казахстанский тенге", "Новозеландский доллар", "Рубль", "Доллар"]
     private let img = ["bulgarian-lev.png", "czech-republic.png", "euro.png", "pound-sterling.png", "kazakhstani-tenge.png", "new-zealand.png", "ruble-currency.png", "dollar.png"]
-    private var revenue = 0
+    private var revenue: Double = 0
     private var currentRate: Double = 0
     private var requestCurrency = "USD"
     private var isLoadExchange = false {
@@ -65,7 +65,7 @@ class ExchangeRateController: UIViewController {
         
         DispatchQueue.main.async {
             let revenueArray = self.databaseService.getTypeInformation()
-            var amount = 0
+            var amount: Double = 0
             for item in revenueArray {
                 amount += item.amount
             }
@@ -94,7 +94,7 @@ class ExchangeRateController: UIViewController {
     
     private func setTotalAccount() {
         if isLoadExchange && isLoadRevenue {
-            let total =  Double(revenue) / currentRate
+            let total =  revenue / currentRate
             topView.setTotalAccount(total)
         }
     }

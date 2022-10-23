@@ -35,6 +35,7 @@ class HomeController: UIViewController {
     
     private var heightView: CGFloat = 0
     private let databaseService = DatabaseService.shared
+    private let networkService = NetworkService.shared
     private let service = [ChoiceService(name: "Курс валют", img: "exchange-rate.png", vc: ExchangeRateController()), ChoiceService(name: "Акции", img: "stock-market.png", vc: StocksController())]
 
     private var lastTransaction = [LastTransaction]() {
@@ -67,6 +68,7 @@ class HomeController: UIViewController {
         super.viewDidLoad()
 
         loadInformation()
+
         heightView = view.frame.height
         configureUI()
         view.backgroundColor = .white
@@ -81,11 +83,17 @@ class HomeController: UIViewController {
                 self.lastTransactionsCollectionView?.isHidden = false
             }
             let revenueArray = self.databaseService.getTypeInformation()
-            var revenue = 0
+            var revenue: Double = 0
             for item in revenueArray {
                 revenue += item.amount
             }
-            self.totalAccountView.setAccountLabel(total: revenue)
+            if CurrencyRate.currentCurrency == .dollar {
+                revenue = revenue / CurrencyRate.usd
+            }
+            if CurrencyRate.currentCurrency == .euro {
+                revenue = revenue / CurrencyRate.eur
+            }
+            self.totalAccountView.setAccountLabel(total: revenue, currency: CurrencyRate.currentCurrency)
         }
     }
     
@@ -164,7 +172,7 @@ extension HomeController: UICollectionViewDelegate {
         }
         
         if collectionView == self.lastTransactionsCollectionView {
-            let vc = LastTransactionModalController(transaction: lastTransaction[indexPath.row])
+            let vc = LastTransactionModalController(transaction: lastTransaction[indexPath.row], currency: CurrencyRate.currentCurrency, rate: CurrencyRate.rate)
             if let sheet = vc.sheetPresentationController {
                 sheet.detents = [.medium()]
                 sheet.preferredCornerRadius = 26
@@ -193,7 +201,7 @@ extension HomeController: UICollectionViewDataSource {
         }
         if collectionView == self.lastTransactionsCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LastTransactionCell.identifire, for: indexPath) as? LastTransactionCell else { return UICollectionViewCell() }
-            cell.setInformation(lastTransaction: lastTransaction[indexPath.row])
+            cell.setInformation(lastTransaction: lastTransaction[indexPath.row], currency: CurrencyRate.currentCurrency, rate: CurrencyRate.rate)
             return cell
         }
         return UICollectionViewCell()
