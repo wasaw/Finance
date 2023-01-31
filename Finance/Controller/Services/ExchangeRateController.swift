@@ -12,6 +12,7 @@ class ExchangeRateController: UIViewController {
 //    MARK: - Properties
     
     private let topView = TopView()
+    private let loadAnimateView = CircleAnimation()
     private var listCurrencyCollectionView: UICollectionView?
     private let networkService = NetworkService.shared
     private let databaseService = DatabaseService.shared
@@ -37,6 +38,7 @@ class ExchangeRateController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureLoadAnimationView()
         loadInformation(requestCurrency)
         configureUI()
         configureCollectionView()
@@ -45,6 +47,13 @@ class ExchangeRateController: UIViewController {
     }
     
 //    MARK: - Helpers
+    
+    private func configureLoadAnimationView() {
+        topView.addSubview(loadAnimateView)
+        loadAnimateView.centerXAnchor.constraint(equalTo: topView.centerXAnchor).isActive = true
+        loadAnimateView.anchor(top: topView.safeAreaLayoutGuide.topAnchor)
+        loadAnimateView.configureAnimation()
+    }
     
     private func loadInformation(_ requestCurrency: String) {
         networkService.loadExchangeRates(requestCurrency: requestCurrency, complition: { response in
@@ -61,6 +70,7 @@ class ExchangeRateController: UIViewController {
             }
             self.isLoadExchange = true
             self.listCurrencyCollectionView?.reloadData()
+            self.loadAnimateView.isHidden = true
         })
         
         DispatchQueue.main.async {
@@ -88,6 +98,7 @@ class ExchangeRateController: UIViewController {
         listCurrencyCollectionView.dataSource = self
         listCurrencyCollectionView.layer.cornerRadius = 30
         view.addSubview(listCurrencyCollectionView)
+        listCurrencyCollectionView.backgroundColor = .white
         
         listCurrencyCollectionView.anchor(left: view.leftAnchor, top: topView.bottomAnchor, right: view.rightAnchor, bottom: view.bottomAnchor, paddingTop: -15)
     }
@@ -100,7 +111,7 @@ class ExchangeRateController: UIViewController {
     }
 }
 
-//  MARK: - Extension
+//  MARK: - UICollectionVIewDelegate
 
 extension ExchangeRateController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -108,6 +119,8 @@ extension ExchangeRateController: UICollectionViewDelegate {
         loadInformation(requestCurrency)
     }
 }
+
+//  MARK: - UICollectionViewDataSource
 
 extension ExchangeRateController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -120,6 +133,8 @@ extension ExchangeRateController: UICollectionViewDataSource {
         return cell
     }
 }
+
+//  MARK: - UICollectionViewDelegateFlowLayout
 
 extension ExchangeRateController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
