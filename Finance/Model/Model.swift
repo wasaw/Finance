@@ -92,6 +92,16 @@ enum Currency: String {
     }
 }
 
+struct Stock {
+    let symbol: String
+    var value: Double
+    
+    init(symbol: String) {
+        self.symbol = symbol
+        self.value = 0
+    }
+}
+
 //  MARK: - Decodable
 
 struct ConversionRates: Decodable {
@@ -147,5 +157,21 @@ struct CurrencyJsonIterator: IteratorProtocol {
             return answer
         }
         return nil
+    }
+}
+
+
+struct StockRate: Decodable {
+    let queryCount: Int
+    let results: [StockItem]
+}
+
+struct StockItem: Decodable {
+    let symbol: String
+    let value: Double
+    
+    enum CodingKeys: String, CodingKey {
+        case symbol = "T"
+        case value = "c"
     }
 }

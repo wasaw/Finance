@@ -8,22 +8,33 @@
 import Foundation
 import Alamofire
 
+enum RequestType {
+    case exchange
+    case stock
+}
+
 class NetworkService {
     static let shared = NetworkService()
     
 //    MARK: - Properties
     
-    private let url = "https://v6.exchangerate-api.com/v6/"
-    private let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String ?? ""
-    private let end = "/latest/"
-    
+    private let config = NetworkConfiguration()
+
 //    MARK: - Helpers
     
     func loadExchangeRates(requestCurrency: String, complition: @escaping(ConversionRates) -> Void) {
-        let urlRequest = url + apiKey + end + requestCurrency
+        let urlRequest = config.getUrl(.exchange) + requestCurrency
         AF.request(urlRequest).responseDecodable(of: ConversionRates.self) { response in
             guard let result = response.value else { return }
             complition(result)
+        }
+    }
+    
+    func loadStockRate(date: String, complition: @escaping([StockItem]) -> Void) {
+        let urlRequest = config.getUrl(.stock, date: date)
+        AF.request(urlRequest).responseDecodable(of: StockRate.self) { response in
+            guard let result = response.value else { return }
+            complition(result.results)
         }
     }
 }
