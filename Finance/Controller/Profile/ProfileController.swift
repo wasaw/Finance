@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import SDWebImage
 
-class ProfileController: UIViewController {
+final class ProfileController: UIViewController {
 
 //    MARK: - Properties
     
@@ -23,6 +23,8 @@ class ProfileController: UIViewController {
         label.textAlignment = .center
         return label
     }()
+    private let authController = AuthController()
+
     
     private var currentCurrencyBtn = Utils().menuItemButton(image: "currencies.png", title: "Текущая валюта")
     private let logOutBtn = Utils().menuItemButton(image: "logout.png", title: "Выход")
@@ -43,20 +45,36 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        authAndConfigureUI()
+        auth()
         view.backgroundColor = .white
     }
     
 //    MARK: - Helpers
     
-    func authAndConfigureUI() {
+    private func auth() {
         if Auth.auth().currentUser == nil {
-            let vc = AuthController()
-            vc.delegate = self
-            vc.modalPresentationStyle = .currentContext
-            present(vc, animated: false)
+            addAuthController()
+        } else {
+            configureUI()
         }
+    }
+    
+    private func addAuthController() {
+        authController.delegate = self
+        self.view.addSubview(authController.view)
+        self.addChild(authController)
+        authController.didMove(toParent: self)
+    }
+    
+    private func deleteAuthController() {
+        authController.willMove(toParent: nil)
+        authController.removeFromParent()
+        authController.view.removeFromSuperview()
         
+        configureUI()
+    }
+    
+    func configureUI() {
         imageView.delegate = self
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
@@ -103,7 +121,8 @@ class ProfileController: UIViewController {
         do {
             try Auth.auth().signOut()
             currentUser.deleteValue()
-            authAndConfigureUI()
+//            configureUI()
+            addAuthController()
         } catch let error {
             print("Error is \(error.localizedDescription)")
         }
@@ -124,11 +143,11 @@ extension ProfileController: UIImagePickerControllerDelegate, UINavigationContro
         
         imageView.setImage(image: profileImage)
         dismiss(animated: true)
-
+        
         guard let dataImage = profileImage.jpegData(compressionQuality: 0.3) else { return }
         let filename = UUID().uuidString
         let storageImageRef = REF_PROFILE_IMAGE.child(filename)
-        
+
         storageImageRef.putData(dataImage) { meta, error in
             storageImageRef.downloadURL { url, error in
                 guard let profileImageUrl = url?.absoluteString else { return }
@@ -161,5 +180,6 @@ extension ProfileController: SendUidDelegate {
     func sendUid(uid: String) {
         let user = DatabaseService.shared.getUserInformation(uid: uid)
         self.currentUser.setValue(user: user)
+        self.deleteAuthController()
     }
 }

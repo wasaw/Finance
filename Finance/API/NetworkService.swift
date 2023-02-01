@@ -5,7 +5,6 @@
 //  Created by Александр Меренков on 11.07.2022.
 //
 
-import Foundation
 import Alamofire
 
 enum RequestType {
@@ -13,7 +12,7 @@ enum RequestType {
     case stock
 }
 
-class NetworkService {
+final class NetworkService {
     static let shared = NetworkService()
     
 //    MARK: - Properties
