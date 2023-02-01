@@ -51,40 +51,28 @@ final class AuthController: UIViewController {
         let emailPattern = #"^\S+@\S+\.\S+$"#
         let resultEmailPattern = credentials.email.range(of: emailPattern, options: .regularExpression)
         if credentials.email == "" || credentials.password == "" {
-            let alert = UIAlertController(title: "Внимание", message: "Заполнены не все поля", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default))
-            self.present(alert, animated: true)
+            alert(with: "Внимание", massage: "Заполнены не все поля")
             return false
         }
         if resultEmailPattern == nil {
-            let alert = UIAlertController(title: "Внимание", message: "Неправильно введен email", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default))
-            self.present(alert, animated: true)
+            alert(with: "Внимание", massage: "Неправильно введен email")
             return false
         }
         switch segment {
-        case 0:
-            return true
         case 1:
             if credentials.password == "" || credentials.confirmPass == "" {
-                let alert = UIAlertController(title: "Внимание", message: "Заполнены не все поля", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default))
-                self.present(alert, animated: true)
+                alert(with: "Внимание", massage: "Заполнены не все поля")
                 return false
             }
             if credentials.password != credentials.confirmPass {
-                let alert = UIAlertController(title: "Внимание", message: "Пароли не совпадают", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default))
-                self.present(alert, animated: true)
+                alert(with: "Внимание", massage: "Пароли не совпадают")
             }
             if credentials.password.count < 6 {
-                let alert = UIAlertController(title: "Внимание", message: "Длина пароля минимум 6 символов", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default))
-                self.present(alert, animated: true)
+                alert(with: "Внимание", massage: "Длина пароля минимум 6 символов")
             }
             return true
         default:
-            return false
+            return true
         }
     }
 }
@@ -101,6 +89,9 @@ extension AuthController: AuthFormDelegate {
                 
                 AuthService.shared.logInUser(email: email, password: password) { result, error in
                     if let error = error {
+                        if error.localizedDescription.contains("The password is invalid") {
+                            self.alert(with: "Внимание", massage: "Введен неверный пароль")
+                        }
                         print("Logging error is \(error.localizedDescription)")
                     }
 

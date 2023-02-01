@@ -33,6 +33,8 @@ extension UITextField {
     }
 }
 
+//  MARK: - UIView
+
 extension UIView {
     func anchor (left: NSLayoutXAxisAnchor? = nil,
                  top: NSLayoutYAxisAnchor? = nil,
@@ -65,5 +67,15 @@ extension UIView {
         if let height = height {
             heightAnchor.constraint(equalToConstant: height).isActive = true
         }
+    }
+}
+
+//  MARK: - UIViewController
+
+extension UIViewController {
+    func alert(with title: String, massage: String) {
+        let alert = UIAlertController(title: title, message: massage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        self.present(alert, animated: true)
     }
 }
