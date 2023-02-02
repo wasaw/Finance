@@ -9,9 +9,10 @@ import UIKit
 
 protocol AuthFormDelegate: AnyObject {
     func handleAuthButton(segment: Int, credentials: AuthCredentials)
+    func updateHeight(state: AuthState)
 }
 
-class AuthView: UIView {
+final class AuthView: UIView {
     
 //    MARK: - Properties
     
@@ -162,16 +163,14 @@ class AuthView: UIView {
     }
     
     private func configureLogInField() {
-
         addSubview(emailTextField)
-        emailTextField.anchor(left: leftAnchor, top: segmentedController.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 50, paddingRight: -20, height: 50)
+        emailTextField.anchor(left: leftAnchor, top: segmentedController.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 20, paddingRight: -20, height: 50)
 
         addSubview(passTextField)
         passTextField.anchor(left: leftAnchor, top: emailTextField.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 40, paddingRight: -20, height: 50)
     }
     
     private func configureRegField() {
-        
         addSubview(loginTextField)
         loginTextField.anchor(left: leftAnchor, top: segmentedController.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 20, paddingRight: -20, height: 50)
         loginTextField.alpha = 0
@@ -198,6 +197,7 @@ class AuthView: UIView {
     
     @objc private func handleSegment() {
         if segmentedController.selectedSegmentIndex == 0 {
+            delegate?.updateHeight(state: .authorization)
             titleLabel.text = "Вход"
             logInButton.setTitle("Войти", for: .normal)
             UIView.animate(withDuration: 0.3) {
@@ -211,6 +211,7 @@ class AuthView: UIView {
                 self.passTextField.alpha = 1
             }
         } else {
+            delegate?.updateHeight(state: .registration)
             titleLabel.text = "Форма регистрации"
             logInButton.setTitle("Зарегистрироваться", for: .normal)
             UIView.animate(withDuration: 0.3) {

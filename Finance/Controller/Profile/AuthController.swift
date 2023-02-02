@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum AuthState: CGFloat {
+    case authorization = 390
+    case registration = 510
+}
+
 protocol SendUidDelegate: AnyObject {
     func sendUid(uid: String)
 }
@@ -16,7 +21,8 @@ final class AuthController: UIViewController {
 //    MARK: - Properties
         
     private let authView = AuthView()
-    var delegate: SendUidDelegate?
+    weak var delegate: SendUidDelegate?
+    var heightConstraint: NSLayoutConstraint?
     
 //    MARK: - Lifecycle
     
@@ -25,7 +31,7 @@ final class AuthController: UIViewController {
         
         configureDelegate()
         configureUI()
-
+        
         view.backgroundColor = .white
     }
     
@@ -33,7 +39,9 @@ final class AuthController: UIViewController {
     
     private func configureUI() {
         view.addSubview(authView)
-        authView.anchor(left: view.leftAnchor, right: view.rightAnchor, paddingLeft: 30, paddingRight: -30, height: 510)
+        authView.anchor(left: view.leftAnchor, right: view.rightAnchor, paddingLeft: 30, paddingRight: -30)
+        heightConstraint = NSLayoutConstraint(item: authView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: AuthState.authorization.rawValue)
+        authView.addConstraint(heightConstraint!)
         authView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
@@ -80,6 +88,13 @@ final class AuthController: UIViewController {
 //  MARK: - Extensions
 
 extension AuthController: AuthFormDelegate {
+    func updateHeight(state: AuthState) {
+        UIView.animate(withDuration: 0.4, delay: 0.2) {
+            self.heightConstraint?.constant = state.rawValue
+            self.view.layoutIfNeeded()
+        }
+    }
+    
     func handleAuthButton(segment: Int, credentials: AuthCredentials) {
         if checkCompleted(segment: segment, credentials: credentials) {
             switch segment {
