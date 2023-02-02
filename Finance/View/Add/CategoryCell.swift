@@ -1,5 +1,5 @@
 //
-//  AddCell.swift
+//  CategoryCell.swift
 //  Finance
 //
 //  Created by Александр Меренков on 18.06.2022.
@@ -7,11 +7,10 @@
 
 import UIKit
 
-class AddCell: UICollectionViewCell {
-    
+class CategoryCell: UICollectionViewCell {
+    static let identifire = "CategoryCell"
+
 //    MARK: - Properties
-    
-    static let identifire = "AddCell"
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -20,15 +19,9 @@ class AddCell: UICollectionViewCell {
         return label
     }()
     
-    private let imageView: UIImageView = {
+    let imageView: UIImageView = {
         let iv = UIImageView()
         return iv
-    }()
-    
-    private let amountLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        return label
     }()
     
     private let circleView: UIView = {
@@ -69,20 +62,11 @@ class AddCell: UICollectionViewCell {
         
         imageView.anchor(top: titleLabel.bottomAnchor, paddingTop: 10, width: 30, height: 30)
         imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-
-        addSubview(amountLabel)
-        amountLabel.anchor(top: imageView.bottomAnchor, paddingTop: 5, height: 20)
-        amountLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
     func setInfornation(title: String, img: String, amount: Double = 0, currency: Currency) {
         titleLabel.text = title
         imageView.image = UIImage(named: img)
-        amountLabel.text = String(format: "%.0f", amount) + currency.getMark()
-    }
-    
-    func hideAmount(_ isHidden: Bool) {
-        amountLabel.isHidden = isHidden
     }
     
     func setSelect() {

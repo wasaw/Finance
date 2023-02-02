@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddTransactionController: UIViewController {
+final class AddTransactionController: UIViewController {
     
 //    MARK: - Properties
     
@@ -112,7 +112,7 @@ class AddTransactionController: UIViewController {
         typeLayout.scrollDirection = .horizontal
         typeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: typeLayout)
         guard let typeCollectionView = typeCollectionView else { return }
-        typeCollectionView.register(AddCell.self, forCellWithReuseIdentifier: AddCell.identifire)
+        typeCollectionView.register(TypeCell.self, forCellWithReuseIdentifier: TypeCell.identifire)
         typeCollectionView.delegate = self
         typeCollectionView.dataSource = self
         typeCollectionView.showsHorizontalScrollIndicator = false
@@ -133,13 +133,13 @@ class AddTransactionController: UIViewController {
         categoryLayout.scrollDirection = .horizontal
         categoryCollectionView = UICollectionView(frame: .zero, collectionViewLayout: categoryLayout)
         guard let categotyCollectionView = categoryCollectionView else { return }
-        categotyCollectionView.register(AddCell.self, forCellWithReuseIdentifier: AddCell.identifire)
+        categotyCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifire)
         categotyCollectionView.delegate = self
         categotyCollectionView.dataSource = self
         categotyCollectionView.showsHorizontalScrollIndicator = false
         categotyCollectionView.backgroundColor = .white
         contentView.addSubview(categotyCollectionView)
-        categotyCollectionView.anchor(left: contentView.leftAnchor, top: categoryTitleView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 185)
+        categotyCollectionView.anchor(left: contentView.leftAnchor, top: categoryTitleView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 135)
     }
     
     private func configureRevenueView() {
@@ -233,7 +233,7 @@ extension AddTransactionController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.typeCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddCell.identifire, for: indexPath) as? AddCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TypeCell.identifire, for: indexPath) as? TypeCell else { return UICollectionViewCell() }
             let currentRevenue = revenue[indexPath.row]
             let amount = currentRevenue.amount / CurrencyRate.rate
             cell.setInfornation(title: currentRevenue.name, img: currentRevenue.img, amount: amount, currency: CurrencyRate.currentCurrency)
@@ -245,10 +245,9 @@ extension AddTransactionController: UICollectionViewDataSource {
             return cell
         }
         if collectionView == self.categoryCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddCell.identifire, for: indexPath) as? AddCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifire, for: indexPath) as? CategoryCell else { return UICollectionViewCell() }
             let currentCategory = category[indexPath.row]
             cell.setInfornation(title: currentCategory.name, img: currentCategory.img, currency: CurrencyRate.currentCurrency)
-            cell.hideAmount(true)
             cell.disableSelect()
             if selectedCategory == indexPath.row {
                 cell.setSelect()
@@ -263,7 +262,14 @@ extension AddTransactionController: UICollectionViewDataSource {
 
 extension AddTransactionController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 90, height: 80)
+        if collectionView == self.typeCollectionView {
+            return CGSize(width: 90, height: 80)
+        }
+        return CGSize(width: 90, height: 60)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 2, left: 5, bottom: 2, right: 5)
     }
 }
 

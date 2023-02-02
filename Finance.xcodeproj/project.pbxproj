@@ -25,6 +25,7 @@
 		BB6BDB9729891CBD0000584A /* StockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB9629891CBD0000584A /* StockCell.swift */; };
 		BB6BDB99298942130000584A /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB98298942130000584A /* NetworkConfiguration.swift */; };
 		BB6BDB9D2989574C0000584A /* ModelDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB9C2989574C0000584A /* ModelDecodable.swift */; };
+		BB6BDBA1298B994C0000584A /* TypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDBA0298B994C0000584A /* TypeCell.swift */; };
 		BB6EEDEC287C5DC200245997 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EEDEB287C5DC200245997 /* NetworkService.swift */; };
 		BB74FA2A2858C58A00EA2CD8 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA292858C58A00EA2CD8 /* AuthController.swift */; };
 		BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */; };
@@ -36,7 +37,7 @@
 		BB9B6FCF28CB5A59000B1D53 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCE28CB5A59000B1D53 /* Constants.swift */; };
 		BB9B6FD228CB5E45000B1D53 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FD128CB5E45000B1D53 /* ProfileController.swift */; };
 		BB9B6FD828CF79E9000B1D53 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FD728CF79E9000B1D53 /* ProfileImageView.swift */; };
-		BB9EFC0A285E2A9200305776 /* AddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC09285E2A9200305776 /* AddCell.swift */; };
+		BB9EFC0A285E2A9200305776 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC09285E2A9200305776 /* CategoryCell.swift */; };
 		BB9EFC0C2861AADF00305776 /* RevenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC0B2861AADF00305776 /* RevenueView.swift */; };
 		BB9EFC0E2861B2AC00305776 /* AmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC0D2861B2AC00305776 /* AmountView.swift */; };
 		BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC0F2863023700305776 /* Model.xcdatamodeld */; };
@@ -74,6 +75,7 @@
 		BB6BDB9629891CBD0000584A /* StockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCell.swift; sourceTree = "<group>"; };
 		BB6BDB98298942130000584A /* NetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
 		BB6BDB9C2989574C0000584A /* ModelDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDecodable.swift; sourceTree = "<group>"; };
+		BB6BDBA0298B994C0000584A /* TypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCell.swift; sourceTree = "<group>"; };
 		BB6EEDEB287C5DC200245997 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		BB74FA292858C58A00EA2CD8 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -85,7 +87,7 @@
 		BB9B6FCE28CB5A59000B1D53 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BB9B6FD128CB5E45000B1D53 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		BB9B6FD728CF79E9000B1D53 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
-		BB9EFC09285E2A9200305776 /* AddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCell.swift; sourceTree = "<group>"; };
+		BB9EFC09285E2A9200305776 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		BB9EFC0B2861AADF00305776 /* RevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueView.swift; sourceTree = "<group>"; };
 		BB9EFC0D2861B2AC00305776 /* AmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountView.swift; sourceTree = "<group>"; };
 		BB9EFC102863023700305776 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -262,9 +264,10 @@
 		BB9EFC08285E249800305776 /* Add */ = {
 			isa = PBXGroup;
 			children = (
-				BB9EFC09285E2A9200305776 /* AddCell.swift */,
+				BB9EFC09285E2A9200305776 /* CategoryCell.swift */,
 				BB9EFC0B2861AADF00305776 /* RevenueView.swift */,
 				BB9EFC0D2861B2AC00305776 /* AmountView.swift */,
+				BB6BDBA0298B994C0000584A /* TypeCell.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB9EFC21287869D000305776 /* CurrencyCell.swift in Sources */,
+				BB6BDBA1298B994C0000584A /* TypeCell.swift in Sources */,
 				BB9EFC172878221000305776 /* ExchangeRateController.swift in Sources */,
 				BBB9D95228B653F30037CC24 /* LastTransactionModalController.swift in Sources */,
 				BB66934D285B885A002DFAAD /* Model.swift in Sources */,
@@ -441,7 +445,7 @@
 				BB9B6FD228CB5E45000B1D53 /* ProfileController.swift in Sources */,
 				BB61DEA52850A3C200A08AC6 /* TabBarController.swift in Sources */,
 				BB6BDB9D2989574C0000584A /* ModelDecodable.swift in Sources */,
-				BB9EFC0A285E2A9200305776 /* AddCell.swift in Sources */,
+				BB9EFC0A285E2A9200305776 /* CategoryCell.swift in Sources */,
 				BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */,
 				BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */,
 				BB80CA0528D9A96F00AE5A8B /* CurrentUser.swift in Sources */,
