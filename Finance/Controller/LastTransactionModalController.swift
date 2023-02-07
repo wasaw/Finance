@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LastTransactionModalController: UIViewController {
+final class LastTransactionModalController: UIViewController {
 //    MARK: - Properties
     
     private let transaction: LastTransaction

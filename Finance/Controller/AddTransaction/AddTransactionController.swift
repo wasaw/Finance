@@ -77,8 +77,22 @@ final class AddTransactionController: UIViewController {
     
     private func loadInformation() {
         DispatchQueue.main.async {
-            self.category = self.databaseService.getCategoryInformation()
-            self.revenue = self.databaseService.getTypeInformation()
+            self.databaseService.getCategoryInformation { result in
+                switch result {
+                case .success(let category):
+                    self.category = category
+                    self.databaseService.getTypeInformation { result in
+                        switch result {
+                        case .success(let revenue):
+                            self.revenue = revenue
+                        case .failure(let error):
+                            self.alert(with: "Ошибка", massage: error.localizedDescription)
+                        }
+                    }
+                case .failure(let error):
+                    self.alert(with: "Ошибка", massage: error.localizedDescription)
+                }
+            }
         }
     }
     
@@ -281,8 +295,14 @@ extension AddTransactionController: HandleDoneDelegate {
             addTransaction.amount = isRevenue ? amountDouble : -1 * amountDouble
             addTransaction.amount = addTransaction.amount * CurrencyRate.rate
             addTransaction.comment = comment
-            databaseService.saveTransaction(transaction: addTransaction)
-            self.dismiss(animated: true)
+            databaseService.saveTransaction(transaction: addTransaction) { result in
+                switch result {
+                case .success(_):
+                    self.dismiss(animated: true)
+                case .failure(let error):
+                    self.alert(with: "Ошибка", massage: error.localizedDescription)
+                }
+            }
         } else {
             var alertText = "Вы не выполнили следующие действия:\n"
             for alert in isFillingCompleted.1 {

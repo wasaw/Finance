@@ -117,13 +117,19 @@ extension AuthController: AuthFormDelegate {
             case 1:
                 AuthService.shared.registerUser(credentials: credentials) { error, ref in
                     if let error = error {
-                        print("Save error is \(error.localizedDescription)")
+                        self.alert(with: "Ошибка", massage: error.localizedDescription)
                     } else {
                         let uid = ref.url.suffix(28)
                         let user = User(uid: String(uid), login: credentials.login, email: credentials.email, profileImageUrl: "", authorized: true)
-                        DatabaseService.shared.saveUser(user: user)
-                        self.delegate?.sendUid(uid: String(uid))
-                        self.presentingViewController?.dismiss(animated: true)
+                        DatabaseService.shared.saveUser(user: user) { result in
+                            switch result {
+                            case .success(_):
+                                self.delegate?.sendUid(uid: String(uid))
+                                self.presentingViewController?.dismiss(animated: true)
+                            case .failure(let error):
+                                self.alert(with: "Ошибка", massage: error.localizedDescription)
+                            }
+                        }
                     }
                 }
             default:

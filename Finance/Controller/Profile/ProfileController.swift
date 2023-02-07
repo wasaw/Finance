@@ -178,8 +178,14 @@ extension ProfileController: Subscriber {
 
 extension ProfileController: SendUidDelegate {
     func sendUid(uid: String) {
-        let user = DatabaseService.shared.getUserInformation(uid: uid)
-        self.currentUser.setValue(user: user)
+        let user = DatabaseService.shared.getUserInformation(uid: uid) { result in
+            switch result {
+            case .success(let user):
+                self.currentUser.setValue(user: user)
+            case .failure(let error):
+                self.alert(with: "Ошибка", massage: error.localizedDescription)
+            }
+        }
         self.deleteAuthController()
     }
 }

@@ -21,10 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let isLaunchedBefore = UserDefaults.standard.bool(forKey: "isLaunchedBefore")
         if !isLaunchedBefore {
             DispatchQueue.main.async {
-                DatabaseService.shared.setDefaultValue()
+                DatabaseService.shared.setDefaultValue { result in
+                    switch result {
+                    case .success(_):
+                        UserDefaults.standard.set(true, forKey: "isLaunchedBefore")
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
             }
-            
-            UserDefaults.standard.set(true, forKey: "isLaunchedBefore")
         }
         return true
     }

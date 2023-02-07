@@ -15,17 +15,30 @@ final class DatabaseService {
     
 //    MARK: - setDefaultValue
     
-    func setDefaultValue() {
+    func setDefaultValue(completion: @escaping(ResultStatus<Bool>) -> Void) {
         let revenue = [ChoiceTypeRevenue(name: "Зарплата", img: "calendar.png"), ChoiceTypeRevenue(name: "Продажа", img: "sales.png"), ChoiceTypeRevenue(name: "Проценты", img: "price-tag.png"), ChoiceTypeRevenue(name: "Наличные", img: "salary.png"), ChoiceTypeRevenue(name: "Вклад", img: "deposit.png"), ChoiceTypeRevenue(name: "Иное", img: "other.png")]
         
         let category = [ChoiceCategoryExpense(name: "Продукты", img: "products.png"), ChoiceCategoryExpense(name: "Транспорт", img: "transportation.png"), ChoiceCategoryExpense(name: "Образование", img: "education.png"), ChoiceCategoryExpense(name: "Подписки", img: "subscription.png"), ChoiceCategoryExpense(name: "Прочее", img: "other.png"), ChoiceCategoryExpense(name: "Связь", img: "chat.png"), ChoiceCategoryExpense(name: "Развлечения", img: "cinema.png"), ChoiceCategoryExpense(name: "Ресторан", img: "fast-food.png"), ChoiceCategoryExpense(name: "Здоровье", img: "healthcare.png")]
         
-        addTypeInformation(type: revenue)
-        addCategoryInfornation(category: category)
+        addTypeInformation(type: revenue) { result in
+            switch result {
+            case .success(_):
+                self.addCategoryInfornation(category: category) { result in
+                    switch result {
+                    case .success(_):
+                        completion(.success(true))
+                    case .failure(_):
+                        completion(.failure(CoreDataError.somethingError))
+                    }
+                }
+            case .failure(_):
+                completion(.failure(CoreDataError.somethingError))
+            }
+        }
     }
     
 //    MARK: - Add
-    func addCategoryInfornation(category: [ChoiceCategoryExpense]) {
+    func addCategoryInfornation(category: [ChoiceCategoryExpense], completion: @escaping(ResultStatus<Bool>) -> Void) {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
         
@@ -42,17 +55,18 @@ final class DatabaseService {
                     
                     do {
                         try context.save()
-                    } catch let error as NSError {
-                        print(error)
+                    } catch {
+                        completion(.failure(CoreDataError.somethingError))
                     }
                 }
+                completion(.success(true))
             }
-        } catch let error as NSError {
-            print(error)
+        } catch {
+            completion(.failure(CoreDataError.somethingError))
         }
     }
     
-    func addTypeInformation(type: [ChoiceTypeRevenue]) {
+    func addTypeInformation(type: [ChoiceTypeRevenue], completion: @escaping(ResultStatus<Bool>) -> Void) {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Type")
         
@@ -70,25 +84,24 @@ final class DatabaseService {
                     
                     do {
                         try context.save()
-                    } catch let error as NSError {
-                        print(error)
+                    } catch {
+                        completion(.failure(CoreDataError.somethingError))
                     }
                 }
+                completion(.success(true))
             }
-        } catch let error as NSError {
-            print(error)
+        } catch {
+            completion(.failure(CoreDataError.somethingError))
         }
     }
     
-    func saveTransaction(transaction: LastTransaction) {
+    func saveTransaction(transaction: LastTransaction, completion: @escaping(ResultStatus<Bool>) -> Void) {
         let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
         let fetchRequestType = NSFetchRequest<NSFetchRequestResult>(entityName: "Type")
         fetchRequestType.predicate = NSPredicate(format: "name == %@", transaction.type)
         
         do {
             guard let entity = NSEntityDescription.entity(forEntityName: "Transaction", in: context) else { return  }
-            guard let entityType = NSEntityDescription.entity(forEntityName: "Type", in: context) else { return  }
             
             let newTransaction  = NSManagedObject(entity: entity, insertInto: context)
             newTransaction.setValue(transaction.type, forKey: "type")
@@ -106,41 +119,38 @@ final class DatabaseService {
                     data.setValue(transaction.amount + amount, forKey: "amount")
                 }
             }
-            
+    
             try context.save()
-        } catch let error as NSError {
-            print(error)
+            completion(.success(true))
+        } catch {
+            completion(.failure(CoreDataError.somethingError))
         }
     }
     
-    func saveUser(user: User) {
+    func saveUser(user: User, completion: @escaping(ResultStatus<Bool>) -> Void) {
         let context = appDelegate.persistentContainer.viewContext
-        let gitfetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LoginUser")
+        
+        guard let entity = NSEntityDescription.entity(forEntityName: "LoginUser", in: context) else { return }
+                
+        let newTransaction = NSManagedObject(entity: entity, insertInto: context)
+        newTransaction.setValue(user.login, forKey: "login")
+        newTransaction.setValue(user.uid, forKey: "uid")
+        newTransaction.setValue(user.email, forKey: "email")
+        let profileImageUrl = user.profileImageUrl?.absoluteString ?? ""
+        newTransaction.setValue(profileImageUrl, forKey: "profileImageUrl")
+        newTransaction.setValue(user.authorized, forKey: "authorized")
         
         do {
-            guard let entity = NSEntityDescription.entity(forEntityName: "LoginUser", in: context) else { return }
-                    
-            let newTransaction = NSManagedObject(entity: entity, insertInto: context)
-            newTransaction.setValue(user.login, forKey: "login")
-            newTransaction.setValue(user.uid, forKey: "uid")
-            newTransaction.setValue(user.email, forKey: "email")
-            let profileImageUrl = user.profileImageUrl?.absoluteString ?? ""
-            newTransaction.setValue(profileImageUrl, forKey: "profileImageUrl")
-            newTransaction.setValue(user.authorized, forKey: "authorized")
-            
-            do {
-                try context.save()
-            } catch let error as NSError {
-                print(error)
-            }
-        } catch let error as NSError {
-            print(error)
+            try context.save()
+            completion(.success(true))
+        } catch {
+            completion(.failure(CoreDataError.somethingError))
         }
     }
     
 //    MARK: - Get
     
-    func getCategoryInformation() -> [ChoiceCategoryExpense] {
+    func getCategoryInformation(compeliton: @escaping(ResultStatus<[ChoiceCategoryExpense]>) -> Void) {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
         var category = [ChoiceCategoryExpense]()
@@ -155,13 +165,13 @@ final class DatabaseService {
                     category.append(item)
                 }
             }
-        } catch let error as NSError {
-            print(error)
+            compeliton(.success(category))
+        } catch {
+            compeliton(.failure(CoreDataError.somethingError))
         }
-        return category
     }
     
-    func getTypeInformation() -> [ChoiceTypeRevenue]{
+    func getTypeInformation(completion: @escaping(ResultStatus<[ChoiceTypeRevenue]>) -> Void) {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Type")
         var type = [ChoiceTypeRevenue]()
@@ -177,13 +187,13 @@ final class DatabaseService {
                     type.append(item)
                 }
             }
-        } catch let error as NSError {
-            print(error)
+            completion(.success(type))
+        } catch {
+            completion(.failure(CoreDataError.somethingError))
         }
-        return type
     }
     
-    func getTransactionInformation() -> [LastTransaction] {
+    func getTransactionInformation(completion: @escaping(ResultStatus<[LastTransaction]>) -> Void) {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
         var lastTransaction = [LastTransaction]()
@@ -205,14 +215,13 @@ final class DatabaseService {
                     lastTransaction.append(item)
                 }
             }
-        } catch let error as NSError {
-            print(error)
+            completion(.success(lastTransaction))
+        } catch {
+            completion(.failure(CoreDataError.somethingError))
         }
-        
-        return lastTransaction
     }
     
-    func getUserInformation(uid: String) -> User? {
+    func getUserInformation(uid: String, compeletion: @escaping(ResultStatus<User?>) -> Void) {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LoginUser")
         fetchRequest.predicate = NSPredicate(format: "uid == %@", uid)
@@ -227,13 +236,11 @@ final class DatabaseService {
                     let profileImageUrl = data.value(forKey: "profileImageUrl") as? String ?? ""
                     let authorized = data.value(forKey: "authorized") as? Bool ?? false
                     let user = User(uid: uid, login: login, email: email, profileImageUrl: profileImageUrl, authorized: authorized)
-                    return user
+                    compeletion(.success(user))
                 }
             }
-        } catch let error as NSError {
-            print(error)
+        } catch {
+            compeletion(.failure(CoreDataError.somethingError))
         }
-        
-        return nil
     }
 }

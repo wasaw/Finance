@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeController: UIViewController {
+final class HomeController: UIViewController {
     
 //    MARK: - Properties
     private let fullNameLabel: UILabel = {
@@ -78,22 +78,36 @@ class HomeController: UIViewController {
     
     private func loadInformation() {
         DispatchQueue.main.async {
-            self.lastTransaction = self.databaseService.getTransactionInformation()
-            if !self.lastTransaction.isEmpty {
-                self.lastTransactionsCollectionView?.isHidden = false
+            self.databaseService.getTransactionInformation { result in
+                switch result {
+                case .success(let lastTransaction):
+                    self.lastTransaction = lastTransaction
+                    if !self.lastTransaction.isEmpty {
+                        self.lastTransactionsCollectionView?.isHidden = false
+                    }
+                    self.databaseService.getTypeInformation { result in
+                        switch result {
+                        case .success(let revenue):
+                            let revenueArray = revenue
+                            var revenue: Double = 0
+                            for item in revenueArray {
+                                revenue += item.amount
+                            }
+                            if CurrencyRate.currentCurrency == .dollar {
+                                revenue = revenue / CurrencyRate.usd
+                            }
+                            if CurrencyRate.currentCurrency == .euro {
+                                revenue = revenue / CurrencyRate.eur
+                            }
+                            self.totalAccountView.setAccountLabel(total: revenue, currency: CurrencyRate.currentCurrency)
+                        case .failure(let error):
+                            self.alert(with: "Ошибка", massage: error.localizedDescription)
+                        }
+                    }
+                case .failure(let error):
+                    self.alert(with: "Ошибка", massage: error.localizedDescription)
+                }
             }
-            let revenueArray = self.databaseService.getTypeInformation()
-            var revenue: Double = 0
-            for item in revenueArray {
-                revenue += item.amount
-            }
-            if CurrencyRate.currentCurrency == .dollar {
-                revenue = revenue / CurrencyRate.usd
-            }
-            if CurrencyRate.currentCurrency == .euro {
-                revenue = revenue / CurrencyRate.eur
-            }
-            self.totalAccountView.setAccountLabel(total: revenue, currency: CurrencyRate.currentCurrency)
         }
     }
     

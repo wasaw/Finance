@@ -11,7 +11,7 @@ protocol SwitcherValueDelegate: AnyObject {
     func switchChanged(value: Bool)
 }
 
-class RevenueView: UIView {
+final class RevenueView: UIView {
     
 //    MARK: - Properties
     

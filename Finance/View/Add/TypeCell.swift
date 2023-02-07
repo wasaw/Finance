@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TypeCell: CategoryCell {
+final class TypeCell: CategoryCell {
     
 //    MARK: - Properties
     

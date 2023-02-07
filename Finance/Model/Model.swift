@@ -101,3 +101,36 @@ struct Stock {
         self.value = 0
     }
 }
+
+//  MARK: - Error
+
+enum ResultStatus<T> {
+    case success(T)
+    case failure(Error)
+}
+
+enum RequestError: Error {
+    case somethingError
+}
+
+extension RequestError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .somethingError:
+            return NSLocalizedString("Ошибка. Попробуйте снова.", comment: "")
+        }
+    }
+}
+
+enum CoreDataError: Error {
+    case somethingError
+}
+
+extension CoreDataError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .somethingError:
+            return NSLocalizedString("Ошибка. Попробуйте снова.", comment: "")
+        }
+    }
+}

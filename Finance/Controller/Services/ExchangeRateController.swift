@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ExchangeRateController: UIViewController {
+final class ExchangeRateController: UIViewController {
     
 //    MARK: - Properties
     
@@ -57,30 +57,42 @@ class ExchangeRateController: UIViewController {
     
     private func loadInformation(_ requestCurrency: String) {
         networkService.loadExchangeRates(requestCurrency: requestCurrency, complition: { response in
-            var index = 0
-            self.exchangeRate = []
-            for item in response.conversion_rates {
-                let currency = CurrentExchangeRate(name: item.0, amount: item.1, fullName: self.fullName[index], img: self.img[index])
-                self.exchangeRate.append(currency)
-                if currency.name == "RUB" {
-                    self.topView.setCurrency(currency, requestCurrency: requestCurrency)
-                    self.currentRate = currency.amount
+            switch response {
+            case .success(let response):
+                var index = 0
+                self.exchangeRate = []
+                for item in response.conversion_rates {
+                    let currency = CurrentExchangeRate(name: item.0, amount: item.1, fullName: self.fullName[index], img: self.img[index])
+                    self.exchangeRate.append(currency)
+                    if currency.name == "RUB" {
+                        self.topView.setCurrency(currency, requestCurrency: requestCurrency)
+                        self.currentRate = currency.amount
+                    }
+                    index += 1
                 }
-                index += 1
+                self.isLoadExchange = true
+                self.listCurrencyCollectionView?.reloadData()
+                self.loadAnimateView.isHidden = true
+            case .failure(let error):
+                self.alert(with: "Ошибка", massage: error.localizedDescription)
             }
-            self.isLoadExchange = true
-            self.listCurrencyCollectionView?.reloadData()
-            self.loadAnimateView.isHidden = true
         })
         
         DispatchQueue.main.async {
-            let revenueArray = self.databaseService.getTypeInformation()
-            var amount: Double = 0
-            for item in revenueArray {
-                amount += item.amount
+            self.databaseService.getTypeInformation { result in
+                switch result {
+                case .success(let revenue):
+                    let revenueArray = revenue
+                    var amount: Double = 0
+                    for item in revenueArray {
+                        amount += item.amount
+                    }
+                    self.revenue = amount
+                    self.isLoadRevenue = true
+                case .failure(let error):
+                    self.alert(with: "Ошибка", massage: error.localizedDescription)
+                }
             }
-            self.revenue = amount
-            self.isLoadRevenue = true
         }
     }
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrencyCell: UICollectionViewCell {
+final class CurrencyCell: UICollectionViewCell {
 
 //    MARK: - Properties
     

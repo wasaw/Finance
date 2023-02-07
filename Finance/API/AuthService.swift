@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 
-struct AuthService {
+final class AuthService {
     static let shared = AuthService()
     
     func logInUser(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
@@ -31,9 +31,5 @@ struct AuthService {
             
             REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)
         }
-    }
-    
-    func checkAuthUser() -> String? {
-        return Auth.auth().currentUser?.uid
     }
 }

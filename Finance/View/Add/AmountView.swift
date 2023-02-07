@@ -11,7 +11,7 @@ protocol HandleDoneDelegate: AnyObject {
     func saveInformation(amount: String, date: String, comment: String)
 }
 
-class AmountView: UIView {
+final class AmountView: UIView {
     
 //    MARK: - Properties
     

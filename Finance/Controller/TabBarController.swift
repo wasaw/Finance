@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
     
 //    MARK: - Properties
     
@@ -58,8 +58,14 @@ class TabBarController: UITabBarController {
     private func authUser() {
         let uid = Auth.auth().currentUser?.uid
         if uid != nil {
-            let user = DatabaseService.shared.getUserInformation(uid: uid!)
-            self.currentUser.setValue(user: user)
+            DatabaseService.shared.getUserInformation(uid: uid!) { result in
+                switch result {
+                case .success(let user):
+                    self.currentUser.setValue(user: user)
+                case .failure(let error):
+                    self.alert(with: "Ошибка", massage: error.localizedDescription)
+                }
+            }
         }
     }
 }

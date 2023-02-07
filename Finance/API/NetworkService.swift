@@ -21,19 +21,25 @@ final class NetworkService {
 
 //    MARK: - Helpers
     
-    func loadExchangeRates(requestCurrency: String, complition: @escaping(ConversionRates) -> Void) {
+    func loadExchangeRates(requestCurrency: String, complition: @escaping(ResultStatus<ConversionRates>) -> Void) {
         let urlRequest = config.getUrl(.exchange) + requestCurrency
         AF.request(urlRequest).responseDecodable(of: ConversionRates.self) { response in
+            if let error = response.error {
+                complition(.failure(RequestError.somethingError))
+            }
             guard let result = response.value else { return }
-            complition(result)
+            complition(.success(result))
         }
     }
     
-    func loadStockRate(date: String, complition: @escaping([StockItem]) -> Void) {
-        let urlRequest = config.getUrl(.stock, date: date)
+    func loadStockRate(date: String, complition: @escaping(ResultStatus<[StockItem]>) -> Void) {
+        let urlRequest = config.getUrl(.stock, date: "2023-02-03")
         AF.request(urlRequest).responseDecodable(of: StockRate.self) { response in
+            if let _ = response.error {
+                complition(.failure(RequestError.somethingError))
+            }
             guard let result = response.value else { return }
-            complition(result.results)
+            complition(.success(result.results))
         }
     }
 }

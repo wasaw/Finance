@@ -11,7 +11,7 @@ protocol ProfileImageSelectDelegate: AnyObject {
     func selectImage()
 }
 
-class ProfileImageView: UIView {
+final class ProfileImageView: UIView {
     
 //    MARK: - Properties
     

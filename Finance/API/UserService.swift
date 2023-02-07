@@ -7,7 +7,7 @@
 
 import Firebase
 
-class UserService {
+final class UserService {
     static let shared = UserService()
     
     func uploadDate(complition: @escaping (User) -> Void) {

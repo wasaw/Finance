@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TopView: UIView {
+final class TopView: UIView {
     
 //    MARK: - Properties
     

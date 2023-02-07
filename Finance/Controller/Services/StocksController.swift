@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StocksController: UIViewController {
+final class StocksController: UIViewController {
     
 //    MARK: - Properties
     
@@ -36,14 +36,21 @@ class StocksController: UIViewController {
         let stringDate = formatter.string(from: currentDate)
         DispatchQueue.main.async {
             NetworkService.shared.loadStockRate(date: stringDate) { results in
-                for i in 0..<self.stockList.count {
-                    if let answer = results.first(where: { $0.symbol == self.stockList[i].symbol }) {
-                        self.stockList[i].value = answer.value
+                switch results {
+                case .success(let results):
+                    for i in 0..<self.stockList.count {
+                        if let answer = results.first(where: { $0.symbol == self.stockList[i].symbol }) {
+                            self.stockList[i].value = answer.value
+                        }
+                    }
+                    self.tableView?.reloadData()
+                    self.loadAnimationView.isHidden = true
+                    self.tableView?.isHidden = false
+                case .failure(let error):
+                    self.alert(with: "Ошибка", massage: error.localizedDescription) { result in
+                        self.navigationController?.popToRootViewController(animated: true)
                     }
                 }
-                self.tableView?.reloadData()
-                self.loadAnimationView.isHidden = true
-                self.tableView?.isHidden = false
             }
         }
     }

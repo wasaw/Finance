@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StockCell: UITableViewCell {
+final class StockCell: UITableViewCell {
     static let reuseIdentifite = "stockCell"
     
 //    MARK: - Properties
