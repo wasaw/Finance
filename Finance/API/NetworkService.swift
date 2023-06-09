@@ -22,7 +22,7 @@ final class NetworkService {
 //    MARK: - Helpers
     
     func loadExchangeRates(requestCurrency: String, complition: @escaping(ResultStatus<ConversionRates>) -> Void) {
-        let urlRequest = config.getUrl(.exchange) + requestCurrency
+        let urlRequest  = config.getUrl(.exchange) + requestCurrency
         AF.request(urlRequest).responseDecodable(of: ConversionRates.self) { response in
             if let error = response.error {
                 complition(.failure(RequestError.somethingError))

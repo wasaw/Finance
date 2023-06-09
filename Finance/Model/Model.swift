@@ -94,10 +94,12 @@ enum Currency: String {
 
 struct Stock {
     let symbol: String
+    let company: String
     var value: Double
     
-    init(symbol: String) {
+    init(symbol: String, company: String) {
         self.symbol = symbol
+        self.company = company
         self.value = 0
     }
 }

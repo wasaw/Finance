@@ -76,7 +76,7 @@ final class HomeController: UIViewController {
     
 //    MARK: - Helpers
     
-    private func loadInformation() {
+    func loadInformation() {
         DispatchQueue.main.async {
             self.databaseService.getTransactionInformation { result in
                 switch result {

@@ -13,7 +13,7 @@ final class StocksController: UIViewController {
     
     private var tableView: UITableView?
     private let loadAnimationView = CircleAnimation()
-    private var stockList: [Stock] = [Stock(symbol: "APLE"), Stock(symbol: "AMZN"), Stock(symbol: "GOOG"), Stock(symbol: "MCD"), Stock(symbol: "NKE"), Stock(symbol: "SNAP"), Stock(symbol: "UBER")]
+    private var stockList: [Stock] = [Stock(symbol: "ABNB", company: "Airbnb"), Stock(symbol: "AAPL", company: "Apple"), Stock(symbol: "AMZN", company: "Amazon"), Stock(symbol: "CSCO", company: "Cisco"), Stock(symbol: "GM", company: "General Motors"), Stock(symbol: "GOOG", company: "Alphabet"), Stock(symbol: "KO", company: "Coca-Cola"), Stock(symbol: "MA", company: "Mastercard"), Stock(symbol: "MCD", company: "McDonald's"), Stock(symbol: "MSFT", company: "Microsoft"), Stock(symbol: "NKE", company: "Nike"), Stock(symbol: "NVDA", company: "NVIDIA"), Stock(symbol: "PEP", company: "PepsiCo"), Stock(symbol: "PFE", company: "Pfizer"), Stock(symbol: "TSLA", company: "Tesla"), Stock(symbol: "UBER", company: "Uber"), Stock(symbol: "XOM", company: "Exxon"), Stock(symbol: "WMT", company: "Walmart")]
     private let dayInSeconds = 86400.0
     
 //    MARK: - Lifecycle
@@ -78,7 +78,7 @@ final class StocksController: UIViewController {
 //  MARK: - UITableViewDelegate
 
 extension StocksController: UITableViewDelegate {
-    
+   
 }
 
 //  MARK: - UITableViewDataSource
@@ -91,6 +91,7 @@ extension StocksController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StockCell.reuseIdentifite, for: indexPath) as? StockCell else { return UITableViewCell() }
         cell.setValue(stock: stockList[indexPath.row], index: indexPath.row)
+        cell.selectionStyle = .none
         return cell
     }
 }
