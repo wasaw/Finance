@@ -9,7 +9,7 @@ import UIKit
 
 final class AddTransactionController: UIViewController {
     
-//    MARK: - Properties
+// MARK: - Properties
     
     private var currentUser = CurrentUser()
     
@@ -40,18 +40,18 @@ final class AddTransactionController: UIViewController {
     }
     private var isRevenue = false
     private let datePicker = UIDatePicker()
-    private var selectedType: Int? = nil {
+    private var selectedType: Int? {
         didSet {
             typeCollectionView?.reloadData()
         }
     }
-    private var selectedCategory: Int? = nil {
+    private var selectedCategory: Int? {
         didSet {
             categoryCollectionView?.reloadData()
         }
     }
 
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     init(_ currentUser: CurrentUser) {
         super.init(nibName: nil, bundle: nil)
@@ -73,7 +73,7 @@ final class AddTransactionController: UIViewController {
         view.backgroundColor = .white
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func loadInformation() {
         DispatchQueue.main.async {
@@ -106,7 +106,7 @@ final class AddTransactionController: UIViewController {
         configureAmountView()
     }
     
-    func configureScrollView(){
+    func configureScrollView() {
         view.addSubview(scrollView)
         scrollView.anchor(left: view.leftAnchor, top: view.topAnchor, right: view.rightAnchor, bottom: view.bottomAnchor)
 
@@ -117,7 +117,13 @@ final class AddTransactionController: UIViewController {
 
     private func configureTypeTitleView() {
         contentView.addSubview(typeTitleView)
-        typeTitleView.anchor(left: contentView.leftAnchor, top: contentView.topAnchor, right: contentView.rightAnchor, paddingLeft: 10, paddingTop: 20, paddingRight: -10, height: 30)
+        typeTitleView.anchor(left: contentView.leftAnchor,
+                             top: contentView.topAnchor,
+                             right: contentView.rightAnchor,
+                             paddingLeft: 10,
+                             paddingTop: 20,
+                             paddingRight: -10,
+                             height: 30)
         typeTitleView.setTitle(title: "Выбрать тип дохода")
     }
     
@@ -132,13 +138,25 @@ final class AddTransactionController: UIViewController {
         typeCollectionView.showsHorizontalScrollIndicator = false
         typeCollectionView.backgroundColor = .white
         contentView.addSubview(typeCollectionView)
-        typeCollectionView.anchor(left: contentView.leftAnchor, top: typeTitleView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 90)
+        typeCollectionView.anchor(left: contentView.leftAnchor,
+                                  top: typeTitleView.bottomAnchor,
+                                  right: contentView.rightAnchor,
+                                  paddingLeft: 10,
+                                  paddingTop: 10,
+                                  paddingRight: -10,
+                                  height: 90)
     }
    
     private func configureCategoryTitleView() {
         contentView.addSubview(categoryTitleView)
         guard let typeCollectionView = typeCollectionView else { return }
-        categoryTitleView.anchor(left: contentView.leftAnchor, top: typeCollectionView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 30)
+        categoryTitleView.anchor(left: contentView.leftAnchor,
+                                 top: typeCollectionView.bottomAnchor,
+                                 right: contentView.rightAnchor,
+                                 paddingLeft: 10,
+                                 paddingTop: 10,
+                                 paddingRight: -10,
+                                 height: 30)
         categoryTitleView.setTitle(title: "Выбрать категорию трат")
     }
     
@@ -153,19 +171,37 @@ final class AddTransactionController: UIViewController {
         categotyCollectionView.showsHorizontalScrollIndicator = false
         categotyCollectionView.backgroundColor = .white
         contentView.addSubview(categotyCollectionView)
-        categotyCollectionView.anchor(left: contentView.leftAnchor, top: categoryTitleView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 135)
+        categotyCollectionView.anchor(left: contentView.leftAnchor,
+                                      top: categoryTitleView.bottomAnchor,
+                                      right: contentView.rightAnchor,
+                                      paddingLeft: 10,
+                                      paddingTop: 10,
+                                      paddingRight: -10,
+                                      height: 135)
     }
     
     private func configureRevenueView() {
         contentView.addSubview(revenueView)
         revenueView.delegate = self
         guard let categoryCollectionView = categoryCollectionView else { return }
-        revenueView.anchor(left: contentView.leftAnchor, top: categoryCollectionView.bottomAnchor, right: contentView.rightAnchor, paddingLeft: 20, paddingTop: 10, paddingRight: -20, height: 20)
+        revenueView.anchor(left: contentView.leftAnchor,
+                           top: categoryCollectionView.bottomAnchor,
+                           right: contentView.rightAnchor,
+                           paddingLeft: 20,
+                           paddingTop: 10,
+                           paddingRight: -20,
+                           height: 20)
     }
     
     private func configureAmountView() {
         contentView.addSubview(amountView)
-        amountView.anchor(left: contentView.leftAnchor, top: revenueView.bottomAnchor, right: contentView.rightAnchor, bottom: contentView.safeAreaLayoutGuide.bottomAnchor, paddingLeft: 10, paddingTop: 20, paddingRight: -10)
+        amountView.anchor(left: contentView.leftAnchor,
+                          top: revenueView.bottomAnchor,
+                          right: contentView.rightAnchor,
+                          bottom: contentView.safeAreaLayoutGuide.bottomAnchor,
+                          paddingLeft: 10,
+                          paddingTop: 20,
+                          paddingRight: -10)
         configureKeyboard()
     }
     
@@ -206,7 +242,7 @@ final class AddTransactionController: UIViewController {
         }
     }
     
-//    MARK: - Selectors
+// MARK: - Selectors
     
     @objc private func doneAction() {
         let formatter = DateFormatter()
@@ -221,7 +257,7 @@ final class AddTransactionController: UIViewController {
     }
 }
 
-//  MARK: - Extensions
+// MARK: - Extensions
 
 extension AddTransactionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -247,7 +283,8 @@ extension AddTransactionController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.typeCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TypeCell.identifire, for: indexPath) as? TypeCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TypeCell.identifire,
+                                                                for: indexPath) as? TypeCell else { return UICollectionViewCell() }
             let currentRevenue = revenue[indexPath.row]
             let amount = currentRevenue.amount / CurrencyRate.rate
             cell.setInfornation(title: currentRevenue.name, img: currentRevenue.img, amount: amount, currency: CurrencyRate.currentCurrency)
@@ -259,7 +296,8 @@ extension AddTransactionController: UICollectionViewDataSource {
             return cell
         }
         if collectionView == self.categoryCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifire, for: indexPath) as? CategoryCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifire,
+                                                                for: indexPath) as? CategoryCell else { return UICollectionViewCell() }
             let currentCategory = category[indexPath.row]
             cell.setInfornation(title: currentCategory.name, img: currentCategory.img, currency: CurrencyRate.currentCurrency)
             cell.disableSelect()
@@ -282,7 +320,9 @@ extension AddTransactionController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: 90, height: 60)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 2, left: 5, bottom: 2, right: 5)
     }
 }
@@ -293,11 +333,11 @@ extension AddTransactionController: HandleDoneDelegate {
         if isFillingCompleted.0 {
             let amountDouble = Double(amount) ?? 0
             addTransaction.amount = isRevenue ? amountDouble : -1 * amountDouble
-            addTransaction.amount = addTransaction.amount * CurrencyRate.rate
+            addTransaction.amount *= CurrencyRate.rate
             addTransaction.comment = comment
             databaseService.saveTransaction(transaction: addTransaction) { result in
                 switch result {
-                case .success(_):
+                case .success:
                     self.dismiss(animated: true)
                 case .failure(let error):
                     self.alert(with: "Ошибка", massage: error.localizedDescription)

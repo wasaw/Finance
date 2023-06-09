@@ -9,7 +9,7 @@ import Foundation
 
 struct NetworkConfiguration {
     
-//    MARK: - Properties
+// MARK: - Properties
     
     private let exchangeUrl = "https://v6.exchangerate-api.com/v6/"
     private let exchangeApiKey = Bundle.main.infoDictionary?["EXCHANGE_API_KEY"] as? String ?? ""
@@ -19,7 +19,7 @@ struct NetworkConfiguration {
     private let stockCenter = "?adjusted=true&apiKey="
     private let stockApiKey = Bundle.main.infoDictionary?["STOCK_API_KEY"] as? String ?? ""
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     func getUrl(_ request: RequestType, date: String? = nil) -> String {
         switch request {

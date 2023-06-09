@@ -9,13 +9,13 @@ import UIKit
 
 class CircleAnimation: UIView {
     
-//    MARK: - Properties
+// MARK: - Properties
     
     private let loadLeftView = UIView()
     private let loadCenterView = UIView()
     private let loadRightView = UIView()
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,7 +27,7 @@ class CircleAnimation: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func configureLoadView() {
         layer.borderWidth = 1
@@ -93,7 +93,7 @@ class CircleAnimation: UIView {
     }
 }
 
-//  MARK: - CAAnimationDelegate
+// MARK: - CAAnimationDelegate
 
 extension CircleAnimation: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {

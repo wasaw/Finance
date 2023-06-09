@@ -13,7 +13,7 @@ protocol HandleDoneDelegate: AnyObject {
 
 final class AmountView: UIView {
     
-//    MARK: - Properties
+// MARK: - Properties
     
     private let amountTitle = TitleView()
     let amountTextField: UITextField = {
@@ -54,7 +54,7 @@ final class AmountView: UIView {
     
     weak var delegate: HandleDoneDelegate?
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -74,7 +74,7 @@ final class AmountView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func configureUI() {
         addSubview(amountTitle)
@@ -82,24 +82,48 @@ final class AmountView: UIView {
         amountTitle.setTitle(title: "Сумма")
         
         addSubview(amountTextField)
-        amountTextField.anchor(left: leftAnchor, top: amountTitle.bottomAnchor, right: rightAnchor, paddingTop: 10, height: 40)
+        amountTextField.anchor(left: leftAnchor,
+                               top: amountTitle.bottomAnchor,
+                               right: rightAnchor,
+                               paddingTop: 10,
+                               height: 40)
         
         addSubview(dateTitle)
-        dateTitle.anchor(left: leftAnchor, top: amountTextField.bottomAnchor, right: rightAnchor, paddingTop: 25, height: 20)
+        dateTitle.anchor(left: leftAnchor,
+                         top: amountTextField.bottomAnchor,
+                         right: rightAnchor,
+                         paddingTop: 25,
+                         height: 20)
         dateTitle.setTitle(title: "Дата")
         
         addSubview(dateTextField)
-        dateTextField.anchor(left: leftAnchor, top: dateTitle.bottomAnchor, right: rightAnchor, paddingTop: 10, height: 40)
+        dateTextField.anchor(left: leftAnchor,
+                             top: dateTitle.bottomAnchor,
+                             right: rightAnchor,
+                             paddingTop: 10,
+                             height: 40)
         
         addSubview(commentTitle)
-        commentTitle.anchor(left: leftAnchor, top: dateTextField.bottomAnchor, right: rightAnchor, paddingTop: 25, height: 20)
+        commentTitle.anchor(left: leftAnchor,
+                            top: dateTextField.bottomAnchor,
+                            right: rightAnchor,
+                            paddingTop: 25,
+                            height: 20)
         commentTitle.setTitle(title: "Комментарий")
         
         addSubview(commentTextField)
-        commentTextField.anchor(left: leftAnchor, top: commentTitle.bottomAnchor, right: rightAnchor, paddingTop: 10, height: 40)
+        commentTextField.anchor(left: leftAnchor,
+                                top: commentTitle.bottomAnchor,
+                                right: rightAnchor,
+                                paddingTop: 10,
+                                height: 40)
         
         addSubview(doneButton)
-        doneButton.anchor(left: leftAnchor, top: commentTextField.bottomAnchor, right: rightAnchor, paddingTop: 20, height: 80)
+        doneButton.anchor(left: leftAnchor,
+                          top: commentTextField.bottomAnchor,
+                          right: rightAnchor,
+                          paddingTop: 20,
+                          height: 80)
     }
     
     func setDateConfiguration(datePicket: UIDatePicker, toolBar: UIToolbar) {
@@ -117,7 +141,7 @@ final class AmountView: UIView {
         commentTextField.text = ""
     }
     
-//    MARK: - Selectors
+// MARK: - Selectors
     
     @objc private func handleDoneButton() {
         delegate?.saveInformation(amount: amountTextField.text ?? "", date: dateTextField.text ?? "", comment: commentTextField.text ?? "")

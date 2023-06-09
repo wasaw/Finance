@@ -20,5 +20,6 @@ class CurrencyRate {
                 return eur
             }
         }
+        set {}
     }
 }

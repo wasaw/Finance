@@ -8,7 +8,7 @@
 import UIKit
 
 class LastTransactionModalView: UIView {
-//    MARK: - Properties
+// MARK: - Properties
         
     private let typeLabel: UILabel = {
         let label = UILabel()
@@ -47,7 +47,7 @@ class LastTransactionModalView: UIView {
         return label
     }()
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,7 +59,7 @@ class LastTransactionModalView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func configureUI() {
         let stack = UIStackView(arrangedSubviews: [typeLabel, amountLabel, categoryLabel, commentLabel, dateLabel])
@@ -69,7 +69,14 @@ class LastTransactionModalView: UIView {
         stack.spacing = 16
         addSubview(stack)
         
-        stack.anchor(left: leftAnchor, top: topAnchor, right: rightAnchor, bottom: bottomAnchor, paddingLeft: 10, paddingTop: 20, paddingRight: -10, paddingBottom: -20)
+        stack.anchor(left: leftAnchor,
+                     top: topAnchor,
+                     right: rightAnchor,
+                     bottom: bottomAnchor,
+                     paddingLeft: 10,
+                     paddingTop: 20,
+                     paddingRight: -10,
+                     paddingBottom: -20)
     }
     
     func setInformation(_ transaction: LastTransaction, currency: Currency, rate: Double) {

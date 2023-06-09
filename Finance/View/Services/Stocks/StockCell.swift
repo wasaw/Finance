@@ -10,7 +10,7 @@ import UIKit
 final class StockCell: UITableViewCell {
     static let reuseIdentifite = "stockCell"
     
-//    MARK: - Properties
+// MARK: - Properties
     
     private let symbolLabel: UILabel = {
         let label = UILabel()
@@ -24,7 +24,7 @@ final class StockCell: UITableViewCell {
         return label
     }()
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,7 +36,7 @@ final class StockCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func configureUI() {
         heightAnchor.constraint(equalToConstant: 40).isActive = true

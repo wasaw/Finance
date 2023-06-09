@@ -9,7 +9,7 @@ import UIKit
 
 final class TopView: UIView {
     
-//    MARK: - Properties
+// MARK: - Properties
     
     private let rateLabel: UILabel = {
         let label = UILabel()
@@ -37,7 +37,7 @@ final class TopView: UIView {
         return label
     }()
 
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,7 +51,7 @@ final class TopView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func configureUI() {
         addSubview(rateLabel)
@@ -60,7 +60,14 @@ final class TopView: UIView {
         rateLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
         addSubview(totalAccountView)
-        totalAccountView.anchor(left: leftAnchor, top: rateLabel.bottomAnchor, right: rightAnchor, bottom: bottomAnchor, paddingLeft: 25, paddingTop: 25, paddingRight: -25, paddingBottom: -35)
+        totalAccountView.anchor(left: leftAnchor,
+                                top: rateLabel.bottomAnchor,
+                                right: rightAnchor,
+                                bottom: bottomAnchor,
+                                paddingLeft: 25,
+                                paddingTop: 25,
+                                paddingRight: -25,
+                                paddingBottom: -35)
         
         totalAccountView.addSubview(titleLable)
         titleLable.centerXAnchor.constraint(equalTo: totalAccountView.centerXAnchor).isActive = true

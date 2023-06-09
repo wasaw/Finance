@@ -8,14 +8,15 @@
 import UIKit
 
 final class LastTransactionModalController: UIViewController {
-//    MARK: - Properties
+
+// MARK: - Properties
     
     private let transaction: LastTransaction
     private let currency: Currency
     private let rate: Double
     private let textView = LastTransactionModalView()
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     init(transaction: LastTransaction, currency: Currency, rate: Double) {
         self.transaction = transaction
@@ -36,7 +37,7 @@ final class LastTransactionModalController: UIViewController {
         view.backgroundColor = .white
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func configureUI() {
         view.addSubview(textView)

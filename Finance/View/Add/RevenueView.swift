@@ -13,7 +13,7 @@ protocol SwitcherValueDelegate: AnyObject {
 
 final class RevenueView: UIView {
     
-//    MARK: - Properties
+// MARK: - Properties
     
     private lazy var switcher: UISwitch = {
         let sw = UISwitch()
@@ -32,7 +32,7 @@ final class RevenueView: UIView {
     
     weak var delegate: SwitcherValueDelegate?
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,7 +45,7 @@ final class RevenueView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func configureUI() {
         addSubview(switcher)
@@ -61,7 +61,7 @@ final class RevenueView: UIView {
         switcher.isOn = false
     }
     
-//    MARK: - Selectors
+// MARK: - Selectors
     
     @objc private func tapSwitcher(sender: UISwitch) {
         delegate?.switchChanged(value: switcher.isOn)

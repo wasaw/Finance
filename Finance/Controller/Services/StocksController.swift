@@ -9,14 +9,31 @@ import UIKit
 
 final class StocksController: UIViewController {
     
-//    MARK: - Properties
+// MARK: - Properties
     
     private var tableView: UITableView?
     private let loadAnimationView = CircleAnimation()
-    private var stockList: [Stock] = [Stock(symbol: "ABNB", company: "Airbnb"), Stock(symbol: "AAPL", company: "Apple"), Stock(symbol: "AMZN", company: "Amazon"), Stock(symbol: "CSCO", company: "Cisco"), Stock(symbol: "GM", company: "General Motors"), Stock(symbol: "GOOG", company: "Alphabet"), Stock(symbol: "KO", company: "Coca-Cola"), Stock(symbol: "MA", company: "Mastercard"), Stock(symbol: "MCD", company: "McDonald's"), Stock(symbol: "MSFT", company: "Microsoft"), Stock(symbol: "NKE", company: "Nike"), Stock(symbol: "NVDA", company: "NVIDIA"), Stock(symbol: "PEP", company: "PepsiCo"), Stock(symbol: "PFE", company: "Pfizer"), Stock(symbol: "TSLA", company: "Tesla"), Stock(symbol: "UBER", company: "Uber"), Stock(symbol: "XOM", company: "Exxon"), Stock(symbol: "WMT", company: "Walmart")]
+    private var stockList: [Stock] = [Stock(symbol: "ABNB", company: "Airbnb"),
+                                      Stock(symbol: "AAPL", company: "Apple"),
+                                      Stock(symbol: "AMZN", company: "Amazon"),
+                                      Stock(symbol: "CSCO", company: "Cisco"),
+                                      Stock(symbol: "GM", company: "General Motors"),
+                                      Stock(symbol: "GOOG", company: "Alphabet"),
+                                      Stock(symbol: "KO", company: "Coca-Cola"),
+                                      Stock(symbol: "MA", company: "Mastercard"),
+                                      Stock(symbol: "MCD", company: "McDonald's"),
+                                      Stock(symbol: "MSFT", company: "Microsoft"),
+                                      Stock(symbol: "NKE", company: "Nike"),
+                                      Stock(symbol: "NVDA", company: "NVIDIA"),
+                                      Stock(symbol: "PEP", company: "PepsiCo"),
+                                      Stock(symbol: "PFE", company: "Pfizer"),
+                                      Stock(symbol: "TSLA", company: "Tesla"),
+                                      Stock(symbol: "UBER", company: "Uber"),
+                                      Stock(symbol: "XOM", company: "Exxon"),
+                                      Stock(symbol: "WMT", company: "Walmart")]
     private let dayInSeconds = 86400.0
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +44,7 @@ final class StocksController: UIViewController {
         view.backgroundColor = .white
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
 
     private func getInformation() {
         let currentDate = Date() - dayInSeconds
@@ -47,7 +64,7 @@ final class StocksController: UIViewController {
                     self.loadAnimationView.isHidden = true
                     self.tableView?.isHidden = false
                 case .failure(let error):
-                    self.alert(with: "Ошибка", massage: error.localizedDescription) { result in
+                    self.alert(with: "Ошибка", massage: error.localizedDescription) { _ in
                         self.navigationController?.popToRootViewController(animated: true)
                     }
                 }
@@ -75,13 +92,13 @@ final class StocksController: UIViewController {
     }
 }
 
-//  MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 extension StocksController: UITableViewDelegate {
    
 }
 
-//  MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension StocksController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,7 +106,8 @@ extension StocksController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: StockCell.reuseIdentifite, for: indexPath) as? StockCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: StockCell.reuseIdentifite,
+                                                       for: indexPath) as? StockCell else { return UITableViewCell() }
         cell.setValue(stock: stockList[indexPath.row], index: indexPath.row)
         cell.selectionStyle = .none
         return cell

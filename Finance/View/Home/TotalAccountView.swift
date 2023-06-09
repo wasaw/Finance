@@ -9,7 +9,7 @@ import UIKit
 
 class TotalAccountView: UIView {
     
-//    MARK: - Propertries
+// MARK: - Propertries
     
     private let titleLable: UILabel = {
         let label = UILabel()
@@ -33,7 +33,7 @@ class TotalAccountView: UIView {
         return img
     }()
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,7 +49,7 @@ class TotalAccountView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func configureUI() {
         addSubview(totalAccountLabel)

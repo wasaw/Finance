@@ -1,4 +1,4 @@
- //
+//
 //  AuthController.swift
 //  Finance
 //
@@ -18,13 +18,13 @@ protocol SendUidDelegate: AnyObject {
 
 final class AuthController: UIViewController {
     
-//    MARK: - Properties
+// MARK: - Properties
         
     private let authView = AuthView()
     weak var delegate: SendUidDelegate?
     var heightConstraint: NSLayoutConstraint?
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +35,20 @@ final class AuthController: UIViewController {
         view.backgroundColor = .white
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func configureUI() {
         view.addSubview(authView)
         authView.anchor(left: view.leftAnchor, right: view.rightAnchor, paddingLeft: 30, paddingRight: -30)
-        heightConstraint = NSLayoutConstraint(item: authView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: AuthState.authorization.rawValue)
-        authView.addConstraint(heightConstraint!)
+        heightConstraint = NSLayoutConstraint(item: authView,
+                                              attribute: .height,
+                                              relatedBy: .equal,
+                                              toItem: nil,
+                                              attribute: .notAnAttribute,
+                                              multiplier: 1,
+                                              constant: AuthState.authorization.rawValue)
+        guard let heightConstraint = heightConstraint else { return }
+        authView.addConstraint(heightConstraint)
         authView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
@@ -85,7 +92,7 @@ final class AuthController: UIViewController {
     }
 }
 
-//  MARK: - Extensions
+// MARK: - Extensions
 
 extension AuthController: AuthFormDelegate {
     func updateHeight(state: AuthState) {
@@ -123,7 +130,7 @@ extension AuthController: AuthFormDelegate {
                         let user = User(uid: String(uid), login: credentials.login, email: credentials.email, profileImageUrl: "", authorized: true)
                         DatabaseService.shared.saveUser(user: user) { result in
                             switch result {
-                            case .success(_):
+                            case .success:
                                 self.delegate?.sendUid(uid: String(uid))
                                 self.presentingViewController?.dismiss(animated: true)
                             case .failure(let error):

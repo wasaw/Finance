@@ -92,3 +92,7 @@ iOSInjectionProject/
 
 # API KEY
 *.xcconfig
+
+# DerivedData
+
+DerivedData/

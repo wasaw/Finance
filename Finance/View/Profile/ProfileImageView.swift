@@ -13,7 +13,7 @@ protocol ProfileImageSelectDelegate: AnyObject {
 
 final class ProfileImageView: UIView {
     
-//    MARK: - Properties
+// MARK: - Properties
     
     weak var delegate: ProfileImageSelectDelegate?
             
@@ -26,7 +26,7 @@ final class ProfileImageView: UIView {
         return btn
     }()
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,7 +42,7 @@ final class ProfileImageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     func setImage(image: UIImage) {
         imageButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -53,7 +53,7 @@ final class ProfileImageView: UIView {
     func setImage(complition: @escaping (UIButton) -> Void) {
         complition(imageButton)
     }
-    //    MARK: - Selectors
+// MARK: - Selectors
 
     @objc private func handleAddPhoto() {
         delegate?.selectImage()

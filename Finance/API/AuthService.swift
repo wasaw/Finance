@@ -16,7 +16,7 @@ final class AuthService {
         Auth.auth().signIn(withEmail: email, password: password, completion: completion)
     }
     
-    func registerUser(credentials: AuthCredentials, completion: @escaping (Error?,DatabaseReference) -> Void) {
+    func registerUser(credentials: AuthCredentials, completion: @escaping (Error?, DatabaseReference) -> Void) {
         let login = credentials.login
         let email = credentials.email
         let password = credentials.password

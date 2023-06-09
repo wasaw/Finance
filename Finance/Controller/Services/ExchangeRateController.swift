@@ -9,7 +9,7 @@ import UIKit
 
 final class ExchangeRateController: UIViewController {
     
-//    MARK: - Properties
+// MARK: - Properties
     
     private let topView = TopView()
     private let loadAnimateView = CircleAnimation()
@@ -17,8 +17,22 @@ final class ExchangeRateController: UIViewController {
     private let networkService = NetworkService.shared
     private let databaseService = DatabaseService.shared
     private var exchangeRate = [CurrentExchangeRate]()
-    private let fullName = ["Болгарский лев", "Чешская крона", "Евро", "Фунт стерлингов", "Казахстанский тенге", "Новозеландский доллар", "Рубль", "Доллар"]
-    private let img = ["bulgarian-lev.png", "czech-republic.png", "euro.png", "pound-sterling.png", "kazakhstani-tenge.png", "new-zealand.png", "ruble-currency.png", "dollar.png"]
+    private let fullName = ["Болгарский лев",
+                            "Чешская крона",
+                            "Евро",
+                            "Фунт стерлингов",
+                            "Казахстанский тенге",
+                            "Новозеландский доллар",
+                            "Рубль",
+                            "Доллар"]
+    private let img = ["bulgarian-lev.png",
+                       "czech-republic.png",
+                       "euro.png",
+                       "pound-sterling.png",
+                       "kazakhstani-tenge.png",
+                       "new-zealand.png",
+                       "ruble-currency.png",
+                       "dollar.png"]
     private var revenue: Double = 0
     private var currentRate: Double = 0
     private var requestCurrency = "USD"
@@ -33,7 +47,7 @@ final class ExchangeRateController: UIViewController {
         }
     }
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +60,7 @@ final class ExchangeRateController: UIViewController {
         view.backgroundColor = .white
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func configureLoadAnimationView() {
         topView.addSubview(loadAnimateView)
@@ -117,13 +131,13 @@ final class ExchangeRateController: UIViewController {
     
     private func setTotalAccount() {
         if isLoadExchange && isLoadRevenue {
-            let total =  revenue / currentRate
+            let total = revenue / currentRate
             topView.setTotalAccount(total)
         }
     }
 }
 
-//  MARK: - UICollectionVIewDelegate
+// MARK: - UICollectionVIewDelegate
 
 extension ExchangeRateController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -132,7 +146,7 @@ extension ExchangeRateController: UICollectionViewDelegate {
     }
 }
 
-//  MARK: - UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
 
 extension ExchangeRateController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -140,13 +154,14 @@ extension ExchangeRateController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurrencyCell.identifire, for: indexPath) as? CurrencyCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurrencyCell.identifire,
+                                                            for: indexPath) as? CurrencyCell else { return UICollectionViewCell() }
         cell.setInformation(currency: exchangeRate[indexPath.row])
         return cell
     }
 }
 
-//  MARK: - UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension ExchangeRateController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

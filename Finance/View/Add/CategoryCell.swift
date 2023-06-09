@@ -10,7 +10,7 @@ import UIKit
 class CategoryCell: UICollectionViewCell {
     static let identifire = "CategoryCell"
 
-//    MARK: - Properties
+// MARK: - Properties
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -31,7 +31,7 @@ class CategoryCell: UICollectionViewCell {
         return view
     }()
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,7 +45,7 @@ class CategoryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func configureUI() {
         addSubview(circleView)

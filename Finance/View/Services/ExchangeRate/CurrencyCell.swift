@@ -9,7 +9,7 @@ import UIKit
 
 final class CurrencyCell: UICollectionViewCell {
 
-//    MARK: - Properties
+// MARK: - Properties
     
     static let identifire = "CurrencyCell"
     
@@ -41,8 +41,7 @@ final class CurrencyCell: UICollectionViewCell {
         return line
     }()
 
-    
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,7 +55,7 @@ final class CurrencyCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func configureUI() {
         addSubview(currencyImage)
@@ -66,13 +65,31 @@ final class CurrencyCell: UICollectionViewCell {
         titleStack.axis = .vertical
         titleStack.distribution = .equalSpacing
         addSubview(titleStack)
-        titleStack.anchor(left: currencyImage.rightAnchor, top: topAnchor, bottom: bottomAnchor, paddingLeft: 15, paddingTop: 20, paddingBottom: -20, width: 200)
+        titleStack.anchor(left: currencyImage.rightAnchor,
+                          top: topAnchor,
+                          bottom: bottomAnchor,
+                          paddingLeft: 15,
+                          paddingTop: 20,
+                          paddingBottom: -20,
+                          width: 200)
         
         addSubview(valueLabel)
-        valueLabel.anchor(top: topAnchor, right: rightAnchor, bottom: bottomAnchor, paddingTop: 20, paddingRight: -20, paddingBottom: -20, width: 110)
+        valueLabel.anchor(top: topAnchor,
+                          right: rightAnchor,
+                          bottom: bottomAnchor,
+                          paddingTop: 20,
+                          paddingRight: -20,
+                          paddingBottom: -20,
+                          width: 110)
         
         addSubview(dividingLine)
-        dividingLine.anchor(left: leftAnchor, top: currencyImage.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 15, paddingRight: -20, height: 1)
+        dividingLine.anchor(left: leftAnchor,
+                            top: currencyImage.bottomAnchor,
+                            right: rightAnchor,
+                            paddingLeft: 20,
+                            paddingTop: 15,
+                            paddingRight: -20,
+                            height: 1)
     }
     
     func setInformation(currency: CurrentExchangeRate) {

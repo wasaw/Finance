@@ -39,7 +39,6 @@ struct CurrentExchangeRate {
     let img: String
 }
 
-
 struct AuthCredentials {
     let login: String
     let email: String
@@ -104,7 +103,7 @@ struct Stock {
     }
 }
 
-//  MARK: - Error
+// MARK: - Error
 
 enum ResultStatus<T> {
     case success(T)

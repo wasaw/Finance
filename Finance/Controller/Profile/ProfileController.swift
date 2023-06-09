@@ -11,7 +11,7 @@ import SDWebImage
 
 final class ProfileController: UIViewController {
 
-//    MARK: - Properties
+// MARK: - Properties
     
     private var currentUser = CurrentUser()
 
@@ -25,11 +25,10 @@ final class ProfileController: UIViewController {
     }()
     private let authController = AuthController()
 
-    
     private var currentCurrencyBtn = Utils().menuItemButton(image: "currencies.png", title: "Текущая валюта")
     private let logOutBtn = Utils().menuItemButton(image: "logout.png", title: "Выход")
 
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     init(_ currentUser: CurrentUser) {
         super.init(nibName: nil, bundle: nil)
@@ -49,7 +48,7 @@ final class ProfileController: UIViewController {
         view.backgroundColor = .white
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func auth() {
         if Auth.auth().currentUser == nil {
@@ -79,10 +78,22 @@ final class ProfileController: UIViewController {
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         view.addSubview(imageView)
-        imageView.anchor(left: view.leftAnchor, top: view.safeAreaLayoutGuide.topAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 15, paddingRight: -10, height: 150)
+        imageView.anchor(left: view.leftAnchor,
+                         top: view.safeAreaLayoutGuide.topAnchor,
+                         right: view.rightAnchor,
+                         paddingLeft: 10,
+                         paddingTop: 15,
+                         paddingRight: -10,
+                         height: 150)
         
         view.addSubview(loginLabel)
-        loginLabel.anchor(left: view.leftAnchor, top: imageView.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingTop: 10, paddingRight: -10, height: 40)
+        loginLabel.anchor(left: view.leftAnchor,
+                          top: imageView.bottomAnchor,
+                          right: view.rightAnchor,
+                          paddingLeft: 10,
+                          paddingTop: 10,
+                          paddingRight: -10,
+                          height: 40)
         
         let stack = UIStackView(arrangedSubviews: [currentCurrencyBtn, logOutBtn])
         stack.axis = .vertical
@@ -115,7 +126,7 @@ final class ProfileController: UIViewController {
         return currency == CurrencyRate.currentCurrency ? true : false
     }
     
-//    MARK: - Selecters
+// MARK: - Selecters
     
     @objc private func handleLogOutBtn() {
         do {
@@ -129,7 +140,7 @@ final class ProfileController: UIViewController {
     }
 }
 
-//  MARK: - Extensions
+// MARK: - Extensions
 
 extension ProfileController: ProfileImageSelectDelegate {
     func selectImage() {
@@ -138,7 +149,7 @@ extension ProfileController: ProfileImageSelectDelegate {
 }
 
 extension ProfileController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let profileImage = info[.editedImage] as? UIImage else { return }
         
         imageView.setImage(image: profileImage)
@@ -148,8 +159,8 @@ extension ProfileController: UIImagePickerControllerDelegate, UINavigationContro
         let filename = UUID().uuidString
         let storageImageRef = REF_PROFILE_IMAGE.child(filename)
 
-        storageImageRef.putData(dataImage) { meta, error in
-            storageImageRef.downloadURL { url, error in
+        storageImageRef.putData(dataImage) { _, _ in
+            storageImageRef.downloadURL { url, _ in
                 guard let profileImageUrl = url?.absoluteString else { return }
                 guard let uid = Auth.auth().currentUser?.uid else { return }
                 let values = ["profileImageUrl": profileImageUrl]
@@ -178,7 +189,7 @@ extension ProfileController: Subscriber {
 
 extension ProfileController: SendUidDelegate {
     func sendUid(uid: String) {
-        let user = DatabaseService.shared.getUserInformation(uid: uid) { result in
+        DatabaseService.shared.getUserInformation(uid: uid) { result in
             switch result {
             case .success(let user):
                 self.currentUser.setValue(user: user)

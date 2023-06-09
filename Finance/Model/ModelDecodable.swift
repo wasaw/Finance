@@ -5,7 +5,7 @@
 //  Created by Александр Меренков on 31.01.2023.
 //
 
-//  MARK: - Currency
+// MARK: - Currency
 
 struct ConversionRates: Decodable {
     let result: String
@@ -63,7 +63,7 @@ struct CurrencyJsonIterator: IteratorProtocol {
     }
 }
 
-//  MARK: - Stock
+// MARK: - Stock
 
 struct StockRate: Decodable {
     let queryCount: Int

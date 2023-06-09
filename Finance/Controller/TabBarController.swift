@@ -10,18 +10,18 @@ import Firebase
 
 final class TabBarController: UITabBarController {
     
-//    MARK: - Properties
+// MARK: - Properties
     
     private var currentUser = CurrentUser()
         
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let boundWidth: CGFloat = 20
         tabBar.frame.size.width = view.frame.width - boundWidth
-        tabBar.frame.size.height = tabBar.frame.size.height * 0.9
-        tabBar.frame.origin.y = tabBar.frame.origin.y - 10
+        tabBar.frame.size.height *= 0.9
+        tabBar.frame.origin.y -= 10
         tabBar.frame.origin.x = boundWidth / 2
         tabBar.layer.cornerRadius = boundWidth
     }
@@ -53,24 +53,23 @@ final class TabBarController: UITabBarController {
         viewControllers = [homeVC, addVC, profileVC]
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func authUser() {
         let uid = Auth.auth().currentUser?.uid
-        if uid != nil {
-            DatabaseService.shared.getUserInformation(uid: uid!) { result in
-                switch result {
-                case .success(let user):
-                    self.currentUser.setValue(user: user)
-                case .failure(let error):
-                    self.alert(with: "Ошибка", massage: error.localizedDescription)
-                }
+        guard let uid = uid else { return }
+        DatabaseService.shared.getUserInformation(uid: uid) { result in
+            switch result {
+            case .success(let user):
+                self.currentUser.setValue(user: user)
+            case .failure(let error):
+                self.alert(with: "Ошибка", massage: error.localizedDescription)
             }
         }
     }
 }
 
-//  MARK: - Extensions
+// MARK: - Extensions
 
 extension TabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {

@@ -11,12 +11,12 @@ protocol Subscriber: AnyObject {
 
 class CurrentUser {
     
-//    MARK: - Properties
+// MARK: - Properties
     
     private lazy var subscribers: [WeakSubscriber] = []
-    private var subject: User? = nil
+    private var subject: User?
         
-//    MARK: - Helpers
+// MARK: - Helpers
     
     func setValue(user: User?) {
         self.subject = user
@@ -33,11 +33,11 @@ class CurrentUser {
     }
     
     func unsubscribe(_ subscriber: Subscriber) {
-        subscribers.removeAll(where: {$0.value === subscriber})
+        subscribers.removeAll(where: { $0.value === subscriber })
     }
     
     private func notify() {
-        subscribers.forEach{$0.value?.update(subject: self.subject)}
+        subscribers.forEach { $0.value?.update(subject: self.subject) }
     }
 }
 

@@ -9,7 +9,7 @@ import UIKit
 
 final class TitleView: UIView {
     
-//    MARK: - Properties
+// MARK: - Properties
         
     private let titleLable: UILabel = {
         let label = UILabel()
@@ -25,7 +25,7 @@ final class TitleView: UIView {
         return img
     }()
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,7 +44,7 @@ final class TitleView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     func setTitle(title: String) {
         titleLable.text = title

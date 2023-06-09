@@ -9,7 +9,8 @@ import UIKit
 
 class ServicesCell: UICollectionViewCell {
     
-//    MARK: - Properties
+// MARK: - Properties
+    
     static let identifire = "ServiceCell"
     
     private let viewForImage: UIView = {
@@ -35,7 +36,7 @@ class ServicesCell: UICollectionViewCell {
         return label
     }()
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,7 +59,7 @@ class ServicesCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     func setInformation(service: ChoiceService) {
         titleLable.text = service.name

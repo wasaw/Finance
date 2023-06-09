@@ -9,7 +9,8 @@ import UIKit
 
 class LastTransactionCell: UICollectionViewCell {
     
-//    MARK: - Properties
+// MARK: - Properties
+    
     static let identifire = "LastTransactionCell"
     
     private let imageView: UIImageView = {
@@ -38,7 +39,7 @@ class LastTransactionCell: UICollectionViewCell {
         return label
     }()
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,7 +56,14 @@ class LastTransactionCell: UICollectionViewCell {
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         addSubview(stack)
-        stack.anchor(left: imageView.rightAnchor, top: topAnchor, right: amountLabel.leftAnchor, bottom: bottomAnchor, paddingLeft: 20, paddingTop: 10, paddingRight: -20, paddingBottom: -10)
+        stack.anchor(left: imageView.rightAnchor,
+                     top: topAnchor,
+                     right: amountLabel.leftAnchor,
+                     bottom: bottomAnchor,
+                     paddingLeft: 20,
+                     paddingTop: 10,
+                     paddingRight: -20,
+                     paddingBottom: -10)
         
         backgroundColor = .white
     }
@@ -64,7 +72,7 @@ class LastTransactionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     func setInformation(lastTransaction: LastTransaction, currency: Currency, rate: Double) {
         let transaction = lastTransaction.amount / rate

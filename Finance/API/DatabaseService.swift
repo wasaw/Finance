@@ -11,34 +11,49 @@ import UIKit
 
 final class DatabaseService {
     static let shared = DatabaseService()
-    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-//    MARK: - setDefaultValue
+// MARK: - setDefaultValue
     
     func setDefaultValue(completion: @escaping(ResultStatus<Bool>) -> Void) {
-        let revenue = [ChoiceTypeRevenue(name: "Зарплата", img: "calendar.png"), ChoiceTypeRevenue(name: "Продажа", img: "sales.png"), ChoiceTypeRevenue(name: "Проценты", img: "price-tag.png"), ChoiceTypeRevenue(name: "Наличные", img: "salary.png"), ChoiceTypeRevenue(name: "Вклад", img: "deposit.png"), ChoiceTypeRevenue(name: "Иное", img: "other.png")]
+        let revenue = [ChoiceTypeRevenue(name: "Зарплата", img: "calendar.png"),
+                       ChoiceTypeRevenue(name: "Продажа", img: "sales.png"),
+                       ChoiceTypeRevenue(name: "Проценты", img: "price-tag.png"),
+                       ChoiceTypeRevenue(name: "Наличные", img: "salary.png"),
+                       ChoiceTypeRevenue(name: "Вклад", img: "deposit.png"),
+                       ChoiceTypeRevenue(name: "Иное", img: "other.png")]
         
-        let category = [ChoiceCategoryExpense(name: "Продукты", img: "products.png"), ChoiceCategoryExpense(name: "Транспорт", img: "transportation.png"), ChoiceCategoryExpense(name: "Образование", img: "education.png"), ChoiceCategoryExpense(name: "Подписки", img: "subscription.png"), ChoiceCategoryExpense(name: "Прочее", img: "other.png"), ChoiceCategoryExpense(name: "Связь", img: "chat.png"), ChoiceCategoryExpense(name: "Развлечения", img: "cinema.png"), ChoiceCategoryExpense(name: "Ресторан", img: "fast-food.png"), ChoiceCategoryExpense(name: "Здоровье", img: "healthcare.png")]
+        let category = [ChoiceCategoryExpense(name: "Продукты", img: "products.png"),
+                        ChoiceCategoryExpense(name: "Транспорт", img: "transportation.png"),
+                        ChoiceCategoryExpense(name: "Образование", img: "education.png"),
+                        ChoiceCategoryExpense(name: "Подписки", img: "subscription.png"),
+                        ChoiceCategoryExpense(name: "Прочее", img: "other.png"),
+                        ChoiceCategoryExpense(name: "Связь", img: "chat.png"),
+                        ChoiceCategoryExpense(name: "Развлечения", img: "cinema.png"),
+                        ChoiceCategoryExpense(name: "Ресторан", img: "fast-food.png"),
+                        ChoiceCategoryExpense(name: "Здоровье", img: "healthcare.png")]
         
         addTypeInformation(type: revenue) { result in
             switch result {
-            case .success(_):
+            case .success:
                 self.addCategoryInfornation(category: category) { result in
                     switch result {
-                    case .success(_):
+                    case .success:
                         completion(.success(true))
-                    case .failure(_):
+                    case .failure:
                         completion(.failure(CoreDataError.somethingError))
                     }
                 }
-            case .failure(_):
+            case .failure:
                 completion(.failure(CoreDataError.somethingError))
             }
         }
     }
     
-//    MARK: - Add
+// MARK: - Add
+    
     func addCategoryInfornation(category: [ChoiceCategoryExpense], completion: @escaping(ResultStatus<Bool>) -> Void) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
         
@@ -67,6 +82,7 @@ final class DatabaseService {
     }
     
     func addTypeInformation(type: [ChoiceTypeRevenue], completion: @escaping(ResultStatus<Bool>) -> Void) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Type")
         
@@ -96,6 +112,7 @@ final class DatabaseService {
     }
     
     func saveTransaction(transaction: LastTransaction, completion: @escaping(ResultStatus<Bool>) -> Void) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequestType = NSFetchRequest<NSFetchRequestResult>(entityName: "Type")
         fetchRequestType.predicate = NSPredicate(format: "name == %@", transaction.type)
@@ -103,7 +120,7 @@ final class DatabaseService {
         do {
             guard let entity = NSEntityDescription.entity(forEntityName: "Transaction", in: context) else { return  }
             
-            let newTransaction  = NSManagedObject(entity: entity, insertInto: context)
+            let newTransaction = NSManagedObject(entity: entity, insertInto: context)
             newTransaction.setValue(transaction.type, forKey: "type")
             newTransaction.setValue(transaction.category, forKey: "category")
             newTransaction.setValue(transaction.img, forKey: "img")
@@ -128,6 +145,7 @@ final class DatabaseService {
     }
     
     func saveUser(user: User, completion: @escaping(ResultStatus<Bool>) -> Void) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         
         guard let entity = NSEntityDescription.entity(forEntityName: "LoginUser", in: context) else { return }
@@ -148,9 +166,10 @@ final class DatabaseService {
         }
     }
     
-//    MARK: - Get
+// MARK: - Get
     
     func getCategoryInformation(compeliton: @escaping(ResultStatus<[ChoiceCategoryExpense]>) -> Void) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
         var category = [ChoiceCategoryExpense]()
@@ -172,6 +191,7 @@ final class DatabaseService {
     }
     
     func getTypeInformation(completion: @escaping(ResultStatus<[ChoiceTypeRevenue]>) -> Void) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Type")
         var type = [ChoiceTypeRevenue]()
@@ -194,6 +214,7 @@ final class DatabaseService {
     }
     
     func getTransactionInformation(completion: @escaping(ResultStatus<[LastTransaction]>) -> Void) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
         var lastTransaction = [LastTransaction]()
@@ -222,6 +243,7 @@ final class DatabaseService {
     }
     
     func getUserInformation(uid: String, compeletion: @escaping(ResultStatus<User?>) -> Void) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LoginUser")
         fetchRequest.predicate = NSPredicate(format: "uid == %@", uid)

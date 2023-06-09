@@ -9,7 +9,7 @@ import UIKit
 
 final class TypeCell: CategoryCell {
     
-//    MARK: - Properties
+// MARK: - Properties
     
     private let amountLabel: UILabel = {
         let label = UILabel()
@@ -17,7 +17,7 @@ final class TypeCell: CategoryCell {
         return label
     }()
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +29,7 @@ final class TypeCell: CategoryCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func configureUI() {
         addSubview(amountLabel)

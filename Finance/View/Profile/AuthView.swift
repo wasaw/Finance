@@ -14,7 +14,7 @@ protocol AuthFormDelegate: AnyObject {
 
 final class AuthView: UIView {
     
-//    MARK: - Properties
+// MARK: - Properties
     
     weak var delegate: AuthFormDelegate?
         
@@ -98,7 +98,7 @@ final class AuthView: UIView {
     
     private let segmentedController = UISegmentedControl(items: ["Вход", "Регистрация"])
     
-//    MARK: - Lifecycle
+// MARK: - Lifecycle
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -131,7 +131,7 @@ final class AuthView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     private func configureUI() {
         configureTitle()
@@ -164,36 +164,78 @@ final class AuthView: UIView {
     
     private func configureLogInField() {
         addSubview(emailTextField)
-        emailTextField.anchor(left: leftAnchor, top: segmentedController.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 20, paddingRight: -20, height: 50)
+        emailTextField.anchor(left: leftAnchor,
+                              top: segmentedController.bottomAnchor,
+                              right: rightAnchor,
+                              paddingLeft: 20,
+                              paddingTop: 20,
+                              paddingRight: -20,
+                              height: 50)
 
         addSubview(passTextField)
-        passTextField.anchor(left: leftAnchor, top: emailTextField.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 40, paddingRight: -20, height: 50)
+        passTextField.anchor(left: leftAnchor,
+                             top: emailTextField.bottomAnchor,
+                             right: rightAnchor,
+                             paddingLeft: 20,
+                             paddingTop: 40,
+                             paddingRight: -20,
+                             height: 50)
     }
     
     private func configureRegField() {
         addSubview(loginTextField)
-        loginTextField.anchor(left: leftAnchor, top: segmentedController.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 20, paddingRight: -20, height: 50)
+        loginTextField.anchor(left: leftAnchor,
+                              top: segmentedController.bottomAnchor,
+                              right: rightAnchor,
+                              paddingLeft: 20,
+                              paddingTop: 20,
+                              paddingRight: -20,
+                              height: 50)
         loginTextField.alpha = 0
         
         addSubview(emailRegTextField)
-        emailRegTextField.anchor(left: leftAnchor, top: loginTextField.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 20, paddingRight: -20, height: 50)
+        emailRegTextField.anchor(left: leftAnchor,
+                                 top: loginTextField.bottomAnchor,
+                                 right: rightAnchor,
+                                 paddingLeft: 20,
+                                 paddingTop: 20,
+                                 paddingRight: -20,
+                                 height: 50)
         emailRegTextField.alpha = 0
         
         addSubview(passRegTextField)
-        passRegTextField.anchor(left: leftAnchor, top: emailRegTextField.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 20, paddingRight: -20, height: 50)
+        passRegTextField.anchor(left: leftAnchor,
+                                top: emailRegTextField.bottomAnchor,
+                                right: rightAnchor,
+                                paddingLeft: 20,
+                                paddingTop: 20,
+                                paddingRight: -20,
+                                height: 50)
         passRegTextField.alpha = 0
         
         addSubview(confirmPassTextField)
-        confirmPassTextField.anchor(left: leftAnchor, top: passRegTextField.bottomAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 20, paddingRight: -20, height: 50)
+        confirmPassTextField.anchor(left: leftAnchor,
+                                    top: passRegTextField.bottomAnchor,
+                                    right: rightAnchor,
+                                    paddingLeft: 20,
+                                    paddingTop: 20,
+                                    paddingRight: -20,
+                                    height: 50)
         confirmPassTextField.alpha = 0
     }
         
     private func configureButton() {
         addSubview(logInButton)
-        logInButton.anchor(left: leftAnchor, right: rightAnchor, bottom: bottomAnchor, paddingLeft: 10, paddingRight: -10, paddingBottom: -30, height: 55)
+        logInButton.anchor(left: leftAnchor,
+                           right: rightAnchor,
+                           bottom: bottomAnchor,
+                           paddingLeft: 10,
+                           paddingRight: -10,
+                           paddingBottom: -30,
+                           height: 55)
     }
     
-//    MARK: - Helpers
+// MARK: - Helpers
     
     @objc private func handleSegment() {
         if segmentedController.selectedSegmentIndex == 0 {
