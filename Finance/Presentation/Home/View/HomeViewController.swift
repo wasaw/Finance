@@ -1,117 +1,55 @@
 //
-//  HomeController.swift
+//  HomeViewController.swift
 //  Finance
 //
-//  Created by Александр Меренков on 08.06.2022.
+//  Created by Александр Меренков on 10.06.2023.
 //
 
 import UIKit
 
-final class HomeController: UIViewController {
+final class HomeViewController: UIViewController {
     
 // MARK: - Properties
     
-    private let fullNameLabel: UILabel = {
+    private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Ваше имя"
         label.textColor = .totalTintColor
         label.font = UIFont.boldSystemFont(ofSize: 27)
         return label
     }()
-    
-    private let totalAccountView = TotalAccountView()
-    private let servicesTitleView = TitleView()
-    private let transactionTitleView = TitleView()
-    
-    private var servicesCollectionView: UICollectionView?
-    private var lastTransactionsCollectionView: UICollectionView?
-    
-    private let noTransactionsLabel: UILabel = {
+    private lazy var totalAccountView = TotalAccountView()
+    private lazy var servicesTitleView = TitleView()
+    private lazy var transactionTitleView = TitleView()
+    private lazy var noTransactionsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.text = "Пока нет ни одной записи"
         label.textColor = .totalTintColor
         return label
     }()
+
+    private var servicesCollectionView: UICollectionView?
+    private var lastTransactionsCollectionView: UICollectionView?
     
     private var heightView: CGFloat = 0
-    private let databaseService = DatabaseService.shared
-    private let networkService = NetworkService.shared
-    private let service = [ChoiceService(name: "Курс валют", img: "exchange-rate.png", vc: ExchangeRateController()),
-                           ChoiceService(name: "Акции", img: "stock-market.png", vc: StocksController())]
+    private var service: [ChoiceService] = []
+    private var lastTransaction: [LastTransaction] = []
 
-    private var lastTransaction = [LastTransaction]() {
-        didSet {
-            lastTransactionsCollectionView?.reloadData()
-        }
-    }
-    
-    private var currentUser = CurrentUser()
+    private var output = HomePresenter()
     
 // MARK: - Lifecycle
     
-    init(_ currentUser: CurrentUser) {
-        super.init(nibName: nil, bundle: nil)
-        
-        self.currentUser = currentUser
-        self.currentUser.subscribe(self)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadInformation()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loadInformation()
-
-        heightView = view.frame.height
+        
+        output.input = self
+        output.viewIsReady()
         configureUI()
         view.backgroundColor = .white
     }
     
 // MARK: - Helpers
-    
-    func loadInformation() {
-        DispatchQueue.main.async {
-            self.databaseService.getTransactionInformation { result in
-                switch result {
-                case .success(let lastTransaction):
-                    self.lastTransaction = lastTransaction
-                    if !self.lastTransaction.isEmpty {
-                        self.lastTransactionsCollectionView?.isHidden = false
-                    }
-                    self.databaseService.getTypeInformation { result in
-                        switch result {
-                        case .success(let revenue):
-                            let revenueArray = revenue
-                            var revenue: Double = 0
-                            for item in revenueArray {
-                                revenue += item.amount
-                            }
-                            if CurrencyRate.currentCurrency == .dollar {
-                                revenue /= CurrencyRate.usd
-                            }
-                            if CurrencyRate.currentCurrency == .euro {
-                                revenue /= CurrencyRate.eur
-                            }
-                            self.totalAccountView.setAccountLabel(total: revenue, currency: CurrencyRate.currentCurrency)
-                        case .failure(let error):
-                            self.alert(with: "Ошибка", massage: error.localizedDescription)
-                        }
-                    }
-                case .failure(let error):
-                    self.alert(with: "Ошибка", massage: error.localizedDescription)
-                }
-            }
-        }
-    }
     
     private func configureUI() {
         configurefullNameLabel()
@@ -134,7 +72,8 @@ final class HomeController: UIViewController {
     
     private func configureTotalAccountView() {
         view.addSubview(totalAccountView)
-        let height = heightView / 5.5
+//        let height = heightView / 5.5
+        let height: CGFloat = 180
         totalAccountView.anchor(left: view.leftAnchor,
                                 top: fullNameLabel.bottomAnchor,
                                 right: view.rightAnchor,
@@ -171,7 +110,7 @@ final class HomeController: UIViewController {
                                       right: view.rightAnchor,
                                       paddingLeft: 10,
                                       paddingTop: 10,
-                                      paddingRight: 10,
+                                      paddingRight: -10,
                                       height: 140)
         servicesCollectionView.backgroundColor = .white
     }
@@ -215,12 +154,33 @@ final class HomeController: UIViewController {
     }
 }
 
-// MARK: - Extensions
+// MARK: - HomeInput
 
-extension HomeController: UICollectionViewDelegate {
+extension HomeViewController: HomeInput {
+    func showData(total: Double, currency: Currency, service: [ChoiceService], lastTransaction: [LastTransaction]) {
+        totalAccountView.setAccountLabel(total: total, currency: currency)
+        self.service = service
+        servicesCollectionView?.reloadData()
+        self.lastTransaction = lastTransaction
+        lastTransactionsCollectionView?.reloadData()
+    }
+    
+    func showLastTransaction() {
+        lastTransactionsCollectionView?.isHidden = false
+    }
+    
+    func showAlert(message: String) {
+        self.alert(with: "Ошибка", massage: message)
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.servicesCollectionView {
-            navigationController?.pushViewController(service[indexPath.row].vc, animated: true)
+            output.showService(at: indexPath.row)
+//            navigationController?.pushViewController(service[indexPath.row].vc, animated: true)
         }
         
         if collectionView == self.lastTransactionsCollectionView {
@@ -236,7 +196,9 @@ extension HomeController: UICollectionViewDelegate {
     }
 }
 
-extension HomeController: UICollectionViewDataSource {
+// MARK: - UICollectionViewDataSource
+
+extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.servicesCollectionView {
             return service.count
@@ -264,7 +226,9 @@ extension HomeController: UICollectionViewDataSource {
     }
 }
 
-extension HomeController: UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.servicesCollectionView {
             return CGSize(width: 80, height: 110)
@@ -280,15 +244,5 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
             return 25
         }
         return 5
-    }
-}
-
-extension HomeController: Subscriber {
-    func update(subject: User?) {
-        if let user = subject {
-            fullNameLabel.text = user.login
-        } else {
-            fullNameLabel.text = "Ваше имя"
-        }
     }
 }

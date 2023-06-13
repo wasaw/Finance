@@ -15,7 +15,6 @@
 		BB61DE962850A33800A08AC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB61DE952850A33800A08AC6 /* Assets.xcassets */; };
 		BB61DE992850A33800A08AC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB61DE972850A33800A08AC6 /* LaunchScreen.storyboard */; };
 		BB61DEA52850A3C200A08AC6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEA42850A3C200A08AC6 /* TabBarController.swift */; };
-		BB61DEA72850A3D400A08AC6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEA62850A3D400A08AC6 /* HomeController.swift */; };
 		BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */; };
 		BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */; };
 		BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */; };
@@ -26,6 +25,10 @@
 		BB6BDB99298942130000584A /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB98298942130000584A /* NetworkConfiguration.swift */; };
 		BB6BDB9D2989574C0000584A /* ModelDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB9C2989574C0000584A /* ModelDecodable.swift */; };
 		BB6BDBA1298B994C0000584A /* TypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDBA0298B994C0000584A /* TypeCell.swift */; };
+		BB6D21942A33CADB000C22D7 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21932A33CADB000C22D7 /* HomePresenter.swift */; };
+		BB6D21972A33CB1A000C22D7 /* HomeOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21962A33CB1A000C22D7 /* HomeOutput.swift */; };
+		BB6D21992A33CC33000C22D7 /* HomeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21982A33CC33000C22D7 /* HomeInput.swift */; };
+		BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D219A2A33CD05000C22D7 /* HomeViewController.swift */; };
 		BB6EEDEC287C5DC200245997 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EEDEB287C5DC200245997 /* NetworkService.swift */; };
 		BB74FA2A2858C58A00EA2CD8 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA292858C58A00EA2CD8 /* AuthController.swift */; };
 		BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */; };
@@ -64,7 +67,6 @@
 		BB61DE982850A33800A08AC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB61DE9A2850A33800A08AC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB61DEA42850A3C200A08AC6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		BB61DEA62850A3D400A08AC6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalAccountView.swift; sourceTree = "<group>"; };
 		BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
@@ -76,6 +78,10 @@
 		BB6BDB98298942130000584A /* NetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
 		BB6BDB9C2989574C0000584A /* ModelDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDecodable.swift; sourceTree = "<group>"; };
 		BB6BDBA0298B994C0000584A /* TypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCell.swift; sourceTree = "<group>"; };
+		BB6D21932A33CADB000C22D7 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		BB6D21962A33CB1A000C22D7 /* HomeOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOutput.swift; sourceTree = "<group>"; };
+		BB6D21982A33CC33000C22D7 /* HomeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInput.swift; sourceTree = "<group>"; };
+		BB6D219A2A33CD05000C22D7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		BB6EEDEB287C5DC200245997 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		BB74FA292858C58A00EA2CD8 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -154,8 +160,9 @@
 			children = (
 				BB6BDB9A2989550B0000584A /* App */,
 				BB9EFC14286B2A7500305776 /* API */,
-				BB61DEA32850A39800A08AC6 /* Model */,
+				BB61DEA32850A39800A08AC6 /* Models */,
 				BB61DEA22850A39400A08AC6 /* View */,
+				BB6D218E2A33C9FB000C22D7 /* Presentation */,
 				BB61DEA02850A37200A08AC6 /* Controller */,
 				BB61DEAB2850DE2F00A08AC6 /* Utils */,
 				BB61DE9A2850A33800A08AC6 /* Info.plist */,
@@ -171,7 +178,6 @@
 				BBB9D95028B653480037CC24 /* AddTransaction */,
 				BB9EFC15287821DC00305776 /* Services */,
 				BB61DEA42850A3C200A08AC6 /* TabBarController.swift */,
-				BB61DEA62850A3D400A08AC6 /* HomeController.swift */,
 				BBB9D95128B653F30037CC24 /* LastTransactionModalController.swift */,
 			);
 			path = Controller;
@@ -189,7 +195,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		BB61DEA32850A39800A08AC6 /* Model */ = {
+		BB61DEA32850A39800A08AC6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				BB80CA0428D9A96F00AE5A8B /* CurrentUser.swift */,
@@ -197,7 +203,7 @@
 				BB63FDA42902D3B800D28166 /* CurrencyRate.swift */,
 				BB6BDB9C2989574C0000584A /* ModelDecodable.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		BB61DEAB2850DE2F00A08AC6 /* Utils */ = {
@@ -230,6 +236,41 @@
 				BB61DE972850A33800A08AC6 /* LaunchScreen.storyboard */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		BB6D218E2A33C9FB000C22D7 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D218F2A33CA1B000C22D7 /* Home */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		BB6D218F2A33CA1B000C22D7 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D21902A33CA76000C22D7 /* Presenter */,
+				BB6D21922A33CA81000C22D7 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		BB6D21902A33CA76000C22D7 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D21932A33CADB000C22D7 /* HomePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB6D21922A33CA81000C22D7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D219A2A33CD05000C22D7 /* HomeViewController.swift */,
+				BB6D21982A33CC33000C22D7 /* HomeInput.swift */,
+				BB6D21962A33CB1A000C22D7 /* HomeOutput.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		BB74FA262858C09E00EA2CD8 /* Home */ = {
@@ -453,13 +494,16 @@
 			files = (
 				BB9EFC21287869D000305776 /* CurrencyCell.swift in Sources */,
 				BB6BDBA1298B994C0000584A /* TypeCell.swift in Sources */,
+				BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */,
 				BB9EFC172878221000305776 /* ExchangeRateController.swift in Sources */,
 				BBB9D95228B653F30037CC24 /* LastTransactionModalController.swift in Sources */,
 				BB66934D285B885A002DFAAD /* Model.swift in Sources */,
 				BB9EFC0E2861B2AC00305776 /* AmountView.swift in Sources */,
+				BB6D21972A33CB1A000C22D7 /* HomeOutput.swift in Sources */,
 				BB6BDB99298942130000584A /* NetworkConfiguration.swift in Sources */,
 				BB9B6FCF28CB5A59000B1D53 /* Constants.swift in Sources */,
 				BB44C5F72988079600776D4E /* Animations.swift in Sources */,
+				BB6D21942A33CADB000C22D7 /* HomePresenter.swift in Sources */,
 				BB9B6FD228CB5E45000B1D53 /* ProfileController.swift in Sources */,
 				BB61DEA52850A3C200A08AC6 /* TabBarController.swift in Sources */,
 				BB6BDB9D2989574C0000584A /* ModelDecodable.swift in Sources */,
@@ -468,13 +512,13 @@
 				BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */,
 				BB80CA0528D9A96F00AE5A8B /* CurrentUser.swift in Sources */,
 				BB6BDB9729891CBD0000584A /* StockCell.swift in Sources */,
+				BB6D21992A33CC33000C22D7 /* HomeInput.swift in Sources */,
 				BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */,
 				BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */,
 				BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */,
 				BB2F661A28DC54FC0068E7CE /* StocksController.swift in Sources */,
 				BB6EEDEC287C5DC200245997 /* NetworkService.swift in Sources */,
 				BB836F7328D20D9C008F22C7 /* UserService.swift in Sources */,
-				BB61DEA72850A3D400A08AC6 /* HomeController.swift in Sources */,
 				BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */,
 				BB74FA2A2858C58A00EA2CD8 /* AuthController.swift in Sources */,
 				BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */,

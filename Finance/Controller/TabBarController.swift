@@ -34,7 +34,8 @@ final class TabBarController: UITabBarController {
         tabBar.tintColor = .selectViewBackground
         tabBar.barTintColor = .white
         
-        let homeVC = UINavigationController(rootViewController: HomeController(currentUser))
+//        let homeVC = UINavigationController(rootViewController: HomeController(currentUser))
+        let homeVC = UINavigationController(rootViewController: HomeViewController())
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = "Домашняя"
         
