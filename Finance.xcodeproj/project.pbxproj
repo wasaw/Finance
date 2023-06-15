@@ -29,6 +29,10 @@
 		BB6D21972A33CB1A000C22D7 /* HomeOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21962A33CB1A000C22D7 /* HomeOutput.swift */; };
 		BB6D21992A33CC33000C22D7 /* HomeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21982A33CC33000C22D7 /* HomeInput.swift */; };
 		BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D219A2A33CD05000C22D7 /* HomeViewController.swift */; };
+		BB6D21A02A38A90E000C22D7 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D219F2A38A90E000C22D7 /* ProfilePresenter.swift */; };
+		BB6D21A22A38A995000C22D7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21A12A38A995000C22D7 /* ProfileViewController.swift */; };
+		BB6D21A42A38AA25000C22D7 /* ProfileInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21A32A38AA25000C22D7 /* ProfileInput.swift */; };
+		BB6D21A62A38AA5E000C22D7 /* ProfileOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21A52A38AA5E000C22D7 /* ProfileOutput.swift */; };
 		BB6EEDEC287C5DC200245997 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EEDEB287C5DC200245997 /* NetworkService.swift */; };
 		BB74FA2A2858C58A00EA2CD8 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA292858C58A00EA2CD8 /* AuthController.swift */; };
 		BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */; };
@@ -82,6 +86,10 @@
 		BB6D21962A33CB1A000C22D7 /* HomeOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOutput.swift; sourceTree = "<group>"; };
 		BB6D21982A33CC33000C22D7 /* HomeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInput.swift; sourceTree = "<group>"; };
 		BB6D219A2A33CD05000C22D7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		BB6D219F2A38A90E000C22D7 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		BB6D21A12A38A995000C22D7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		BB6D21A32A38AA25000C22D7 /* ProfileInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInput.swift; sourceTree = "<group>"; };
+		BB6D21A52A38AA5E000C22D7 /* ProfileOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOutput.swift; sourceTree = "<group>"; };
 		BB6EEDEB287C5DC200245997 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		BB74FA292858C58A00EA2CD8 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -242,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				BB6D218F2A33CA1B000C22D7 /* Home */,
+				BB6D219C2A38A807000C22D7 /* Profile */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -269,6 +278,33 @@
 				BB6D219A2A33CD05000C22D7 /* HomeViewController.swift */,
 				BB6D21982A33CC33000C22D7 /* HomeInput.swift */,
 				BB6D21962A33CB1A000C22D7 /* HomeOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB6D219C2A38A807000C22D7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D219D2A38A81F000C22D7 /* Presenter */,
+				BB6D219E2A38A8F0000C22D7 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		BB6D219D2A38A81F000C22D7 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D219F2A38A90E000C22D7 /* ProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB6D219E2A38A8F0000C22D7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D21A12A38A995000C22D7 /* ProfileViewController.swift */,
+				BB6D21A32A38AA25000C22D7 /* ProfileInput.swift */,
+				BB6D21A52A38AA5E000C22D7 /* ProfileOutput.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -513,6 +549,8 @@
 				BB80CA0528D9A96F00AE5A8B /* CurrentUser.swift in Sources */,
 				BB6BDB9729891CBD0000584A /* StockCell.swift in Sources */,
 				BB6D21992A33CC33000C22D7 /* HomeInput.swift in Sources */,
+				BB6D21A02A38A90E000C22D7 /* ProfilePresenter.swift in Sources */,
+				BB6D21A62A38AA5E000C22D7 /* ProfileOutput.swift in Sources */,
 				BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */,
 				BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */,
 				BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */,
@@ -525,12 +563,14 @@
 				BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */,
 				BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */,
 				BB9EFC13286B234700305776 /* DatabaseService.swift in Sources */,
+				BB6D21A42A38AA25000C22D7 /* ProfileInput.swift in Sources */,
 				BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */,
 				BB9EFC0C2861AADF00305776 /* RevenueView.swift in Sources */,
 				BB9B6FD828CF79E9000B1D53 /* ProfileImageView.swift in Sources */,
 				BB66934F285C7FFF002DFAAD /* AddTransactionController.swift in Sources */,
 				BB63FDA52902D3B800D28166 /* CurrencyRate.swift in Sources */,
 				BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */,
+				BB6D21A22A38A995000C22D7 /* ProfileViewController.swift in Sources */,
 				BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */,
 				BB9EFC1D287830E800305776 /* TopView.swift in Sources */,
 			);

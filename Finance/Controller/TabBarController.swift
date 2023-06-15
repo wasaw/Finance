@@ -45,7 +45,8 @@ final class TabBarController: UITabBarController {
         let top: CGFloat = (view.frame.height < 700) ? 10 : 25
         addVC.tabBarItem.imageInsets = UIEdgeInsets(top: top, left: 0, bottom: 0, right: 0)
 
-        let profileVC = UINavigationController(rootViewController: ProfileController(currentUser))
+//        let profileVC = UINavigationController(rootViewController: ProfileController(currentUser))
+        let profileVC = UINavigationController(rootViewController: ProfileViewController())
         profileVC.tabBarItem.image = UIImage(systemName: "person.fill")
         profileVC.tabBarItem.title = "Профиль"
         
