@@ -184,9 +184,10 @@ extension HomeViewController: UICollectionViewDelegate {
         }
         
         if collectionView == self.lastTransactionsCollectionView {
-            let vc = LastTransactionModalController(transaction: lastTransaction[indexPath.row],
-                                                    currency: CurrencyRate.currentCurrency,
-                                                    rate: CurrencyRate.rate)
+//            let vc = LastTransactionModalController(transaction: lastTransaction[indexPath.row],
+//                                                    currency: CurrencyRate.currentCurrency,
+//                                                    rate: CurrencyRate.rate)
+            let vc = LastTransactionViewController()
             if let sheet = vc.sheetPresentationController {
                 sheet.detents = [.medium()]
                 sheet.preferredCornerRadius = 26

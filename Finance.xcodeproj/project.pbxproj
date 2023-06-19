@@ -10,6 +10,10 @@
 		9AF4048141F3230E754689C8 /* Pods_Finance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53022AC9E214609030662D0 /* Pods_Finance.framework */; };
 		BB2F661A28DC54FC0068E7CE /* StocksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2F661928DC54FC0068E7CE /* StocksController.swift */; };
 		BB44C5F72988079600776D4E /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB44C5F62988079600776D4E /* Animations.swift */; };
+		BB5E372E2A4098850093AB95 /* LastTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */; };
+		BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */; };
+		BB5E37322A4098B00093AB95 /* LastTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */; };
+		BB5E37342A4098BE0093AB95 /* LastTransactionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37332A4098BE0093AB95 /* LastTransactionOutput.swift */; };
 		BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */; };
 		BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */; };
 		BB61DE962850A33800A08AC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB61DE952850A33800A08AC6 /* Assets.xcassets */; };
@@ -56,7 +60,6 @@
 		BB9EFC1D287830E800305776 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC1C287830E800305776 /* TopView.swift */; };
 		BB9EFC21287869D000305776 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC20287869D000305776 /* CurrencyCell.swift */; };
 		BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */; };
-		BBB9D95228B653F30037CC24 /* LastTransactionModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9D95128B653F30037CC24 /* LastTransactionModalController.swift */; };
 		BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC052851F3FF003F9197 /* TitleView.swift */; };
 		BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +70,10 @@
 		A53022AC9E214609030662D0 /* Pods_Finance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Finance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2F661928DC54FC0068E7CE /* StocksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksController.swift; sourceTree = "<group>"; };
 		BB44C5F62988079600776D4E /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionPresenter.swift; sourceTree = "<group>"; };
+		BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionViewController.swift; sourceTree = "<group>"; };
+		BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionInput.swift; sourceTree = "<group>"; };
+		BB5E37332A4098BE0093AB95 /* LastTransactionOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionOutput.swift; sourceTree = "<group>"; };
 		BB61DE892850A33300A08AC6 /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,7 +123,6 @@
 		BB9EFC1C287830E800305776 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		BB9EFC20287869D000305776 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 		BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionModalView.swift; sourceTree = "<group>"; };
-		BBB9D95128B653F30037CC24 /* LastTransactionModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionModalController.swift; sourceTree = "<group>"; };
 		BBCFDC052851F3FF003F9197 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +154,33 @@
 				A53022AC9E214609030662D0 /* Pods_Finance.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BB5E372A2A40983C0093AB95 /* LastTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E372B2A4098680093AB95 /* Presenter */,
+				BB5E372C2A4098700093AB95 /* View */,
+			);
+			path = LastTransaction;
+			sourceTree = "<group>";
+		};
+		BB5E372B2A4098680093AB95 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB5E372C2A4098700093AB95 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */,
+				BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */,
+				BB5E37332A4098BE0093AB95 /* LastTransactionOutput.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		BB61DE802850A33300A08AC6 = {
@@ -191,7 +224,6 @@
 				BB9B6FD028CB5D97000B1D53 /* Profile */,
 				BB9EFC15287821DC00305776 /* Services */,
 				BB61DEA42850A3C200A08AC6 /* TabBarController.swift */,
-				BBB9D95128B653F30037CC24 /* LastTransactionModalController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -284,6 +316,7 @@
 				BB6D218F2A33CA1B000C22D7 /* Home */,
 				BB6B5BAF2A3C9BBA00E16FFB /* AddTransaction */,
 				BB6D219C2A38A807000C22D7 /* Profile */,
+				BB5E372A2A40983C0093AB95 /* LastTransaction */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -558,7 +591,8 @@
 				BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */,
 				BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */,
 				BB9EFC172878221000305776 /* ExchangeRateController.swift in Sources */,
-				BBB9D95228B653F30037CC24 /* LastTransactionModalController.swift in Sources */,
+				BB5E37322A4098B00093AB95 /* LastTransactionInput.swift in Sources */,
+				BB5E372E2A4098850093AB95 /* LastTransactionPresenter.swift in Sources */,
 				BB66934D285B885A002DFAAD /* Model.swift in Sources */,
 				BB9EFC0E2861B2AC00305776 /* AmountView.swift in Sources */,
 				BB6D21972A33CB1A000C22D7 /* HomeOutput.swift in Sources */,
@@ -569,6 +603,7 @@
 				BB9B6FD228CB5E45000B1D53 /* ProfileController.swift in Sources */,
 				BB61DEA52850A3C200A08AC6 /* TabBarController.swift in Sources */,
 				BB6BDB9D2989574C0000584A /* ModelDecodable.swift in Sources */,
+				BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */,
 				BB9EFC0A285E2A9200305776 /* CategoryCell.swift in Sources */,
 				BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */,
 				BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */,
@@ -583,6 +618,7 @@
 				BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */,
 				BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */,
 				BB2F661A28DC54FC0068E7CE /* StocksController.swift in Sources */,
+				BB5E37342A4098BE0093AB95 /* LastTransactionOutput.swift in Sources */,
 				BB6EEDEC287C5DC200245997 /* NetworkService.swift in Sources */,
 				BB836F7328D20D9C008F22C7 /* UserService.swift in Sources */,
 				BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */,
