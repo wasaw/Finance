@@ -26,6 +26,7 @@ extension ProfilePresenter: ProfileOutput {
 //            addAuthController()
         } else {
             print("DEBUG: auth")
+            input?.showProfile()
 //            configureUI()
         }
     }

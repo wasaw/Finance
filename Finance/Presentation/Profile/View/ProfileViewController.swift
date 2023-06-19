@@ -64,7 +64,12 @@ final class ProfileViewController: UIViewController {
         stack.axis = .vertical
         stack.spacing = 15
         view.addSubview(stack)
-        stack.anchor(left: view.leftAnchor, top: loginLabel.bottomAnchor, right: view.rightAnchor, paddingLeft: 20, paddingTop: 130, paddingRight: -20)
+        stack.anchor(left: view.leftAnchor,
+                     top: loginLabel.bottomAnchor,
+                     right: view.rightAnchor,
+                     paddingLeft: 20,
+                     paddingTop: 130,
+                     paddingRight: -20)
 
         currentCurrencyBtn.menu = generationMenu()
         currentCurrencyBtn.showsMenuAsPrimaryAction = true
