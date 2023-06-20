@@ -29,7 +29,7 @@ final class HomeCoordinator {
 
 extension HomeCoordinator: HomePresenterOutput {
     func showExchangeRate() {
-        let vc = ExchangeRateController()
+        let vc = ExchangeRateViewController()
         navigation?.pushViewController(vc, animated: true)
     }
     
