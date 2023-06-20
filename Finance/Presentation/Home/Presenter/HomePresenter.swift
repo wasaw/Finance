@@ -12,6 +12,7 @@ final class HomePresenter {
 // MARK: - Properties
     
     weak var input: HomeInput?
+    private let output: HomePresenterOutput
     
     private let databaseService = DatabaseService.shared
     private let networkService = NetworkService.shared
@@ -24,6 +25,12 @@ final class HomePresenter {
 //            lastTransactionsCollectionView?.reloadData()
 //        }
 //    }
+    
+// MARK: - Lifecycle
+    
+    init(output: HomePresenterOutput) {
+        self.output = output
+    }
     
 // MARK: - Helpers
     
@@ -78,7 +85,10 @@ extension HomePresenter: HomeOutput {
     }
     
     func showService(at index: Int) {
-//        navigationController?.pushViewController(service[index].vc, animated: true)
-        print("DEBUG: navigate \(index)")
+        if index == 0 {
+            output.showExchangeRate()
+        } else {
+            output.showStock()
+        }
     }
 }

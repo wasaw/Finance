@@ -11,6 +11,8 @@ final class HomeViewController: UIViewController {
     
 // MARK: - Properties
     
+    private var output: HomeOutput
+    
     private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Ваше имя"
@@ -36,14 +38,21 @@ final class HomeViewController: UIViewController {
     private var service: [ChoiceService] = []
     private var lastTransaction: [LastTransaction] = []
 
-    private var output = HomePresenter()
     
 // MARK: - Lifecycle
+    
+    init(output: HomeOutput) {
+        self.output = output
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.input = self
         output.viewIsReady()
         configureUI()
         view.backgroundColor = .white

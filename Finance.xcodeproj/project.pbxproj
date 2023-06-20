@@ -14,6 +14,8 @@
 		BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */; };
 		BB5E37322A4098B00093AB95 /* LastTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */; };
 		BB5E37342A4098BE0093AB95 /* LastTransactionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37332A4098BE0093AB95 /* LastTransactionOutput.swift */; };
+		BB5E37382A41888D0093AB95 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37372A41888D0093AB95 /* HomeCoordinator.swift */; };
+		BB5E373A2A418A4D0093AB95 /* HomePresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37392A418A4D0093AB95 /* HomePresenterOutput.swift */; };
 		BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */; };
 		BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */; };
 		BB61DE962850A33800A08AC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB61DE952850A33800A08AC6 /* Assets.xcassets */; };
@@ -74,6 +76,8 @@
 		BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionViewController.swift; sourceTree = "<group>"; };
 		BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionInput.swift; sourceTree = "<group>"; };
 		BB5E37332A4098BE0093AB95 /* LastTransactionOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionOutput.swift; sourceTree = "<group>"; };
+		BB5E37372A41888D0093AB95 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		BB5E37392A418A4D0093AB95 /* HomePresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenterOutput.swift; sourceTree = "<group>"; };
 		BB61DE892850A33300A08AC6 /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -183,6 +187,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		BB5E37362A41886D0093AB95 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E37372A41888D0093AB95 /* HomeCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		BB61DE802850A33300A08AC6 = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +220,7 @@
 				BB6BDB9A2989550B0000584A /* App */,
 				BB9EFC14286B2A7500305776 /* API */,
 				BB61DEA32850A39800A08AC6 /* Models */,
+				BB5E37362A41886D0093AB95 /* Coordinator */,
 				BB61DEA22850A39400A08AC6 /* View */,
 				BB6D218E2A33C9FB000C22D7 /* Presentation */,
 				BB61DEA02850A37200A08AC6 /* Controller */,
@@ -334,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				BB6D21932A33CADB000C22D7 /* HomePresenter.swift */,
+				BB5E37392A418A4D0093AB95 /* HomePresenterOutput.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -607,6 +621,7 @@
 				BB9EFC0A285E2A9200305776 /* CategoryCell.swift in Sources */,
 				BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */,
 				BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */,
+				BB5E37382A41888D0093AB95 /* HomeCoordinator.swift in Sources */,
 				BB80CA0528D9A96F00AE5A8B /* CurrentUser.swift in Sources */,
 				BB6B5BB42A3C9BFF00E16FFB /* AddTransactionPresenter.swift in Sources */,
 				BB6BDB9729891CBD0000584A /* StockCell.swift in Sources */,
@@ -637,6 +652,7 @@
 				BB6B5BBA2A3C9C9B00E16FFB /* AddTransactionOutput.swift in Sources */,
 				BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */,
 				BB9EFC1D287830E800305776 /* TopView.swift in Sources */,
+				BB5E373A2A418A4D0093AB95 /* HomePresenterOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

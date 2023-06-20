@@ -13,6 +13,7 @@ final class TabBarController: UITabBarController {
 // MARK: - Properties
     
     private var currentUser = CurrentUser()
+    private let homeCoordinator = HomeCoordinator()
         
 // MARK: - Lifecycle
     
@@ -34,7 +35,7 @@ final class TabBarController: UITabBarController {
         tabBar.tintColor = .selectViewBackground
         tabBar.barTintColor = .white
         
-        let homeVC = UINavigationController(rootViewController: HomeViewController())
+        let homeVC = homeCoordinator.start()
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = "Домашняя"
         
