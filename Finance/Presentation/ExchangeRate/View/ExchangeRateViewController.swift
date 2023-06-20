@@ -41,9 +41,9 @@ final class ExchangeRateViewController: UIViewController {
     
     private func configureUI() {
         view.addSubview(topView)
-        topView.anchor(left: view.leftAnchor,
+        topView.anchor(leading: view.leadingAnchor,
                        top: view.topAnchor,
-                       right: view.rightAnchor,
+                       trailing: view.trailingAnchor,
                        height: 350)
     }
     
@@ -58,9 +58,9 @@ final class ExchangeRateViewController: UIViewController {
         view.addSubview(listCurrencyCollectionView)
         listCurrencyCollectionView.backgroundColor = .white
         
-        listCurrencyCollectionView.anchor(left: view.leftAnchor,
+        listCurrencyCollectionView.anchor(leading: view.leadingAnchor,
                                           top: topView.bottomAnchor,
-                                          right: view.rightAnchor,
+                                          trailing: view.trailingAnchor,
                                           bottom: view.bottomAnchor,
                                           paddingTop: -15)
     }

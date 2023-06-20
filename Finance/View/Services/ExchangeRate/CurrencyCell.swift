@@ -59,36 +59,43 @@ final class CurrencyCell: UICollectionViewCell {
     
     private func configureUI() {
         addSubview(currencyImage)
-        currencyImage.anchor(left: leftAnchor, top: topAnchor, bottom: bottomAnchor, paddingLeft: 20, paddingTop: 20, paddingBottom: -20, width: 40, height: 40)
+        currencyImage.anchor(leading: leadingAnchor,
+                             top: topAnchor,
+                             bottom: bottomAnchor,
+                             paddingLeading: 20,
+                             paddingTop: 20,
+                             paddingBottom: -20,
+                             width: 40,
+                             height: 40)
         
         let titleStack = UIStackView(arrangedSubviews: [shortTitle, fullTitle])
         titleStack.axis = .vertical
         titleStack.distribution = .equalSpacing
         addSubview(titleStack)
-        titleStack.anchor(left: currencyImage.rightAnchor,
+        titleStack.anchor(leading: currencyImage.trailingAnchor,
                           top: topAnchor,
                           bottom: bottomAnchor,
-                          paddingLeft: 15,
+                          paddingLeading: 15,
                           paddingTop: 20,
                           paddingBottom: -20,
                           width: 200)
         
         addSubview(valueLabel)
         valueLabel.anchor(top: topAnchor,
-                          right: rightAnchor,
+                          trailing: trailingAnchor,
                           bottom: bottomAnchor,
                           paddingTop: 20,
-                          paddingRight: -20,
+                          paddingTrailing: -20,
                           paddingBottom: -20,
                           width: 110)
         
         addSubview(dividingLine)
-        dividingLine.anchor(left: leftAnchor,
+        dividingLine.anchor(leading: leadingAnchor,
                             top: currencyImage.bottomAnchor,
-                            right: rightAnchor,
-                            paddingLeft: 20,
+                            trailing: trailingAnchor,
+                            paddingLeading: 20,
                             paddingTop: 15,
-                            paddingRight: -20,
+                            paddingTrailing: -20,
                             height: 1)
     }
     

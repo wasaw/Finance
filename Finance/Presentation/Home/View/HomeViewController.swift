@@ -71,11 +71,11 @@ final class HomeViewController: UIViewController {
     
     private func configurefullNameLabel() {
         view.addSubview(fullNameLabel)
-        fullNameLabel.anchor(left: view.leftAnchor,
+        fullNameLabel.anchor(leading: view.leadingAnchor,
                              top: view.safeAreaLayoutGuide.topAnchor,
-                             right: view.rightAnchor,
-                             paddingLeft: 10,
-                             paddingRight: -15,
+                             trailing: view.trailingAnchor,
+                             paddingLeading: 10,
+                             paddingTrailing: -15,
                              height: 50)
     }
     
@@ -83,23 +83,23 @@ final class HomeViewController: UIViewController {
         view.addSubview(totalAccountView)
 //        let height = heightView / 5.5
         let height: CGFloat = 180
-        totalAccountView.anchor(left: view.leftAnchor,
+        totalAccountView.anchor(leading: view.leadingAnchor,
                                 top: fullNameLabel.bottomAnchor,
-                                right: view.rightAnchor,
-                                paddingLeft: 10,
+                                trailing: view.trailingAnchor,
+                                paddingLeading: 10,
                                 paddingTop: 20,
-                                paddingRight: -10,
+                                paddingTrailing: -10,
                                 height: height)
     }
     
     private func configureServicesTitleView() {
         view.addSubview(servicesTitleView)
-        servicesTitleView.anchor(left: view.leftAnchor,
+        servicesTitleView.anchor(leading: view.leadingAnchor,
                                  top: totalAccountView.bottomAnchor,
-                                 right: view.rightAnchor,
-                                 paddingLeft: 10,
+                                 trailing: view.trailingAnchor,
+                                 paddingLeading: 10,
                                  paddingTop: 25,
-                                 paddingRight: -10,
+                                 paddingTrailing: -10,
                                  height: 20)
         servicesTitleView.setTitle(title: "Сервисы")
     }
@@ -114,12 +114,12 @@ final class HomeViewController: UIViewController {
         servicesCollectionView.dataSource = self
         servicesCollectionView.showsHorizontalScrollIndicator = false
         view.addSubview(servicesCollectionView)
-        servicesCollectionView.anchor(left: view.leftAnchor,
+        servicesCollectionView.anchor(leading: view.leadingAnchor,
                                       top: servicesTitleView.bottomAnchor,
-                                      right: view.rightAnchor,
-                                      paddingLeft: 10,
+                                      trailing: view.trailingAnchor,
+                                      paddingLeading: 10,
                                       paddingTop: 10,
-                                      paddingRight: -10,
+                                      paddingTrailing: -10,
                                       height: 140)
         servicesCollectionView.backgroundColor = .white
     }
@@ -127,12 +127,12 @@ final class HomeViewController: UIViewController {
     private func configureTransactionTitleView() {
         guard let servicesCollectionView = servicesCollectionView else { return }
         view.addSubview(transactionTitleView)
-        transactionTitleView.anchor(left: view.leftAnchor,
+        transactionTitleView.anchor(leading: view.leadingAnchor,
                                     top: servicesCollectionView.bottomAnchor,
-                                    right: view.rightAnchor,
-                                    paddingLeft: 10,
+                                    trailing: view.trailingAnchor,
+                                    paddingLeading: 10,
                                     paddingTop: 10,
-                                    paddingRight: -10,
+                                    paddingTrailing: -10,
                                     height: 20)
         transactionTitleView.setTitle(title: "Последние транзакции")
         
@@ -150,13 +150,13 @@ final class HomeViewController: UIViewController {
         lastTransactionsCollectionView.dataSource = self
         lastTransactionsCollectionView.showsVerticalScrollIndicator = false
         view.addSubview(lastTransactionsCollectionView)
-        lastTransactionsCollectionView.anchor(left: view.leftAnchor,
+        lastTransactionsCollectionView.anchor(leading: view.leadingAnchor,
                                               top: transactionTitleView.bottomAnchor,
-                                              right: view.rightAnchor,
+                                              trailing: view.trailingAnchor,
                                               bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                                              paddingLeft: 10,
+                                              paddingLeading: 10,
                                               paddingTop: 15,
-                                              paddingRight: -10,
+                                              paddingTrailing: -10,
                                               paddingBottom: -25)
         lastTransactionsCollectionView.backgroundColor = .white
         lastTransactionsCollectionView.isHidden = true

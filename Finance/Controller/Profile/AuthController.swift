@@ -39,7 +39,10 @@ final class AuthController: UIViewController {
     
     private func configureUI() {
         view.addSubview(authView)
-        authView.anchor(left: view.leftAnchor, right: view.rightAnchor, paddingLeft: 30, paddingRight: -30)
+        authView.anchor(leading: view.leadingAnchor,
+                        trailing: view.trailingAnchor,
+                        paddingLeading: 30,
+                        paddingTrailing: -30)
         heightConstraint = NSLayoutConstraint(item: authView,
                                               attribute: .height,
                                               relatedBy: .equal,

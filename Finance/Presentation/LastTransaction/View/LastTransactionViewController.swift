@@ -29,9 +29,9 @@ final class LastTransactionViewController: UIViewController {
     
     private func configureUI() {
         view.addSubview(textView)
-        textView.anchor(left: view.leftAnchor,
+        textView.anchor(leading: view.leadingAnchor,
                         top: view.topAnchor,
-                        right: view.rightAnchor,
+                        trailing: view.trailingAnchor,
                         bottom: view.bottomAnchor)
     }
 }

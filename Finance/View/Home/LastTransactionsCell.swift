@@ -45,24 +45,27 @@ class LastTransactionCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(imageView)
-        imageView.anchor(left: leftAnchor, paddingLeft: 20, width: 35, height: 35)
+        imageView.anchor(leading: leadingAnchor,
+                         paddingLeading: 20,
+                         width: 35,
+                         height: 35)
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         addSubview(amountLabel)
-        amountLabel.anchor(right: rightAnchor)
+        amountLabel.anchor(trailing: trailingAnchor)
         amountLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         let stack = UIStackView(arrangedSubviews: [categoryLabel, dateLabel])
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         addSubview(stack)
-        stack.anchor(left: imageView.rightAnchor,
+        stack.anchor(leading: imageView.trailingAnchor,
                      top: topAnchor,
-                     right: amountLabel.leftAnchor,
+                     trailing: amountLabel.leadingAnchor,
                      bottom: bottomAnchor,
-                     paddingLeft: 20,
+                     paddingLeading: 20,
                      paddingTop: 10,
-                     paddingRight: -20,
+                     paddingTrailing: -20,
                      paddingBottom: -10)
         
         backgroundColor = .white

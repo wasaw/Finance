@@ -36,7 +36,7 @@ final class TitleView: UIView {
         titleLable.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         addSubview(arrowImage)
-        arrowImage.anchor(right: rightAnchor, width: 20, height: 20)
+        arrowImage.anchor(trailing: trailingAnchor, width: 20, height: 20)
         arrowImage.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     

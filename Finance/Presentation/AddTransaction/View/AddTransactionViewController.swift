@@ -71,21 +71,28 @@ final class AddTransactionViewController: UIViewController {
     
     private func configureScrollView() {
         view.addSubview(scrollView)
-        scrollView.anchor(left: view.leftAnchor, top: view.topAnchor, right: view.rightAnchor, bottom: view.bottomAnchor)
+        scrollView.anchor(leading: view.leadingAnchor,
+                          top: view.topAnchor,
+                          trailing: view.trailingAnchor,
+                          bottom: view.bottomAnchor)
 
         scrollView.addSubview(contentView)
         contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        contentView.anchor(left: scrollView.leftAnchor, top: scrollView.topAnchor, right: scrollView.rightAnchor, bottom: scrollView.bottomAnchor, height: 830)
+        contentView.anchor(leading: scrollView.leadingAnchor,
+                           top: scrollView.topAnchor,
+                           trailing: scrollView.trailingAnchor,
+                           bottom: scrollView.bottomAnchor,
+                           height: 830)
     }
     
     private func configureTypeTitleView() {
         contentView.addSubview(typeTitleView)
-        typeTitleView.anchor(left: contentView.leftAnchor,
+        typeTitleView.anchor(leading: contentView.leadingAnchor,
                              top: contentView.topAnchor,
-                             right: contentView.rightAnchor,
-                             paddingLeft: 10,
+                             trailing: contentView.trailingAnchor,
+                             paddingLeading: 10,
                              paddingTop: 20,
-                             paddingRight: -10,
+                             paddingTrailing: -10,
                              height: 30)
         typeTitleView.setTitle(title: "Выбрать тип дохода")
     }
@@ -101,24 +108,24 @@ final class AddTransactionViewController: UIViewController {
         typeCollectionView.showsHorizontalScrollIndicator = false
         typeCollectionView.backgroundColor = .white
         contentView.addSubview(typeCollectionView)
-        typeCollectionView.anchor(left: contentView.leftAnchor,
+        typeCollectionView.anchor(leading: contentView.leadingAnchor,
                                   top: typeTitleView.bottomAnchor,
-                                  right: contentView.rightAnchor,
-                                  paddingLeft: 10,
+                                  trailing: contentView.trailingAnchor,
+                                  paddingLeading: 10,
                                   paddingTop: 10,
-                                  paddingRight: -10,
+                                  paddingTrailing: -10,
                                   height: 90)
     }
     
     private func configureCategoryTitleView() {
         contentView.addSubview(categoryTitleView)
         guard let typeCollectionView = typeCollectionView else { return }
-        categoryTitleView.anchor(left: contentView.leftAnchor,
+        categoryTitleView.anchor(leading: contentView.leadingAnchor,
                                  top: typeCollectionView.bottomAnchor,
-                                 right: contentView.rightAnchor,
-                                 paddingLeft: 10,
+                                 trailing: contentView.trailingAnchor,
+                                 paddingLeading: 10,
                                  paddingTop: 10,
-                                 paddingRight: -10,
+                                 paddingTrailing: -10,
                                  height: 30)
         categoryTitleView.setTitle(title: "Выбрать категорию трат")
     }
@@ -134,12 +141,12 @@ final class AddTransactionViewController: UIViewController {
         categotyCollectionView.showsHorizontalScrollIndicator = false
         categotyCollectionView.backgroundColor = .white
         contentView.addSubview(categotyCollectionView)
-        categotyCollectionView.anchor(left: contentView.leftAnchor,
+        categotyCollectionView.anchor(leading: contentView.leadingAnchor,
                                       top: categoryTitleView.bottomAnchor,
-                                      right: contentView.rightAnchor,
-                                      paddingLeft: 10,
+                                      trailing: contentView.trailingAnchor,
+                                      paddingLeading: 10,
                                       paddingTop: 10,
-                                      paddingRight: -10,
+                                      paddingTrailing: -10,
                                       height: 135)
     }
     
@@ -147,24 +154,24 @@ final class AddTransactionViewController: UIViewController {
         contentView.addSubview(revenueView)
         revenueView.delegate = self
         guard let categoryCollectionView = categoryCollectionView else { return }
-        revenueView.anchor(left: contentView.leftAnchor,
+        revenueView.anchor(leading: contentView.leadingAnchor,
                            top: categoryCollectionView.bottomAnchor,
-                           right: contentView.rightAnchor,
-                           paddingLeft: 20,
+                           trailing: contentView.trailingAnchor,
+                           paddingLeading: 20,
                            paddingTop: 10,
-                           paddingRight: -20,
+                           paddingTrailing: -20,
                            height: 20)
     }
     
     private func configureAmountView() {
         contentView.addSubview(amountView)
-        amountView.anchor(left: contentView.leftAnchor,
+        amountView.anchor(leading: contentView.leadingAnchor,
                           top: revenueView.bottomAnchor,
-                          right: contentView.rightAnchor,
+                          trailing: contentView.trailingAnchor,
                           bottom: contentView.safeAreaLayoutGuide.bottomAnchor,
-                          paddingLeft: 10,
+                          paddingLeading: 10,
                           paddingTop: 20,
-                          paddingRight: -10)
+                          paddingTrailing: -10)
         configureKeyboard()
     }
     

@@ -78,28 +78,33 @@ final class ProfileController: UIViewController {
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         view.addSubview(imageView)
-        imageView.anchor(left: view.leftAnchor,
+        imageView.anchor(leading: view.leadingAnchor,
                          top: view.safeAreaLayoutGuide.topAnchor,
-                         right: view.rightAnchor,
-                         paddingLeft: 10,
+                         trailing: view.trailingAnchor,
+                         paddingLeading: 10,
                          paddingTop: 15,
-                         paddingRight: -10,
+                         paddingTrailing: -10,
                          height: 150)
         
         view.addSubview(loginLabel)
-        loginLabel.anchor(left: view.leftAnchor,
+        loginLabel.anchor(leading: view.leadingAnchor,
                           top: imageView.bottomAnchor,
-                          right: view.rightAnchor,
-                          paddingLeft: 10,
+                          trailing: view.trailingAnchor,
+                          paddingLeading: 10,
                           paddingTop: 10,
-                          paddingRight: -10,
+                          paddingTrailing: -10,
                           height: 40)
         
         let stack = UIStackView(arrangedSubviews: [currentCurrencyBtn, logOutBtn])
         stack.axis = .vertical
         stack.spacing = 15
         view.addSubview(stack)
-        stack.anchor(left: view.leftAnchor, top: loginLabel.bottomAnchor, right: view.rightAnchor, paddingLeft: 20, paddingTop: 130, paddingRight: -20)
+        stack.anchor(leading: view.leadingAnchor,
+                     top: loginLabel.bottomAnchor,
+                     trailing: view.trailingAnchor,
+                     paddingLeading: 20,
+                     paddingTop: 130,
+                     paddingTrailing: -20)
 
         currentCurrencyBtn.menu = generationMenu()
         currentCurrencyBtn.showsMenuAsPrimaryAction = true

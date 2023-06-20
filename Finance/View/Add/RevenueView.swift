@@ -49,11 +49,11 @@ final class RevenueView: UIView {
     
     private func configureUI() {
         addSubview(switcher)
-        switcher.anchor(left: leftAnchor)
+        switcher.anchor(leading: leadingAnchor)
         switcher.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         addSubview(textLabel)
-        textLabel.anchor(left: switcher.rightAnchor, right: rightAnchor, paddingLeft: 10)
+        textLabel.anchor(leading: switcher.trailingAnchor, trailing: trailingAnchor, paddingLeading: 10)
         textLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     

@@ -143,12 +143,21 @@ final class AuthView: UIView {
     
     private func configureTitle() {
         addSubview(titleLabel)
-        titleLabel.anchor(left: leftAnchor, top: topAnchor, right: rightAnchor, paddingLeft: 20, paddingTop: 20, paddingRight: 20, height: 30)
+        titleLabel.anchor(leading: leadingAnchor,
+                          top: topAnchor,
+                          trailing: trailingAnchor,
+                          paddingLeading: 20,
+                          paddingTop: 20,
+                          paddingTrailing: 20,
+                          height: 30)
     }
     
     private func configureSegmentedControl() {
         addSubview(segmentedController)
-        segmentedController.anchor(top: titleLabel.bottomAnchor, paddingTop: 30, width: 270, height: 45)
+        segmentedController.anchor(top: titleLabel.bottomAnchor,
+                                   paddingTop: 30,
+                                   width: 270,
+                                   height: 45)
         segmentedController.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         segmentedController.selectedSegmentIndex = 0
@@ -164,73 +173,73 @@ final class AuthView: UIView {
     
     private func configureLogInField() {
         addSubview(emailTextField)
-        emailTextField.anchor(left: leftAnchor,
+        emailTextField.anchor(leading: leadingAnchor,
                               top: segmentedController.bottomAnchor,
-                              right: rightAnchor,
-                              paddingLeft: 20,
+                              trailing: trailingAnchor,
+                              paddingLeading: 20,
                               paddingTop: 20,
-                              paddingRight: -20,
+                              paddingTrailing: -20,
                               height: 50)
 
         addSubview(passTextField)
-        passTextField.anchor(left: leftAnchor,
+        passTextField.anchor(leading: leadingAnchor,
                              top: emailTextField.bottomAnchor,
-                             right: rightAnchor,
-                             paddingLeft: 20,
+                             trailing: trailingAnchor,
+                             paddingLeading: 20,
                              paddingTop: 40,
-                             paddingRight: -20,
+                             paddingTrailing: -20,
                              height: 50)
     }
     
     private func configureRegField() {
         addSubview(loginTextField)
-        loginTextField.anchor(left: leftAnchor,
+        loginTextField.anchor(leading: leadingAnchor,
                               top: segmentedController.bottomAnchor,
-                              right: rightAnchor,
-                              paddingLeft: 20,
+                              trailing: trailingAnchor,
+                              paddingLeading: 20,
                               paddingTop: 20,
-                              paddingRight: -20,
+                              paddingTrailing: -20,
                               height: 50)
         loginTextField.alpha = 0
         
         addSubview(emailRegTextField)
-        emailRegTextField.anchor(left: leftAnchor,
+        emailRegTextField.anchor(leading: leadingAnchor,
                                  top: loginTextField.bottomAnchor,
-                                 right: rightAnchor,
-                                 paddingLeft: 20,
+                                 trailing: trailingAnchor,
+                                 paddingLeading: 20,
                                  paddingTop: 20,
-                                 paddingRight: -20,
+                                 paddingTrailing: -20,
                                  height: 50)
         emailRegTextField.alpha = 0
         
         addSubview(passRegTextField)
-        passRegTextField.anchor(left: leftAnchor,
+        passRegTextField.anchor(leading: leadingAnchor,
                                 top: emailRegTextField.bottomAnchor,
-                                right: rightAnchor,
-                                paddingLeft: 20,
+                                trailing: trailingAnchor,
+                                paddingLeading: 20,
                                 paddingTop: 20,
-                                paddingRight: -20,
+                                paddingTrailing: -20,
                                 height: 50)
         passRegTextField.alpha = 0
         
         addSubview(confirmPassTextField)
-        confirmPassTextField.anchor(left: leftAnchor,
+        confirmPassTextField.anchor(leading: leadingAnchor,
                                     top: passRegTextField.bottomAnchor,
-                                    right: rightAnchor,
-                                    paddingLeft: 20,
+                                    trailing: trailingAnchor,
+                                    paddingLeading: 20,
                                     paddingTop: 20,
-                                    paddingRight: -20,
+                                    paddingTrailing: -20,
                                     height: 50)
         confirmPassTextField.alpha = 0
     }
         
     private func configureButton() {
         addSubview(logInButton)
-        logInButton.anchor(left: leftAnchor,
-                           right: rightAnchor,
+        logInButton.anchor(leading: leadingAnchor,
+                           trailing: trailingAnchor,
                            bottom: bottomAnchor,
-                           paddingLeft: 10,
-                           paddingRight: -10,
+                           paddingLeading: 10,
+                           paddingTrailing: -10,
                            paddingBottom: -30,
                            height: 55)
     }

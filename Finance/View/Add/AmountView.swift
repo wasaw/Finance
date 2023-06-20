@@ -78,50 +78,53 @@ final class AmountView: UIView {
     
     private func configureUI() {
         addSubview(amountTitle)
-        amountTitle.anchor(left: leftAnchor, top: topAnchor, right: rightAnchor, height: 20)
+        amountTitle.anchor(leading: leadingAnchor,
+                           top: topAnchor,
+                           trailing: trailingAnchor,
+                           height: 20)
         amountTitle.setTitle(title: "Сумма")
         
         addSubview(amountTextField)
-        amountTextField.anchor(left: leftAnchor,
+        amountTextField.anchor(leading: leadingAnchor,
                                top: amountTitle.bottomAnchor,
-                               right: rightAnchor,
+                               trailing: trailingAnchor,
                                paddingTop: 10,
                                height: 40)
         
         addSubview(dateTitle)
-        dateTitle.anchor(left: leftAnchor,
+        dateTitle.anchor(leading: leadingAnchor,
                          top: amountTextField.bottomAnchor,
-                         right: rightAnchor,
+                         trailing: trailingAnchor,
                          paddingTop: 25,
                          height: 20)
         dateTitle.setTitle(title: "Дата")
         
         addSubview(dateTextField)
-        dateTextField.anchor(left: leftAnchor,
+        dateTextField.anchor(leading: leadingAnchor,
                              top: dateTitle.bottomAnchor,
-                             right: rightAnchor,
+                             trailing: trailingAnchor,
                              paddingTop: 10,
                              height: 40)
         
         addSubview(commentTitle)
-        commentTitle.anchor(left: leftAnchor,
+        commentTitle.anchor(leading: leadingAnchor,
                             top: dateTextField.bottomAnchor,
-                            right: rightAnchor,
+                            trailing: trailingAnchor,
                             paddingTop: 25,
                             height: 20)
         commentTitle.setTitle(title: "Комментарий")
         
         addSubview(commentTextField)
-        commentTextField.anchor(left: leftAnchor,
+        commentTextField.anchor(leading: leadingAnchor,
                                 top: commentTitle.bottomAnchor,
-                                right: rightAnchor,
+                                trailing: trailingAnchor,
                                 paddingTop: 10,
                                 height: 40)
         
         addSubview(doneButton)
-        doneButton.anchor(left: leftAnchor,
+        doneButton.anchor(leading: leadingAnchor,
                           top: commentTextField.bottomAnchor,
-                          right: rightAnchor,
+                          trailing: trailingAnchor,
                           paddingTop: 20,
                           height: 80)
     }

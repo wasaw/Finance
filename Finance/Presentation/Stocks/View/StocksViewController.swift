@@ -46,7 +46,10 @@ final class StocksViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
-        tableView.anchor(left: view.leftAnchor, top: view.safeAreaLayoutGuide.topAnchor, right: view.rightAnchor, bottom: view.bottomAnchor)
+        tableView.anchor(leading: view.leadingAnchor,
+                         top: view.safeAreaLayoutGuide.topAnchor,
+                         trailing: view.trailingAnchor,
+                         bottom: view.bottomAnchor)
         tableView.isHidden = true
     }
 }

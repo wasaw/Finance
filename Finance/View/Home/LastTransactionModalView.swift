@@ -69,13 +69,13 @@ class LastTransactionModalView: UIView {
         stack.spacing = 16
         addSubview(stack)
         
-        stack.anchor(left: leftAnchor,
+        stack.anchor(leading: leadingAnchor,
                      top: topAnchor,
-                     right: rightAnchor,
+                     trailing: trailingAnchor,
                      bottom: bottomAnchor,
-                     paddingLeft: 10,
+                     paddingLeading: 10,
                      paddingTop: 20,
-                     paddingRight: -10,
+                     paddingTrailing: -10,
                      paddingBottom: -20)
     }
     

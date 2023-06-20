@@ -42,10 +42,16 @@ final class StockCell: UITableViewCell {
         heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         addSubview(symbolLabel)
-        symbolLabel.anchor(left: leftAnchor, top: topAnchor, paddingLeft: 25, paddingTop: 10)
+        symbolLabel.anchor(leading: leadingAnchor,
+                           top: topAnchor,
+                           paddingLeading: 25,
+                           paddingTop: 10)
         
         addSubview(valueLabel)
-        valueLabel.anchor(top: topAnchor, right: rightAnchor, paddingTop: 10, paddingRight: -40)
+        valueLabel.anchor(top: topAnchor,
+                          trailing: trailingAnchor,
+                          paddingTop: 10,
+                          paddingTrailing: -40)
     }
     
     func setValue(stock: Stock, index: Int) {

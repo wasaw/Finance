@@ -42,7 +42,10 @@ class ServicesCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(viewForImage)
-        viewForImage.anchor(left: leftAnchor, top: topAnchor, right: rightAnchor, height: 80)
+        viewForImage.anchor(leading: leadingAnchor,
+                            top: topAnchor,
+                            trailing: trailingAnchor,
+                            height: 80)
         
         viewForImage.addSubview(imageView)
         imageView.anchor(width: 30, height: 30)
@@ -50,7 +53,11 @@ class ServicesCell: UICollectionViewCell {
         imageView.centerYAnchor.constraint(equalTo: viewForImage.centerYAnchor).isActive = true
         
         addSubview(titleLable)
-        titleLable.anchor(left: leftAnchor, top: viewForImage.bottomAnchor, right: rightAnchor, paddingTop: 10, height: 20)
+        titleLable.anchor(leading: leadingAnchor,
+                          top: viewForImage.bottomAnchor,
+                          trailing: trailingAnchor,
+                          paddingTop: 10,
+                          height: 20)
         
         backgroundColor = .white
     }

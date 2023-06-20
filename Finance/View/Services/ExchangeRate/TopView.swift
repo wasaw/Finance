@@ -60,13 +60,13 @@ final class TopView: UIView {
         rateLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
         addSubview(totalAccountView)
-        totalAccountView.anchor(left: leftAnchor,
+        totalAccountView.anchor(leading: leadingAnchor,
                                 top: rateLabel.bottomAnchor,
-                                right: rightAnchor,
+                                trailing: trailingAnchor,
                                 bottom: bottomAnchor,
-                                paddingLeft: 25,
+                                paddingLeading: 25,
                                 paddingTop: 25,
-                                paddingRight: -25,
+                                paddingTrailing: -25,
                                 paddingBottom: -35)
         
         totalAccountView.addSubview(titleLable)
