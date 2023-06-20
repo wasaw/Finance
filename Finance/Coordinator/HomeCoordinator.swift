@@ -34,7 +34,7 @@ extension HomeCoordinator: HomePresenterOutput {
     }
     
     func showStock() {
-        let vc = StocksController()
+        let vc = StocksViewController()
         navigation?.pushViewController(vc, animated: true)
     }
 }
