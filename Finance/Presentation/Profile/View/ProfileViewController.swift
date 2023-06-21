@@ -20,7 +20,7 @@ final class ProfileViewController: UIViewController {
     
 // MARK: - Properties
     
-    private let output = ProfilePresenter()
+    private let output: ProfileOutput
     
     private let imagePicker = UIImagePickerController()
     private lazy var imageView = ProfileImageView()
@@ -37,10 +37,18 @@ final class ProfileViewController: UIViewController {
     
 // MARK: - Lifecycle
     
+    init(output: ProfileOutput) {
+        self.output = output
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.input = self
         output.viewIsReady()
         view.backgroundColor = .white
     }

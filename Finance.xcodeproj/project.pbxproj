@@ -10,6 +10,7 @@
 		9AF4048141F3230E754689C8 /* Pods_Finance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53022AC9E214609030662D0 /* Pods_Finance.framework */; };
 		BB44C5F72988079600776D4E /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB44C5F62988079600776D4E /* Animations.swift */; };
 		BB5C40EE2A434150002DC6A0 /* AddTransactionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40ED2A434150002DC6A0 /* AddTransactionCoordinator.swift */; };
+		BB5C40F02A4345CF002DC6A0 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40EF2A4345CF002DC6A0 /* ProfileCoordinator.swift */; };
 		BB5E372E2A4098850093AB95 /* LastTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */; };
 		BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */; };
 		BB5E37322A4098B00093AB95 /* LastTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */; };
@@ -79,6 +80,7 @@
 		A53022AC9E214609030662D0 /* Pods_Finance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Finance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB44C5F62988079600776D4E /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		BB5C40ED2A434150002DC6A0 /* AddTransactionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionCoordinator.swift; sourceTree = "<group>"; };
+		BB5C40EF2A4345CF002DC6A0 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionPresenter.swift; sourceTree = "<group>"; };
 		BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionViewController.swift; sourceTree = "<group>"; };
 		BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionInput.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			children = (
 				BB5E37372A41888D0093AB95 /* HomeCoordinator.swift */,
 				BB5C40ED2A434150002DC6A0 /* AddTransactionCoordinator.swift */,
+				BB5C40EF2A4345CF002DC6A0 /* ProfileCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 			files = (
 				BB9EFC21287869D000305776 /* CurrencyCell.swift in Sources */,
 				BB5E37432A4199B40093AB95 /* ExchangeRateInput.swift in Sources */,
+				BB5C40F02A4345CF002DC6A0 /* ProfileCoordinator.swift in Sources */,
 				BB5E37412A41996D0093AB95 /* ExchangeRateViewController.swift in Sources */,
 				BB6BDBA1298B994C0000584A /* TypeCell.swift in Sources */,
 				BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */,
