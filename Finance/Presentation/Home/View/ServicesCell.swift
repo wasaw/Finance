@@ -14,7 +14,7 @@ private enum Constants {
     static let titleLableHeight: CGFloat = 20
 }
 
-class ServicesCell: UICollectionViewCell {
+final class ServicesCell: UICollectionViewCell {
     
 // MARK: - Properties
     

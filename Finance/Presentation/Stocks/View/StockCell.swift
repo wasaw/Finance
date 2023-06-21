@@ -44,9 +44,7 @@ final class StockCell: UITableViewCell {
     
 // MARK: - Helpers
     
-    private func configureUI() {
-        heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
+    private func configureUI() {        
         addSubview(symbolLabel)
         symbolLabel.anchor(leading: leadingAnchor,
                            top: topAnchor,

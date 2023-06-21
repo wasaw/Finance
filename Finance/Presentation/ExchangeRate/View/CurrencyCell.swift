@@ -75,8 +75,7 @@ final class CurrencyCell: UICollectionViewCell {
                              paddingLeading: Constants.horizontalPadding,
                              paddingTop: Constants.paddingTopTwenty,
                              paddingBottom: -Constants.paddingBottomTwenty,
-                             width: Constants.currencyImageDimensions,
-                             height: Constants.currencyImageDimensions)
+                             width: Constants.currencyImageDimensions)
         
         let titleStack = UIStackView(arrangedSubviews: [shortTitle, fullTitle])
         titleStack.axis = .vertical

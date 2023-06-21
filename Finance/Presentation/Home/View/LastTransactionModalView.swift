@@ -12,7 +12,8 @@ private enum Constants {
     static let verticalPadding: CGFloat = 20
 }
 
-class LastTransactionModalView: UIView {
+final class LastTransactionModalView: UIView {
+    
 // MARK: - Properties
         
     private let typeLabel: UILabel = {

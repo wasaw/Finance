@@ -13,7 +13,7 @@ private enum Constants {
     static let stackVerticalPadding: CGFloat = 10
 }
 
-class LastTransactionCell: UICollectionViewCell {
+final class LastTransactionCell: UICollectionViewCell {
     
 // MARK: - Properties
     

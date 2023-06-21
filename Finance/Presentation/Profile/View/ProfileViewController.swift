@@ -147,10 +147,10 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         let storageImageRef = REF_PROFILE_IMAGE.child(filename)
 
         storageImageRef.putData(dataImage) { _, _ in
-            storageImageRef.downloadURL { url, _ in
-                guard let profileImageUrl = url?.absoluteString else { return }
+            storageImageRef.downloadURL { _, _ in
+//                guard let profileImageUrl = url?.absoluteString else { return }
 //                guard let uid = Auth.auth().currentUser?.uid else { return }
-                let values = ["profileImageUrl": profileImageUrl]
+//                let values = ["profileImageUrl": profileImageUrl]
 //                REF_USERS.child(uid).updateChildValues(values)
             }
         }
@@ -171,7 +171,7 @@ extension ProfileViewController: SendUidDelegate {
     func sendUid(uid: String) {
         DatabaseService.shared.getUserInformation(uid: uid) { result in
             switch result {
-            case .success(let user):
+            case .success:
                 break
 //                self.currentUser.setValue(user: user)
             case .failure(let error):

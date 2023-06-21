@@ -52,7 +52,7 @@ final class StocksPresenter {
                     self.input?.setLoading(enable: false)
                     self.input?.setData(self.stockList)
                 case .failure(let error):
-                    self.input?.showAlert(with: "Ошибка", and:  error.localizedDescription)
+                    self.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
                 }
             }
         }

@@ -57,7 +57,6 @@ final class HomeViewController: UIViewController {
     private var service: [ChoiceService] = []
     private var lastTransaction: [LastTransaction] = []
 
-    
 // MARK: - Lifecycle
     
     init(output: HomeOutput) {

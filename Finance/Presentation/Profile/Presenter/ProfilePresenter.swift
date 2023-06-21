@@ -21,11 +21,9 @@ final class ProfilePresenter {
 extension ProfilePresenter: ProfileOutput {
     func viewIsReady() {
         if Auth.auth().currentUser == nil {
-            print("DEBUG: not auth")
             input?.showAuth()
 //            addAuthController()
         } else {
-            print("DEBUG: auth")
             input?.showProfile()
 //            configureUI()
         }

@@ -222,6 +222,8 @@
 				BB5E37402A41996D0093AB95 /* ExchangeRateViewController.swift */,
 				BB5E37422A4199B40093AB95 /* ExchangeRateInput.swift */,
 				BB5E37442A4199E00093AB95 /* ExchangeRateOutput.swift */,
+				BB9EFC1C287830E800305776 /* TopView.swift */,
+				BB9EFC20287869D000305776 /* CurrencyCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -249,6 +251,7 @@
 				BB5E37492A41CC420093AB95 /* StocksViewController.swift */,
 				BB5E374E2A41CD020093AB95 /* StocksInput.swift */,
 				BB5E37502A41CD1C0093AB95 /* StocksOutput.swift */,
+				BB6BDB9629891CBD0000584A /* StockCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -287,7 +290,7 @@
 				BB9EFC14286B2A7500305776 /* API */,
 				BB61DEA32850A39800A08AC6 /* Models */,
 				BB5E37362A41886D0093AB95 /* Coordinator */,
-				BB61DEA22850A39400A08AC6 /* View */,
+				BB61DEA22850A39400A08AC6 /* General */,
 				BB6D218E2A33C9FB000C22D7 /* Presentation */,
 				BB61DEA02850A37200A08AC6 /* Controller */,
 				BB61DEAB2850DE2F00A08AC6 /* Utils */,
@@ -306,16 +309,12 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		BB61DEA22850A39400A08AC6 /* View */ = {
+		BB61DEA22850A39400A08AC6 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				BB9B6FD628CF79C1000B1D53 /* Profile */,
-				BB9EFC1A2878309D00305776 /* Services */,
-				BB9EFC08285E249800305776 /* Add */,
-				BB74FA262858C09E00EA2CD8 /* Home */,
 				BBCFDC052851F3FF003F9197 /* TitleView.swift */,
 			);
-			path = View;
+			path = General;
 			sourceTree = "<group>";
 		};
 		BB61DEA32850A39800A08AC6 /* Models */ = {
@@ -365,16 +364,12 @@
 				BB6B5BB52A3C9C1600E16FFB /* AddTransactionViewController.swift */,
 				BB6B5BB72A3C9C7200E16FFB /* AddTransactionInput.swift */,
 				BB6B5BB92A3C9C9B00E16FFB /* AddTransactionOutput.swift */,
+				BB9EFC09285E2A9200305776 /* CategoryCell.swift */,
+				BB9EFC0B2861AADF00305776 /* RevenueView.swift */,
+				BB9EFC0D2861B2AC00305776 /* AmountView.swift */,
+				BB6BDBA0298B994C0000584A /* TypeCell.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		BB6BDB9529891CAA0000584A /* Stocks */ = {
-			isa = PBXGroup;
-			children = (
-				BB6BDB9629891CBD0000584A /* StockCell.swift */,
-			);
-			path = Stocks;
 			sourceTree = "<group>";
 		};
 		BB6BDB9A2989550B0000584A /* App */ = {
@@ -425,6 +420,10 @@
 				BB6D219A2A33CD05000C22D7 /* HomeViewController.swift */,
 				BB6D21982A33CC33000C22D7 /* HomeInput.swift */,
 				BB6D21962A33CB1A000C22D7 /* HomeOutput.swift */,
+				BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */,
+				BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */,
+				BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */,
+				BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -452,19 +451,10 @@
 				BB6D21A12A38A995000C22D7 /* ProfileViewController.swift */,
 				BB6D21A32A38AA25000C22D7 /* ProfileInput.swift */,
 				BB6D21A52A38AA5E000C22D7 /* ProfileOutput.swift */,
+				BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */,
+				BB9B6FD728CF79E9000B1D53 /* ProfileImageView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		BB74FA262858C09E00EA2CD8 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */,
-				BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */,
-				BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */,
-				BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */,
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		BB9B6FD028CB5D97000B1D53 /* Profile */ = {
@@ -474,26 +464,6 @@
 				BB9B6FD128CB5E45000B1D53 /* ProfileController.swift */,
 			);
 			path = Profile;
-			sourceTree = "<group>";
-		};
-		BB9B6FD628CF79C1000B1D53 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */,
-				BB9B6FD728CF79E9000B1D53 /* ProfileImageView.swift */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		BB9EFC08285E249800305776 /* Add */ = {
-			isa = PBXGroup;
-			children = (
-				BB9EFC09285E2A9200305776 /* CategoryCell.swift */,
-				BB9EFC0B2861AADF00305776 /* RevenueView.swift */,
-				BB9EFC0D2861B2AC00305776 /* AmountView.swift */,
-				BB6BDBA0298B994C0000584A /* TypeCell.swift */,
-			);
-			path = Add;
 			sourceTree = "<group>";
 		};
 		BB9EFC14286B2A7500305776 /* API */ = {
@@ -507,24 +477,6 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		BB9EFC1A2878309D00305776 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				BB6BDB9529891CAA0000584A /* Stocks */,
-				BB9EFC1B287830C400305776 /* ExchangeRate */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		BB9EFC1B287830C400305776 /* ExchangeRate */ = {
-			isa = PBXGroup;
-			children = (
-				BB9EFC1C287830E800305776 /* TopView.swift */,
-				BB9EFC20287869D000305776 /* CurrencyCell.swift */,
-			);
-			path = ExchangeRate;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -533,11 +485,11 @@
 			buildConfigurationList = BB61DE9D2850A33800A08AC6 /* Build configuration list for PBXNativeTarget "Finance" */;
 			buildPhases = (
 				084511A3D4B68E4F086843F0 /* [CP] Check Pods Manifest.lock */,
+				BB218BA02A332C9C00022244 /* ShellScript */,
 				BB61DE852850A33300A08AC6 /* Sources */,
 				BB61DE862850A33300A08AC6 /* Frameworks */,
 				BB61DE872850A33300A08AC6 /* Resources */,
 				CEB7F9A8A9B9B3BC3379355F /* [CP] Embed Pods Frameworks */,
-				BB218BA02A332C9C00022244 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -619,6 +571,7 @@
 		};
 		BB218BA02A332C9C00022244 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);

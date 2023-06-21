@@ -13,7 +13,7 @@ private enum Constants {
     static let titleLabelHeight: CGFloat = 25
 }
 
-class TotalAccountView: UIView {
+final class TotalAccountView: UIView {
     
 // MARK: - Propertries
     
