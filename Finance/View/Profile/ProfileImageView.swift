@@ -7,6 +7,11 @@
 
 import UIKit
 
+private enum Constants {
+    static let imageButtonDimensions: CGFloat = 140
+    static let imageButtonCornerRadius: CGFloat = 70
+}
+
 protocol ProfileImageSelectDelegate: AnyObject {
     func selectImage()
 }
@@ -34,8 +39,9 @@ final class ProfileImageView: UIView {
         addSubview(imageButton)
         imageButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         imageButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        imageButton.anchor(width: 140, height: 140)
-        imageButton.layer.cornerRadius = 70
+        imageButton.anchor(width: Constants.imageButtonDimensions,
+                           height: Constants.imageButtonDimensions)
+        imageButton.layer.cornerRadius = Constants.imageButtonCornerRadius
     }
     
     required init?(coder: NSCoder) {

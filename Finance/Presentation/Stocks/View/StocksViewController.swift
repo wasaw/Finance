@@ -7,6 +7,10 @@
 
 import UIKit
 
+private enum Constants {
+    static let loadAnimationViewPaddingTop: CGFloat = 15
+}
+
 final class StocksViewController: UIViewController {
     
 // MARK: - Properties
@@ -34,7 +38,8 @@ final class StocksViewController: UIViewController {
     private func configureAnimationView() {
         view.addSubview(loadAnimationView)
         loadAnimationView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loadAnimationView.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 15)
+        loadAnimationView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                                 paddingTop: Constants.loadAnimationViewPaddingTop)
         loadAnimationView.configureAnimation()
     }
     

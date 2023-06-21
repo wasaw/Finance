@@ -7,6 +7,15 @@
 
 import UIKit
 
+private enum Constants {
+    static let horizontalPadding: CGFloat = 10
+    static let paddingTop: CGFloat = 10
+    static let stackViewPaddingTop: CGFloat = 130
+    static let stackViewSpacing: CGFloat = 15
+    static let imageViewHeight: CGFloat = 150
+    static let loginLabelHeight: CGFloat = 40
+}
+
 final class ProfileViewController: UIViewController {
     
 // MARK: - Properties
@@ -46,30 +55,30 @@ final class ProfileViewController: UIViewController {
         imageView.anchor(leading: view.leadingAnchor,
                          top: view.safeAreaLayoutGuide.topAnchor,
                          trailing: view.trailingAnchor,
-                         paddingLeading: 10,
-                         paddingTop: 15,
-                         paddingTrailing: -10,
-                         height: 150)
+                         paddingLeading: Constants.horizontalPadding,
+                         paddingTop: Constants.paddingTop,
+                         paddingTrailing: -Constants.horizontalPadding,
+                         height: Constants.imageViewHeight)
         
         view.addSubview(loginLabel)
         loginLabel.anchor(leading: view.leadingAnchor,
                           top: imageView.bottomAnchor,
                           trailing: view.trailingAnchor,
-                          paddingLeading: 10,
-                          paddingTop: 10,
-                          paddingTrailing: -10,
-                          height: 40)
+                          paddingLeading: Constants.horizontalPadding,
+                          paddingTop: Constants.paddingTop,
+                          paddingTrailing: -Constants.horizontalPadding,
+                          height: Constants.loginLabelHeight)
         
         let stack = UIStackView(arrangedSubviews: [currentCurrencyBtn, logOutBtn])
         stack.axis = .vertical
-        stack.spacing = 15
+        stack.spacing = Constants.stackViewSpacing
         view.addSubview(stack)
         stack.anchor(leading: view.leadingAnchor,
                      top: loginLabel.bottomAnchor,
                      trailing: view.trailingAnchor,
-                     paddingLeading: 20,
-                     paddingTop: 130,
-                     paddingTrailing: -20)
+                     paddingLeading: Constants.horizontalPadding,
+                     paddingTop: Constants.stackViewPaddingTop,
+                     paddingTrailing: -Constants.horizontalPadding)
 
         currentCurrencyBtn.menu = generationMenu()
         currentCurrencyBtn.showsMenuAsPrimaryAction = true

@@ -7,6 +7,25 @@
 
 import UIKit
 
+private enum Constants {
+    static let horizontalPadding: CGFloat = 10
+    static let paddingTopTen: CGFloat = 10
+    static let paddingTopTwenty: CGFloat = 20
+    static let scrollViewHeight: CGFloat = 830
+    static let typeTitleHeight: CGFloat = 30
+    static let typeCollectionViewHeight: CGFloat = 90
+    static let categoryTitleViewHeight: CGFloat = 30
+    static let categoryCollectionViewHeight: CGFloat = 135
+    static let revenueViewHeight: CGFloat = 20
+    static let amountViewHeight: CGFloat = 20
+    static let typeCollectionItemHeight: CGFloat = 80
+    static let typeCollectionItemWidth: CGFloat = 90
+    static let categoryCollectionItemHeight: CGFloat = 60
+    static let categoryCollectionItemWidth: CGFloat = 90
+    static let collectionViewLayoutHorizontal: CGFloat = 5
+    static let collectionViewLayoutVertical: CGFloat = 2
+}
+
 final class AddTransactionViewController: UIViewController {
     
 // MARK: - Properties
@@ -82,7 +101,7 @@ final class AddTransactionViewController: UIViewController {
                            top: scrollView.topAnchor,
                            trailing: scrollView.trailingAnchor,
                            bottom: scrollView.bottomAnchor,
-                           height: 830)
+                           height: Constants.scrollViewHeight)
     }
     
     private func configureTypeTitleView() {
@@ -90,10 +109,10 @@ final class AddTransactionViewController: UIViewController {
         typeTitleView.anchor(leading: contentView.leadingAnchor,
                              top: contentView.topAnchor,
                              trailing: contentView.trailingAnchor,
-                             paddingLeading: 10,
-                             paddingTop: 20,
-                             paddingTrailing: -10,
-                             height: 30)
+                             paddingLeading: Constants.horizontalPadding,
+                             paddingTop: Constants.paddingTopTwenty,
+                             paddingTrailing: -Constants.horizontalPadding,
+                             height: Constants.typeTitleHeight)
         typeTitleView.setTitle(title: "Выбрать тип дохода")
     }
     
@@ -111,10 +130,10 @@ final class AddTransactionViewController: UIViewController {
         typeCollectionView.anchor(leading: contentView.leadingAnchor,
                                   top: typeTitleView.bottomAnchor,
                                   trailing: contentView.trailingAnchor,
-                                  paddingLeading: 10,
-                                  paddingTop: 10,
-                                  paddingTrailing: -10,
-                                  height: 90)
+                                  paddingLeading: Constants.horizontalPadding,
+                                  paddingTop: Constants.paddingTopTen,
+                                  paddingTrailing: -Constants.horizontalPadding,
+                                  height: Constants.typeCollectionViewHeight)
     }
     
     private func configureCategoryTitleView() {
@@ -123,10 +142,10 @@ final class AddTransactionViewController: UIViewController {
         categoryTitleView.anchor(leading: contentView.leadingAnchor,
                                  top: typeCollectionView.bottomAnchor,
                                  trailing: contentView.trailingAnchor,
-                                 paddingLeading: 10,
-                                 paddingTop: 10,
-                                 paddingTrailing: -10,
-                                 height: 30)
+                                 paddingLeading: Constants.horizontalPadding,
+                                 paddingTop: Constants.paddingTopTen,
+                                 paddingTrailing: -Constants.horizontalPadding,
+                                 height: Constants.categoryTitleViewHeight)
         categoryTitleView.setTitle(title: "Выбрать категорию трат")
     }
     
@@ -144,10 +163,10 @@ final class AddTransactionViewController: UIViewController {
         categotyCollectionView.anchor(leading: contentView.leadingAnchor,
                                       top: categoryTitleView.bottomAnchor,
                                       trailing: contentView.trailingAnchor,
-                                      paddingLeading: 10,
-                                      paddingTop: 10,
-                                      paddingTrailing: -10,
-                                      height: 135)
+                                      paddingLeading: Constants.horizontalPadding,
+                                      paddingTop: Constants.paddingTopTen,
+                                      paddingTrailing: -Constants.horizontalPadding,
+                                      height: Constants.categoryCollectionViewHeight)
     }
     
     private func configureRevenueView() {
@@ -157,10 +176,10 @@ final class AddTransactionViewController: UIViewController {
         revenueView.anchor(leading: contentView.leadingAnchor,
                            top: categoryCollectionView.bottomAnchor,
                            trailing: contentView.trailingAnchor,
-                           paddingLeading: 20,
-                           paddingTop: 10,
-                           paddingTrailing: -20,
-                           height: 20)
+                           paddingLeading: Constants.horizontalPadding,
+                           paddingTop: Constants.paddingTopTen,
+                           paddingTrailing: -Constants.horizontalPadding,
+                           height: Constants.revenueViewHeight)
     }
     
     private func configureAmountView() {
@@ -169,9 +188,9 @@ final class AddTransactionViewController: UIViewController {
                           top: revenueView.bottomAnchor,
                           trailing: contentView.trailingAnchor,
                           bottom: contentView.safeAreaLayoutGuide.bottomAnchor,
-                          paddingLeading: 10,
-                          paddingTop: 20,
-                          paddingTrailing: -10)
+                          paddingLeading: Constants.horizontalPadding,
+                          paddingTop: Constants.amountViewHeight,
+                          paddingTrailing: -Constants.horizontalPadding)
         configureKeyboard()
     }
     
@@ -308,15 +327,20 @@ extension AddTransactionViewController: UICollectionViewDataSource {
 extension AddTransactionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.typeCollectionView {
-            return CGSize(width: 90, height: 80)
+            return CGSize(width: Constants.typeCollectionItemWidth,
+                          height: Constants.typeCollectionItemHeight)
         }
-        return CGSize(width: 90, height: 60)
+        return CGSize(width: Constants.categoryCollectionItemWidth,
+                      height: Constants.categoryCollectionItemHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 2, left: 5, bottom: 2, right: 5)
+        return UIEdgeInsets(top: Constants.collectionViewLayoutVertical,
+                            left: Constants.collectionViewLayoutHorizontal,
+                            bottom: Constants.collectionViewLayoutVertical,
+                            right: Constants.collectionViewLayoutHorizontal)
     }
 }
 

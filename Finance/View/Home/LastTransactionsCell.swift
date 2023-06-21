@@ -7,6 +7,12 @@
 
 import UIKit
 
+private enum Constants {
+    static let horizontalPadding: CGFloat = 20
+    static let imageViewDimensions: CGFloat = 35
+    static let stackVerticalPadding: CGFloat = 10
+}
+
 class LastTransactionCell: UICollectionViewCell {
     
 // MARK: - Properties
@@ -46,9 +52,9 @@ class LastTransactionCell: UICollectionViewCell {
         
         addSubview(imageView)
         imageView.anchor(leading: leadingAnchor,
-                         paddingLeading: 20,
-                         width: 35,
-                         height: 35)
+                         paddingLeading: Constants.horizontalPadding,
+                         width: Constants.imageViewDimensions,
+                         height: Constants.imageViewDimensions)
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         addSubview(amountLabel)
@@ -63,10 +69,10 @@ class LastTransactionCell: UICollectionViewCell {
                      top: topAnchor,
                      trailing: amountLabel.leadingAnchor,
                      bottom: bottomAnchor,
-                     paddingLeading: 20,
-                     paddingTop: 10,
-                     paddingTrailing: -20,
-                     paddingBottom: -10)
+                     paddingLeading: Constants.horizontalPadding,
+                     paddingTop: Constants.stackVerticalPadding,
+                     paddingTrailing: -Constants.horizontalPadding,
+                     paddingBottom: -Constants.stackVerticalPadding)
         
         backgroundColor = .white
     }

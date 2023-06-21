@@ -7,6 +7,13 @@
 
 import UIKit
 
+private enum Constants {
+    static let viewForImageHeight: CGFloat = 80
+    static let imageViewDimensions: CGFloat = 30
+    static let titleLablePaddingTop: CGFloat = 10
+    static let titleLableHeight: CGFloat = 20
+}
+
 class ServicesCell: UICollectionViewCell {
     
 // MARK: - Properties
@@ -45,10 +52,11 @@ class ServicesCell: UICollectionViewCell {
         viewForImage.anchor(leading: leadingAnchor,
                             top: topAnchor,
                             trailing: trailingAnchor,
-                            height: 80)
+                            height: Constants.viewForImageHeight)
         
         viewForImage.addSubview(imageView)
-        imageView.anchor(width: 30, height: 30)
+        imageView.anchor(width: Constants.imageViewDimensions,
+                         height: Constants.imageViewDimensions)
         imageView.centerXAnchor.constraint(equalTo: viewForImage.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: viewForImage.centerYAnchor).isActive = true
         
@@ -56,8 +64,8 @@ class ServicesCell: UICollectionViewCell {
         titleLable.anchor(leading: leadingAnchor,
                           top: viewForImage.bottomAnchor,
                           trailing: trailingAnchor,
-                          paddingTop: 10,
-                          height: 20)
+                          paddingTop: Constants.titleLablePaddingTop,
+                          height: Constants.titleLableHeight)
         
         backgroundColor = .white
     }

@@ -7,6 +7,18 @@
 
 import UIKit
 
+private enum Constants {
+    static let paddingTopTen: CGFloat = 10
+    static let paddingTopTwentyFive: CGFloat = 25
+    static let amountTitleHeight: CGFloat = 20
+    static let amountTextFieldHeight: CGFloat = 40
+    static let dateTitleHeight: CGFloat = 20
+    static let dateTextFieldHeight: CGFloat = 40
+    static let commentTitleHeight: CGFloat = 20
+    static let commentTextFieldHeight: CGFloat = 40
+    static let doneButtonHeight: CGFloat = 80
+}
+
 protocol HandleDoneDelegate: AnyObject {
     func saveInformation(amount: String, date: String, comment: String)
 }
@@ -81,52 +93,52 @@ final class AmountView: UIView {
         amountTitle.anchor(leading: leadingAnchor,
                            top: topAnchor,
                            trailing: trailingAnchor,
-                           height: 20)
+                           height: Constants.amountTitleHeight)
         amountTitle.setTitle(title: "Сумма")
         
         addSubview(amountTextField)
         amountTextField.anchor(leading: leadingAnchor,
                                top: amountTitle.bottomAnchor,
                                trailing: trailingAnchor,
-                               paddingTop: 10,
-                               height: 40)
+                               paddingTop: Constants.paddingTopTen,
+                               height: Constants.amountTextFieldHeight)
         
         addSubview(dateTitle)
         dateTitle.anchor(leading: leadingAnchor,
                          top: amountTextField.bottomAnchor,
                          trailing: trailingAnchor,
-                         paddingTop: 25,
-                         height: 20)
+                         paddingTop: Constants.paddingTopTwentyFive,
+                         height: Constants.dateTitleHeight)
         dateTitle.setTitle(title: "Дата")
         
         addSubview(dateTextField)
         dateTextField.anchor(leading: leadingAnchor,
                              top: dateTitle.bottomAnchor,
                              trailing: trailingAnchor,
-                             paddingTop: 10,
-                             height: 40)
+                             paddingTop: Constants.paddingTopTen,
+                             height: Constants.dateTextFieldHeight)
         
         addSubview(commentTitle)
         commentTitle.anchor(leading: leadingAnchor,
                             top: dateTextField.bottomAnchor,
                             trailing: trailingAnchor,
-                            paddingTop: 25,
-                            height: 20)
+                            paddingTop: Constants.paddingTopTwentyFive,
+                            height: Constants.commentTitleHeight)
         commentTitle.setTitle(title: "Комментарий")
         
         addSubview(commentTextField)
         commentTextField.anchor(leading: leadingAnchor,
                                 top: commentTitle.bottomAnchor,
                                 trailing: trailingAnchor,
-                                paddingTop: 10,
-                                height: 40)
+                                paddingTop: Constants.paddingTopTen,
+                                height: Constants.commentTextFieldHeight)
         
         addSubview(doneButton)
         doneButton.anchor(leading: leadingAnchor,
                           top: commentTextField.bottomAnchor,
                           trailing: trailingAnchor,
-                          paddingTop: 20,
-                          height: 80)
+                          paddingTop: Constants.paddingTopTwentyFive,
+                          height: Constants.doneButtonHeight)
     }
     
     func setDateConfiguration(datePicket: UIDatePicker, toolBar: UIToolbar) {

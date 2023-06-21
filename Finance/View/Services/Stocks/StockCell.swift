@@ -7,6 +7,12 @@
 
 import UIKit
 
+private enum Constants {
+    static let symbolLabelPaddingLeading: CGFloat = 25
+    static let paddingTopTen: CGFloat = 10
+    static let valueLabelPaddingTrailing: CGFloat = 40
+}
+
 final class StockCell: UITableViewCell {
     static let reuseIdentifite = "stockCell"
     
@@ -44,14 +50,14 @@ final class StockCell: UITableViewCell {
         addSubview(symbolLabel)
         symbolLabel.anchor(leading: leadingAnchor,
                            top: topAnchor,
-                           paddingLeading: 25,
-                           paddingTop: 10)
+                           paddingLeading: Constants.symbolLabelPaddingLeading,
+                           paddingTop: Constants.paddingTopTen)
         
         addSubview(valueLabel)
         valueLabel.anchor(top: topAnchor,
                           trailing: trailingAnchor,
-                          paddingTop: 10,
-                          paddingTrailing: -40)
+                          paddingTop: Constants.paddingTopTen,
+                          paddingTrailing: -Constants.valueLabelPaddingTrailing)
     }
     
     func setValue(stock: Stock, index: Int) {

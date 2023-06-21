@@ -7,6 +7,12 @@
 
 import UIKit
 
+private enum Constants {
+    static let titleLabelHeight: CGFloat = 15
+    static let imageViewPaddingTop: CGFloat = 10
+    static let imageViewDimensions: CGFloat = 30
+}
+
 class CategoryCell: UICollectionViewCell {
     static let identifire = "CategoryCell"
 
@@ -55,12 +61,15 @@ class CategoryCell: UICollectionViewCell {
         circleView.isHidden = true
         
         addSubview(titleLabel)
-        titleLabel.anchor(top: topAnchor, height: 15)
+        titleLabel.anchor(top: topAnchor, height: Constants.titleLabelHeight)
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
 
         addSubview(imageView)
         
-        imageView.anchor(top: titleLabel.bottomAnchor, paddingTop: 10, width: 30, height: 30)
+        imageView.anchor(top: titleLabel.bottomAnchor,
+                         paddingTop: Constants.imageViewPaddingTop,
+                         width: Constants.imageViewDimensions,
+                         height: Constants.imageViewDimensions)
         imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     

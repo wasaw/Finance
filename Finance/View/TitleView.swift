@@ -7,6 +7,10 @@
 
 import UIKit
 
+private enum Constants {
+    static let arrowImageDimensions: CGFloat = 20
+}
+
 final class TitleView: UIView {
     
 // MARK: - Properties
@@ -36,7 +40,9 @@ final class TitleView: UIView {
         titleLable.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         addSubview(arrowImage)
-        arrowImage.anchor(trailing: trailingAnchor, width: 20, height: 20)
+        arrowImage.anchor(trailing: trailingAnchor,
+                          width: Constants.arrowImageDimensions,
+                          height: Constants.arrowImageDimensions)
         arrowImage.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     

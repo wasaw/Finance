@@ -7,6 +7,13 @@
 
 import UIKit
 
+private enum Constants {
+    static let totalAccountViewDimensions: CGFloat = 25
+    static let paddingTopTen: CGFloat = 10
+    static let titleLableHeight: CGFloat = 20
+    static let totalAccountLabelHeight: CGFloat = 30
+}
+
 final class TopView: UIView {
     
 // MARK: - Properties
@@ -64,18 +71,22 @@ final class TopView: UIView {
                                 top: rateLabel.bottomAnchor,
                                 trailing: trailingAnchor,
                                 bottom: bottomAnchor,
-                                paddingLeading: 25,
-                                paddingTop: 25,
-                                paddingTrailing: -25,
-                                paddingBottom: -35)
+                                paddingLeading: Constants.totalAccountViewDimensions,
+                                paddingTop: Constants.totalAccountViewDimensions,
+                                paddingTrailing: -Constants.totalAccountViewDimensions,
+                                paddingBottom: -Constants.totalAccountViewDimensions)
         
         totalAccountView.addSubview(titleLable)
         titleLable.centerXAnchor.constraint(equalTo: totalAccountView.centerXAnchor).isActive = true
-        titleLable.anchor(top: totalAccountView.topAnchor, paddingTop: 10, height: 20)
+        titleLable.anchor(top: totalAccountView.topAnchor,
+                          paddingTop: Constants.paddingTopTen,
+                          height: Constants.titleLableHeight)
         
         totalAccountView.addSubview(totalAccountLabel)
         totalAccountLabel.centerXAnchor.constraint(equalTo: totalAccountView.centerXAnchor).isActive = true
-        totalAccountLabel.anchor(top: titleLable.bottomAnchor, paddingTop: 10, height: 30)
+        totalAccountLabel.anchor(top: titleLable.bottomAnchor,
+                                 paddingTop: Constants.paddingTopTen,
+                                 height: Constants.totalAccountLabelHeight)
     }
     
     func setCurrency(_ currency: CurrentExchangeRate, requestCurrency: String) {

@@ -7,6 +7,10 @@
 
 import UIKit
 
+private enum Constants {
+    static let textLabelPaddingLeading: CGFloat = 10
+}
+
 protocol SwitcherValueDelegate: AnyObject {
     func switchChanged(value: Bool)
 }
@@ -53,7 +57,9 @@ final class RevenueView: UIView {
         switcher.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         addSubview(textLabel)
-        textLabel.anchor(leading: switcher.trailingAnchor, trailing: trailingAnchor, paddingLeading: 10)
+        textLabel.anchor(leading: switcher.trailingAnchor,
+                         trailing: trailingAnchor,
+                         paddingLeading: Constants.textLabelPaddingLeading)
         textLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     

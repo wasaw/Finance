@@ -7,6 +7,18 @@
 
 import UIKit
 
+private enum Constants {
+    static let horizontalPadding: CGFloat = 20
+    static let paddingTopTwenty: CGFloat = 20
+    static let paddingTopThirty: CGFloat = 30
+    static let paddingTopFourty: CGFloat = 40
+    static let heightThirty: CGFloat = 30
+    static let heightFifty: CGFloat = 50
+    static let segmentedControllerHeight: CGFloat = 45
+    static let segmentedControllerWidth: CGFloat = 270
+    static let logInButtonPaddingBottom: CGFloat = 30
+}
+
 protocol AuthFormDelegate: AnyObject {
     func handleAuthButton(segment: Int, credentials: AuthCredentials)
     func updateHeight(state: AuthState)
@@ -146,18 +158,18 @@ final class AuthView: UIView {
         titleLabel.anchor(leading: leadingAnchor,
                           top: topAnchor,
                           trailing: trailingAnchor,
-                          paddingLeading: 20,
-                          paddingTop: 20,
-                          paddingTrailing: 20,
-                          height: 30)
+                          paddingLeading: Constants.horizontalPadding,
+                          paddingTop: Constants.paddingTopTwenty,
+                          paddingTrailing: Constants.horizontalPadding,
+                          height: Constants.heightThirty)
     }
     
     private func configureSegmentedControl() {
         addSubview(segmentedController)
         segmentedController.anchor(top: titleLabel.bottomAnchor,
-                                   paddingTop: 30,
-                                   width: 270,
-                                   height: 45)
+                                   paddingTop: Constants.paddingTopThirty,
+                                   width: Constants.segmentedControllerWidth,
+                                   height: Constants.segmentedControllerHeight)
         segmentedController.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         segmentedController.selectedSegmentIndex = 0
@@ -176,19 +188,19 @@ final class AuthView: UIView {
         emailTextField.anchor(leading: leadingAnchor,
                               top: segmentedController.bottomAnchor,
                               trailing: trailingAnchor,
-                              paddingLeading: 20,
-                              paddingTop: 20,
-                              paddingTrailing: -20,
-                              height: 50)
+                              paddingLeading: Constants.horizontalPadding,
+                              paddingTop: Constants.paddingTopTwenty,
+                              paddingTrailing: -Constants.horizontalPadding,
+                              height: Constants.heightFifty)
 
         addSubview(passTextField)
         passTextField.anchor(leading: leadingAnchor,
                              top: emailTextField.bottomAnchor,
                              trailing: trailingAnchor,
-                             paddingLeading: 20,
-                             paddingTop: 40,
-                             paddingTrailing: -20,
-                             height: 50)
+                             paddingLeading: Constants.horizontalPadding,
+                             paddingTop: Constants.paddingTopFourty,
+                             paddingTrailing: -Constants.horizontalPadding,
+                             height: Constants.heightFifty)
     }
     
     private func configureRegField() {
@@ -196,40 +208,40 @@ final class AuthView: UIView {
         loginTextField.anchor(leading: leadingAnchor,
                               top: segmentedController.bottomAnchor,
                               trailing: trailingAnchor,
-                              paddingLeading: 20,
-                              paddingTop: 20,
-                              paddingTrailing: -20,
-                              height: 50)
+                              paddingLeading: Constants.horizontalPadding,
+                              paddingTop: Constants.paddingTopTwenty,
+                              paddingTrailing: -Constants.horizontalPadding,
+                              height: Constants.heightFifty)
         loginTextField.alpha = 0
         
         addSubview(emailRegTextField)
         emailRegTextField.anchor(leading: leadingAnchor,
                                  top: loginTextField.bottomAnchor,
                                  trailing: trailingAnchor,
-                                 paddingLeading: 20,
-                                 paddingTop: 20,
-                                 paddingTrailing: -20,
-                                 height: 50)
+                                 paddingLeading: Constants.horizontalPadding,
+                                 paddingTop: Constants.paddingTopTwenty,
+                                 paddingTrailing: -Constants.horizontalPadding,
+                                 height: Constants.heightFifty)
         emailRegTextField.alpha = 0
         
         addSubview(passRegTextField)
         passRegTextField.anchor(leading: leadingAnchor,
                                 top: emailRegTextField.bottomAnchor,
                                 trailing: trailingAnchor,
-                                paddingLeading: 20,
-                                paddingTop: 20,
-                                paddingTrailing: -20,
-                                height: 50)
+                                paddingLeading: Constants.horizontalPadding,
+                                paddingTop: Constants.paddingTopTwenty,
+                                paddingTrailing: -Constants.horizontalPadding,
+                                height: Constants.heightFifty)
         passRegTextField.alpha = 0
         
         addSubview(confirmPassTextField)
         confirmPassTextField.anchor(leading: leadingAnchor,
                                     top: passRegTextField.bottomAnchor,
                                     trailing: trailingAnchor,
-                                    paddingLeading: 20,
-                                    paddingTop: 20,
-                                    paddingTrailing: -20,
-                                    height: 50)
+                                    paddingLeading: Constants.horizontalPadding,
+                                    paddingTop: Constants.paddingTopTwenty,
+                                    paddingTrailing: -Constants.horizontalPadding,
+                                    height: Constants.heightFifty)
         confirmPassTextField.alpha = 0
     }
         
@@ -238,10 +250,10 @@ final class AuthView: UIView {
         logInButton.anchor(leading: leadingAnchor,
                            trailing: trailingAnchor,
                            bottom: bottomAnchor,
-                           paddingLeading: 10,
-                           paddingTrailing: -10,
-                           paddingBottom: -30,
-                           height: 55)
+                           paddingLeading: Constants.horizontalPadding,
+                           paddingTrailing: -Constants.horizontalPadding,
+                           paddingBottom: -Constants.logInButtonPaddingBottom,
+                           height: Constants.heightFifty)
     }
     
 // MARK: - Helpers

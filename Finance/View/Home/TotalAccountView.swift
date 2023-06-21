@@ -7,6 +7,12 @@
 
 import UIKit
 
+private enum Constants {
+    static let cornerRadius: CGFloat = 20
+    static let titleLabelPaddingBottom: CGFloat = 10
+    static let titleLabelHeight: CGFloat = 25
+}
+
 class TotalAccountView: UIView {
     
 // MARK: - Propertries
@@ -40,7 +46,7 @@ class TotalAccountView: UIView {
         
         configureUI()
         
-        layer.cornerRadius = 20
+        layer.cornerRadius = Constants.cornerRadius
         
         backgroundColor = .selectViewBackground
     }
@@ -58,7 +64,9 @@ class TotalAccountView: UIView {
         totalAccountLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         addSubview(titleLable)
-        titleLable.anchor(bottom: totalAccountLabel.topAnchor, paddingBottom: -10, height: 25)
+        titleLable.anchor(bottom: totalAccountLabel.topAnchor,
+                          paddingBottom: -Constants.titleLabelPaddingBottom,
+                          height: Constants.titleLabelHeight)
         titleLable.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     

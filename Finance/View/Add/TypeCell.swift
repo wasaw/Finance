@@ -7,6 +7,11 @@
 
 import UIKit
 
+private enum Constants {
+    static let amountLabelPaddingTop: CGFloat = 5
+    static let amountLabelHeight: CGFloat = 20
+}
+
 final class TypeCell: CategoryCell {
     
 // MARK: - Properties
@@ -33,7 +38,9 @@ final class TypeCell: CategoryCell {
     
     private func configureUI() {
         addSubview(amountLabel)
-        amountLabel.anchor(top: imageView.bottomAnchor, paddingTop: 5, height: 20)
+        amountLabel.anchor(top: imageView.bottomAnchor,
+                           paddingTop: Constants.amountLabelPaddingTop,
+                           height: Constants.amountLabelHeight)
         amountLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     

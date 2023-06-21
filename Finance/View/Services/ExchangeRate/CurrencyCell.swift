@@ -7,6 +7,16 @@
 
 import UIKit
 
+private enum Constants {
+    static let horizontalPadding: CGFloat = 20
+    static let paddingTopTwenty: CGFloat = 20
+    static let paddingBottomTwenty: CGFloat = 20
+    static let currencyImageDimensions: CGFloat = 40
+    static let titleStackWidth: CGFloat = 200
+    static let valueLabelWidth: CGFloat = 110
+    static let dividingLineHeight: CGFloat = 1
+}
+
 final class CurrencyCell: UICollectionViewCell {
 
 // MARK: - Properties
@@ -62,11 +72,11 @@ final class CurrencyCell: UICollectionViewCell {
         currencyImage.anchor(leading: leadingAnchor,
                              top: topAnchor,
                              bottom: bottomAnchor,
-                             paddingLeading: 20,
-                             paddingTop: 20,
-                             paddingBottom: -20,
-                             width: 40,
-                             height: 40)
+                             paddingLeading: Constants.horizontalPadding,
+                             paddingTop: Constants.paddingTopTwenty,
+                             paddingBottom: -Constants.paddingBottomTwenty,
+                             width: Constants.currencyImageDimensions,
+                             height: Constants.currencyImageDimensions)
         
         let titleStack = UIStackView(arrangedSubviews: [shortTitle, fullTitle])
         titleStack.axis = .vertical
@@ -75,28 +85,28 @@ final class CurrencyCell: UICollectionViewCell {
         titleStack.anchor(leading: currencyImage.trailingAnchor,
                           top: topAnchor,
                           bottom: bottomAnchor,
-                          paddingLeading: 15,
-                          paddingTop: 20,
-                          paddingBottom: -20,
-                          width: 200)
+                          paddingLeading: Constants.horizontalPadding,
+                          paddingTop: Constants.paddingTopTwenty,
+                          paddingBottom: -Constants.paddingBottomTwenty,
+                          width: Constants.titleStackWidth)
         
         addSubview(valueLabel)
         valueLabel.anchor(top: topAnchor,
                           trailing: trailingAnchor,
                           bottom: bottomAnchor,
-                          paddingTop: 20,
-                          paddingTrailing: -20,
-                          paddingBottom: -20,
-                          width: 110)
+                          paddingTop: Constants.paddingTopTwenty,
+                          paddingTrailing: -Constants.horizontalPadding,
+                          paddingBottom: -Constants.paddingBottomTwenty,
+                          width: Constants.valueLabelWidth)
         
         addSubview(dividingLine)
         dividingLine.anchor(leading: leadingAnchor,
                             top: currencyImage.bottomAnchor,
                             trailing: trailingAnchor,
-                            paddingLeading: 20,
-                            paddingTop: 15,
-                            paddingTrailing: -20,
-                            height: 1)
+                            paddingLeading: Constants.horizontalPadding,
+                            paddingTop: Constants.paddingTopTwenty,
+                            paddingTrailing: -Constants.horizontalPadding,
+                            height: Constants.dividingLineHeight)
     }
     
     func setInformation(currency: CurrentExchangeRate) {

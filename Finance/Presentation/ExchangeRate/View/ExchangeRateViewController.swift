@@ -7,6 +7,13 @@
 
 import UIKit
 
+private enum Constants {
+    static let topViewHeight: CGFloat = 350
+    static let listCurrencyCornerRadius: CGFloat = 30
+    static let listCurrencyPaddingTop: CGFloat = 15
+    static let listCurrencyItemHeight: CGFloat = 90
+}
+
 final class ExchangeRateViewController: UIViewController {
     
 // MARK: - Properties
@@ -44,7 +51,7 @@ final class ExchangeRateViewController: UIViewController {
         topView.anchor(leading: view.leadingAnchor,
                        top: view.topAnchor,
                        trailing: view.trailingAnchor,
-                       height: 350)
+                       height: Constants.topViewHeight)
     }
     
     private func configureCollectionView() {
@@ -54,7 +61,7 @@ final class ExchangeRateViewController: UIViewController {
         listCurrencyCollectionView.register(CurrencyCell.self, forCellWithReuseIdentifier: CurrencyCell.identifire)
         listCurrencyCollectionView.delegate = self
         listCurrencyCollectionView.dataSource = self
-        listCurrencyCollectionView.layer.cornerRadius = 30
+        listCurrencyCollectionView.layer.cornerRadius = Constants.listCurrencyCornerRadius
         view.addSubview(listCurrencyCollectionView)
         listCurrencyCollectionView.backgroundColor = .white
         
@@ -62,7 +69,7 @@ final class ExchangeRateViewController: UIViewController {
                                           top: topView.bottomAnchor,
                                           trailing: view.trailingAnchor,
                                           bottom: view.bottomAnchor,
-                                          paddingTop: -15)
+                                          paddingTop: -Constants.listCurrencyPaddingTop)
     }
 }
 
@@ -123,6 +130,7 @@ extension ExchangeRateViewController: UICollectionViewDataSource {
 
 extension ExchangeRateViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 90)
+        return CGSize(width: view.frame.width,
+                      height: Constants.listCurrencyItemHeight)
     }
 }

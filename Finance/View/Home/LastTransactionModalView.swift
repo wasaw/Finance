@@ -7,6 +7,11 @@
 
 import UIKit
 
+private enum Constants {
+    static let horizontalPadding: CGFloat = 10
+    static let verticalPadding: CGFloat = 20
+}
+
 class LastTransactionModalView: UIView {
 // MARK: - Properties
         
@@ -73,10 +78,10 @@ class LastTransactionModalView: UIView {
                      top: topAnchor,
                      trailing: trailingAnchor,
                      bottom: bottomAnchor,
-                     paddingLeading: 10,
-                     paddingTop: 20,
-                     paddingTrailing: -10,
-                     paddingBottom: -20)
+                     paddingLeading: Constants.horizontalPadding,
+                     paddingTop: Constants.verticalPadding,
+                     paddingTrailing: -Constants.horizontalPadding,
+                     paddingBottom: -Constants.verticalPadding)
     }
     
     func setInformation(_ transaction: LastTransaction, currency: Currency, rate: Double) {
