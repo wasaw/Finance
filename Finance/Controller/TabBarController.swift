@@ -14,6 +14,7 @@ final class TabBarController: UITabBarController {
     
     private var currentUser = CurrentUser()
     private let homeCoordinator = HomeCoordinator()
+    private let addCoordinator = AddTransactionCoordinator()
         
 // MARK: - Lifecycle
     
@@ -39,7 +40,7 @@ final class TabBarController: UITabBarController {
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = "Домашняя"
         
-        let addVC = AddTransactionViewController()
+        let addVC = addCoordinator.start()
         let named = (view.frame.height < 700) ? "plus-2.png" : "plus-1.png"
         addVC.tabBarItem.image = UIImage(named: named)?.withRenderingMode(.alwaysOriginal)
         let top: CGFloat = (view.frame.height < 700) ? 10 : 25
@@ -77,7 +78,7 @@ extension TabBarController: UITabBarControllerDelegate {
         let isAddVC = viewController is AddTransactionViewController
 
         if isAddVC {
-            let addVC = AddTransactionViewController()
+            let addVC = addCoordinator.start()
             if let sheet = addVC.sheetPresentationController {
                 sheet.detents = [.large()]
             }
