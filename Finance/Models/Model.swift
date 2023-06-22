@@ -10,7 +10,7 @@ import UIKit
 struct ChoiceService {
     let name: String
     let img: String
-    let vc: UIViewController
+//    let vc: UIViewController
 }
 struct ChoiceTypeRevenue {
     let name: String

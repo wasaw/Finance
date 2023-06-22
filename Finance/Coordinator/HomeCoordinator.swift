@@ -13,11 +13,14 @@ final class HomeCoordinator {
     
     private var navigation: UINavigationController?
     private let homeAssembly: HomeAssembly
+    private let exchangeAssembly: ExchangeRateAssembly
     
 // MARK: - Lifecycle
     
-    init(homeAssembly: HomeAssembly) {
+    init(homeAssembly: HomeAssembly,
+         exchangeAssembly: ExchangeRateAssembly) {
         self.homeAssembly = homeAssembly
+        self.exchangeAssembly = exchangeAssembly
     }
     
 // MARK: - Helpers
@@ -34,7 +37,7 @@ final class HomeCoordinator {
 
 extension HomeCoordinator: HomePresenterOutput {
     func showExchangeRate() {
-        let vc = ExchangeRateViewController()
+        let vc = exchangeAssembly.makeExchangeRateModule()
         navigation?.pushViewController(vc, animated: true)
     }
     

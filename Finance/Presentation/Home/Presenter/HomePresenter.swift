@@ -16,8 +16,8 @@ final class HomePresenter {
     
     private let databaseService = DatabaseService.shared
     private let networkService = NetworkService.shared
-    private let service = [ChoiceService(name: "Курс валют", img: "exchange-rate.png", vc: ExchangeRateViewController()),
-                           ChoiceService(name: "Акции", img: "stock-market.png", vc: StocksViewController())]
+    private let service = [ChoiceService(name: "Курс валют", img: "exchange-rate.png"),
+                           ChoiceService(name: "Акции", img: "stock-market.png")]
 
     private var lastTransaction = [LastTransaction]()
 //    private var lastTransaction = [LastTransaction]() {
