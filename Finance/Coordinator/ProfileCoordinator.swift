@@ -12,13 +12,18 @@ final class ProfileCoordinator {
 // MARK: - Properties
     
     private var navigation: UINavigationController?
+    private let profileAssembly: ProfileAssembly
+    
+// MARK: - Lifecycle
+    
+    init(profileAssembly: ProfileAssembly) {
+        self.profileAssembly = profileAssembly
+    }
     
 // MARK: - Helpers
     
     func start() -> UINavigationController {
-        let presenter = ProfilePresenter()
-        let vc = ProfileViewController(output: presenter)
-        presenter.input = vc
+        let vc = profileAssembly.makeProfileModule()
         let nav = UINavigationController(rootViewController: vc)
         navigation = nav
         return nav

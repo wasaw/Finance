@@ -15,13 +15,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
     private let homeAssembly = HomeAssembly()
     private let addAssembly = AddTransactionAssembly()
+    private let profileAssembly = ProfileAssembly()
         
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
 // MARK: - Coordinator
     
         let homeCoordinator = HomeCoordinator(homeAssembly: homeAssembly)
-        let profileCoordinator = ProfileCoordinator()
+        let profileCoordinator = ProfileCoordinator(profileAssembly: profileAssembly)
 
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
