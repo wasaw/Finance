@@ -14,19 +14,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 // MARK: - Assembly
         
     private let homeAssembly = HomeAssembly()
+    private let addAssembly = AddTransactionAssembly()
         
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
 // MARK: - Coordinator
     
         let homeCoordinator = HomeCoordinator(homeAssembly: homeAssembly)
-        let addCoordinator = AddTransactionCoordinator()
         let profileCoordinator = ProfileCoordinator()
 
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         window?.rootViewController = TabBarController(homeCoordinator: homeCoordinator,
-                                                      addCoordinator: addCoordinator,
+                                                      addAssembly: addAssembly,
                                                       profileCoordinator: profileCoordinator)
         window?.makeKeyAndVisible()
     }
