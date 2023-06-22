@@ -15,7 +15,7 @@ final class StocksViewController: UIViewController {
     
 // MARK: - Properties
     
-    private let output = StocksPresenter()
+    private let output: StocksPresenter
     
     private let loadAnimationView = CircleAnimation()
     private var stockList = [Stock]()
@@ -23,10 +23,18 @@ final class StocksViewController: UIViewController {
     
 // MARK: - Lifecycle
     
+    init(output: StocksPresenter) {
+        self.output = output
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.input = self
         configureAnimationView()
         configureTableView()
         output.viewIsReady()

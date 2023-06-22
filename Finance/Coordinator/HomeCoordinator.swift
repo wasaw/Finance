@@ -14,13 +14,16 @@ final class HomeCoordinator {
     private var navigation: UINavigationController?
     private let homeAssembly: HomeAssembly
     private let exchangeAssembly: ExchangeRateAssembly
+    private let stocksAssembly: StocksAssembly
     
 // MARK: - Lifecycle
     
     init(homeAssembly: HomeAssembly,
-         exchangeAssembly: ExchangeRateAssembly) {
+         exchangeAssembly: ExchangeRateAssembly,
+         stocksAssembly: StocksAssembly) {
         self.homeAssembly = homeAssembly
         self.exchangeAssembly = exchangeAssembly
+        self.stocksAssembly = stocksAssembly
     }
     
 // MARK: - Helpers
@@ -42,7 +45,7 @@ extension HomeCoordinator: HomePresenterOutput {
     }
     
     func showStock() {
-        let vc = StocksViewController()
+        let vc = stocksAssembly.makeStocksModule()
         navigation?.pushViewController(vc, animated: true)
     }
 }
