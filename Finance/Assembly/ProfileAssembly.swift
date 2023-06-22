@@ -8,8 +8,8 @@
 import UIKit
 
 final class ProfileAssembly {
-    func makeProfileModule() -> UIViewController {
-        let presenter = ProfilePresenter()
+    func makeProfileModule(profileCoordinator: ProfilePresenterOutput) -> UIViewController {
+        let presenter = ProfilePresenter(output: profileCoordinator)
         let vc = ProfileViewController(output: presenter)
         presenter.input = vc
         return vc

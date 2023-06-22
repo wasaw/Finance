@@ -11,7 +11,7 @@ final class ProfileCoordinator {
     
 // MARK: - Properties
     
-    private var navigation: UINavigationController?
+    private var profileView: UIViewController?
     private let profileAssembly: ProfileAssembly
     
 // MARK: - Lifecycle
@@ -23,9 +23,15 @@ final class ProfileCoordinator {
 // MARK: - Helpers
     
     func start() -> UINavigationController {
-        let vc = profileAssembly.makeProfileModule()
+        let vc = profileAssembly.makeProfileModule(profileCoordinator: self)
         let nav = UINavigationController(rootViewController: vc)
-        navigation = nav
+        profileView = vc
         return nav
     }
+}
+
+// MARK: - ProfileOutput
+
+extension ProfileCoordinator: ProfilePresenterOutput {
+    
 }

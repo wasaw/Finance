@@ -13,6 +13,13 @@ final class ProfilePresenter {
 // MARK: - Properties
     
     weak var input: ProfileInput?
+    private let output: ProfilePresenterOutput
+    
+// MARK: - Lifecycle
+    
+    init(output: ProfilePresenterOutput) {
+        self.output = output
+    }
     
 }
 
@@ -21,6 +28,7 @@ final class ProfilePresenter {
 extension ProfilePresenter: ProfileOutput {
     func viewIsReady() {
         if Auth.auth().currentUser == nil {
+//            output.showAuth()
             input?.showAuth()
 //            addAuthController()
         } else {
