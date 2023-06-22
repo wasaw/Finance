@@ -13,11 +13,25 @@ final class TabBarController: UITabBarController {
 // MARK: - Properties
     
     private var currentUser = CurrentUser()
-    private let homeCoordinator = HomeCoordinator()
-    private let addCoordinator = AddTransactionCoordinator()
-    private let profileCoordinator = ProfileCoordinator()
+    private let homeCoordinator: HomeCoordinator
+    private let addCoordinator: AddTransactionCoordinator
+    private let profileCoordinator: ProfileCoordinator
         
 // MARK: - Lifecycle
+    
+    init(homeCoordinator: HomeCoordinator,
+         addCoordinator: AddTransactionCoordinator,
+         profileCoordinator: ProfileCoordinator) {
+        
+        self.homeCoordinator = homeCoordinator
+        self.addCoordinator = addCoordinator
+        self.profileCoordinator = profileCoordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

@@ -12,13 +12,18 @@ final class HomeCoordinator {
 // MARK: - Properties
     
     private var navigation: UINavigationController?
+    private let homeAssembly: HomeAssembly
+    
+// MARK: - Lifecycle
+    
+    init(homeAssembly: HomeAssembly) {
+        self.homeAssembly = homeAssembly
+    }
     
 // MARK: - Helpers
     
     func start() -> UINavigationController {
-        let presenter = HomePresenter(output: self)
-        let homeVC = HomeViewController(output: presenter)
-        presenter.input = homeVC
+        let homeVC = homeAssembly.makeHomeModule(homeCoordinator: self)
         let nav = UINavigationController(rootViewController: homeVC)
         navigation = nav
         return nav

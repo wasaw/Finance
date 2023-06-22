@@ -11,6 +11,7 @@
 		BB44C5F72988079600776D4E /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB44C5F62988079600776D4E /* Animations.swift */; };
 		BB5C40EE2A434150002DC6A0 /* AddTransactionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40ED2A434150002DC6A0 /* AddTransactionCoordinator.swift */; };
 		BB5C40F02A4345CF002DC6A0 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40EF2A4345CF002DC6A0 /* ProfileCoordinator.swift */; };
+		BB5C40F52A442A50002DC6A0 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40F42A442A50002DC6A0 /* HomeAssembly.swift */; };
 		BB5E372E2A4098850093AB95 /* LastTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */; };
 		BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */; };
 		BB5E37322A4098B00093AB95 /* LastTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */; };
@@ -81,6 +82,7 @@
 		BB44C5F62988079600776D4E /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		BB5C40ED2A434150002DC6A0 /* AddTransactionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionCoordinator.swift; sourceTree = "<group>"; };
 		BB5C40EF2A4345CF002DC6A0 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		BB5C40F42A442A50002DC6A0 /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
 		BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionPresenter.swift; sourceTree = "<group>"; };
 		BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionViewController.swift; sourceTree = "<group>"; };
 		BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionInput.swift; sourceTree = "<group>"; };
@@ -174,6 +176,14 @@
 				A53022AC9E214609030662D0 /* Pods_Finance.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BB5C40F32A442A3A002DC6A0 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				BB5C40F42A442A50002DC6A0 /* HomeAssembly.swift */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 		BB5E372A2A40983C0093AB95 /* LastTransaction */ = {
@@ -295,6 +305,7 @@
 				BB6BDB9A2989550B0000584A /* App */,
 				BB9EFC14286B2A7500305776 /* API */,
 				BB61DEA32850A39800A08AC6 /* Models */,
+				BB5C40F32A442A3A002DC6A0 /* Assembly */,
 				BB5E37362A41886D0093AB95 /* Coordinator */,
 				BB61DEA22850A39400A08AC6 /* General */,
 				BB6D218E2A33C9FB000C22D7 /* Presentation */,
@@ -651,6 +662,7 @@
 				BB6B5BB62A3C9C1600E16FFB /* AddTransactionViewController.swift in Sources */,
 				BB5E374A2A41CC420093AB95 /* StocksViewController.swift in Sources */,
 				BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */,
+				BB5C40F52A442A50002DC6A0 /* HomeAssembly.swift in Sources */,
 				BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */,
 				BB5E373F2A4199440093AB95 /* ExchangeRatePresenter.swift in Sources */,
 				BB5E37452A4199E00093AB95 /* ExchangeRateOutput.swift in Sources */,

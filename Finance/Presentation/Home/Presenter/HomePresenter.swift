@@ -28,8 +28,8 @@ final class HomePresenter {
     
 // MARK: - Lifecycle
     
-    init(output: HomePresenterOutput) {
-        self.output = output
+    init(homeCoordinator: HomePresenterOutput) {
+        self.output = homeCoordinator
     }
     
 // MARK: - Helpers
