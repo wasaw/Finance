@@ -7,7 +7,6 @@ target 'Finance' do
 
   # Pods for Finance
 
-pod "Alamofire"
 pod 'FirebaseAuth'
 pod 'FirebaseFirestore'
 pod 'Firebase/Database'

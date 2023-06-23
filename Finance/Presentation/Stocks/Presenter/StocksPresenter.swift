@@ -12,7 +12,9 @@ final class StocksPresenter {
 // MARK: - Properties
     
     weak var input: StocksInput?
-    
+    private let network: NetworkProtocol
+    private let config: NetworkConfiguration
+
     private var stockList: [Stock] = [Stock(symbol: "ABNB", company: "Airbnb"),
                                       Stock(symbol: "AAPL", company: "Apple"),
                                       Stock(symbol: "AMZN", company: "Amazon"),
@@ -33,6 +35,13 @@ final class StocksPresenter {
                                       Stock(symbol: "WMT", company: "Walmart")]
     private let dayInSeconds = 86400.0
     
+// MARK: - Lifecycle
+    
+    init(network: NetworkProtocol, config: NetworkConfiguration) {
+        self.network = network
+        self.config = config
+    }
+    
 // MARK: - Helpers
     
     private func loadData() {
@@ -41,18 +50,26 @@ final class StocksPresenter {
         formatter.dateFormat = "yyyy-MM-dd"
         let stringDate = formatter.string(from: currentDate)
         DispatchQueue.main.async {
-            NetworkService.shared.loadStockRate(date: stringDate) { results in
-                switch results {
-                case .success(let results):
+            let urlString = self.config.getUrl(.stock, date: stringDate)
+            guard let url = URL(string: urlString) else { return }
+            let urlRequest = URLRequest(url: url)
+            self.network.loadData(request: urlRequest) { (result: Result<StockRate, Error>) in
+                switch result {
+                case .success(let stocks):
+                    let result = stocks.results
                     for i in 0..<self.stockList.count {
-                        if let answer = results.first(where: { $0.symbol == self.stockList[i].symbol }) {
+                        if let answer = result.first(where: { $0.symbol == self.stockList[i].symbol }) {
                             self.stockList[i].value = answer.value
                         }
                     }
-                    self.input?.setLoading(enable: false)
-                    self.input?.setData(self.stockList)
+                    DispatchQueue.main.async {
+                        self.input?.setLoading(enable: false)
+                        self.input?.setData(self.stockList)
+                    }
                 case .failure(let error):
-                    self.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
+                    }
                 }
             }
         }

@@ -15,7 +15,6 @@ final class HomePresenter {
     private let output: HomePresenterOutput
     
     private let databaseService = DatabaseService.shared
-    private let networkService = NetworkService.shared
     private let service = [ChoiceService(name: "Курс валют", img: "exchange-rate.png"),
                            ChoiceService(name: "Акции", img: "stock-market.png")]
 

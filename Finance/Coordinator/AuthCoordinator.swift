@@ -39,6 +39,7 @@ extension AuthCoordinator: AuthPresenterOutput {
                 print("Logging error is \(error.localizedDescription)")
             }
             if let uid = result?.user.uid {
+                print(uid)
 //                self.delegate?.sendUid(uid: uid)
             }
         }
@@ -47,6 +48,7 @@ extension AuthCoordinator: AuthPresenterOutput {
     func registration(credentials: AuthCredentials) {
         AuthService.shared.registerUser(credentials: credentials) { error, ref in
         if let error = error {
+            print(error)
 //            self.alert(with: "Ошибка", massage: error.localizedDescription)
         } else {
             let uid = ref.url.suffix(28)
@@ -58,7 +60,7 @@ extension AuthCoordinator: AuthPresenterOutput {
 //                    self.delegate?.sendUid(uid: String(uid))
 //                    self.presentingViewController?.dismiss(animated: true)
                 case .failure(let error):
-                    break
+                    print(error)
 //                    self.alert(with: "Ошибка", massage: error.localizedDescription)
                 }
             }

@@ -15,15 +15,21 @@ final class HomeCoordinator {
     private let homeAssembly: HomeAssembly
     private let exchangeAssembly: ExchangeRateAssembly
     private let stocksAssembly: StocksAssembly
+    private let network: NetworkProtocol
+    private let config: NetworkConfiguration
     
 // MARK: - Lifecycle
     
     init(homeAssembly: HomeAssembly,
          exchangeAssembly: ExchangeRateAssembly,
-         stocksAssembly: StocksAssembly) {
+         stocksAssembly: StocksAssembly,
+         network: NetworkProtocol,
+         config: NetworkConfiguration) {
         self.homeAssembly = homeAssembly
         self.exchangeAssembly = exchangeAssembly
         self.stocksAssembly = stocksAssembly
+        self.network = network
+        self.config = config
     }
     
 // MARK: - Helpers
@@ -40,12 +46,12 @@ final class HomeCoordinator {
 
 extension HomeCoordinator: HomePresenterOutput {
     func showExchangeRate() {
-        let vc = exchangeAssembly.makeExchangeRateModule()
+        let vc = exchangeAssembly.makeExchangeRateModule(network: network, config: config)
         navigation?.pushViewController(vc, animated: true)
     }
     
     func showStock() {
-        let vc = stocksAssembly.makeStocksModule()
+        let vc = stocksAssembly.makeStocksModule(network: network, config: config)
         navigation?.pushViewController(vc, animated: true)
     }
 }

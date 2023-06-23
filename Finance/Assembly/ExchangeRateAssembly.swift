@@ -8,8 +8,8 @@
 import UIKit
 
 final class ExchangeRateAssembly {
-    func makeExchangeRateModule() -> UIViewController {
-        let presenter = ExchangeRatePresenter()
+    func makeExchangeRateModule(network: NetworkProtocol, config: NetworkConfiguration) -> UIViewController {
+        let presenter = ExchangeRatePresenter(network: network, config: config)
         let vc = ExchangeRateViewController(output: presenter)
         presenter.input = vc
         return vc

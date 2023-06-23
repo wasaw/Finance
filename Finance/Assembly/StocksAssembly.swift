@@ -8,8 +8,8 @@
 import UIKit
 
 final class StocksAssembly {
-    func makeStocksModule() -> UIViewController {
-        let presenter = StocksPresenter()
+    func makeStocksModule(network: NetworkProtocol, config: NetworkConfiguration) -> UIViewController {
+        let presenter = StocksPresenter(network: network, config: config)
         let vc = StocksViewController(output: presenter)
         presenter.input = vc
         return vc

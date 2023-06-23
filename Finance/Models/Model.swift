@@ -135,3 +135,8 @@ extension CoreDataError: LocalizedError {
         }
     }
 }
+
+enum RequestType {
+    case exchange
+    case stock
+}
