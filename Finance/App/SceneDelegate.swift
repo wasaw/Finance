@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private let stocksAssembly = StocksAssembly()
     private let network = Network()
     private let config = NetworkConfiguration()
+    private let defaultValue = DefaultValue()
         
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         

@@ -14,6 +14,7 @@ final class AddTransactionPresenter {
     weak var input: AddTransactionInput?
     
     private let databaseService = DatabaseService.shared
+    private let fileStore = FileStore()
     
     private var category = [ChoiceCategoryExpense]()
     private var revenue = [ChoiceTypeRevenue]()
@@ -21,26 +22,25 @@ final class AddTransactionPresenter {
 // MARK: - Helpers
     
     private func loadData() {
-        DispatchQueue.main.async {
-            self.databaseService.getCategoryInformation { result in
-                switch result {
-                case .success(let category):
-                    self.category = category
-                    self.databaseService.getTypeInformation { result in
-                        switch result {
-                        case .success(let revenue):
-                            self.revenue = revenue
-                            self.input?.showData(category: category,
-                                                 revenue: revenue)
-                        case .failure(let error):
-                            self.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
-                        }
-                    }
-                case .failure(let error):
-                    self.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
-                }
+        fileStore.readAppInformation("category") { [weak self] (result: Result<[ChoiceCategoryExpense], FileManagerError>) in
+            switch result {
+            case .success(let answer):
+                self?.category = answer
+            case .failure(let error):
+                self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
             }
         }
+        
+        fileStore.readAppInformation("revenue") { [weak self] (result: Result<[ChoiceTypeRevenue], FileManagerError>) in
+            switch result {
+            case .success(let answer):
+                self?.revenue = answer
+            case .failure(let error):
+                self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
+            }
+        }
+        
+        input?.showData(category: category, revenue: revenue)
     }
 }
 

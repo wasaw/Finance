@@ -12,13 +12,13 @@ struct ChoiceService {
     let img: String
 //    let vc: UIViewController
 }
-struct ChoiceTypeRevenue {
+struct ChoiceTypeRevenue: Codable {
     let name: String
     let img: String
     var amount: Double = 0
     var isChecked = false
 }
-struct ChoiceCategoryExpense {
+struct ChoiceCategoryExpense: Codable {
     let name: String
     let img: String
     var isChecked = false
@@ -104,6 +104,19 @@ struct Stock {
 }
 
 // MARK: - Error
+
+enum FileManagerError: Error {
+    case fileNotExists
+}
+
+extension FileManagerError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .fileNotExists:
+            return NSLocalizedString("Информация отсутствует", comment: "")
+        }
+    }
+}
 
 enum ResultStatus<T> {
     case success(T)

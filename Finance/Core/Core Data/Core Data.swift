@@ -5,7 +5,6 @@
 //  Created by Александр Меренков on 28.06.2022.
 //
 
-import Foundation
 import CoreData
 import UIKit
 
@@ -13,9 +12,8 @@ final class DatabaseService {
     static let shared = DatabaseService()
 //    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-// MARK: - setDefaultValue
-    
     func setDefaultValue(completion: @escaping(ResultStatus<Bool>) -> Void) {
+        
         let revenue = [ChoiceTypeRevenue(name: "Зарплата", img: "calendar.png"),
                        ChoiceTypeRevenue(name: "Продажа", img: "sales.png"),
                        ChoiceTypeRevenue(name: "Проценты", img: "price-tag.png"),
