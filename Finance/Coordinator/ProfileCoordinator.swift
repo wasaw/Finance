@@ -13,17 +13,19 @@ final class ProfileCoordinator {
     
     private var profileView: UIViewController?
     private let profileAssembly: ProfileAssembly
+    private let coreData: CoreDataProtocol
     
 // MARK: - Lifecycle
     
-    init(profileAssembly: ProfileAssembly) {
+    init(profileAssembly: ProfileAssembly, coreData: CoreDataProtocol) {
         self.profileAssembly = profileAssembly
+        self.coreData = coreData
     }
     
 // MARK: - Helpers
     
     func start() -> UINavigationController {
-        let vc = profileAssembly.makeProfileModule(profileCoordinator: self)
+        let vc = profileAssembly.makeProfileModule(profileCoordinator: self, coreData: coreData)
         let nav = UINavigationController(rootViewController: vc)
         profileView = vc
         return nav

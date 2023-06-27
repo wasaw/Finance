@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private let network = Network()
     private let config = NetworkConfiguration()
     private let defaultValue = DefaultValue()
+    private let coreData = CoreDataService()
         
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -30,14 +31,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                               exchangeAssembly: exchangeAssembly,
                                               stocksAssembly: stocksAssembly,
                                               network: network,
-                                              config: config)
-        let profileCoordinator = ProfileCoordinator(profileAssembly: profileAssembly)
+                                              config: config,
+                                              coreData: coreData)
+        let profileCoordinator = ProfileCoordinator(profileAssembly: profileAssembly, coreData: coreData)
 
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         window?.rootViewController = TabBarController(homeCoordinator: homeCoordinator,
                                                       addAssembly: addAssembly,
-                                                      profileCoordinator: profileCoordinator)
+                                                      profileCoordinator: profileCoordinator, coreData: coreData)
         window?.makeKeyAndVisible()
     }
 }

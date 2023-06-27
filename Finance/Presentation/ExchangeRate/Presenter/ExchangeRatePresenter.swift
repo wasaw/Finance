@@ -15,7 +15,7 @@ final class ExchangeRatePresenter {
     
     private let network: NetworkProtocol
     private let config: NetworkConfiguration
-    private let databaseService = DatabaseService.shared
+    private let coreDataService: CoreDataProtocol
     private var exchangeRate = [CurrentExchangeRate]()
     private let fullName = ["Болгарский лев",
                             "Чешская крона",
@@ -49,9 +49,12 @@ final class ExchangeRatePresenter {
     
 // MARK: - Lifecycle
     
-    init(network: NetworkProtocol, config: NetworkConfiguration) {
+    init(network: NetworkProtocol,
+         config: NetworkConfiguration,
+         coreDataService: CoreDataProtocol) {
         self.network = network
         self.config = config
+        self.coreDataService = coreDataService
     }
     
 // MARK: - Helpers
@@ -89,19 +92,14 @@ final class ExchangeRatePresenter {
         }
         
         DispatchQueue.main.async {
-            self.databaseService.getTypeInformation { result in
-                switch result {
-                case .success(let revenue):
-                    let revenueArray = revenue
-                    var amount: Double = 0
-                    for item in revenueArray {
-                        amount += item.amount
-                    }
-                    self.revenue = amount
-                    self.isLoadRevenue = true
-                case .failure(let error):
-                    self.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
+            do {
+                let lastTransactionManagedObject = try  self.coreDataService.fetchTransactions()
+                lastTransactionManagedObject.forEach { transaction in
+                    self.revenue += transaction.amount
                 }
+                self.isLoadRevenue = true
+            } catch {
+                self.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
             }
         }
     }

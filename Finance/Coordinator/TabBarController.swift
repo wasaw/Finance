@@ -16,16 +16,19 @@ final class TabBarController: UITabBarController {
     private let homeCoordinator: HomeCoordinator
     private let addAssembly: AddTransactionAssembly
     private let profileCoordinator: ProfileCoordinator
+    private let coreData: CoreDataProtocol
         
 // MARK: - Lifecycle
     
     init(homeCoordinator: HomeCoordinator,
          addAssembly: AddTransactionAssembly,
-         profileCoordinator: ProfileCoordinator) {
+         profileCoordinator: ProfileCoordinator,
+         coreData: CoreDataProtocol) {
         
         self.homeCoordinator = homeCoordinator
         self.addAssembly = addAssembly
         self.profileCoordinator = profileCoordinator
+        self.coreData = coreData
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -55,7 +58,7 @@ final class TabBarController: UITabBarController {
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = "Домашняя"
         
-        let addVC = addAssembly.makeAddTransactionModul()
+        let addVC = addAssembly.makeAddTransactionModul(coreDataService: coreData)
         let named = (view.frame.height < 700) ? "plus-2.png" : "plus-1.png"
         addVC.tabBarItem.image = UIImage(named: named)?.withRenderingMode(.alwaysOriginal)
         let top: CGFloat = (view.frame.height < 700) ? 10 : 25
@@ -75,13 +78,21 @@ final class TabBarController: UITabBarController {
     private func authUser() {
         let uid = Auth.auth().currentUser?.uid
         guard let uid = uid else { return }
-        DatabaseService.shared.getUserInformation(uid: uid) { result in
-            switch result {
-            case .success(let user):
-                self.currentUser.setValue(user: user)
-            case .failure(let error):
-                self.alert(with: "Ошибка", massage: error.localizedDescription)
-            }
+        do {
+            let userManagedObject = try coreData.fetchUserInformation(uid: uid)
+            guard let userManagedObject = userManagedObject.first,
+            let uid = userManagedObject.uid,
+            let login = userManagedObject.login,
+            let email = userManagedObject.email,
+            let profileImageUrl = userManagedObject.profileImageUrl
+            else { return }
+            let user = User(uid: uid,
+                            login: login,
+                            email: email,
+                            profileImageUrl: profileImageUrl,
+                            authorized: userManagedObject.authorized)
+        } catch {
+            self.alert(with: "Ошибка", massage: error.localizedDescription)
         }
     }
 }
@@ -93,7 +104,7 @@ extension TabBarController: UITabBarControllerDelegate {
         let isAddVC = viewController is AddTransactionViewController
 
         if isAddVC {
-            let addVC = addAssembly.makeAddTransactionModul()
+            let addVC = addAssembly.makeAddTransactionModul(coreDataService: coreData)
             if let sheet = addVC.sheetPresentationController {
                 sheet.detents = [.large()]
             }

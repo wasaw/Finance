@@ -28,6 +28,7 @@
 		BB5C411A2A462D6A002DC6A0 /* FileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41192A462D6A002DC6A0 /* FileStore.swift */; };
 		BB5C411C2A463050002DC6A0 /* FileStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C411B2A463050002DC6A0 /* FileStoreProtocol.swift */; };
 		BB5C411E2A4996D1002DC6A0 /* DefaultValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C411D2A4996D1002DC6A0 /* DefaultValue.swift */; };
+		BB5C41202A4ACC6F002DC6A0 /* CoreDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C411F2A4ACC6F002DC6A0 /* CoreDataProtocol.swift */; };
 		BB5E372E2A4098850093AB95 /* LastTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */; };
 		BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */; };
 		BB5E37322A4098B00093AB95 /* LastTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */; };
@@ -80,7 +81,7 @@
 		BB9EFC0C2861AADF00305776 /* RevenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC0B2861AADF00305776 /* RevenueView.swift */; };
 		BB9EFC0E2861B2AC00305776 /* AmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC0D2861B2AC00305776 /* AmountView.swift */; };
 		BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC0F2863023700305776 /* Model.xcdatamodeld */; };
-		BB9EFC13286B234700305776 /* Core Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC12286B234600305776 /* Core Data.swift */; };
+		BB9EFC13286B234700305776 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC12286B234600305776 /* CoreDataService.swift */; };
 		BB9EFC1D287830E800305776 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC1C287830E800305776 /* TopView.swift */; };
 		BB9EFC21287869D000305776 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC20287869D000305776 /* CurrencyCell.swift */; };
 		BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */; };
@@ -112,6 +113,7 @@
 		BB5C41192A462D6A002DC6A0 /* FileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStore.swift; sourceTree = "<group>"; };
 		BB5C411B2A463050002DC6A0 /* FileStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStoreProtocol.swift; sourceTree = "<group>"; };
 		BB5C411D2A4996D1002DC6A0 /* DefaultValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValue.swift; sourceTree = "<group>"; };
+		BB5C411F2A4ACC6F002DC6A0 /* CoreDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProtocol.swift; sourceTree = "<group>"; };
 		BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionPresenter.swift; sourceTree = "<group>"; };
 		BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionViewController.swift; sourceTree = "<group>"; };
 		BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionInput.swift; sourceTree = "<group>"; };
@@ -166,7 +168,7 @@
 		BB9EFC0B2861AADF00305776 /* RevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueView.swift; sourceTree = "<group>"; };
 		BB9EFC0D2861B2AC00305776 /* AmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountView.swift; sourceTree = "<group>"; };
 		BB9EFC102863023700305776 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		BB9EFC12286B234600305776 /* Core Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core Data.swift"; sourceTree = "<group>"; };
+		BB9EFC12286B234600305776 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		BB9EFC1C287830E800305776 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		BB9EFC20287869D000305776 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 		BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionModalView.swift; sourceTree = "<group>"; };
@@ -267,7 +269,8 @@
 		BB5C41172A4620AD002DC6A0 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				BB9EFC12286B234600305776 /* Core Data.swift */,
+				BB9EFC12286B234600305776 /* CoreDataService.swift */,
+				BB5C411F2A4ACC6F002DC6A0 /* CoreDataProtocol.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -719,6 +722,7 @@
 				BB9EFC0E2861B2AC00305776 /* AmountView.swift in Sources */,
 				BB6D21972A33CB1A000C22D7 /* HomeOutput.swift in Sources */,
 				BB5C41062A4446DD002DC6A0 /* AuthInput.swift in Sources */,
+				BB5C41202A4ACC6F002DC6A0 /* CoreDataProtocol.swift in Sources */,
 				BB6BDB99298942130000584A /* NetworkConfiguration.swift in Sources */,
 				BB9B6FCF28CB5A59000B1D53 /* Constants.swift in Sources */,
 				BB44C5F72988079600776D4E /* Animations.swift in Sources */,
@@ -762,7 +766,7 @@
 				BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */,
 				BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */,
 				BB5C410E2A446D49002DC6A0 /* AuthCoordinator.swift in Sources */,
-				BB9EFC13286B234700305776 /* Core Data.swift in Sources */,
+				BB9EFC13286B234700305776 /* CoreDataService.swift in Sources */,
 				BB6D21A42A38AA25000C22D7 /* ProfileInput.swift in Sources */,
 				BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */,
 				BB9EFC0C2861AADF00305776 /* RevenueView.swift in Sources */,

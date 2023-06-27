@@ -21,6 +21,7 @@ final class ProfileViewController: UIViewController {
 // MARK: - Properties
     
     private let output: ProfileOutput
+    private let coreData: CoreDataProtocol
     
     private let imagePicker = UIImagePickerController()
     private lazy var imageView = ProfileImageView()
@@ -37,8 +38,9 @@ final class ProfileViewController: UIViewController {
     
 // MARK: - Lifecycle
     
-    init(output: ProfileOutput) {
+    init(output: ProfileOutput, coreData: CoreDataProtocol) {
         self.output = output
+        self.coreData = coreData
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -177,14 +179,11 @@ extension ProfileViewController: ProfileImageSelectDelegate {
 
 extension ProfileViewController: SendUidDelegate {
     func sendUid(uid: String) {
-        DatabaseService.shared.getUserInformation(uid: uid) { result in
-            switch result {
-            case .success:
-                break
-//                self.currentUser.setValue(user: user)
-            case .failure(let error):
-                self.alert(with: "Ошибка", massage: error.localizedDescription)
-            }
+        do {
+            let userManagedObject = try coreData.fetchUserInformation(uid: uid)
+//            self.currentUser.setValue(user: user)
+        } catch {
+            self.alert(with: "Ошибка", massage: error.localizedDescription)
         }
 //        self.deleteAuthController()
     }

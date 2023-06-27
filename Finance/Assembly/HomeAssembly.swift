@@ -8,8 +8,8 @@
 import UIKit
 
 final class HomeAssembly {
-    func makeHomeModule(homeCoordinator: HomePresenterOutput) -> UIViewController {
-        let presenter = HomePresenter(homeCoordinator: homeCoordinator)
+    func makeHomeModule(homeCoordinator: HomePresenterOutput, coreDataService: CoreDataProtocol) -> UIViewController {
+        let presenter = HomePresenter(homeCoordinator: homeCoordinator, coreDataService: coreDataService)
         let homeVC = HomeViewController(output: presenter)
         presenter.input = homeVC
         return homeVC

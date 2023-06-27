@@ -8,9 +8,9 @@
 import UIKit
 
 final class ProfileAssembly {
-    func makeProfileModule(profileCoordinator: ProfilePresenterOutput) -> UIViewController {
+    func makeProfileModule(profileCoordinator: ProfilePresenterOutput, coreData: CoreDataProtocol) -> UIViewController {
         let presenter = ProfilePresenter(output: profileCoordinator)
-        let vc = ProfileViewController(output: presenter)
+        let vc = ProfileViewController(output: presenter, coreData: coreData)
         presenter.input = vc
         return vc
     }

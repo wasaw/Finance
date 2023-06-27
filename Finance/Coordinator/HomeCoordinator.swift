@@ -17,6 +17,7 @@ final class HomeCoordinator {
     private let stocksAssembly: StocksAssembly
     private let network: NetworkProtocol
     private let config: NetworkConfiguration
+    private let coreData: CoreDataProtocol
     
 // MARK: - Lifecycle
     
@@ -24,18 +25,20 @@ final class HomeCoordinator {
          exchangeAssembly: ExchangeRateAssembly,
          stocksAssembly: StocksAssembly,
          network: NetworkProtocol,
-         config: NetworkConfiguration) {
+         config: NetworkConfiguration,
+         coreData: CoreDataProtocol) {
         self.homeAssembly = homeAssembly
         self.exchangeAssembly = exchangeAssembly
         self.stocksAssembly = stocksAssembly
         self.network = network
         self.config = config
+        self.coreData = coreData
     }
     
 // MARK: - Helpers
     
     func start() -> UINavigationController {
-        let homeVC = homeAssembly.makeHomeModule(homeCoordinator: self)
+        let homeVC = homeAssembly.makeHomeModule(homeCoordinator: self, coreDataService: coreData)
         let nav = UINavigationController(rootViewController: homeVC)
         navigation = nav
         return nav
@@ -46,7 +49,9 @@ final class HomeCoordinator {
 
 extension HomeCoordinator: HomePresenterOutput {
     func showExchangeRate() {
-        let vc = exchangeAssembly.makeExchangeRateModule(network: network, config: config)
+        let vc = exchangeAssembly.makeExchangeRateModule(network: network,
+                                                         config: config,
+                                                         coreData: coreData)
         navigation?.pushViewController(vc, animated: true)
     }
     

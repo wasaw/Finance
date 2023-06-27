@@ -13,11 +13,17 @@ final class AddTransactionPresenter {
     
     weak var input: AddTransactionInput?
     
-    private let databaseService = DatabaseService.shared
+    private let coreDataService: CoreDataProtocol
     private let fileStore = FileStore()
     
     private var category = [ChoiceCategoryExpense]()
     private var revenue = [ChoiceTypeRevenue]()
+    
+// MARK: - Lifecycle
+    
+    init(coreDataService: CoreDataProtocol) {
+        self.coreDataService = coreDataService
+    }
     
 // MARK: - Helpers
     
@@ -52,13 +58,15 @@ extension AddTransactionPresenter: AddTransactionOutput {
     }
     
     func saveTransaction(_ transaction: LastTransaction) {
-        databaseService.saveTransaction(transaction: transaction) { result in
-            switch result {
-            case .success:
-                self.input?.dismissView()
-            case .failure(let error):
-                self.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
-            }
+        coreDataService.save { context in
+            let transactionManagedObject = TransactionManagedObject(context: context)
+            transactionManagedObject.type = transaction.type
+            transactionManagedObject.category = transaction.category
+            transactionManagedObject.img = transaction.img
+            transactionManagedObject.date = transaction.date
+            transactionManagedObject.amount = transaction.amount
+            transactionManagedObject.comment = transaction.comment
         }
+        input?.dismissView()
     }
 }

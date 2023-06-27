@@ -71,8 +71,8 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.viewIsReady()
         configureUI()
+        output.viewIsReady()
         view.backgroundColor = .white
     }
     

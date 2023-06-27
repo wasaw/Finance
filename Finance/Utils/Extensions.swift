@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 // MARK: - Colors
 
@@ -77,5 +78,18 @@ extension UIViewController {
         let alert = UIAlertController(title: title, message: massage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: completion))
         self.present(alert, animated: true)
+    }
+}
+
+// MARK: - NSManagerObject
+
+extension NSManagedObject {
+    convenience init(usedContext: NSManagedObjectContext) {
+        let name = String(describing: type(of: self))
+        guard let entity = NSEntityDescription.entity(forEntityName: name, in: usedContext) else {
+            self.init(context: usedContext)
+            return
+        }
+        self.init(entity: entity, insertInto: usedContext)
     }
 }

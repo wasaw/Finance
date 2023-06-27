@@ -12,6 +12,7 @@ final class AuthCoordinator {
 // MARK: - Properties
     
     private let authAssembly: AuthAssembly
+    private let coreData = CoreDataService()
     
 // MARK: - Lifecycle
     
@@ -53,16 +54,13 @@ extension AuthCoordinator: AuthPresenterOutput {
         } else {
             let uid = ref.url.suffix(28)
             let user = User(uid: String(uid), login: credentials.login, email: credentials.email, profileImageUrl: "", authorized: true)
-            DatabaseService.shared.saveUser(user: user) { result in
-                switch result {
-                case .success:
-                    break
-//                    self.delegate?.sendUid(uid: String(uid))
-//                    self.presentingViewController?.dismiss(animated: true)
-                case .failure(let error):
-                    print(error)
-//                    self.alert(with: "Ошибка", massage: error.localizedDescription)
-                }
+            self.coreData.save { context in
+                let userManagedObject = UserManagedObject(usedContext: context)
+                userManagedObject.uid = user.uid
+                userManagedObject.login = user.login
+                userManagedObject.email = user.email
+                userManagedObject.profileImageUrl = user.profileImageUrl?.absoluteString ?? ""
+                userManagedObject.authorized = user.authorized
             }
         }
     }
