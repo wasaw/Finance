@@ -12,12 +12,14 @@ final class AuthCoordinator {
 // MARK: - Properties
     
     private let authAssembly: AuthAssembly
+    private let authService: AuthServiceProtocol
     private let coreData = CoreDataService()
     
 // MARK: - Lifecycle
     
-    init(authAssembly: AuthAssembly) {
+    init(authAssembly: AuthAssembly, authService: AuthServiceProtocol) {
         self.authAssembly = authAssembly
+        self.authService = authService
     }
     
 // MARK: - Helpers
@@ -32,7 +34,7 @@ final class AuthCoordinator {
 
 extension AuthCoordinator: AuthPresenterOutput {
     func entrance(email: String, password: String) {
-        AuthService.shared.logInUser(email: email, password: password) { result, error in
+        authService.logInUser(email: email, password: password) { result, error in
             if let error = error {
                 if error.localizedDescription.contains("The password is invalid") {
 //                    self.alert(with: "Внимание", massage: "Введен неверный пароль")
@@ -47,7 +49,7 @@ extension AuthCoordinator: AuthPresenterOutput {
     }
     
     func registration(credentials: AuthCredentials) {
-        AuthService.shared.registerUser(credentials: credentials) { error, ref in
+        authService.registerUser(credentials: credentials) { error, ref in
         if let error = error {
             print(error)
 //            self.alert(with: "Ошибка", massage: error.localizedDescription)

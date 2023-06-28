@@ -10,8 +10,12 @@ import FirebaseAuth
 import FirebaseDatabase
 
 final class AuthService {
-    static let shared = AuthService()
     
+}
+
+// MARK: - AuthServiceProtocol
+
+extension AuthService: AuthServiceProtocol {
     func logInUser(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password, completion: completion)
     }

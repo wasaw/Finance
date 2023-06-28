@@ -16,19 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        let isLaunchedBefore = UserDefaults.standard.bool(forKey: "isLaunchedBefore")
-        if !isLaunchedBefore {
-            DispatchQueue.main.async {
-//                DatabaseService.shared.setDefaultValue { result in
-//                    switch result {
-//                    case .success:
-//                        UserDefaults.standard.set(true, forKey: "isLaunchedBefore")
-//                    case .failure(let error):
-//                        print(error.localizedDescription)
-//                    }
-//                }
-            }
-        }
         return true
     }
 
@@ -37,8 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      configurationForConnecting connectingSceneSession: UISceneSession,
                      options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 }

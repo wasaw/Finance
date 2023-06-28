@@ -10,25 +10,24 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-// MARK: - Assembly
-        
-    private let homeAssembly = HomeAssembly()
-    private let addAssembly = AddTransactionAssembly()
-    private let profileAssembly = ProfileAssembly()
-    private let exchangeAssembly = ExchangeRateAssembly()
-    private let stocksAssembly = StocksAssembly()
-    private let network = Network()
-    private let config = NetworkConfiguration()
-    private let defaultValue = DefaultValue()
-    private let coreData = CoreDataService()
         
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
+// MARK: - Assembly
+        
+    let homeAssembly = HomeAssembly()
+    let addAssembly = AddTransactionAssembly()
+    let profileAssembly = ProfileAssembly()
+    let exchangeAssembly = ExchangeRateAssembly()
+    let stocksAssembly = StocksAssembly()
+    let network = Network()
+    let config = NetworkConfiguration()
+    let fileStore = FileStore()
+    let coreData = CoreDataService()
+    let transactionsService = TransactionsService(coreData: coreData)
+        
 // MARK: - Coordinator
     
-        let transactionsService = TransactionsService(coreData: coreData)
-
         let homeCoordinator = HomeCoordinator(homeAssembly: homeAssembly,
                                               exchangeAssembly: exchangeAssembly,
                                               stocksAssembly: stocksAssembly,
@@ -39,6 +38,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let profileCoordinator = ProfileCoordinator(profileAssembly: profileAssembly, coreData: coreData)
 
         guard let scene = (scene as? UIWindowScene) else { return }
+        
+        _ = DefaultValue(fileStore: fileStore)
         window = UIWindow(windowScene: scene)
         window?.rootViewController = TabBarController(homeCoordinator: homeCoordinator,
                                                       addAssembly: addAssembly,

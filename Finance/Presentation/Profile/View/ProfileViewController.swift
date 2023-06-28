@@ -31,7 +31,7 @@ final class ProfileViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-    private let authController = AuthCoordinator(authAssembly: AuthAssembly()).start()
+    private let authController = AuthCoordinator(authAssembly: AuthAssembly(), authService: AuthService()).start()
 
     private lazy var currentCurrencyBtn = Utils().menuItemButton(image: "currencies.png", title: "Текущая валюта")
     private lazy var logOutBtn = Utils().menuItemButton(image: "logout.png", title: "Выход")
