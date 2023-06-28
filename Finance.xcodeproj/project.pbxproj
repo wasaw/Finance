@@ -69,6 +69,8 @@
 		BB6D21A22A38A995000C22D7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21A12A38A995000C22D7 /* ProfileViewController.swift */; };
 		BB6D21A42A38AA25000C22D7 /* ProfileInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21A32A38AA25000C22D7 /* ProfileInput.swift */; };
 		BB6D21A62A38AA5E000C22D7 /* ProfileOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21A52A38AA5E000C22D7 /* ProfileOutput.swift */; };
+		BB6DF0112A4B6F9B00A1B4BD /* TransactionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DF0102A4B6F9B00A1B4BD /* TransactionsService.swift */; };
+		BB6DF0132A4B6FBE00A1B4BD /* TransactionsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DF0122A4B6FBE00A1B4BD /* TransactionsServiceProtocol.swift */; };
 		BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */; };
 		BB80CA0528D9A96F00AE5A8B /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80CA0428D9A96F00AE5A8B /* CurrentUser.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
@@ -156,6 +158,8 @@
 		BB6D21A12A38A995000C22D7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BB6D21A32A38AA25000C22D7 /* ProfileInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInput.swift; sourceTree = "<group>"; };
 		BB6D21A52A38AA5E000C22D7 /* ProfileOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOutput.swift; sourceTree = "<group>"; };
+		BB6DF0102A4B6F9B00A1B4BD /* TransactionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsService.swift; sourceTree = "<group>"; };
+		BB6DF0122A4B6FBE00A1B4BD /* TransactionsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsServiceProtocol.swift; sourceTree = "<group>"; };
 		BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		BB80CA0428D9A96F00AE5A8B /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -408,6 +412,7 @@
 				BB5E37362A41886D0093AB95 /* Coordinator */,
 				BB61DEA22850A39400A08AC6 /* General */,
 				BB6D218E2A33C9FB000C22D7 /* Presentation */,
+				BB6DF00E2A4B6F4300A1B4BD /* Services */,
 				BB5C41112A447EE3002DC6A0 /* Core */,
 				BB61DEAB2850DE2F00A08AC6 /* Utils */,
 				BB61DE9A2850A33800A08AC6 /* Info.plist */,
@@ -563,6 +568,23 @@
 				BB9B6FD728CF79E9000B1D53 /* ProfileImageView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		BB6DF00E2A4B6F4300A1B4BD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BB6DF00F2A4B6F6C00A1B4BD /* Transactions Service */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BB6DF00F2A4B6F6C00A1B4BD /* Transactions Service */ = {
+			isa = PBXGroup;
+			children = (
+				BB6DF0102A4B6F9B00A1B4BD /* TransactionsService.swift */,
+				BB6DF0122A4B6FBE00A1B4BD /* TransactionsServiceProtocol.swift */,
+			);
+			path = "Transactions Service";
 			sourceTree = "<group>";
 		};
 		BB9EFC14286B2A7500305776 /* API */ = {
@@ -728,6 +750,7 @@
 				BB44C5F72988079600776D4E /* Animations.swift in Sources */,
 				BB6D21942A33CADB000C22D7 /* HomePresenter.swift in Sources */,
 				BB5C40F92A443AB2002DC6A0 /* ProfileAssembly.swift in Sources */,
+				BB6DF0132A4B6FBE00A1B4BD /* TransactionsServiceProtocol.swift in Sources */,
 				BB61DEA52850A3C200A08AC6 /* TabBarController.swift in Sources */,
 				BB6BDB9D2989574C0000584A /* ModelDecodable.swift in Sources */,
 				BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */,
@@ -783,6 +806,7 @@
 				BB5E37512A41CD1C0093AB95 /* StocksOutput.swift in Sources */,
 				BB5C410A2A444D27002DC6A0 /* AuthAssembly.swift in Sources */,
 				BB9EFC1D287830E800305776 /* TopView.swift in Sources */,
+				BB6DF0112A4B6F9B00A1B4BD /* TransactionsService.swift in Sources */,
 				BB5E373A2A418A4D0093AB95 /* HomePresenterOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

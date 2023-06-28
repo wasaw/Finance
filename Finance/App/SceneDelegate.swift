@@ -27,19 +27,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
 // MARK: - Coordinator
     
+        let transactionsService = TransactionsService(coreData: coreData)
+
         let homeCoordinator = HomeCoordinator(homeAssembly: homeAssembly,
                                               exchangeAssembly: exchangeAssembly,
                                               stocksAssembly: stocksAssembly,
                                               network: network,
                                               config: config,
-                                              coreData: coreData)
+                                              coreData: coreData,
+                                              transactionsService: transactionsService)
         let profileCoordinator = ProfileCoordinator(profileAssembly: profileAssembly, coreData: coreData)
 
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         window?.rootViewController = TabBarController(homeCoordinator: homeCoordinator,
                                                       addAssembly: addAssembly,
-                                                      profileCoordinator: profileCoordinator, coreData: coreData)
+                                                      profileCoordinator: profileCoordinator, coreData: coreData,
+                                                      transactionsService: transactionsService)
         window?.makeKeyAndVisible()
     }
 }

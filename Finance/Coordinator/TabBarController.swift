@@ -17,18 +17,21 @@ final class TabBarController: UITabBarController {
     private let addAssembly: AddTransactionAssembly
     private let profileCoordinator: ProfileCoordinator
     private let coreData: CoreDataProtocol
+    private let transactionsService: TransactionsServiceProtocol
         
 // MARK: - Lifecycle
     
     init(homeCoordinator: HomeCoordinator,
          addAssembly: AddTransactionAssembly,
          profileCoordinator: ProfileCoordinator,
-         coreData: CoreDataProtocol) {
+         coreData: CoreDataProtocol,
+         transactionsService: TransactionsServiceProtocol) {
         
         self.homeCoordinator = homeCoordinator
         self.addAssembly = addAssembly
         self.profileCoordinator = profileCoordinator
         self.coreData = coreData
+        self.transactionsService = transactionsService
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -58,7 +61,7 @@ final class TabBarController: UITabBarController {
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = "Домашняя"
         
-        let addVC = addAssembly.makeAddTransactionModul(coreDataService: coreData)
+        let addVC = addAssembly.makeAddTransactionModul(transactionsService: transactionsService)
         let named = (view.frame.height < 700) ? "plus-2.png" : "plus-1.png"
         addVC.tabBarItem.image = UIImage(named: named)?.withRenderingMode(.alwaysOriginal)
         let top: CGFloat = (view.frame.height < 700) ? 10 : 25
@@ -104,7 +107,7 @@ extension TabBarController: UITabBarControllerDelegate {
         let isAddVC = viewController is AddTransactionViewController
 
         if isAddVC {
-            let addVC = addAssembly.makeAddTransactionModul(coreDataService: coreData)
+            let addVC = addAssembly.makeAddTransactionModul(transactionsService: transactionsService)
             if let sheet = addVC.sheetPresentationController {
                 sheet.detents = [.large()]
             }

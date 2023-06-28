@@ -8,8 +8,8 @@
 import UIKit
 
 final class AddTransactionAssembly {
-    func makeAddTransactionModul(coreDataService: CoreDataProtocol) -> UIViewController {
-        let presenter = AddTransactionPresenter(coreDataService: coreDataService)
+    func makeAddTransactionModul(transactionsService: TransactionsServiceProtocol) -> UIViewController {
+        let presenter = AddTransactionPresenter(transactionsService: transactionsService)
         let vc = AddTransactionViewController(output: presenter)
         presenter.input = vc
         return vc

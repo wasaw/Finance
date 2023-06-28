@@ -18,6 +18,7 @@ final class HomeCoordinator {
     private let network: NetworkProtocol
     private let config: NetworkConfiguration
     private let coreData: CoreDataProtocol
+    private let transactionsService: TransactionsServiceProtocol
     
 // MARK: - Lifecycle
     
@@ -26,19 +27,21 @@ final class HomeCoordinator {
          stocksAssembly: StocksAssembly,
          network: NetworkProtocol,
          config: NetworkConfiguration,
-         coreData: CoreDataProtocol) {
+         coreData: CoreDataProtocol,
+         transactionsService: TransactionsServiceProtocol) {
         self.homeAssembly = homeAssembly
         self.exchangeAssembly = exchangeAssembly
         self.stocksAssembly = stocksAssembly
         self.network = network
         self.config = config
         self.coreData = coreData
+        self.transactionsService = transactionsService
     }
     
 // MARK: - Helpers
     
     func start() -> UINavigationController {
-        let homeVC = homeAssembly.makeHomeModule(homeCoordinator: self, coreDataService: coreData)
+        let homeVC = homeAssembly.makeHomeModule(homeCoordinator: self, transactionsService: transactionsService)
         let nav = UINavigationController(rootViewController: homeVC)
         navigation = nav
         return nav
