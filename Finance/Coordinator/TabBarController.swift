@@ -18,6 +18,7 @@ final class TabBarController: UITabBarController {
     private let profileCoordinator: ProfileCoordinator
     private let coreData: CoreDataProtocol
     private let transactionsService: TransactionsServiceProtocol
+    private let defaultValueService: DefaultValueServiceProtocol
         
 // MARK: - Lifecycle
     
@@ -25,13 +26,15 @@ final class TabBarController: UITabBarController {
          addAssembly: AddTransactionAssembly,
          profileCoordinator: ProfileCoordinator,
          coreData: CoreDataProtocol,
-         transactionsService: TransactionsServiceProtocol) {
+         transactionsService: TransactionsServiceProtocol,
+         defaultValueService: DefaultValueServiceProtocol) {
         
         self.homeCoordinator = homeCoordinator
         self.addAssembly = addAssembly
         self.profileCoordinator = profileCoordinator
         self.coreData = coreData
         self.transactionsService = transactionsService
+        self.defaultValueService = defaultValueService
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -61,7 +64,7 @@ final class TabBarController: UITabBarController {
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = "Домашняя"
         
-        let addVC = addAssembly.makeAddTransactionModul(transactionsService: transactionsService)
+        let addVC = addAssembly.makeAddTransactionModul(transactionsService: transactionsService, defaultValueService: defaultValueService)
         let named = (view.frame.height < 700) ? "plus-2.png" : "plus-1.png"
         addVC.tabBarItem.image = UIImage(named: named)?.withRenderingMode(.alwaysOriginal)
         let top: CGFloat = (view.frame.height < 700) ? 10 : 25
@@ -107,7 +110,7 @@ extension TabBarController: UITabBarControllerDelegate {
         let isAddVC = viewController is AddTransactionViewController
 
         if isAddVC {
-            let addVC = addAssembly.makeAddTransactionModul(transactionsService: transactionsService)
+            let addVC = addAssembly.makeAddTransactionModul(transactionsService: transactionsService, defaultValueService: defaultValueService)
             if let sheet = addVC.sheetPresentationController {
                 sheet.detents = [.large()]
             }

@@ -15,16 +15,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
 // MARK: - Assembly
         
-    let homeAssembly = HomeAssembly()
-    let addAssembly = AddTransactionAssembly()
-    let profileAssembly = ProfileAssembly()
-    let exchangeAssembly = ExchangeRateAssembly()
-    let stocksAssembly = StocksAssembly()
-    let network = Network()
-    let config = NetworkConfiguration()
-    let fileStore = FileStore()
-    let coreData = CoreDataService()
-    let transactionsService = TransactionsService(coreData: coreData)
+        let homeAssembly = HomeAssembly()
+        let addAssembly = AddTransactionAssembly()
+        let profileAssembly = ProfileAssembly()
+        let exchangeAssembly = ExchangeRateAssembly()
+        let stocksAssembly = StocksAssembly()
+        let network = Network()
+        let config = NetworkConfiguration()
+        let fileStore = FileStore()
+        let coreData = CoreDataService()
+        let defaultValueService = DefaultValueService(fileStore: fileStore)
+        let transactionsService = TransactionsService(coreData: coreData)
         
 // MARK: - Coordinator
     
@@ -44,7 +45,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = TabBarController(homeCoordinator: homeCoordinator,
                                                       addAssembly: addAssembly,
                                                       profileCoordinator: profileCoordinator, coreData: coreData,
-                                                      transactionsService: transactionsService)
+                                                      transactionsService: transactionsService,
+                                                      defaultValueService: defaultValueService)
         window?.makeKeyAndVisible()
     }
 }

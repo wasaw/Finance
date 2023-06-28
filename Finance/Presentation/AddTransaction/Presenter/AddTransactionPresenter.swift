@@ -14,38 +14,26 @@ final class AddTransactionPresenter {
     weak var input: AddTransactionInput?
     
     private let transactionsService: TransactionsServiceProtocol
-    private let fileStore = FileStore()
+    private let defaultValueService: DefaultValueServiceProtocol
     
     private var category = [ChoiceCategoryExpense]()
     private var revenue = [ChoiceTypeRevenue]()
     
 // MARK: - Lifecycle
     
-    init(transactionsService: TransactionsServiceProtocol) {
+    init(transactionsService: TransactionsServiceProtocol, defaultValueService: DefaultValueServiceProtocol) {
         self.transactionsService = transactionsService
+        self.defaultValueService = defaultValueService
     }
     
 // MARK: - Helpers
     
     private func loadData() {
-        fileStore.readAppInformation("category") { [weak self] (result: Result<[ChoiceCategoryExpense], FileManagerError>) in
-            switch result {
-            case .success(let answer):
-                self?.category = answer
-            case .failure(let error):
-                self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
-            }
+        do {
+            (category, revenue) = try defaultValueService.fetchValue()
+        } catch {
+            input?.showAlert(with: "Ошибка", and: error.localizedDescription)
         }
-        
-        fileStore.readAppInformation("revenue") { [weak self] (result: Result<[ChoiceTypeRevenue], FileManagerError>) in
-            switch result {
-            case .success(let answer):
-                self?.revenue = answer
-            case .failure(let error):
-                self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
-            }
-        }
-        
         input?.showData(category: category, revenue: revenue)
     }
 }

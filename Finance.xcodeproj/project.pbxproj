@@ -54,6 +54,8 @@
 		BB63FDA52902D3B800D28166 /* CurrencyRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB63FDA42902D3B800D28166 /* CurrencyRate.swift */; };
 		BB66934D285B885A002DFAAD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66934C285B885A002DFAAD /* Model.swift */; };
 		BB6A7F632A4C5FF60028CC13 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A7F622A4C5FF60028CC13 /* AuthServiceProtocol.swift */; };
+		BB6A7F692A4C66210028CC13 /* DefaultValueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A7F682A4C66210028CC13 /* DefaultValueService.swift */; };
+		BB6A7F6C2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A7F6B2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift */; };
 		BB6B5BB42A3C9BFF00E16FFB /* AddTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6B5BB32A3C9BFF00E16FFB /* AddTransactionPresenter.swift */; };
 		BB6B5BB62A3C9C1600E16FFB /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6B5BB52A3C9C1600E16FFB /* AddTransactionViewController.swift */; };
 		BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6B5BB72A3C9C7200E16FFB /* AddTransactionInput.swift */; };
@@ -75,7 +77,6 @@
 		BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */; };
 		BB80CA0528D9A96F00AE5A8B /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80CA0428D9A96F00AE5A8B /* CurrentUser.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
-		BB836F7328D20D9C008F22C7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7228D20D9C008F22C7 /* UserService.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
 		BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */; };
 		BB9B6FCF28CB5A59000B1D53 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCE28CB5A59000B1D53 /* Constants.swift */; };
@@ -144,6 +145,8 @@
 		BB63FDA42902D3B800D28166 /* CurrencyRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRate.swift; sourceTree = "<group>"; };
 		BB66934C285B885A002DFAAD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		BB6A7F622A4C5FF60028CC13 /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
+		BB6A7F682A4C66210028CC13 /* DefaultValueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueService.swift; sourceTree = "<group>"; };
+		BB6A7F6B2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueServiceProtocol.swift; sourceTree = "<group>"; };
 		BB6B5BB32A3C9BFF00E16FFB /* AddTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenter.swift; sourceTree = "<group>"; };
 		BB6B5BB52A3C9C1600E16FFB /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		BB6B5BB72A3C9C7200E16FFB /* AddTransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionInput.swift; sourceTree = "<group>"; };
@@ -165,7 +168,6 @@
 		BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		BB80CA0428D9A96F00AE5A8B /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		BB836F7228D20D9C008F22C7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		BB9B6FCE28CB5A59000B1D53 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -408,7 +410,6 @@
 			isa = PBXGroup;
 			children = (
 				BB6BDB9A2989550B0000584A /* App */,
-				BB9EFC14286B2A7500305776 /* API */,
 				BB61DEA32850A39800A08AC6 /* Models */,
 				BB5C40F32A442A3A002DC6A0 /* Assembly */,
 				BB5E37362A41886D0093AB95 /* Coordinator */,
@@ -460,6 +461,15 @@
 				BB6A7F622A4C5FF60028CC13 /* AuthServiceProtocol.swift */,
 			);
 			path = AuthService;
+			sourceTree = "<group>";
+		};
+		BB6A7F672A4C66040028CC13 /* DefaultValueService */ = {
+			isa = PBXGroup;
+			children = (
+				BB6A7F682A4C66210028CC13 /* DefaultValueService.swift */,
+				BB6A7F6B2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift */,
+			);
+			path = DefaultValueService;
 			sourceTree = "<group>";
 		};
 		BB6B5BAF2A3C9BBA00E16FFB /* AddTransaction */ = {
@@ -585,6 +595,7 @@
 			isa = PBXGroup;
 			children = (
 				BB6A7F612A4C5FCB0028CC13 /* AuthService */,
+				BB6A7F672A4C66040028CC13 /* DefaultValueService */,
 				BB6DF00F2A4B6F6C00A1B4BD /* Transactions Service */,
 			);
 			path = Services;
@@ -597,14 +608,6 @@
 				BB6DF0122A4B6FBE00A1B4BD /* TransactionsServiceProtocol.swift */,
 			);
 			path = "Transactions Service";
-			sourceTree = "<group>";
-		};
-		BB9EFC14286B2A7500305776 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				BB836F7228D20D9C008F22C7 /* UserService.swift */,
-			);
-			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -782,6 +785,7 @@
 				BB6D21992A33CC33000C22D7 /* HomeInput.swift in Sources */,
 				BB6D21A02A38A90E000C22D7 /* ProfilePresenter.swift in Sources */,
 				BB6D21A62A38AA5E000C22D7 /* ProfileOutput.swift in Sources */,
+				BB6A7F6C2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift in Sources */,
 				BB6B5BB62A3C9C1600E16FFB /* AddTransactionViewController.swift in Sources */,
 				BB5E374A2A41CC420093AB95 /* StocksViewController.swift in Sources */,
 				BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */,
@@ -792,7 +796,6 @@
 				BB5E37452A4199E00093AB95 /* ExchangeRateOutput.swift in Sources */,
 				BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */,
 				BB5E37342A4098BE0093AB95 /* LastTransactionOutput.swift in Sources */,
-				BB836F7328D20D9C008F22C7 /* UserService.swift in Sources */,
 				BB5E374F2A41CD020093AB95 /* StocksInput.swift in Sources */,
 				BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */,
 				BB5C40FD2A443FB1002DC6A0 /* StocksAssembly.swift in Sources */,
@@ -816,6 +819,7 @@
 				BB5C40F72A443544002DC6A0 /* AddTransactionAssembly.swift in Sources */,
 				BB5C411A2A462D6A002DC6A0 /* FileStore.swift in Sources */,
 				BB5E37512A41CD1C0093AB95 /* StocksOutput.swift in Sources */,
+				BB6A7F692A4C66210028CC13 /* DefaultValueService.swift in Sources */,
 				BB5C410A2A444D27002DC6A0 /* AuthAssembly.swift in Sources */,
 				BB9EFC1D287830E800305776 /* TopView.swift in Sources */,
 				BB6DF0112A4B6F9B00A1B4BD /* TransactionsService.swift in Sources */,
