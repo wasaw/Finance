@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 // MARK: - Colors
 
@@ -36,27 +37,27 @@ extension UITextField {
 // MARK: - UIView
 
 extension UIView {
-    func anchor (left: NSLayoutXAxisAnchor? = nil,
+    func anchor (leading: NSLayoutXAxisAnchor? = nil,
                  top: NSLayoutYAxisAnchor? = nil,
-                 right: NSLayoutXAxisAnchor? = nil,
+                 trailing: NSLayoutXAxisAnchor? = nil,
                  bottom: NSLayoutYAxisAnchor? = nil,
-                 paddingLeft: CGFloat = 0,
+                 paddingLeading: CGFloat = 0,
                  paddingTop: CGFloat = 0,
-                 paddingRight: CGFloat = 0,
+                 paddingTrailing: CGFloat = 0,
                  paddingBottom: CGFloat = 0,
                  width: CGFloat? = nil,
                  height: CGFloat? = nil) {
         
         translatesAutoresizingMaskIntoConstraints = false
         
-        if let left = left {
-            leftAnchor.constraint(equalTo: left, constant: paddingLeft).isActive = true
+        if let leading = leading {
+            leadingAnchor.constraint(equalTo: leading, constant: paddingLeading).isActive = true
         }
         if let top = top {
             topAnchor.constraint(equalTo: top, constant: paddingTop).isActive = true
         }
-        if let right = right {
-            rightAnchor.constraint(equalTo: right, constant: paddingRight).isActive = true
+        if let trailing = trailing {
+            trailingAnchor.constraint(equalTo: trailing, constant: paddingTrailing).isActive = true
         }
         if let bottom = bottom {
             bottomAnchor.constraint(equalTo: bottom, constant: paddingBottom).isActive = true
@@ -77,5 +78,18 @@ extension UIViewController {
         let alert = UIAlertController(title: title, message: massage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: completion))
         self.present(alert, animated: true)
+    }
+}
+
+// MARK: - NSManagerObject
+
+extension NSManagedObject {
+    convenience init(usedContext: NSManagedObjectContext) {
+        let name = String(describing: type(of: self))
+        guard let entity = NSEntityDescription.entity(forEntityName: name, in: usedContext) else {
+            self.init(context: usedContext)
+            return
+        }
+        self.init(entity: entity, insertInto: usedContext)
     }
 }

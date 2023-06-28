@@ -8,45 +8,87 @@
 
 /* Begin PBXBuildFile section */
 		9AF4048141F3230E754689C8 /* Pods_Finance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53022AC9E214609030662D0 /* Pods_Finance.framework */; };
-		BB2F661A28DC54FC0068E7CE /* StocksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2F661928DC54FC0068E7CE /* StocksController.swift */; };
 		BB44C5F72988079600776D4E /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB44C5F62988079600776D4E /* Animations.swift */; };
+		BB5C40F02A4345CF002DC6A0 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40EF2A4345CF002DC6A0 /* ProfileCoordinator.swift */; };
+		BB5C40F52A442A50002DC6A0 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40F42A442A50002DC6A0 /* HomeAssembly.swift */; };
+		BB5C40F72A443544002DC6A0 /* AddTransactionAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40F62A443544002DC6A0 /* AddTransactionAssembly.swift */; };
+		BB5C40F92A443AB2002DC6A0 /* ProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40F82A443AB2002DC6A0 /* ProfileAssembly.swift */; };
+		BB5C40FB2A443C5B002DC6A0 /* ExchangeRateAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40FA2A443C5B002DC6A0 /* ExchangeRateAssembly.swift */; };
+		BB5C40FD2A443FB1002DC6A0 /* StocksAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40FC2A443FB1002DC6A0 /* StocksAssembly.swift */; };
+		BB5C41022A44464F002DC6A0 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41012A44464F002DC6A0 /* AuthPresenter.swift */; };
+		BB5C41042A444675002DC6A0 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41032A444675002DC6A0 /* AuthViewController.swift */; };
+		BB5C41062A4446DD002DC6A0 /* AuthInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41052A4446DD002DC6A0 /* AuthInput.swift */; };
+		BB5C41082A4446F7002DC6A0 /* AuthOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41072A4446F7002DC6A0 /* AuthOutput.swift */; };
+		BB5C410A2A444D27002DC6A0 /* AuthAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41092A444D27002DC6A0 /* AuthAssembly.swift */; };
+		BB5C410C2A446C47002DC6A0 /* AuthPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C410B2A446C47002DC6A0 /* AuthPresenterOutput.swift */; };
+		BB5C410E2A446D49002DC6A0 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C410D2A446D49002DC6A0 /* AuthCoordinator.swift */; };
+		BB5C41102A44798C002DC6A0 /* ProfilePresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C410F2A44798C002DC6A0 /* ProfilePresenterOutput.swift */; };
+		BB5C41142A4481BD002DC6A0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41132A4481BD002DC6A0 /* Network.swift */; };
+		BB5C41162A44829A002DC6A0 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41152A44829A002DC6A0 /* NetworkProtocol.swift */; };
+		BB5C411A2A462D6A002DC6A0 /* FileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41192A462D6A002DC6A0 /* FileStore.swift */; };
+		BB5C411C2A463050002DC6A0 /* FileStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C411B2A463050002DC6A0 /* FileStoreProtocol.swift */; };
+		BB5C411E2A4996D1002DC6A0 /* DefaultValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C411D2A4996D1002DC6A0 /* DefaultValue.swift */; };
+		BB5C41202A4ACC6F002DC6A0 /* CoreDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C411F2A4ACC6F002DC6A0 /* CoreDataProtocol.swift */; };
+		BB5E372E2A4098850093AB95 /* LastTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */; };
+		BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */; };
+		BB5E37322A4098B00093AB95 /* LastTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */; };
+		BB5E37342A4098BE0093AB95 /* LastTransactionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37332A4098BE0093AB95 /* LastTransactionOutput.swift */; };
+		BB5E37382A41888D0093AB95 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37372A41888D0093AB95 /* HomeCoordinator.swift */; };
+		BB5E373A2A418A4D0093AB95 /* HomePresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37392A418A4D0093AB95 /* HomePresenterOutput.swift */; };
+		BB5E373F2A4199440093AB95 /* ExchangeRatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E373E2A4199440093AB95 /* ExchangeRatePresenter.swift */; };
+		BB5E37412A41996D0093AB95 /* ExchangeRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37402A41996D0093AB95 /* ExchangeRateViewController.swift */; };
+		BB5E37432A4199B40093AB95 /* ExchangeRateInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37422A4199B40093AB95 /* ExchangeRateInput.swift */; };
+		BB5E37452A4199E00093AB95 /* ExchangeRateOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37442A4199E00093AB95 /* ExchangeRateOutput.swift */; };
+		BB5E374A2A41CC420093AB95 /* StocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37492A41CC420093AB95 /* StocksViewController.swift */; };
+		BB5E374D2A41CCE30093AB95 /* StocksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E374C2A41CCE30093AB95 /* StocksPresenter.swift */; };
+		BB5E374F2A41CD020093AB95 /* StocksInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E374E2A41CD020093AB95 /* StocksInput.swift */; };
+		BB5E37512A41CD1C0093AB95 /* StocksOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37502A41CD1C0093AB95 /* StocksOutput.swift */; };
 		BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */; };
 		BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */; };
 		BB61DE962850A33800A08AC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB61DE952850A33800A08AC6 /* Assets.xcassets */; };
 		BB61DE992850A33800A08AC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB61DE972850A33800A08AC6 /* LaunchScreen.storyboard */; };
 		BB61DEA52850A3C200A08AC6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEA42850A3C200A08AC6 /* TabBarController.swift */; };
-		BB61DEA72850A3D400A08AC6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEA62850A3D400A08AC6 /* HomeController.swift */; };
 		BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */; };
 		BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */; };
 		BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */; };
 		BB63FDA52902D3B800D28166 /* CurrencyRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB63FDA42902D3B800D28166 /* CurrencyRate.swift */; };
 		BB66934D285B885A002DFAAD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66934C285B885A002DFAAD /* Model.swift */; };
-		BB66934F285C7FFF002DFAAD /* AddTransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66934E285C7FFF002DFAAD /* AddTransactionController.swift */; };
+		BB6A7F632A4C5FF60028CC13 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A7F622A4C5FF60028CC13 /* AuthServiceProtocol.swift */; };
+		BB6A7F692A4C66210028CC13 /* DefaultValueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A7F682A4C66210028CC13 /* DefaultValueService.swift */; };
+		BB6A7F6C2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A7F6B2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift */; };
+		BB6B5BB42A3C9BFF00E16FFB /* AddTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6B5BB32A3C9BFF00E16FFB /* AddTransactionPresenter.swift */; };
+		BB6B5BB62A3C9C1600E16FFB /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6B5BB52A3C9C1600E16FFB /* AddTransactionViewController.swift */; };
+		BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6B5BB72A3C9C7200E16FFB /* AddTransactionInput.swift */; };
+		BB6B5BBA2A3C9C9B00E16FFB /* AddTransactionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6B5BB92A3C9C9B00E16FFB /* AddTransactionOutput.swift */; };
 		BB6BDB9729891CBD0000584A /* StockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB9629891CBD0000584A /* StockCell.swift */; };
 		BB6BDB99298942130000584A /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB98298942130000584A /* NetworkConfiguration.swift */; };
 		BB6BDB9D2989574C0000584A /* ModelDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB9C2989574C0000584A /* ModelDecodable.swift */; };
 		BB6BDBA1298B994C0000584A /* TypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDBA0298B994C0000584A /* TypeCell.swift */; };
-		BB6EEDEC287C5DC200245997 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EEDEB287C5DC200245997 /* NetworkService.swift */; };
-		BB74FA2A2858C58A00EA2CD8 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA292858C58A00EA2CD8 /* AuthController.swift */; };
+		BB6D21942A33CADB000C22D7 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21932A33CADB000C22D7 /* HomePresenter.swift */; };
+		BB6D21972A33CB1A000C22D7 /* HomeOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21962A33CB1A000C22D7 /* HomeOutput.swift */; };
+		BB6D21992A33CC33000C22D7 /* HomeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21982A33CC33000C22D7 /* HomeInput.swift */; };
+		BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D219A2A33CD05000C22D7 /* HomeViewController.swift */; };
+		BB6D21A02A38A90E000C22D7 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D219F2A38A90E000C22D7 /* ProfilePresenter.swift */; };
+		BB6D21A22A38A995000C22D7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21A12A38A995000C22D7 /* ProfileViewController.swift */; };
+		BB6D21A42A38AA25000C22D7 /* ProfileInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21A32A38AA25000C22D7 /* ProfileInput.swift */; };
+		BB6D21A62A38AA5E000C22D7 /* ProfileOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21A52A38AA5E000C22D7 /* ProfileOutput.swift */; };
+		BB6DF0112A4B6F9B00A1B4BD /* TransactionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DF0102A4B6F9B00A1B4BD /* TransactionsService.swift */; };
+		BB6DF0132A4B6FBE00A1B4BD /* TransactionsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DF0122A4B6FBE00A1B4BD /* TransactionsServiceProtocol.swift */; };
 		BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */; };
 		BB80CA0528D9A96F00AE5A8B /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80CA0428D9A96F00AE5A8B /* CurrentUser.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
-		BB836F7328D20D9C008F22C7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7228D20D9C008F22C7 /* UserService.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
 		BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */; };
 		BB9B6FCF28CB5A59000B1D53 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCE28CB5A59000B1D53 /* Constants.swift */; };
-		BB9B6FD228CB5E45000B1D53 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FD128CB5E45000B1D53 /* ProfileController.swift */; };
 		BB9B6FD828CF79E9000B1D53 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FD728CF79E9000B1D53 /* ProfileImageView.swift */; };
 		BB9EFC0A285E2A9200305776 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC09285E2A9200305776 /* CategoryCell.swift */; };
 		BB9EFC0C2861AADF00305776 /* RevenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC0B2861AADF00305776 /* RevenueView.swift */; };
 		BB9EFC0E2861B2AC00305776 /* AmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC0D2861B2AC00305776 /* AmountView.swift */; };
 		BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC0F2863023700305776 /* Model.xcdatamodeld */; };
-		BB9EFC13286B234700305776 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC12286B234600305776 /* DatabaseService.swift */; };
-		BB9EFC172878221000305776 /* ExchangeRateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC162878221000305776 /* ExchangeRateController.swift */; };
+		BB9EFC13286B234700305776 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC12286B234600305776 /* CoreDataService.swift */; };
 		BB9EFC1D287830E800305776 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC1C287830E800305776 /* TopView.swift */; };
 		BB9EFC21287869D000305776 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC20287869D000305776 /* CurrencyCell.swift */; };
 		BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */; };
-		BBB9D95228B653F30037CC24 /* LastTransactionModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9D95128B653F30037CC24 /* LastTransactionModalController.swift */; };
 		BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC052851F3FF003F9197 /* TitleView.swift */; };
 		BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */; };
 /* End PBXBuildFile section */
@@ -55,8 +97,41 @@
 		2CE0EEA6404BF9FB495CD737 /* Pods-Finance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finance.release.xcconfig"; path = "Target Support Files/Pods-Finance/Pods-Finance.release.xcconfig"; sourceTree = "<group>"; };
 		8B68B2028077D098EA217496 /* Pods-Finance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finance.debug.xcconfig"; path = "Target Support Files/Pods-Finance/Pods-Finance.debug.xcconfig"; sourceTree = "<group>"; };
 		A53022AC9E214609030662D0 /* Pods_Finance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Finance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB2F661928DC54FC0068E7CE /* StocksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksController.swift; sourceTree = "<group>"; };
 		BB44C5F62988079600776D4E /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		BB5C40EF2A4345CF002DC6A0 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		BB5C40F42A442A50002DC6A0 /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
+		BB5C40F62A443544002DC6A0 /* AddTransactionAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionAssembly.swift; sourceTree = "<group>"; };
+		BB5C40F82A443AB2002DC6A0 /* ProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembly.swift; sourceTree = "<group>"; };
+		BB5C40FA2A443C5B002DC6A0 /* ExchangeRateAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateAssembly.swift; sourceTree = "<group>"; };
+		BB5C40FC2A443FB1002DC6A0 /* StocksAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksAssembly.swift; sourceTree = "<group>"; };
+		BB5C41012A44464F002DC6A0 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		BB5C41032A444675002DC6A0 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		BB5C41052A4446DD002DC6A0 /* AuthInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInput.swift; sourceTree = "<group>"; };
+		BB5C41072A4446F7002DC6A0 /* AuthOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOutput.swift; sourceTree = "<group>"; };
+		BB5C41092A444D27002DC6A0 /* AuthAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAssembly.swift; sourceTree = "<group>"; };
+		BB5C410B2A446C47002DC6A0 /* AuthPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenterOutput.swift; sourceTree = "<group>"; };
+		BB5C410D2A446D49002DC6A0 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		BB5C410F2A44798C002DC6A0 /* ProfilePresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterOutput.swift; sourceTree = "<group>"; };
+		BB5C41132A4481BD002DC6A0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		BB5C41152A44829A002DC6A0 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
+		BB5C41192A462D6A002DC6A0 /* FileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStore.swift; sourceTree = "<group>"; };
+		BB5C411B2A463050002DC6A0 /* FileStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStoreProtocol.swift; sourceTree = "<group>"; };
+		BB5C411D2A4996D1002DC6A0 /* DefaultValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValue.swift; sourceTree = "<group>"; };
+		BB5C411F2A4ACC6F002DC6A0 /* CoreDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProtocol.swift; sourceTree = "<group>"; };
+		BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionPresenter.swift; sourceTree = "<group>"; };
+		BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionViewController.swift; sourceTree = "<group>"; };
+		BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionInput.swift; sourceTree = "<group>"; };
+		BB5E37332A4098BE0093AB95 /* LastTransactionOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionOutput.swift; sourceTree = "<group>"; };
+		BB5E37372A41888D0093AB95 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		BB5E37392A418A4D0093AB95 /* HomePresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenterOutput.swift; sourceTree = "<group>"; };
+		BB5E373E2A4199440093AB95 /* ExchangeRatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatePresenter.swift; sourceTree = "<group>"; };
+		BB5E37402A41996D0093AB95 /* ExchangeRateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateViewController.swift; sourceTree = "<group>"; };
+		BB5E37422A4199B40093AB95 /* ExchangeRateInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateInput.swift; sourceTree = "<group>"; };
+		BB5E37442A4199E00093AB95 /* ExchangeRateOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateOutput.swift; sourceTree = "<group>"; };
+		BB5E37492A41CC420093AB95 /* StocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksViewController.swift; sourceTree = "<group>"; };
+		BB5E374C2A41CCE30093AB95 /* StocksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksPresenter.swift; sourceTree = "<group>"; };
+		BB5E374E2A41CD020093AB95 /* StocksInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksInput.swift; sourceTree = "<group>"; };
+		BB5E37502A41CD1C0093AB95 /* StocksOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksOutput.swift; sourceTree = "<group>"; };
 		BB61DE892850A33300A08AC6 /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,39 +139,47 @@
 		BB61DE982850A33800A08AC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB61DE9A2850A33800A08AC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB61DEA42850A3C200A08AC6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		BB61DEA62850A3D400A08AC6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalAccountView.swift; sourceTree = "<group>"; };
 		BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
 		BB63FDA42902D3B800D28166 /* CurrencyRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRate.swift; sourceTree = "<group>"; };
-		BB640D9228E19CD300F789B6 /* ApiKey.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ApiKey.xcconfig; sourceTree = "<group>"; };
 		BB66934C285B885A002DFAAD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		BB66934E285C7FFF002DFAAD /* AddTransactionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionController.swift; sourceTree = "<group>"; };
+		BB6A7F622A4C5FF60028CC13 /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
+		BB6A7F682A4C66210028CC13 /* DefaultValueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueService.swift; sourceTree = "<group>"; };
+		BB6A7F6B2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueServiceProtocol.swift; sourceTree = "<group>"; };
+		BB6B5BB32A3C9BFF00E16FFB /* AddTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenter.swift; sourceTree = "<group>"; };
+		BB6B5BB52A3C9C1600E16FFB /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
+		BB6B5BB72A3C9C7200E16FFB /* AddTransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionInput.swift; sourceTree = "<group>"; };
+		BB6B5BB92A3C9C9B00E16FFB /* AddTransactionOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionOutput.swift; sourceTree = "<group>"; };
 		BB6BDB9629891CBD0000584A /* StockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCell.swift; sourceTree = "<group>"; };
 		BB6BDB98298942130000584A /* NetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
 		BB6BDB9C2989574C0000584A /* ModelDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDecodable.swift; sourceTree = "<group>"; };
 		BB6BDBA0298B994C0000584A /* TypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCell.swift; sourceTree = "<group>"; };
-		BB6EEDEB287C5DC200245997 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		BB74FA292858C58A00EA2CD8 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
+		BB6D21932A33CADB000C22D7 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		BB6D21962A33CB1A000C22D7 /* HomeOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOutput.swift; sourceTree = "<group>"; };
+		BB6D21982A33CC33000C22D7 /* HomeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInput.swift; sourceTree = "<group>"; };
+		BB6D219A2A33CD05000C22D7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		BB6D219F2A38A90E000C22D7 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		BB6D21A12A38A995000C22D7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		BB6D21A32A38AA25000C22D7 /* ProfileInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInput.swift; sourceTree = "<group>"; };
+		BB6D21A52A38AA5E000C22D7 /* ProfileOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOutput.swift; sourceTree = "<group>"; };
+		BB6DF0102A4B6F9B00A1B4BD /* TransactionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsService.swift; sourceTree = "<group>"; };
+		BB6DF0122A4B6FBE00A1B4BD /* TransactionsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsServiceProtocol.swift; sourceTree = "<group>"; };
 		BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		BB80CA0428D9A96F00AE5A8B /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		BB836F7228D20D9C008F22C7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		BB9B6FCE28CB5A59000B1D53 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		BB9B6FD128CB5E45000B1D53 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		BB9B6FD728CF79E9000B1D53 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		BB9EFC09285E2A9200305776 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		BB9EFC0B2861AADF00305776 /* RevenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueView.swift; sourceTree = "<group>"; };
 		BB9EFC0D2861B2AC00305776 /* AmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountView.swift; sourceTree = "<group>"; };
 		BB9EFC102863023700305776 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		BB9EFC12286B234600305776 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
-		BB9EFC162878221000305776 /* ExchangeRateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateController.swift; sourceTree = "<group>"; };
+		BB9EFC12286B234600305776 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		BB9EFC1C287830E800305776 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		BB9EFC20287869D000305776 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 		BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionModalView.swift; sourceTree = "<group>"; };
-		BBB9D95128B653F30037CC24 /* LastTransactionModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionModalController.swift; sourceTree = "<group>"; };
 		BBCFDC052851F3FF003F9197 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +213,180 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BB5C40F32A442A3A002DC6A0 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				BB5C40F42A442A50002DC6A0 /* HomeAssembly.swift */,
+				BB5C40F62A443544002DC6A0 /* AddTransactionAssembly.swift */,
+				BB5C40F82A443AB2002DC6A0 /* ProfileAssembly.swift */,
+				BB5C40FA2A443C5B002DC6A0 /* ExchangeRateAssembly.swift */,
+				BB5C40FC2A443FB1002DC6A0 /* StocksAssembly.swift */,
+				BB5C41092A444D27002DC6A0 /* AuthAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		BB5C40FE2A444628002DC6A0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				BB5C41002A44463C002DC6A0 /* Presenter */,
+				BB5C40FF2A444638002DC6A0 /* View */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		BB5C40FF2A444638002DC6A0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB5C41032A444675002DC6A0 /* AuthViewController.swift */,
+				BB5C41052A4446DD002DC6A0 /* AuthInput.swift */,
+				BB5C41072A4446F7002DC6A0 /* AuthOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB5C41002A44463C002DC6A0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB5C41012A44464F002DC6A0 /* AuthPresenter.swift */,
+				BB5C410B2A446C47002DC6A0 /* AuthPresenterOutput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB5C41112A447EE3002DC6A0 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				BB5C41122A447F09002DC6A0 /* Network */,
+				BB5C41172A4620AD002DC6A0 /* Core Data */,
+				BB5C41182A462D00002DC6A0 /* File Store */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		BB5C41122A447F09002DC6A0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BB5C41132A4481BD002DC6A0 /* Network.swift */,
+				BB5C41152A44829A002DC6A0 /* NetworkProtocol.swift */,
+				BB6BDB98298942130000584A /* NetworkConfiguration.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		BB5C41172A4620AD002DC6A0 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				BB9EFC12286B234600305776 /* CoreDataService.swift */,
+				BB5C411F2A4ACC6F002DC6A0 /* CoreDataProtocol.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		BB5C41182A462D00002DC6A0 /* File Store */ = {
+			isa = PBXGroup;
+			children = (
+				BB5C41192A462D6A002DC6A0 /* FileStore.swift */,
+				BB5C411B2A463050002DC6A0 /* FileStoreProtocol.swift */,
+			);
+			path = "File Store";
+			sourceTree = "<group>";
+		};
+		BB5E372A2A40983C0093AB95 /* LastTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E372B2A4098680093AB95 /* Presenter */,
+				BB5E372C2A4098700093AB95 /* View */,
+			);
+			path = LastTransaction;
+			sourceTree = "<group>";
+		};
+		BB5E372B2A4098680093AB95 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB5E372C2A4098700093AB95 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */,
+				BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */,
+				BB5E37332A4098BE0093AB95 /* LastTransactionOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB5E37362A41886D0093AB95 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E37372A41888D0093AB95 /* HomeCoordinator.swift */,
+				BB5C40EF2A4345CF002DC6A0 /* ProfileCoordinator.swift */,
+				BB5C410D2A446D49002DC6A0 /* AuthCoordinator.swift */,
+				BB61DEA42850A3C200A08AC6 /* TabBarController.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		BB5E373B2A41991B0093AB95 /* ExchangeRate */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E373D2A41992F0093AB95 /* Presenter */,
+				BB5E373C2A41992C0093AB95 /* View */,
+			);
+			path = ExchangeRate;
+			sourceTree = "<group>";
+		};
+		BB5E373C2A41992C0093AB95 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E37402A41996D0093AB95 /* ExchangeRateViewController.swift */,
+				BB5E37422A4199B40093AB95 /* ExchangeRateInput.swift */,
+				BB5E37442A4199E00093AB95 /* ExchangeRateOutput.swift */,
+				BB9EFC1C287830E800305776 /* TopView.swift */,
+				BB9EFC20287869D000305776 /* CurrencyCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB5E373D2A41992F0093AB95 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E373E2A4199440093AB95 /* ExchangeRatePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB5E37462A41CC160093AB95 /* Stocks */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E37482A41CC2C0093AB95 /* Presenter */,
+				BB5E37472A41CC280093AB95 /* View */,
+			);
+			path = Stocks;
+			sourceTree = "<group>";
+		};
+		BB5E37472A41CC280093AB95 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E37492A41CC420093AB95 /* StocksViewController.swift */,
+				BB5E374E2A41CD020093AB95 /* StocksInput.swift */,
+				BB5E37502A41CD1C0093AB95 /* StocksOutput.swift */,
+				BB6BDB9629891CBD0000584A /* StockCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB5E37482A41CC2C0093AB95 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E374C2A41CCE30093AB95 /* StocksPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		BB61DE802850A33300A08AC6 = {
 			isa = PBXGroup;
 			children = (
@@ -153,10 +410,13 @@
 			isa = PBXGroup;
 			children = (
 				BB6BDB9A2989550B0000584A /* App */,
-				BB9EFC14286B2A7500305776 /* API */,
-				BB61DEA32850A39800A08AC6 /* Model */,
-				BB61DEA22850A39400A08AC6 /* View */,
-				BB61DEA02850A37200A08AC6 /* Controller */,
+				BB61DEA32850A39800A08AC6 /* Models */,
+				BB5C40F32A442A3A002DC6A0 /* Assembly */,
+				BB5E37362A41886D0093AB95 /* Coordinator */,
+				BB61DEA22850A39400A08AC6 /* General */,
+				BB6D218E2A33C9FB000C22D7 /* Presentation */,
+				BB6DF00E2A4B6F4300A1B4BD /* Services */,
+				BB5C41112A447EE3002DC6A0 /* Core */,
 				BB61DEAB2850DE2F00A08AC6 /* Utils */,
 				BB61DE9A2850A33800A08AC6 /* Info.plist */,
 				BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */,
@@ -164,32 +424,15 @@
 			path = Finance;
 			sourceTree = "<group>";
 		};
-		BB61DEA02850A37200A08AC6 /* Controller */ = {
+		BB61DEA22850A39400A08AC6 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				BB9B6FD028CB5D97000B1D53 /* Profile */,
-				BBB9D95028B653480037CC24 /* AddTransaction */,
-				BB9EFC15287821DC00305776 /* Services */,
-				BB61DEA42850A3C200A08AC6 /* TabBarController.swift */,
-				BB61DEA62850A3D400A08AC6 /* HomeController.swift */,
-				BBB9D95128B653F30037CC24 /* LastTransactionModalController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		BB61DEA22850A39400A08AC6 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BB9B6FD628CF79C1000B1D53 /* Profile */,
-				BB9EFC1A2878309D00305776 /* Services */,
-				BB9EFC08285E249800305776 /* Add */,
-				BB74FA262858C09E00EA2CD8 /* Home */,
 				BBCFDC052851F3FF003F9197 /* TitleView.swift */,
 			);
-			path = View;
+			path = General;
 			sourceTree = "<group>";
 		};
-		BB61DEA32850A39800A08AC6 /* Model */ = {
+		BB61DEA32850A39800A08AC6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				BB80CA0428D9A96F00AE5A8B /* CurrentUser.swift */,
@@ -197,28 +440,67 @@
 				BB63FDA42902D3B800D28166 /* CurrencyRate.swift */,
 				BB6BDB9C2989574C0000584A /* ModelDecodable.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		BB61DEAB2850DE2F00A08AC6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				BB640D9228E19CD300F789B6 /* ApiKey.xcconfig */,
 				BB44C5F62988079600776D4E /* Animations.swift */,
 				BB9B6FCE28CB5A59000B1D53 /* Constants.swift */,
 				BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */,
-				BB6BDB98298942130000584A /* NetworkConfiguration.swift */,
 				BB836F7028D1BECA008F22C7 /* Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		BB6BDB9529891CAA0000584A /* Stocks */ = {
+		BB6A7F612A4C5FCB0028CC13 /* AuthService */ = {
 			isa = PBXGroup;
 			children = (
-				BB6BDB9629891CBD0000584A /* StockCell.swift */,
+				BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */,
+				BB6A7F622A4C5FF60028CC13 /* AuthServiceProtocol.swift */,
 			);
-			path = Stocks;
+			path = AuthService;
+			sourceTree = "<group>";
+		};
+		BB6A7F672A4C66040028CC13 /* DefaultValueService */ = {
+			isa = PBXGroup;
+			children = (
+				BB6A7F682A4C66210028CC13 /* DefaultValueService.swift */,
+				BB6A7F6B2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift */,
+			);
+			path = DefaultValueService;
+			sourceTree = "<group>";
+		};
+		BB6B5BAF2A3C9BBA00E16FFB /* AddTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				BB6B5BB02A3C9BD200E16FFB /* Presenter */,
+				BB6B5BB22A3C9BDF00E16FFB /* View */,
+			);
+			path = AddTransaction;
+			sourceTree = "<group>";
+		};
+		BB6B5BB02A3C9BD200E16FFB /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB6B5BB32A3C9BFF00E16FFB /* AddTransactionPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB6B5BB22A3C9BDF00E16FFB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB6B5BB52A3C9C1600E16FFB /* AddTransactionViewController.swift */,
+				BB6B5BB72A3C9C7200E16FFB /* AddTransactionInput.swift */,
+				BB6B5BB92A3C9C9B00E16FFB /* AddTransactionOutput.swift */,
+				BB9EFC09285E2A9200305776 /* CategoryCell.swift */,
+				BB9EFC0B2861AADF00305776 /* RevenueView.swift */,
+				BB9EFC0D2861B2AC00305776 /* AmountView.swift */,
+				BB6BDBA0298B994C0000584A /* TypeCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		BB6BDB9A2989550B0000584A /* App */ = {
@@ -228,94 +510,104 @@
 				BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */,
 				BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */,
 				BB61DE972850A33800A08AC6 /* LaunchScreen.storyboard */,
+				BB5C411D2A4996D1002DC6A0 /* DefaultValue.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
 		};
-		BB74FA262858C09E00EA2CD8 /* Home */ = {
+		BB6D218E2A33C9FB000C22D7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				BB6D218F2A33CA1B000C22D7 /* Home */,
+				BB6B5BAF2A3C9BBA00E16FFB /* AddTransaction */,
+				BB6D219C2A38A807000C22D7 /* Profile */,
+				BB5E372A2A40983C0093AB95 /* LastTransaction */,
+				BB5E373B2A41991B0093AB95 /* ExchangeRate */,
+				BB5E37462A41CC160093AB95 /* Stocks */,
+				BB5C40FE2A444628002DC6A0 /* Auth */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		BB6D218F2A33CA1B000C22D7 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D21902A33CA76000C22D7 /* Presenter */,
+				BB6D21922A33CA81000C22D7 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		BB6D21902A33CA76000C22D7 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D21932A33CADB000C22D7 /* HomePresenter.swift */,
+				BB5E37392A418A4D0093AB95 /* HomePresenterOutput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB6D21922A33CA81000C22D7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D219A2A33CD05000C22D7 /* HomeViewController.swift */,
+				BB6D21982A33CC33000C22D7 /* HomeInput.swift */,
+				BB6D21962A33CB1A000C22D7 /* HomeOutput.swift */,
 				BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */,
 				BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */,
 				BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */,
 				BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */,
 			);
-			path = Home;
+			path = View;
 			sourceTree = "<group>";
 		};
-		BB9B6FD028CB5D97000B1D53 /* Profile */ = {
+		BB6D219C2A38A807000C22D7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				BB74FA292858C58A00EA2CD8 /* AuthController.swift */,
-				BB9B6FD128CB5E45000B1D53 /* ProfileController.swift */,
+				BB6D219D2A38A81F000C22D7 /* Presenter */,
+				BB6D219E2A38A8F0000C22D7 /* View */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		BB9B6FD628CF79C1000B1D53 /* Profile */ = {
+		BB6D219D2A38A81F000C22D7 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				BB6D219F2A38A90E000C22D7 /* ProfilePresenter.swift */,
+				BB5C410F2A44798C002DC6A0 /* ProfilePresenterOutput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB6D219E2A38A8F0000C22D7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D21A12A38A995000C22D7 /* ProfileViewController.swift */,
+				BB6D21A32A38AA25000C22D7 /* ProfileInput.swift */,
+				BB6D21A52A38AA5E000C22D7 /* ProfileOutput.swift */,
 				BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */,
 				BB9B6FD728CF79E9000B1D53 /* ProfileImageView.swift */,
 			);
-			path = Profile;
+			path = View;
 			sourceTree = "<group>";
 		};
-		BB9EFC08285E249800305776 /* Add */ = {
+		BB6DF00E2A4B6F4300A1B4BD /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				BB9EFC09285E2A9200305776 /* CategoryCell.swift */,
-				BB9EFC0B2861AADF00305776 /* RevenueView.swift */,
-				BB9EFC0D2861B2AC00305776 /* AmountView.swift */,
-				BB6BDBA0298B994C0000584A /* TypeCell.swift */,
-			);
-			path = Add;
-			sourceTree = "<group>";
-		};
-		BB9EFC14286B2A7500305776 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				BB9EFC12286B234600305776 /* DatabaseService.swift */,
-				BB6EEDEB287C5DC200245997 /* NetworkService.swift */,
-				BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */,
-				BB836F7228D20D9C008F22C7 /* UserService.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		BB9EFC15287821DC00305776 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				BB9EFC162878221000305776 /* ExchangeRateController.swift */,
-				BB2F661928DC54FC0068E7CE /* StocksController.swift */,
+				BB6A7F612A4C5FCB0028CC13 /* AuthService */,
+				BB6A7F672A4C66040028CC13 /* DefaultValueService */,
+				BB6DF00F2A4B6F6C00A1B4BD /* Transactions Service */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		BB9EFC1A2878309D00305776 /* Services */ = {
+		BB6DF00F2A4B6F6C00A1B4BD /* Transactions Service */ = {
 			isa = PBXGroup;
 			children = (
-				BB6BDB9529891CAA0000584A /* Stocks */,
-				BB9EFC1B287830C400305776 /* ExchangeRate */,
+				BB6DF0102A4B6F9B00A1B4BD /* TransactionsService.swift */,
+				BB6DF0122A4B6FBE00A1B4BD /* TransactionsServiceProtocol.swift */,
 			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		BB9EFC1B287830C400305776 /* ExchangeRate */ = {
-			isa = PBXGroup;
-			children = (
-				BB9EFC1C287830E800305776 /* TopView.swift */,
-				BB9EFC20287869D000305776 /* CurrencyCell.swift */,
-			);
-			path = ExchangeRate;
-			sourceTree = "<group>";
-		};
-		BBB9D95028B653480037CC24 /* AddTransaction */ = {
-			isa = PBXGroup;
-			children = (
-				BB66934E285C7FFF002DFAAD /* AddTransactionController.swift */,
-			);
-			path = AddTransaction;
+			path = "Transactions Service";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,11 +618,11 @@
 			buildConfigurationList = BB61DE9D2850A33800A08AC6 /* Build configuration list for PBXNativeTarget "Finance" */;
 			buildPhases = (
 				084511A3D4B68E4F086843F0 /* [CP] Check Pods Manifest.lock */,
+				BB218BA02A332C9C00022244 /* ShellScript */,
 				BB61DE852850A33300A08AC6 /* Sources */,
 				BB61DE862850A33300A08AC6 /* Frameworks */,
 				BB61DE872850A33300A08AC6 /* Resources */,
 				CEB7F9A8A9B9B3BC3379355F /* [CP] Embed Pods Frameworks */,
-				BB218BA02A332C9C00022244 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -412,6 +704,7 @@
 		};
 		BB218BA02A332C9C00022244 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -452,43 +745,85 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB9EFC21287869D000305776 /* CurrencyCell.swift in Sources */,
+				BB5E37432A4199B40093AB95 /* ExchangeRateInput.swift in Sources */,
+				BB5C40F02A4345CF002DC6A0 /* ProfileCoordinator.swift in Sources */,
+				BB5E37412A41996D0093AB95 /* ExchangeRateViewController.swift in Sources */,
 				BB6BDBA1298B994C0000584A /* TypeCell.swift in Sources */,
-				BB9EFC172878221000305776 /* ExchangeRateController.swift in Sources */,
-				BBB9D95228B653F30037CC24 /* LastTransactionModalController.swift in Sources */,
+				BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */,
+				BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */,
+				BB5E37322A4098B00093AB95 /* LastTransactionInput.swift in Sources */,
+				BB5E372E2A4098850093AB95 /* LastTransactionPresenter.swift in Sources */,
 				BB66934D285B885A002DFAAD /* Model.swift in Sources */,
+				BB5C41162A44829A002DC6A0 /* NetworkProtocol.swift in Sources */,
 				BB9EFC0E2861B2AC00305776 /* AmountView.swift in Sources */,
+				BB6D21972A33CB1A000C22D7 /* HomeOutput.swift in Sources */,
+				BB5C41062A4446DD002DC6A0 /* AuthInput.swift in Sources */,
+				BB5C41202A4ACC6F002DC6A0 /* CoreDataProtocol.swift in Sources */,
 				BB6BDB99298942130000584A /* NetworkConfiguration.swift in Sources */,
 				BB9B6FCF28CB5A59000B1D53 /* Constants.swift in Sources */,
 				BB44C5F72988079600776D4E /* Animations.swift in Sources */,
-				BB9B6FD228CB5E45000B1D53 /* ProfileController.swift in Sources */,
+				BB6D21942A33CADB000C22D7 /* HomePresenter.swift in Sources */,
+				BB6A7F632A4C5FF60028CC13 /* AuthServiceProtocol.swift in Sources */,
+				BB5C40F92A443AB2002DC6A0 /* ProfileAssembly.swift in Sources */,
+				BB6DF0132A4B6FBE00A1B4BD /* TransactionsServiceProtocol.swift in Sources */,
 				BB61DEA52850A3C200A08AC6 /* TabBarController.swift in Sources */,
 				BB6BDB9D2989574C0000584A /* ModelDecodable.swift in Sources */,
+				BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */,
 				BB9EFC0A285E2A9200305776 /* CategoryCell.swift in Sources */,
+				BB5C410C2A446C47002DC6A0 /* AuthPresenterOutput.swift in Sources */,
 				BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */,
+				BB5C41042A444675002DC6A0 /* AuthViewController.swift in Sources */,
 				BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */,
+				BB5E37382A41888D0093AB95 /* HomeCoordinator.swift in Sources */,
 				BB80CA0528D9A96F00AE5A8B /* CurrentUser.swift in Sources */,
+				BB5C41102A44798C002DC6A0 /* ProfilePresenterOutput.swift in Sources */,
+				BB5C41022A44464F002DC6A0 /* AuthPresenter.swift in Sources */,
+				BB5C41142A4481BD002DC6A0 /* Network.swift in Sources */,
+				BB6B5BB42A3C9BFF00E16FFB /* AddTransactionPresenter.swift in Sources */,
 				BB6BDB9729891CBD0000584A /* StockCell.swift in Sources */,
+				BB5C41082A4446F7002DC6A0 /* AuthOutput.swift in Sources */,
+				BB6D21992A33CC33000C22D7 /* HomeInput.swift in Sources */,
+				BB6D21A02A38A90E000C22D7 /* ProfilePresenter.swift in Sources */,
+				BB6D21A62A38AA5E000C22D7 /* ProfileOutput.swift in Sources */,
+				BB6A7F6C2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift in Sources */,
+				BB6B5BB62A3C9C1600E16FFB /* AddTransactionViewController.swift in Sources */,
+				BB5E374A2A41CC420093AB95 /* StocksViewController.swift in Sources */,
 				BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */,
+				BB5C40F52A442A50002DC6A0 /* HomeAssembly.swift in Sources */,
 				BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */,
+				BB5C40FB2A443C5B002DC6A0 /* ExchangeRateAssembly.swift in Sources */,
+				BB5E373F2A4199440093AB95 /* ExchangeRatePresenter.swift in Sources */,
+				BB5E37452A4199E00093AB95 /* ExchangeRateOutput.swift in Sources */,
 				BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */,
-				BB2F661A28DC54FC0068E7CE /* StocksController.swift in Sources */,
-				BB6EEDEC287C5DC200245997 /* NetworkService.swift in Sources */,
-				BB836F7328D20D9C008F22C7 /* UserService.swift in Sources */,
-				BB61DEA72850A3D400A08AC6 /* HomeController.swift in Sources */,
+				BB5E37342A4098BE0093AB95 /* LastTransactionOutput.swift in Sources */,
+				BB5E374F2A41CD020093AB95 /* StocksInput.swift in Sources */,
 				BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */,
-				BB74FA2A2858C58A00EA2CD8 /* AuthController.swift in Sources */,
+				BB5C40FD2A443FB1002DC6A0 /* StocksAssembly.swift in Sources */,
+				BB5C411E2A4996D1002DC6A0 /* DefaultValue.swift in Sources */,
 				BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */,
 				BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */,
 				BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */,
-				BB9EFC13286B234700305776 /* DatabaseService.swift in Sources */,
+				BB5C410E2A446D49002DC6A0 /* AuthCoordinator.swift in Sources */,
+				BB9EFC13286B234700305776 /* CoreDataService.swift in Sources */,
+				BB6D21A42A38AA25000C22D7 /* ProfileInput.swift in Sources */,
 				BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */,
 				BB9EFC0C2861AADF00305776 /* RevenueView.swift in Sources */,
 				BB9B6FD828CF79E9000B1D53 /* ProfileImageView.swift in Sources */,
-				BB66934F285C7FFF002DFAAD /* AddTransactionController.swift in Sources */,
 				BB63FDA52902D3B800D28166 /* CurrencyRate.swift in Sources */,
+				BB5E374D2A41CCE30093AB95 /* StocksPresenter.swift in Sources */,
+				BB5C411C2A463050002DC6A0 /* FileStoreProtocol.swift in Sources */,
 				BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */,
+				BB6D21A22A38A995000C22D7 /* ProfileViewController.swift in Sources */,
+				BB6B5BBA2A3C9C9B00E16FFB /* AddTransactionOutput.swift in Sources */,
 				BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */,
+				BB5C40F72A443544002DC6A0 /* AddTransactionAssembly.swift in Sources */,
+				BB5C411A2A462D6A002DC6A0 /* FileStore.swift in Sources */,
+				BB5E37512A41CD1C0093AB95 /* StocksOutput.swift in Sources */,
+				BB6A7F692A4C66210028CC13 /* DefaultValueService.swift in Sources */,
+				BB5C410A2A444D27002DC6A0 /* AuthAssembly.swift in Sources */,
 				BB9EFC1D287830E800305776 /* TopView.swift in Sources */,
+				BB6DF0112A4B6F9B00A1B4BD /* TransactionsService.swift in Sources */,
+				BB5E373A2A418A4D0093AB95 /* HomePresenterOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,7 +843,6 @@
 /* Begin XCBuildConfiguration section */
 		BB61DE9B2850A33800A08AC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB640D9228E19CD300F789B6 /* ApiKey.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

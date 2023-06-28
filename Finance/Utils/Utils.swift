@@ -16,19 +16,22 @@ class Utils {
         imageView.image = UIImage(named: name)
         button.addSubview(imageView)
         imageView.centerYAnchor.constraint(equalTo: button.centerYAnchor).isActive = true
-        imageView.anchor(left: button.leftAnchor, width: 40, height: 40)
+        imageView.anchor(leading: button.leadingAnchor, width: 40, height: 40)
 
         let label = UILabel()
         label.text = title
         label.font = UIFont.boldSystemFont(ofSize: 21)
         button.addSubview(label)
         label.centerYAnchor.constraint(equalTo: button.centerYAnchor).isActive = true
-        label.anchor(left: imageView.rightAnchor, paddingLeft: 15)
+        label.anchor(leading: imageView.trailingAnchor, paddingLeading: 15)
 
         let viewLine = UIView()
         viewLine.backgroundColor = .lightGray
         button.addSubview(viewLine)
-        viewLine.anchor(left: button.leftAnchor, right: button.rightAnchor, bottom: button.bottomAnchor, height: 1)
+        viewLine.anchor(leading: button.leadingAnchor,
+                        trailing: button.trailingAnchor,
+                        bottom: button.bottomAnchor,
+                        height: 1)
         return button
     }
 }

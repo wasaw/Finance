@@ -44,9 +44,21 @@ class CircleAnimation: UIView {
         loadRightView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 20).isActive = true
         loadRightView.anchor(top: topAnchor, width: 30, height: 30)
         
-        let circleLeftPath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 5, startAngle: 0, endAngle: Double.pi * 2, clockwise: true)
-        let circleCenterPath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 5, startAngle: 0, endAngle: Double.pi * 2, clockwise: true)
-        let circleRightPath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 5, startAngle: 0, endAngle: Double.pi * 2, clockwise: true)
+        let circleLeftPath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15),
+                                          radius: 5,
+                                          startAngle: 0,
+                                          endAngle: Double.pi * 2,
+                                          clockwise: true)
+        let circleCenterPath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15),
+                                            radius: 5,
+                                            startAngle: 0,
+                                            endAngle: Double.pi * 2,
+                                            clockwise: true)
+        let circleRightPath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15),
+                                           radius: 5,
+                                           startAngle: 0,
+                                           endAngle: Double.pi * 2,
+                                           clockwise: true)
         
         let shapeLeftLayer = CAShapeLayer()
         shapeLeftLayer.path = circleLeftPath.cgPath
