@@ -21,12 +21,18 @@ struct NetworkConfiguration {
     
 // MARK: - Helpers
     
-    func getUrl(_ request: RequestType, date: String? = nil) -> String {
+    func getUrl(_ request: RequestType, date: String? = nil) throws -> String {
         switch request {
         case .exchange:
+            if exchangeApiKey.isEmpty {
+                throw ConfigFileError.lostFile
+            }
             return exchangeUrl + exchangeApiKey + exchangeEnd
         case .stock:
             guard let date = date else { return "" }
+            if stockApiKey.isEmpty {
+                throw ConfigFileError.lostFile
+            }
             return stockUrl + date + stockCenter + stockApiKey
         }
     }

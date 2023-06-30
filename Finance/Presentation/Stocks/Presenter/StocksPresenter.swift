@@ -50,27 +50,31 @@ final class StocksPresenter {
         formatter.dateFormat = "yyyy-MM-dd"
         let stringDate = formatter.string(from: currentDate)
         DispatchQueue.main.async {
-            let urlString = self.config.getUrl(.stock, date: stringDate)
-            guard let url = URL(string: urlString) else { return }
-            let urlRequest = URLRequest(url: url)
-            self.network.loadData(request: urlRequest) { (result: Result<StockRate, Error>) in
-                switch result {
-                case .success(let stocks):
-                    let result = stocks.results
-                    for i in 0..<self.stockList.count {
-                        if let answer = result.first(where: { $0.symbol == self.stockList[i].symbol }) {
-                            self.stockList[i].value = answer.value
+            do {
+                let urlString = try self.config.getUrl(.stock, date: stringDate)
+                guard let url = URL(string: urlString) else { return }
+                let urlRequest = URLRequest(url: url)
+                self.network.loadData(request: urlRequest) { (result: Result<StockRate, Error>) in
+                    switch result {
+                    case .success(let stocks):
+                        let result = stocks.results
+                        for i in 0..<self.stockList.count {
+                            if let answer = result.first(where: { $0.symbol == self.stockList[i].symbol }) {
+                                self.stockList[i].value = answer.value
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            self.input?.setLoading(enable: false)
+                            self.input?.setData(self.stockList)
+                        }
+                    case .failure(let error):
+                        DispatchQueue.main.async {
+                            self.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
                         }
                     }
-                    DispatchQueue.main.async {
-                        self.input?.setLoading(enable: false)
-                        self.input?.setData(self.stockList)
-                    }
-                case .failure(let error):
-                    DispatchQueue.main.async {
-                        self.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
-                    }
                 }
+            } catch {
+                self.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
             }
         }
     }

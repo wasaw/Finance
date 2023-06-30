@@ -56,6 +56,7 @@
 		BB6A7F632A4C5FF60028CC13 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A7F622A4C5FF60028CC13 /* AuthServiceProtocol.swift */; };
 		BB6A7F692A4C66210028CC13 /* DefaultValueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A7F682A4C66210028CC13 /* DefaultValueService.swift */; };
 		BB6A7F6C2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A7F6B2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift */; };
+		BB6A7F6E2A4DCE470028CC13 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A7F6D2A4DCE470028CC13 /* ErrorModel.swift */; };
 		BB6B5BB42A3C9BFF00E16FFB /* AddTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6B5BB32A3C9BFF00E16FFB /* AddTransactionPresenter.swift */; };
 		BB6B5BB62A3C9C1600E16FFB /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6B5BB52A3C9C1600E16FFB /* AddTransactionViewController.swift */; };
 		BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6B5BB72A3C9C7200E16FFB /* AddTransactionInput.swift */; };
@@ -132,6 +133,7 @@
 		BB5E374C2A41CCE30093AB95 /* StocksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksPresenter.swift; sourceTree = "<group>"; };
 		BB5E374E2A41CD020093AB95 /* StocksInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksInput.swift; sourceTree = "<group>"; };
 		BB5E37502A41CD1C0093AB95 /* StocksOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksOutput.swift; sourceTree = "<group>"; };
+		BB5F1E862A4F076D0054F3A6 /* ApiKey.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ApiKey.xcconfig; sourceTree = "<group>"; };
 		BB61DE892850A33300A08AC6 /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		BB6A7F622A4C5FF60028CC13 /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
 		BB6A7F682A4C66210028CC13 /* DefaultValueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueService.swift; sourceTree = "<group>"; };
 		BB6A7F6B2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueServiceProtocol.swift; sourceTree = "<group>"; };
+		BB6A7F6D2A4DCE470028CC13 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
 		BB6B5BB32A3C9BFF00E16FFB /* AddTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenter.swift; sourceTree = "<group>"; };
 		BB6B5BB52A3C9C1600E16FFB /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		BB6B5BB72A3C9C7200E16FFB /* AddTransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionInput.swift; sourceTree = "<group>"; };
@@ -439,6 +442,7 @@
 				BB66934C285B885A002DFAAD /* Model.swift */,
 				BB63FDA42902D3B800D28166 /* CurrencyRate.swift */,
 				BB6BDB9C2989574C0000584A /* ModelDecodable.swift */,
+				BB6A7F6D2A4DCE470028CC13 /* ErrorModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -511,6 +515,7 @@
 				BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */,
 				BB61DE972850A33800A08AC6 /* LaunchScreen.storyboard */,
 				BB5C411D2A4996D1002DC6A0 /* DefaultValue.swift */,
+				BB5F1E862A4F076D0054F3A6 /* ApiKey.xcconfig */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -777,6 +782,7 @@
 				BB5E37382A41888D0093AB95 /* HomeCoordinator.swift in Sources */,
 				BB80CA0528D9A96F00AE5A8B /* CurrentUser.swift in Sources */,
 				BB5C41102A44798C002DC6A0 /* ProfilePresenterOutput.swift in Sources */,
+				BB6A7F6E2A4DCE470028CC13 /* ErrorModel.swift in Sources */,
 				BB5C41022A44464F002DC6A0 /* AuthPresenter.swift in Sources */,
 				BB5C41142A4481BD002DC6A0 /* Network.swift in Sources */,
 				BB6B5BB42A3C9BFF00E16FFB /* AddTransactionPresenter.swift in Sources */,
@@ -843,6 +849,7 @@
 /* Begin XCBuildConfiguration section */
 		BB61DE9B2850A33800A08AC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB5F1E862A4F076D0054F3A6 /* ApiKey.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -903,6 +910,7 @@
 		};
 		BB61DE9C2850A33800A08AC6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB5F1E862A4F076D0054F3A6 /* ApiKey.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
