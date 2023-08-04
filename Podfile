@@ -14,4 +14,8 @@ pod 'Firebase/Storage'
 pod 'SDWebImage', '~> 5.0'
 pod 'SwiftLint'
 
+  target 'FinanceUnitTests' do
+    inherit! :search_paths
+   # pod 'Firebase'
+  end
 end
