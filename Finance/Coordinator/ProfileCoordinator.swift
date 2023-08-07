@@ -13,11 +13,11 @@ final class ProfileCoordinator {
     
     private var profileView: UIViewController?
     private let profileAssembly: ProfileAssembly
-    private let coreData: CoreDataProtocol
+    private let coreData: CoreDataServiceProtocol
     
 // MARK: - Lifecycle
     
-    init(profileAssembly: ProfileAssembly, coreData: CoreDataProtocol) {
+    init(profileAssembly: ProfileAssembly, coreData: CoreDataServiceProtocol) {
         self.profileAssembly = profileAssembly
         self.coreData = coreData
     }

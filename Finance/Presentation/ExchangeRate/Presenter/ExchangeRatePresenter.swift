@@ -15,7 +15,7 @@ final class ExchangeRatePresenter {
     
     private let network: NetworkProtocol
     private let config: NetworkConfiguration
-    private let coreDataService: CoreDataProtocol
+    private let coreDataService: CoreDataServiceProtocol
     private var exchangeRate = [CurrentExchangeRate]()
     private let fullName = ["Болгарский лев",
                             "Чешская крона",
@@ -51,7 +51,7 @@ final class ExchangeRatePresenter {
     
     init(network: NetworkProtocol,
          config: NetworkConfiguration,
-         coreDataService: CoreDataProtocol) {
+         coreDataService: CoreDataServiceProtocol) {
         self.network = network
         self.config = config
         self.coreDataService = coreDataService

@@ -16,7 +16,7 @@ final class TabBarController: UITabBarController {
     private let homeCoordinator: HomeCoordinator
     private let addAssembly: AddTransactionAssembly
     private let profileCoordinator: ProfileCoordinator
-    private let coreData: CoreDataProtocol
+    private let coreData: CoreDataServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
     private let defaultValueService: DefaultValueServiceProtocol
         
@@ -25,7 +25,7 @@ final class TabBarController: UITabBarController {
     init(homeCoordinator: HomeCoordinator,
          addAssembly: AddTransactionAssembly,
          profileCoordinator: ProfileCoordinator,
-         coreData: CoreDataProtocol,
+         coreData: CoreDataServiceProtocol,
          transactionsService: TransactionsServiceProtocol,
          defaultValueService: DefaultValueServiceProtocol) {
         

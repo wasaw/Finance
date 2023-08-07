@@ -11,11 +11,11 @@ final class TransactionsService {
     
 // MARK: - Properties
     
-    private let coreData: CoreDataProtocol
+    private let coreData: CoreDataServiceProtocol
     
 // MARK: - Lifecycle
     
-    init(coreData: CoreDataProtocol) {
+    init(coreData: CoreDataServiceProtocol) {
         self.coreData = coreData
     }
     

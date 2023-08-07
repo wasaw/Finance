@@ -27,7 +27,7 @@ final class CoreDataService {
 
 // MARK: - CoreDataProtocol
 
-extension CoreDataService: CoreDataProtocol {
+extension CoreDataService: CoreDataServiceProtocol {
     func fetchTransactions() throws -> [TransactionManagedObject] {
         let fetchRequest = TransactionManagedObject.fetchRequest()
         return try viewContext.fetch(fetchRequest)

@@ -21,7 +21,7 @@ final class ProfileViewController: UIViewController {
 // MARK: - Properties
     
     private let output: ProfileOutput
-    private let coreData: CoreDataProtocol
+    private let coreData: CoreDataServiceProtocol
     
     private let imagePicker = UIImagePickerController()
     private lazy var imageView = ProfileImageView()
@@ -38,7 +38,7 @@ final class ProfileViewController: UIViewController {
     
 // MARK: - Lifecycle
     
-    init(output: ProfileOutput, coreData: CoreDataProtocol) {
+    init(output: ProfileOutput, coreData: CoreDataServiceProtocol) {
         self.output = output
         self.coreData = coreData
         super.init(nibName: nil, bundle: nil)

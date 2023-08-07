@@ -17,7 +17,7 @@ final class HomeCoordinator {
     private let stocksAssembly: StocksAssembly
     private let network: NetworkProtocol
     private let config: NetworkConfiguration
-    private let coreData: CoreDataProtocol
+    private let coreData: CoreDataServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
     
 // MARK: - Lifecycle
@@ -27,7 +27,7 @@ final class HomeCoordinator {
          stocksAssembly: StocksAssembly,
          network: NetworkProtocol,
          config: NetworkConfiguration,
-         coreData: CoreDataProtocol,
+         coreData: CoreDataServiceProtocol,
          transactionsService: TransactionsServiceProtocol) {
         self.homeAssembly = homeAssembly
         self.exchangeAssembly = exchangeAssembly

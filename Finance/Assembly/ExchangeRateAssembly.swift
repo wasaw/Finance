@@ -10,7 +10,7 @@ import UIKit
 final class ExchangeRateAssembly {
     func makeExchangeRateModule(network: NetworkProtocol,
                                 config: NetworkConfiguration,
-                                coreData: CoreDataProtocol) -> UIViewController {
+                                coreData: CoreDataServiceProtocol) -> UIViewController {
         let presenter = ExchangeRatePresenter(network: network,
                                               config: config,
                                               coreDataService: coreData)

@@ -1,6 +1,7 @@
 excluded:
   - Pods
   - DerivedData
+  - FinanceUnitTests
 
 warning_threshold: 1
 
