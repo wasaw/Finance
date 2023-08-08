@@ -19,6 +19,8 @@ final class AddTransactionPresenter {
     private var category = [ChoiceCategoryExpense]()
     private var revenue = [ChoiceTypeRevenue]()
     
+    private let notification = NotificationCenter.default
+
 // MARK: - Lifecycle
     
     init(transactionsService: TransactionsServiceProtocol, defaultValueService: DefaultValueServiceProtocol) {
@@ -47,6 +49,8 @@ extension AddTransactionPresenter: AddTransactionOutput {
     
     func saveTransaction(_ transaction: LastTransaction) {
         transactionsService.saveTransaction(transaction)
+        let addTransaction: [String: LastTransaction] = ["lastTransaction": transaction]
+        notification.post(Notification(name: Notification.Name("AddTransaction"), object: nil, userInfo: addTransaction))
         input?.dismissView()
     }
 }

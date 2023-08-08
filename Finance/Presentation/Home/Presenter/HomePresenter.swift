@@ -25,12 +25,15 @@ final class HomePresenter {
 //        }
 //    }
     
+    private let notification = NotificationCenter.default
+    
 // MARK: - Lifecycle
     
     init(homeCoordinator: HomePresenterOutput,
          transactionsService: TransactionsServiceProtocol) {
         self.output = homeCoordinator
         self.transactionsService = transactionsService
+        notification.addObserver(self, selector: #selector(reloadView), name: Notification.Name("AddTransaction"), object: nil)
     }
     
 // MARK: - Helpers
@@ -59,6 +62,27 @@ final class HomePresenter {
                              service: self.service,
                              lastTransaction: self.lastTransaction)
         
+    }
+    
+// MARK: - Selectors
+    
+    @objc private func reloadView(_ notification: NSNotification) {
+        if let dictionary = notification.userInfo as? NSDictionary {
+            if let transaction = dictionary["lastTransaction"] as? LastTransaction {
+                if lastTransaction.isEmpty {
+                    input?.showLastTransaction()
+                }
+                lastTransaction.append(transaction)
+                var revenue: Double = 0
+                lastTransaction.forEach { transaction in
+                    revenue += transaction.amount
+                }
+                input?.showData(total: revenue,
+                                currency: CurrencyRate.currentCurrency,
+                                service: self.service,
+                                lastTransaction: lastTransaction)
+            }
+        }
     }
 }
 
