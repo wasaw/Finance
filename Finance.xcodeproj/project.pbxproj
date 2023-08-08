@@ -168,6 +168,7 @@
 		BB66A3392A7D2F1C003A8871 /* TransactionsServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsServiceTest.swift; sourceTree = "<group>"; };
 		BB66A33B2A7D2FDE003A8871 /* CoreDataServiceProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceProtocolMock.swift; sourceTree = "<group>"; };
 		BB66A33D2A7D3315003A8871 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
+		BB66A33F2A810F24003A8871 /* UnitServiceTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitServiceTestPlan.xctestplan; sourceTree = "<group>"; };
 		BB69A5C52A7D106F001941F0 /* FinanceUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinanceUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB69A5D02A7D1554001941F0 /* DefaultValueServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueServiceTests.swift; sourceTree = "<group>"; };
 		BB69A5D22A7D1572001941F0 /* FileStoreProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStoreProtocolMock.swift; sourceTree = "<group>"; };
@@ -430,6 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				BB9EFC0F2863023700305776 /* Model.xcdatamodeld */,
+				BB66A3402A810F40003A8871 /* TestPlans */,
 				BB61DE8B2850A33300A08AC6 /* Finance */,
 				BB69A5C62A7D1070001941F0 /* FinanceUnitTests */,
 				BB61DE8A2850A33300A08AC6 /* Products */,
@@ -494,6 +496,14 @@
 				BB836F7028D1BECA008F22C7 /* Utils.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		BB66A3402A810F40003A8871 /* TestPlans */ = {
+			isa = PBXGroup;
+			children = (
+				BB66A33F2A810F24003A8871 /* UnitServiceTestPlan.xctestplan */,
+			);
+			path = TestPlans;
 			sourceTree = "<group>";
 		};
 		BB69A5C62A7D1070001941F0 /* FinanceUnitTests */ = {

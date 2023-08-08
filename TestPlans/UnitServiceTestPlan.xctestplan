@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "2F12B6F1-7A68-43EE-878F-5980882A0A87",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Finance.xcodeproj",
+      "identifier" : "BB69A5C42A7D106F001941F0",
+      "name" : "FinanceUnitTests"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Finance.xcodeproj",
+        "identifier" : "BB69A5C42A7D106F001941F0",
+        "name" : "FinanceUnitTests"
+      }
+    }
+  ],
+  "version" : 1
+}

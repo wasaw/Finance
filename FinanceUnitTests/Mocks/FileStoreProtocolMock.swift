@@ -25,10 +25,7 @@ final class FileStoreProtocolMock: FileStoreProtocol {
     var invokedReadAppInformationCount = 0
     var invokedReadAppInformationParameters: (value: String, Void)?
     var invokedReadAppInformationParametersList = [(value: String, Void)]()
- // swiftlint:disable type_name
     typealias T = Any
- // swiftlint:enable type_name
-    
     var stubbedReadAppInformationCompletionResult: (Result<T, FileManagerError>, Void)?
 
     func readAppInformation<T: Codable>(_ value: String, completion: @escaping(Result<T, FileManagerError>) -> Void) {
@@ -37,9 +34,7 @@ final class FileStoreProtocolMock: FileStoreProtocol {
         invokedReadAppInformationParameters = (value, ())
         invokedReadAppInformationParametersList.append((value, ()))
         if let result = stubbedReadAppInformationCompletionResult {
- // swiftlint:disable force_cast
             completion(result.0 as! Result<T, FileManagerError>)
- // swiftlint:enable force_cast
-        }
+         }
     }
 }
