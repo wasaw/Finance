@@ -14,26 +14,25 @@ final class ProfileCoordinator {
     private var profileView: UIViewController?
     private let profileAssembly: ProfileAssembly
     private let coreData: CoreDataServiceProtocol
+    private let authService: AuthServiceProtocol
     
 // MARK: - Lifecycle
     
-    init(profileAssembly: ProfileAssembly, coreData: CoreDataServiceProtocol) {
+    init(profileAssembly: ProfileAssembly,
+         coreData: CoreDataServiceProtocol,
+         authService: AuthServiceProtocol) {
         self.profileAssembly = profileAssembly
         self.coreData = coreData
+        self.authService = authService
     }
     
 // MARK: - Helpers
     
     func start() -> UINavigationController {
-        let vc = profileAssembly.makeProfileModule(profileCoordinator: self, coreData: coreData)
+        let vc = profileAssembly.makeProfileModule(coreData: coreData,
+                                                   authService: authService)
         let nav = UINavigationController(rootViewController: vc)
         profileView = vc
         return nav
     }
-}
-
-// MARK: - ProfileOutput
-
-extension ProfileCoordinator: ProfilePresenterOutput {
-    
 }

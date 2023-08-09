@@ -115,12 +115,6 @@ final class ProfileViewController: UIViewController {
         return currency == CurrencyRate.currentCurrency ? true : false
     }
     
-    private func deleteAuthController() {
-        authController.willMove(toParent: nil)
-        authController.removeFromParent()
-        authController.view.removeFromSuperview()
-    }
-    
 // MARK: - Selecters
     
     @objc private func handleLogOutBtn() {
@@ -132,7 +126,6 @@ final class ProfileViewController: UIViewController {
 
 extension ProfileViewController: ProfileInput {
     func showAuth() {
-//        authController.delegate = self
         self.view.addSubview(authController.view)
         self.addChild(authController)
         authController.didMove(toParent: self)

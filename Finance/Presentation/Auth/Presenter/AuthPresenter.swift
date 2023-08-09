@@ -12,12 +12,12 @@ final class AuthPresenter {
 // MARK: - Properties
     
     weak var input: AuthInput?
-    private let output: AuthPresenterOutput
+    private let authService: AuthServiceProtocol
     
 // MARK: - Lifecycle
     
-    init(output: AuthPresenterOutput) {
-        self.output = output
+    init(authService: AuthServiceProtocol) {
+        self.authService = authService
     }
 }
 
@@ -35,7 +35,13 @@ extension AuthPresenter: AuthOutput {
             } else {
                 let email = credentials.email
                 let password = credentials.password
-                output.entrance(email: email, password: password)
+                authService.logInUser(email: email, password: password) { result in
+                    if result {
+                        self.input?.dismissView()
+                    } else {
+                        print("DEBUG: not logIn")
+                    }
+                }
             }
         case 1:
             var isReady = true
@@ -56,7 +62,14 @@ extension AuthPresenter: AuthOutput {
                 isReady = false
             }
             if isReady {
-                output.registration(credentials: credentials)
+                authService.signInUser(credentials: credentials) { result in
+                    if result {
+                        self.input?.dismissView()
+                        print("DEBUG: dismiss after registration")
+                    } else {
+                        print("DEBUG: not registered")
+                    }
+                }
             }
         default:
             break

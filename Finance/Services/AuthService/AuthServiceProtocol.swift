@@ -10,6 +10,10 @@ import FirebaseAuth
 import FirebaseDatabase
 
 protocol AuthServiceProtocol: AnyObject {
-    func logInUser(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void)
-    func registerUser(credentials: AuthCredentials, completion: @escaping (Error?, DatabaseReference) -> Void)
+    var profilePresenterInput: ProfilePresenterInput? { get set }
+    
+    func authVerification() -> Bool
+    func logOut()
+    func signInUser(credentials: AuthCredentials, completion: @escaping ((Bool) -> Void))
+    func logInUser(email: String, password: String, completion: @escaping (Bool) -> Void)
 }

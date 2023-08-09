@@ -256,6 +256,15 @@ final class AuthView: UIView {
                            height: Constants.heightFifty)
     }
     
+    func clearForm() {
+        emailTextField.text = ""
+        passTextField.text = ""
+        loginTextField.text = ""
+        emailRegTextField.text = ""
+        passRegTextField.text = ""
+        confirmPassTextField.text = ""
+    }
+    
 // MARK: - Helpers
     
     @objc private func handleSegment() {

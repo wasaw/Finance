@@ -79,6 +79,13 @@ final class AuthViewController: UIViewController {
 // MARK: - AuthInput
 
 extension AuthViewController: AuthInput {
+    func dismissView() {
+        willMove(toParent: nil)
+        removeFromParent()
+        view.removeFromSuperview()
+        authView.clearForm()
+    }
+    
     func showAlert(message: String) {
         alert(with: "Внимание", massage: message)
     }

@@ -26,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let coreData = CoreDataService()
         let defaultValueService = DefaultValueService(fileStore: fileStore)
         let transactionsService = TransactionsService(coreData: coreData)
+        let authService = AuthService()
         
 // MARK: - Coordinator
     
@@ -36,7 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                               config: config,
                                               coreData: coreData,
                                               transactionsService: transactionsService)
-        let profileCoordinator = ProfileCoordinator(profileAssembly: profileAssembly, coreData: coreData)
+        let profileCoordinator = ProfileCoordinator(profileAssembly: profileAssembly, coreData: coreData, authService: authService)
 
         guard let scene = (scene as? UIWindowScene) else { return }
         

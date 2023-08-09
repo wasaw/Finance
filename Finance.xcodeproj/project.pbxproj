@@ -20,9 +20,7 @@
 		BB5C41062A4446DD002DC6A0 /* AuthInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41052A4446DD002DC6A0 /* AuthInput.swift */; };
 		BB5C41082A4446F7002DC6A0 /* AuthOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41072A4446F7002DC6A0 /* AuthOutput.swift */; };
 		BB5C410A2A444D27002DC6A0 /* AuthAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41092A444D27002DC6A0 /* AuthAssembly.swift */; };
-		BB5C410C2A446C47002DC6A0 /* AuthPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C410B2A446C47002DC6A0 /* AuthPresenterOutput.swift */; };
 		BB5C410E2A446D49002DC6A0 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C410D2A446D49002DC6A0 /* AuthCoordinator.swift */; };
-		BB5C41102A44798C002DC6A0 /* ProfilePresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C410F2A44798C002DC6A0 /* ProfilePresenterOutput.swift */; };
 		BB5C41142A4481BD002DC6A0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41132A4481BD002DC6A0 /* Network.swift */; };
 		BB5C41162A44829A002DC6A0 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41152A44829A002DC6A0 /* NetworkProtocol.swift */; };
 		BB5C411A2A462D6A002DC6A0 /* FileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C41192A462D6A002DC6A0 /* FileStore.swift */; };
@@ -52,6 +50,7 @@
 		BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */; };
 		BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */; };
 		BB63FDA52902D3B800D28166 /* CurrencyRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB63FDA42902D3B800D28166 /* CurrencyRate.swift */; };
+		BB659BA32A83776E009DB75B /* ProfilePresenterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB659BA22A83776E009DB75B /* ProfilePresenterInput.swift */; };
 		BB66934D285B885A002DFAAD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66934C285B885A002DFAAD /* Model.swift */; };
 		BB66A33A2A7D2F1C003A8871 /* TransactionsServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66A3392A7D2F1C003A8871 /* TransactionsServiceTest.swift */; };
 		BB66A33C2A7D2FDE003A8871 /* CoreDataServiceProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66A33B2A7D2FDE003A8871 /* CoreDataServiceProtocolMock.swift */; };
@@ -129,9 +128,7 @@
 		BB5C41052A4446DD002DC6A0 /* AuthInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInput.swift; sourceTree = "<group>"; };
 		BB5C41072A4446F7002DC6A0 /* AuthOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOutput.swift; sourceTree = "<group>"; };
 		BB5C41092A444D27002DC6A0 /* AuthAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAssembly.swift; sourceTree = "<group>"; };
-		BB5C410B2A446C47002DC6A0 /* AuthPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenterOutput.swift; sourceTree = "<group>"; };
 		BB5C410D2A446D49002DC6A0 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
-		BB5C410F2A44798C002DC6A0 /* ProfilePresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterOutput.swift; sourceTree = "<group>"; };
 		BB5C41132A4481BD002DC6A0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		BB5C41152A44829A002DC6A0 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 		BB5C41192A462D6A002DC6A0 /* FileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStore.swift; sourceTree = "<group>"; };
@@ -164,6 +161,7 @@
 		BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
 		BB63FDA42902D3B800D28166 /* CurrencyRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRate.swift; sourceTree = "<group>"; };
+		BB659BA22A83776E009DB75B /* ProfilePresenterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterInput.swift; sourceTree = "<group>"; };
 		BB66934C285B885A002DFAAD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		BB66A3392A7D2F1C003A8871 /* TransactionsServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsServiceTest.swift; sourceTree = "<group>"; };
 		BB66A33B2A7D2FDE003A8871 /* CoreDataServiceProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceProtocolMock.swift; sourceTree = "<group>"; };
@@ -279,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				BB5C41032A444675002DC6A0 /* AuthViewController.swift */,
+				BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */,
 				BB5C41052A4446DD002DC6A0 /* AuthInput.swift */,
 				BB5C41072A4446F7002DC6A0 /* AuthOutput.swift */,
 			);
@@ -289,7 +288,6 @@
 			isa = PBXGroup;
 			children = (
 				BB5C41012A44464F002DC6A0 /* AuthPresenter.swift */,
-				BB5C410B2A446C47002DC6A0 /* AuthPresenterOutput.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -655,7 +653,7 @@
 			isa = PBXGroup;
 			children = (
 				BB6D219F2A38A90E000C22D7 /* ProfilePresenter.swift */,
-				BB5C410F2A44798C002DC6A0 /* ProfilePresenterOutput.swift */,
+				BB659BA22A83776E009DB75B /* ProfilePresenterInput.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -666,7 +664,6 @@
 				BB6D21A12A38A995000C22D7 /* ProfileViewController.swift */,
 				BB6D21A32A38AA25000C22D7 /* ProfileInput.swift */,
 				BB6D21A52A38AA5E000C22D7 /* ProfileOutput.swift */,
-				BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */,
 				BB9B6FD728CF79E9000B1D53 /* ProfileImageView.swift */,
 			);
 			path = View;
@@ -904,13 +901,11 @@
 				BB6BDB9D2989574C0000584A /* ModelDecodable.swift in Sources */,
 				BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */,
 				BB9EFC0A285E2A9200305776 /* CategoryCell.swift in Sources */,
-				BB5C410C2A446C47002DC6A0 /* AuthPresenterOutput.swift in Sources */,
 				BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */,
 				BB5C41042A444675002DC6A0 /* AuthViewController.swift in Sources */,
 				BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */,
 				BB5E37382A41888D0093AB95 /* HomeCoordinator.swift in Sources */,
 				BB80CA0528D9A96F00AE5A8B /* CurrentUser.swift in Sources */,
-				BB5C41102A44798C002DC6A0 /* ProfilePresenterOutput.swift in Sources */,
 				BB6A7F6E2A4DCE470028CC13 /* ErrorModel.swift in Sources */,
 				BB5C41022A44464F002DC6A0 /* AuthPresenter.swift in Sources */,
 				BB5C41142A4481BD002DC6A0 /* Network.swift in Sources */,
@@ -939,6 +934,7 @@
 				BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */,
 				BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */,
 				BB5C410E2A446D49002DC6A0 /* AuthCoordinator.swift in Sources */,
+				BB659BA32A83776E009DB75B /* ProfilePresenterInput.swift in Sources */,
 				BB9EFC13286B234700305776 /* CoreDataService.swift in Sources */,
 				BB6D21A42A38AA25000C22D7 /* ProfileInput.swift in Sources */,
 				BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */,
