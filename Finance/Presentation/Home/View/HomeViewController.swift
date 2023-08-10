@@ -201,6 +201,10 @@ extension HomeViewController: HomeInput {
     func showAlert(message: String) {
         self.alert(with: "Ошибка", massage: message)
     }
+    
+    func setUserName(_ name: String) {
+        fullNameLabel.text = name
+    }
 }
 
 // MARK: - UICollectionViewDelegate

@@ -51,6 +51,8 @@
 		BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */; };
 		BB63FDA52902D3B800D28166 /* CurrencyRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB63FDA42902D3B800D28166 /* CurrencyRate.swift */; };
 		BB659BA32A83776E009DB75B /* ProfilePresenterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB659BA22A83776E009DB75B /* ProfilePresenterInput.swift */; };
+		BB659BA62A83C101009DB75B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB659BA52A83C101009DB75B /* UserService.swift */; };
+		BB659BA82A83C11C009DB75B /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB659BA72A83C11C009DB75B /* UserServiceProtocol.swift */; };
 		BB66934D285B885A002DFAAD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66934C285B885A002DFAAD /* Model.swift */; };
 		BB66A33A2A7D2F1C003A8871 /* TransactionsServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66A3392A7D2F1C003A8871 /* TransactionsServiceTest.swift */; };
 		BB66A33C2A7D2FDE003A8871 /* CoreDataServiceProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66A33B2A7D2FDE003A8871 /* CoreDataServiceProtocolMock.swift */; };
@@ -162,6 +164,8 @@
 		BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
 		BB63FDA42902D3B800D28166 /* CurrencyRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRate.swift; sourceTree = "<group>"; };
 		BB659BA22A83776E009DB75B /* ProfilePresenterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterInput.swift; sourceTree = "<group>"; };
+		BB659BA52A83C101009DB75B /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		BB659BA72A83C11C009DB75B /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
 		BB66934C285B885A002DFAAD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		BB66A3392A7D2F1C003A8871 /* TransactionsServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsServiceTest.swift; sourceTree = "<group>"; };
 		BB66A33B2A7D2FDE003A8871 /* CoreDataServiceProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceProtocolMock.swift; sourceTree = "<group>"; };
@@ -496,6 +500,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		BB659BA42A83C0EE009DB75B /* UserService */ = {
+			isa = PBXGroup;
+			children = (
+				BB659BA52A83C101009DB75B /* UserService.swift */,
+				BB659BA72A83C11C009DB75B /* UserServiceProtocol.swift */,
+			);
+			path = UserService;
+			sourceTree = "<group>";
+		};
 		BB66A3402A810F40003A8871 /* TestPlans */ = {
 			isa = PBXGroup;
 			children = (
@@ -673,6 +686,7 @@
 			isa = PBXGroup;
 			children = (
 				BB6A7F612A4C5FCB0028CC13 /* AuthService */,
+				BB659BA42A83C0EE009DB75B /* UserService */,
 				BB6A7F672A4C66040028CC13 /* DefaultValueService */,
 				BB6DF00F2A4B6F6C00A1B4BD /* TransactionsService */,
 			);
@@ -904,6 +918,7 @@
 				BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */,
 				BB5C41042A444675002DC6A0 /* AuthViewController.swift in Sources */,
 				BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */,
+				BB659BA62A83C101009DB75B /* UserService.swift in Sources */,
 				BB5E37382A41888D0093AB95 /* HomeCoordinator.swift in Sources */,
 				BB80CA0528D9A96F00AE5A8B /* CurrentUser.swift in Sources */,
 				BB6A7F6E2A4DCE470028CC13 /* ErrorModel.swift in Sources */,
@@ -918,6 +933,7 @@
 				BB6A7F6C2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift in Sources */,
 				BB6B5BB62A3C9C1600E16FFB /* AddTransactionViewController.swift in Sources */,
 				BB5E374A2A41CC420093AB95 /* StocksViewController.swift in Sources */,
+				BB659BA82A83C11C009DB75B /* UserServiceProtocol.swift in Sources */,
 				BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */,
 				BB5C40F52A442A50002DC6A0 /* HomeAssembly.swift in Sources */,
 				BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */,

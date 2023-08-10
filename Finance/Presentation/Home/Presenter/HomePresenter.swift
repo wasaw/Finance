@@ -14,6 +14,7 @@ final class HomePresenter {
     weak var input: HomeInput?
     private let output: HomePresenterOutput
     private let transactionsService: TransactionsServiceProtocol
+    private let userService: UserServiceProtocol
     
     private let service = [ChoiceService(name: "Курс валют", img: "exchange-rate.png"),
                            ChoiceService(name: "Акции", img: "stock-market.png")]
@@ -30,15 +31,23 @@ final class HomePresenter {
 // MARK: - Lifecycle
     
     init(homeCoordinator: HomePresenterOutput,
-         transactionsService: TransactionsServiceProtocol) {
+         transactionsService: TransactionsServiceProtocol,
+         userService: UserServiceProtocol) {
         self.output = homeCoordinator
         self.transactionsService = transactionsService
+        self.userService = userService
         notification.addObserver(self, selector: #selector(reloadView), name: Notification.Name("AddTransaction"), object: nil)
+        notification.addObserver(self, selector: #selector(updateCredential(_:)), name: Notification.Name("updateCredential"), object: nil)
     }
     
 // MARK: - Helpers
     
     func loadInformation() {
+        if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
+            if let user = userService.getUser(uid) {
+                input?.setUserName(user.login)
+            }
+        }
         var revenue: Double = 0
         do {
             lastTransaction = try transactionsService.fetchTransactions()
@@ -81,6 +90,14 @@ final class HomePresenter {
                                 currency: CurrencyRate.currentCurrency,
                                 service: self.service,
                                 lastTransaction: lastTransaction)
+            }
+        }
+    }
+    
+    @objc private func updateCredential(_ notification: NSNotification) {
+        if let uid = notification.userInfo?["uid"] as? String {
+            if let user = userService.getUser(uid) {
+                input?.setUserName(user.login)
             }
         }
     }

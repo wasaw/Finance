@@ -6,13 +6,11 @@
 //
 
 import Foundation
-import FirebaseAuth
-import FirebaseDatabase
 
 protocol AuthServiceProtocol: AnyObject {
     var profilePresenterInput: ProfilePresenterInput? { get set }
     
-    func authVerification() -> Bool
+    func authVerification() -> String?
     func logOut()
     func signInUser(credentials: AuthCredentials, completion: @escaping ((Bool) -> Void))
     func logInUser(email: String, password: String, completion: @escaping (Bool) -> Void)

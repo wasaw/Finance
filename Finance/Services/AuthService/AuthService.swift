@@ -14,22 +14,31 @@ final class AuthService {
 // MARK: - Properties
     
     weak var profilePresenterInput: ProfilePresenterInput?
+    private let coreData: CoreDataService
+    private let notification = NotificationCenter.default
+    
+// MARK: - Lifecycle
+    
+    init(coreData: CoreDataService) {
+        self.coreData = coreData
+    }
 }
 
 // MARK: - AuthServiceProtocol
 
 extension AuthService: AuthServiceProtocol {
-    func authVerification() -> Bool {
-        if Auth.auth().currentUser == nil {
-            return false
+    func authVerification() -> String? {
+        if let uid = Auth.auth().currentUser?.uid {
+            return uid
         } else {
-            return true
+            return nil
         }
     }
     
     func logOut() {
         do {
             try Auth.auth().signOut()
+            UserDefaults.standard.set(nil, forKey: "uid")
             profilePresenterInput?.showAuth()
         } catch let error {
             print("Error is \(error.localizedDescription)")
@@ -45,7 +54,12 @@ extension AuthService: AuthServiceProtocol {
                 print("Logging error is \(error.localizedDescription)")
                 completion(false)
             }
-            if result?.user.uid != nil {
+            if let uid = result?.user.uid {
+                let result = try? self.coreData.fetchUserInformation(uid: uid)
+                UserDefaults.standard.set(uid, forKey: "uid")
+                let uidDataDict: [String: String] = ["uid": uid]
+                self.notification.post(Notification(name: Notification.Name("updateCredential"), object: nil, userInfo: uidDataDict))
+                self.profilePresenterInput?.updateCredential(uid)
                 completion(true)
             }
         }
@@ -66,6 +80,16 @@ extension AuthService: AuthServiceProtocol {
             guard let uid = result?.user.uid else { return }
             let values = ["login": login, "email": email]
             REF_USERS.child(uid).updateChildValues(values)
+            self.coreData.save { context in
+                let userManagedObject = UserManagedObject(usedContext: context)
+                userManagedObject.uid = uid
+                userManagedObject.login = credentials.login
+                userManagedObject.email = credentials.email
+                userManagedObject.profileImageUrl = ""
+                userManagedObject.authorized = true
+            }
+//            let uidDataDict: [String: String] = ["uid": uid]
+//            self.notification.post(Notification(name: Notification.Name("updateCredential"), object: nil, userInfo: uidDataDict))
             completion(true)
         }
 //        authService.registerUser(credentials: credentials) { error, ref in

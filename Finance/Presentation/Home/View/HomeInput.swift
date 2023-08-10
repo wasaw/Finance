@@ -11,4 +11,5 @@ protocol HomeInput: AnyObject {
     func showData(total: Double, currency: Currency, service: [ChoiceService], lastTransaction: [LastTransaction])
     func showLastTransaction()
     func showAlert(message: String)
+    func setUserName(_ name: String)
 }

@@ -21,7 +21,6 @@ final class ProfileViewController: UIViewController {
 // MARK: - Properties
     
     private let output: ProfileOutput
-    private let coreData: CoreDataServiceProtocol
     
     private let imagePicker = UIImagePickerController()
     private lazy var imageView = ProfileImageView()
@@ -31,16 +30,15 @@ final class ProfileViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-    private let authController = AuthCoordinator(authAssembly: AuthAssembly(), authService: AuthService()).start()
+    private let authController = AuthCoordinator(authAssembly: AuthAssembly(), authService: AuthService(coreData: CoreDataService())).start()
 
     private lazy var currentCurrencyBtn = Utils().menuItemButton(image: "currencies.png", title: "Текущая валюта")
     private lazy var logOutBtn = Utils().menuItemButton(image: "logout.png", title: "Выход")
     
 // MARK: - Lifecycle
     
-    init(output: ProfileOutput, coreData: CoreDataServiceProtocol) {
+    init(output: ProfileOutput) {
         self.output = output
-        self.coreData = coreData
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -134,6 +132,10 @@ extension ProfileViewController: ProfileInput {
     func showProfile() {
         configureUI()
     }
+    
+    func showUserCredential(_ user: User) {
+        loginLabel.text = user.login
+    }
 }
 
 // MARK: - UIImagePickerControllerDelegate
@@ -173,7 +175,7 @@ extension ProfileViewController: ProfileImageSelectDelegate {
 extension ProfileViewController: SendUidDelegate {
     func sendUid(uid: String) {
         do {
-            let userManagedObject = try coreData.fetchUserInformation(uid: uid)
+//            let userManagedObject = try coreData.fetchUserInformation(uid: uid)
 //            self.currentUser.setValue(user: user)
         } catch {
             self.alert(with: "Ошибка", massage: error.localizedDescription)

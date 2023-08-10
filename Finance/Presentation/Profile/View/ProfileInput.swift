@@ -10,4 +10,5 @@ import Foundation
 protocol ProfileInput: AnyObject {
     func showAuth()
     func showProfile()
+    func showUserCredential(_ user: User)
 }
