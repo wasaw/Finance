@@ -45,6 +45,8 @@ extension ProfilePresenter: ProfileOutput {
         if let uid = authService.authVerification() {
             if let user = userService.getUser(uid) {
                 input?.showUserCredential(user)
+                guard let image = userService.getImage(uid: uid) else { return }
+                input?.setUserImage(image)
             }
         } else {
             input?.showAuth()

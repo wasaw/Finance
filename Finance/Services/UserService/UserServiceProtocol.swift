@@ -10,4 +10,5 @@ import UIKit
 protocol UserServiceProtocol: AnyObject {
     func getUser(_ uid: String) -> User?
     func saveImage(image: UIImage, for uid: String)
+    func getImage(uid: String) -> UIImage?
 }

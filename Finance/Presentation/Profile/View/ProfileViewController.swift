@@ -146,14 +146,8 @@ extension ProfileViewController: ProfileInput {
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-//        guard let profileImage = info[.editedImage] as? UIImage else { return }
         output.saveImage(info[.editedImage])
         dismiss(animated: true)
-        
-//
-//        imageView.setImage(image: profileImage)
-//        dismiss(animated: true)
-//
 //        guard let dataImage = profileImage.jpegData(compressionQuality: 0.3) else { return }
 //        let filename = UUID().uuidString
 //        let storageImageRef = REF_PROFILE_IMAGE.child(filename)
