@@ -44,4 +44,29 @@ extension FileStore: FileStoreProtocol {
             completion(.failure(FileManagerError.fileNotExists))
         }
     }
+    
+    func saveImage(data: Data, with name: String) {
+        guard let directlyUrl = manager.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let fileUrl = directlyUrl.appendingPathComponent(name)
+        do {
+            try data.write(to: fileUrl)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getImage(_ uid: String) -> Data? {
+        guard let directoryUrl = manager.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        let fileUrl = directoryUrl.appendingPathComponent(uid)
+        
+        if manager.fileExists(atPath: fileUrl.path) {
+            do {
+                let fileData = try Data(contentsOf: fileUrl)
+                return fileData
+            } catch {
+                print(error)
+            }
+        }
+        return nil
+    }
 }

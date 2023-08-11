@@ -10,4 +10,5 @@ import Foundation
 protocol ProfileOutput: AnyObject {
     func viewIsReady()
     func logOut()
+    func saveImage(_ imageData: Any?)
 }

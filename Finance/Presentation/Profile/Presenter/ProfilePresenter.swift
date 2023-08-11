@@ -54,6 +54,14 @@ extension ProfilePresenter: ProfileOutput {
     func logOut() {
         authService.logOut()
     }
+    
+    func saveImage(_ imageData: Any?) {
+        guard let image = imageData as? UIImage else { return }
+        input?.setUserImage(image)
+        if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
+            userService.saveImage(image: image, for: uid)
+        }
+    }
 }
 
 // MARK: - ProfilePresenterInput

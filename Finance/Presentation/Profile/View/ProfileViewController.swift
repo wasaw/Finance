@@ -136,29 +136,36 @@ extension ProfileViewController: ProfileInput {
     func showUserCredential(_ user: User) {
         loginLabel.text = user.login
     }
+    
+    func setUserImage(_ image: UIImage) {
+        imageView.setImage(image: image)
+    }
 }
 
 // MARK: - UIImagePickerControllerDelegate
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        guard let profileImage = info[.editedImage] as? UIImage else { return }
-        
-        imageView.setImage(image: profileImage)
+//        guard let profileImage = info[.editedImage] as? UIImage else { return }
+        output.saveImage(info[.editedImage])
         dismiss(animated: true)
         
-        guard let dataImage = profileImage.jpegData(compressionQuality: 0.3) else { return }
-        let filename = UUID().uuidString
-        let storageImageRef = REF_PROFILE_IMAGE.child(filename)
-
-        storageImageRef.putData(dataImage) { _, _ in
-            storageImageRef.downloadURL { _, _ in
-//                guard let profileImageUrl = url?.absoluteString else { return }
-//                guard let uid = Auth.auth().currentUser?.uid else { return }
-//                let values = ["profileImageUrl": profileImageUrl]
-//                REF_USERS.child(uid).updateChildValues(values)
-            }
-        }
+//
+//        imageView.setImage(image: profileImage)
+//        dismiss(animated: true)
+//
+//        guard let dataImage = profileImage.jpegData(compressionQuality: 0.3) else { return }
+//        let filename = UUID().uuidString
+//        let storageImageRef = REF_PROFILE_IMAGE.child(filename)
+//
+//        storageImageRef.putData(dataImage) { _, _ in
+//            storageImageRef.downloadURL { _, _ in
+////                guard let profileImageUrl = url?.absoluteString else { return }
+////                guard let uid = Auth.auth().currentUser?.uid else { return }
+////                let values = ["profileImageUrl": profileImageUrl]
+////                REF_USERS.child(uid).updateChildValues(values)
+//            }
+//        }
     }
 }
 
@@ -167,19 +174,5 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 extension ProfileViewController: ProfileImageSelectDelegate {
     func selectImage() {
         present(imagePicker, animated: true)
-    }
-}
-
-// MARK: - SendUidDelegate
-
-extension ProfileViewController: SendUidDelegate {
-    func sendUid(uid: String) {
-        do {
-//            let userManagedObject = try coreData.fetchUserInformation(uid: uid)
-//            self.currentUser.setValue(user: user)
-        } catch {
-            self.alert(with: "Ошибка", massage: error.localizedDescription)
-        }
-//        self.deleteAuthController()
     }
 }

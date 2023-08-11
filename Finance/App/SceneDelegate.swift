@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let defaultValueService = DefaultValueService(fileStore: fileStore)
         let transactionsService = TransactionsService(coreData: coreData)
         let authService = AuthService(coreData: coreData)
-        let userService = UserService(coreData: coreData)
+        let userService = UserService(coreData: coreData, fileStore: fileStore)
         
 // MARK: - Coordinator
     

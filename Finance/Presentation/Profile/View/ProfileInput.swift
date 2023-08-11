@@ -5,10 +5,11 @@
 //  Created by Александр Меренков on 13.06.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol ProfileInput: AnyObject {
     func showAuth()
     func showProfile()
     func showUserCredential(_ user: User)
+    func setUserImage(_ image: UIImage)
 }

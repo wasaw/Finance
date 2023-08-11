@@ -12,10 +12,6 @@ enum AuthState: CGFloat {
     case registration = 510
 }
 
-protocol SendUidDelegate: AnyObject {
-    func sendUid(uid: String)
-}
-
 final class AuthViewController: UIViewController {
     
 // MARK: - Properties
@@ -23,7 +19,6 @@ final class AuthViewController: UIViewController {
     private let output: AuthOutput
     
     private let authView = AuthView()
-    weak var delegate: SendUidDelegate?
     var heightConstraint: NSLayoutConstraint?
     
 // MARK: - Lifecycle

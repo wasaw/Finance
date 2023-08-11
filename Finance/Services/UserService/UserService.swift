@@ -5,18 +5,20 @@
 //  Created by Александр Меренков on 09.08.2023.
 //
 
-import Foundation
+import UIKit
 
 final class UserService {
     
 // MARK: - Properties
     
     private let coreData: CoreDataService
+    private let fileStore: FileStoreProtocol
     
 // MARK: - Lifecycle
     
-    init(coreData: CoreDataService) {
+    init(coreData: CoreDataService, fileStore: FileStoreProtocol) {
         self.coreData = coreData
+        self.fileStore = fileStore
     }
 }
 
@@ -41,5 +43,10 @@ extension UserService: UserServiceProtocol {
             print(error.localizedDescription)
             return nil
         }
+    }
+    
+    func saveImage(image: UIImage, for uid: String) {
+        guard let dataImage = image.jpegData(compressionQuality: 0.7) else { return }
+        fileStore.saveImage(data: dataImage, with: uid)
     }
 }
