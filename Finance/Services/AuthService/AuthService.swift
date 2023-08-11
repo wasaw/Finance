@@ -55,7 +55,24 @@ extension AuthService: AuthServiceProtocol {
                 completion(false)
             }
             if let uid = result?.user.uid {
-                let result = try? self.coreData.fetchUserInformation(uid: uid)
+                do {
+                    let user = try self.coreData.fetchUserInformation(uid: uid)
+                    if user.isEmpty {
+                        REF_USERS.child(uid).observeSingleEvent(of: .value) { snapshot in
+                            guard let dictionary = snapshot.value as? [String: AnyObject],
+                                    let login = dictionary["login"] as? String,
+                                    let email = dictionary["email"] as? String else { return }
+                            self.coreData.save { context in
+                                let userManagedObject = UserManagedObject(context: context)
+                                userManagedObject.uid = uid
+                                userManagedObject.login = login
+                                userManagedObject.email = email
+                            }
+                        }
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                }
                 UserDefaults.standard.set(uid, forKey: "uid")
                 let uidDataDict: [String: String] = ["uid": uid]
                 self.notification.post(Notification(name: Notification.Name("updateCredential"), object: nil, userInfo: uidDataDict))

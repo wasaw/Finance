@@ -12,7 +12,6 @@ final class TabBarController: UITabBarController {
     
 // MARK: - Properties
     
-    private var currentUser = CurrentUser()
     private let homeCoordinator: HomeCoordinator
     private let addAssembly: AddTransactionAssembly
     private let profileCoordinator: ProfileCoordinator
@@ -73,30 +72,8 @@ final class TabBarController: UITabBarController {
         let profileVC = profileCoordinator.start()
         profileVC.tabBarItem.image = UIImage(systemName: "person.fill")
         profileVC.tabBarItem.title = "Профиль"
-        
-        authUser()
-        
+                
         viewControllers = [homeVC, addVC, profileVC]
-    }
-    
-// MARK: - Helpers
-    
-    private func authUser() {
-        let uid = Auth.auth().currentUser?.uid
-        guard let uid = uid else { return }
-        do {
-            let userManagedObject = try coreData.fetchUserInformation(uid: uid)
-            guard let userManagedObject = userManagedObject.first,
-            let uid = userManagedObject.uid,
-            let login = userManagedObject.login,
-            let email = userManagedObject.email
-            else { return }
-            let user = User(uid: uid,
-                            login: login,
-                            email: email)
-        } catch {
-            self.alert(with: "Ошибка", massage: error.localizedDescription)
-        }
     }
 }
 

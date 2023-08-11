@@ -31,9 +31,14 @@ extension UserService: UserServiceProtocol {
             let user: [User] = userManagedObject.compactMap { loadedUser in
                 guard let login = loadedUser.login,
                       let email = loadedUser.email else { return nil }
+                var image: UIImage?
+                if let imageData = fileStore.getImage(uid) {
+                    image = UIImage(data: imageData)
+                }
                 return User(uid: uid,
                             login: login,
-                            email: email)
+                            email: email,
+                            profileImage: image)
             }
             return user.first
         } catch {
