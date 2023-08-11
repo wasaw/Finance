@@ -14,6 +14,7 @@ final class AuthCoordinator {
     private let authAssembly: AuthAssembly
     private let authService: AuthServiceProtocol
     private let coreData = CoreDataService()
+    private var authViewController: UIViewController?
     
 // MARK: - Lifecycle
     
@@ -25,7 +26,18 @@ final class AuthCoordinator {
 // MARK: - Helpers
     
     func start() -> UIViewController {
-        let vc = authAssembly.makeAuthModul(authService: authService)
+        let vc = authAssembly.makeAuthModul(output: self, authService: authService)
+        authViewController = vc
         return vc
+    }
+}
+
+// MARK: - AuthPresenterOutput
+
+extension AuthCoordinator: AuthPresenterOutput {
+    func dismissView() {
+        authViewController?.willMove(toParent: nil)
+        authViewController?.removeFromParent()
+        authViewController?.view.removeFromSuperview()
     }
 }

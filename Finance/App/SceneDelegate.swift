@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let profileAssembly = ProfileAssembly()
         let exchangeAssembly = ExchangeRateAssembly()
         let stocksAssembly = StocksAssembly()
+        let authAssembly = AuthAssembly()
         let network = Network()
         let config = NetworkConfiguration()
         let fileStore = FileStore()
@@ -39,7 +40,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                               coreData: coreData,
                                               transactionsService: transactionsService,
                                               userService: userService)
-        let profileCoordinator = ProfileCoordinator(profileAssembly: profileAssembly, authService: authService, userService: userService)
+        let authCoordinator = AuthCoordinator(authAssembly: authAssembly, authService: authService)
+        let profileCoordinator = ProfileCoordinator(profileAssembly: profileAssembly,
+                                                    authService: authService,
+                                                    userService: userService,
+                                                    authCoordinator: authCoordinator)
 
         guard let scene = (scene as? UIWindowScene) else { return }
         

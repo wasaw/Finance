@@ -85,29 +85,10 @@ extension AuthService: AuthServiceProtocol {
                 userManagedObject.uid = uid
                 userManagedObject.login = credentials.login
                 userManagedObject.email = credentials.email
-                userManagedObject.profileImageUrl = ""
-                userManagedObject.authorized = true
             }
 //            let uidDataDict: [String: String] = ["uid": uid]
 //            self.notification.post(Notification(name: Notification.Name("updateCredential"), object: nil, userInfo: uidDataDict))
             completion(true)
         }
-//        authService.registerUser(credentials: credentials) { error, ref in
-//        if let error = error {
-//            print(error)
-////            self.alert(with: "Ошибка", massage: error.localizedDescription)
-//        } else {
-//            let uid = ref.url.suffix(28)
-//            let user = User(uid: String(uid), login: credentials.login, email: credentials.email, profileImageUrl: "", authorized: true)
-//            self.coreData.save { context in
-//                let userManagedObject = UserManagedObject(usedContext: context)
-//                userManagedObject.uid = user.uid
-//                userManagedObject.login = user.login
-//                userManagedObject.email = user.email
-//                userManagedObject.profileImageUrl = user.profileImageUrl?.absoluteString ?? ""
-//                userManagedObject.authorized = user.authorized
-//            }
-//          }
-//        }
     }
 }

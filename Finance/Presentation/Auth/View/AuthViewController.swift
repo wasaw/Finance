@@ -75,9 +75,6 @@ final class AuthViewController: UIViewController {
 
 extension AuthViewController: AuthInput {
     func dismissView() {
-        willMove(toParent: nil)
-        removeFromParent()
-        view.removeFromSuperview()
         authView.clearForm()
     }
     

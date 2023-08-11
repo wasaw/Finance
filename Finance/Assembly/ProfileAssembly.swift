@@ -8,8 +8,8 @@
 import UIKit
 
 final class ProfileAssembly {
-    func makeProfileModule(authService: AuthServiceProtocol, userService: UserServiceProtocol) -> UIViewController {
-        let presenter = ProfilePresenter(authService: authService, userService: userService)
+    func makeProfileModule(output: ProfilePresenterOutput, authService: AuthServiceProtocol, userService: UserServiceProtocol) -> UIViewController {
+        let presenter = ProfilePresenter(output: output, authService: authService, userService: userService)
         let vc = ProfileViewController(output: presenter)
         presenter.input = vc
         return vc

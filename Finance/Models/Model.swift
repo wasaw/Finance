@@ -49,28 +49,25 @@ struct AuthCredentials {
 struct User {
     let login: String
     let email: String
-    var profileImageUrl: URL?
+    var profileImage: UIImage?
     let uid: String
-    var authorized: Bool = true
     
     init(uid: String, dictionary: [String: AnyObject]) {
         self.uid = uid
         self.login = dictionary["login"] as? String ?? ""
         self.email = dictionary["email"] as? String ?? ""
-        if let profileImageString = dictionary["profileImageUrl"] as? String {
-            guard let url = URL(string: profileImageString) else { return }
-            self.profileImageUrl = url
-        }
+//        if let profileImageString = dictionary["profileImageUrl"] as? String {
+//            guard let url = URL(string: profileImageString) else { return }
+//            self.profileImageUrl = url
+//        }
+        self.profileImage = nil
     }
     
-    init(uid: String, login: String, email: String, profileImageUrl: String, authorized: Bool) {
+    init(uid: String, login: String, email: String, profileImage: UIImage? = nil) {
         self.uid = uid
         self.login = login
         self.email = email
-        self.authorized = authorized
-        if profileImageUrl != "" {
-            self.profileImageUrl = URL(string: profileImageUrl)
-        }
+        self.profileImage = profileImage
     }
 }
 

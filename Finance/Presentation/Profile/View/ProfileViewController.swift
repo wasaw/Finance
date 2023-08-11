@@ -30,7 +30,6 @@ final class ProfileViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-    private let authController = AuthCoordinator(authAssembly: AuthAssembly(), authService: AuthService(coreData: CoreDataService())).start()
 
     private lazy var currentCurrencyBtn = Utils().menuItemButton(image: "currencies.png", title: "Текущая валюта")
     private lazy var logOutBtn = Utils().menuItemButton(image: "logout.png", title: "Выход")
@@ -123,12 +122,6 @@ final class ProfileViewController: UIViewController {
 // MARK: - ProfileInput
 
 extension ProfileViewController: ProfileInput {
-    func showAuth() {
-        self.view.addSubview(authController.view)
-        self.addChild(authController)
-        authController.didMove(toParent: self)
-    }
-    
     func showProfile() {
         configureUI()
     }

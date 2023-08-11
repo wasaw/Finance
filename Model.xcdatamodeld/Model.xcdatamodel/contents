@@ -9,10 +9,8 @@
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <entity name="UserManagedObject" representedClassName="UserManagedObject" syncable="YES" codeGenerationType="class">
-        <attribute name="authorized" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="login" optional="YES" attributeType="String"/>
-        <attribute name="profileImageUrl" optional="YES" attributeType="String"/>
         <attribute name="uid" optional="YES" attributeType="String"/>
     </entity>
 </model>

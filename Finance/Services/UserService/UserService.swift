@@ -30,13 +30,10 @@ extension UserService: UserServiceProtocol {
             let userManagedObject = try coreData.fetchUserInformation(uid: uid)
             let user: [User] = userManagedObject.compactMap { loadedUser in
                 guard let login = loadedUser.login,
-                      let email = loadedUser.email,
-                      let imageUrl = loadedUser.profileImageUrl else { return nil }
+                      let email = loadedUser.email else { return nil }
                 return User(uid: uid,
                             login: login,
-                            email: email,
-                            profileImageUrl: imageUrl,
-                            authorized: loadedUser.authorized)
+                            email: email)
             }
             return user.first
         } catch {

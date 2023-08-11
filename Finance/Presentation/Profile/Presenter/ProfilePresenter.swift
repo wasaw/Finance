@@ -13,13 +13,15 @@ final class ProfilePresenter {
 // MARK: - Properties
     
     weak var input: ProfileInput?
+    private let output: ProfilePresenterOutput
     private let authService: AuthServiceProtocol
     private let userService: UserServiceProtocol
     private let notification = NotificationCenter.default
     
 // MARK: - Lifecycle
     
-    init(authService: AuthServiceProtocol, userService: UserServiceProtocol) {
+    init(output: ProfilePresenterOutput, authService: AuthServiceProtocol, userService: UserServiceProtocol) {
+        self.output = output
         self.authService = authService
         self.userService = userService
         self.authService.profilePresenterInput = self
@@ -49,7 +51,7 @@ extension ProfilePresenter: ProfileOutput {
                 input?.setUserImage(image)
             }
         } else {
-            input?.showAuth()
+            output.showAuth()
         }
     }
     
@@ -70,7 +72,7 @@ extension ProfilePresenter: ProfileOutput {
 
 extension ProfilePresenter: ProfilePresenterInput {
     func showAuth() {
-        input?.showAuth()
+        output.showAuth()
     }
     
     func updateCredential(_ uid: String) {

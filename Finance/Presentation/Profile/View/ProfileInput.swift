@@ -8,7 +8,6 @@
 import UIKit
 
 protocol ProfileInput: AnyObject {
-    func showAuth()
     func showProfile()
     func showUserCredential(_ user: User)
     func setUserImage(_ image: UIImage)

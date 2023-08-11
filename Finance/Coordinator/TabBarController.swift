@@ -89,14 +89,11 @@ final class TabBarController: UITabBarController {
             guard let userManagedObject = userManagedObject.first,
             let uid = userManagedObject.uid,
             let login = userManagedObject.login,
-            let email = userManagedObject.email,
-            let profileImageUrl = userManagedObject.profileImageUrl
+            let email = userManagedObject.email
             else { return }
             let user = User(uid: uid,
                             login: login,
-                            email: email,
-                            profileImageUrl: profileImageUrl,
-                            authorized: userManagedObject.authorized)
+                            email: email)
         } catch {
             self.alert(with: "Ошибка", massage: error.localizedDescription)
         }
