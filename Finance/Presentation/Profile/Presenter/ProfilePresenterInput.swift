@@ -9,5 +9,4 @@ import Foundation
 
 protocol ProfilePresenterInput: AnyObject {
     func showAuth()
-    func updateCredential(_ uid: String)
 }

@@ -69,7 +69,6 @@ extension AuthPresenter: AuthOutput {
                     if result {
                         self.output.dismissView()
                         self.input?.dismissView()
-                        print("DEBUG: dismiss after registration")
                     } else {
                         print("DEBUG: not registered")
                     }

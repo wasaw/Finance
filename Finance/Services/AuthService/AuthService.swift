@@ -22,6 +22,33 @@ final class AuthService {
     init(coreData: CoreDataService) {
         self.coreData = coreData
     }
+    
+// MARK: - Helpers
+    
+    private func saveUser(uid: String, login: String, email: String) {
+        UserDefaults.standard.set(uid, forKey: "uid")
+        self.coreData.save { context in
+            let userManagedObject = UserManagedObject(context: context)
+            userManagedObject.uid = uid
+            userManagedObject.login = login
+            userManagedObject.email = email
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(self.endSaving),
+                                                   name: Notification.Name.NSManagedObjectContextDidSave,
+                                                   object: nil)
+        }
+    }
+    
+// MARK: - Selectors
+    
+    @objc private func endSaving() {
+        if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
+            let uidDataDict: [String: String] = ["uid": uid]
+            DispatchQueue.main.async {
+                self.notification.post(Notification(name: Notification.Name("updateCredential"), object: nil, userInfo: uidDataDict))
+            }
+        }
+    }
 }
 
 // MARK: - AuthServiceProtocol
@@ -62,21 +89,12 @@ extension AuthService: AuthServiceProtocol {
                             guard let dictionary = snapshot.value as? [String: AnyObject],
                                     let login = dictionary["login"] as? String,
                                     let email = dictionary["email"] as? String else { return }
-                            self.coreData.save { context in
-                                let userManagedObject = UserManagedObject(context: context)
-                                userManagedObject.uid = uid
-                                userManagedObject.login = login
-                                userManagedObject.email = email
-                            }
+                            self.saveUser(uid: uid, login: login, email: email)
                         }
                     }
                 } catch {
                     print(error.localizedDescription)
                 }
-                UserDefaults.standard.set(uid, forKey: "uid")
-                let uidDataDict: [String: String] = ["uid": uid]
-                self.notification.post(Notification(name: Notification.Name("updateCredential"), object: nil, userInfo: uidDataDict))
-                self.profilePresenterInput?.updateCredential(uid)
                 completion(true)
             }
         }
@@ -97,14 +115,7 @@ extension AuthService: AuthServiceProtocol {
             guard let uid = result?.user.uid else { return }
             let values = ["login": login, "email": email]
             REF_USERS.child(uid).updateChildValues(values)
-            self.coreData.save { context in
-                let userManagedObject = UserManagedObject(usedContext: context)
-                userManagedObject.uid = uid
-                userManagedObject.login = credentials.login
-                userManagedObject.email = credentials.email
-            }
-//            let uidDataDict: [String: String] = ["uid": uid]
-//            self.notification.post(Notification(name: Notification.Name("updateCredential"), object: nil, userInfo: uidDataDict))
+            self.saveUser(uid: uid, login: credentials.login, email: credentials.email)
             completion(true)
         }
     }

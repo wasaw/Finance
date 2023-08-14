@@ -74,10 +74,4 @@ extension ProfilePresenter: ProfilePresenterInput {
     func showAuth() {
         output.showAuth()
     }
-    
-    func updateCredential(_ uid: String) {
-        if let user = userService.getUser(uid) {
-            input?.showUserCredential(user)
-        }
-    }
 }
