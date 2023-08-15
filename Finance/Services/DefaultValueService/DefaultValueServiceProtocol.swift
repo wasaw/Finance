@@ -9,4 +9,5 @@ import Foundation
 
 protocol DefaultValueServiceProtocol: AnyObject {
     func fetchValue() throws -> ([ChoiceCategoryExpense], [ChoiceTypeRevenue])
+    func fetchStocks() -> [Stock]
 }

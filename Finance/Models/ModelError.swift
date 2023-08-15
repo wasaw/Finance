@@ -1,0 +1,65 @@
+//
+//  ErrorModel.swift
+//  Finance
+//
+//  Created by Александр Меренков on 29.06.2023.
+//
+
+import Foundation
+
+enum ConfigFileError: Error {
+    case lostFile
+}
+
+extension ConfigFileError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .lostFile:
+            return NSLocalizedString("Пожалуйста, добавьте конфигурационный файл.", comment: "")
+        }
+    }
+}
+
+enum FileManagerError: Error {
+    case fileNotExists
+}
+
+extension FileManagerError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .fileNotExists:
+            return NSLocalizedString("Информация отсутствует", comment: "")
+        }
+    }
+}
+
+enum ResultStatus<T> {
+    case success(T)
+    case failure(Error)
+}
+
+enum RequestError: Error {
+    case somethingError
+}
+
+extension RequestError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .somethingError:
+            return NSLocalizedString("Ошибка. Попробуйте снова.", comment: "")
+        }
+    }
+}
+
+enum CoreDataError: Error {
+    case somethingError
+}
+
+extension CoreDataError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .somethingError:
+            return NSLocalizedString("Ошибка. Попробуйте снова.", comment: "")
+        }
+    }
+}

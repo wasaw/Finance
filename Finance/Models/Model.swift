@@ -10,7 +10,6 @@ import UIKit
 struct ChoiceService {
     let name: String
     let img: String
-//    let vc: UIViewController
 }
 struct ChoiceTypeRevenue: Codable {
     let name: String
@@ -71,10 +70,10 @@ struct User {
     }
 }
 
-enum Currency: String {
-    case rub = "рубли"
-    case dollar = "доллары"
-    case euro = "евро"
+enum Currency: Int {
+    case rub
+    case dollar
+    case euro
     
     func getMark() -> String {
         switch self {
@@ -86,9 +85,20 @@ enum Currency: String {
             return " €"
         }
     }
+    
+    func getDescription() -> String {
+        switch self {
+        case .rub:
+            return "рубли"
+        case .dollar:
+            return "доллары"
+        case .euro:
+            return "евро"
+        }
+    }
 }
 
-struct Stock {
+struct Stock: Codable {
     let symbol: String
     let company: String
     var value: Double
@@ -97,52 +107,6 @@ struct Stock {
         self.symbol = symbol
         self.company = company
         self.value = 0
-    }
-}
-
-// MARK: - Error
-
-enum FileManagerError: Error {
-    case fileNotExists
-}
-
-extension FileManagerError: LocalizedError {
-    var errorDescription: String? {
-        switch self {
-        case .fileNotExists:
-            return NSLocalizedString("Информация отсутствует", comment: "")
-        }
-    }
-}
-
-enum ResultStatus<T> {
-    case success(T)
-    case failure(Error)
-}
-
-enum RequestError: Error {
-    case somethingError
-}
-
-extension RequestError: LocalizedError {
-    var errorDescription: String? {
-        switch self {
-        case .somethingError:
-            return NSLocalizedString("Ошибка. Попробуйте снова.", comment: "")
-        }
-    }
-}
-
-enum CoreDataError: Error {
-    case somethingError
-}
-
-extension CoreDataError: LocalizedError {
-    var errorDescription: String? {
-        switch self {
-        case .somethingError:
-            return NSLocalizedString("Ошибка. Попробуйте снова.", comment: "")
-        }
     }
 }
 

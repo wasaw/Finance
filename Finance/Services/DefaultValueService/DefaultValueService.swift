@@ -48,4 +48,17 @@ extension DefaultValueService: DefaultValueServiceProtocol {
         
         return (category, revenue)
     }
+    
+    func fetchStocks() -> [Stock] {
+        var stocks = [Stock]()
+        fileStore.readAppInformation("stocks") { (result: Result<[Stock], FileManagerError>) in
+            switch result {
+            case .success(let answer):
+                stocks = answer
+            case .failure:
+                break
+            }
+        }
+        return stocks
+    }
 }

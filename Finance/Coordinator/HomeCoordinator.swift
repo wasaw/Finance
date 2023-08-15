@@ -20,6 +20,7 @@ final class HomeCoordinator {
     private let coreData: CoreDataServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
     private let userService: UserServiceProtocol
+    private let stocksService: StocksServiceProtocol
     
 // MARK: - Lifecycle
     
@@ -30,7 +31,8 @@ final class HomeCoordinator {
          config: NetworkConfiguration,
          coreData: CoreDataServiceProtocol,
          transactionsService: TransactionsServiceProtocol,
-         userService: UserServiceProtocol) {
+         userService: UserServiceProtocol,
+         stocksService: StocksServiceProtocol) {
         self.homeAssembly = homeAssembly
         self.exchangeAssembly = exchangeAssembly
         self.stocksAssembly = stocksAssembly
@@ -39,6 +41,7 @@ final class HomeCoordinator {
         self.coreData = coreData
         self.transactionsService = transactionsService
         self.userService = userService
+        self.stocksService = stocksService
     }
     
 // MARK: - Helpers
@@ -64,7 +67,7 @@ extension HomeCoordinator: HomePresenterOutput {
     }
     
     func showStock() {
-        let vc = stocksAssembly.makeStocksModule(network: network, config: config)
+        let vc = stocksAssembly.makeStocksModule(stocksService: stocksService)
         navigation?.pushViewController(vc, animated: true)
     }
 }

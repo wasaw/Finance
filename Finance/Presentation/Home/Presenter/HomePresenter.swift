@@ -20,11 +20,6 @@ final class HomePresenter {
                            ChoiceService(name: "Акции", img: "stock-market.png")]
 
     private var lastTransaction = [LastTransaction]()
-//    private var lastTransaction = [LastTransaction]() {
-//        didSet {
-//            lastTransactionsCollectionView?.reloadData()
-//        }
-//    }
     
     private let notification = NotificationCenter.default
     

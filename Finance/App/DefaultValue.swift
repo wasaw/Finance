@@ -27,6 +27,25 @@ final class DefaultValue {
                 ChoiceCategoryExpense(name: "Развлечения", img: "cinema.png"),
                 ChoiceCategoryExpense(name: "Ресторан", img: "fast-food.png"),
                 ChoiceCategoryExpense(name: "Здоровье", img: "healthcare.png")]
+    
+    private let stocks = [Stock(symbol: "ABNB", company: "Airbnb"),
+                          Stock(symbol: "AAPL", company: "Apple"),
+                          Stock(symbol: "AMZN", company: "Amazon"),
+                          Stock(symbol: "CSCO", company: "Cisco"),
+                          Stock(symbol: "GM", company: "General Motors"),
+                          Stock(symbol: "GOOG", company: "Alphabet"),
+                          Stock(symbol: "KO", company: "Coca-Cola"),
+                          Stock(symbol: "MA", company: "Mastercard"),
+                          Stock(symbol: "MCD", company: "McDonald's"),
+                          Stock(symbol: "MSFT", company: "Microsoft"),
+                          Stock(symbol: "NKE", company: "Nike"),
+                          Stock(symbol: "NVDA", company: "NVIDIA"),
+                          Stock(symbol: "PEP", company: "PepsiCo"),
+                          Stock(symbol: "PFE", company: "Pfizer"),
+                          Stock(symbol: "TSLA", company: "Tesla"),
+                          Stock(symbol: "UBER", company: "Uber"),
+                          Stock(symbol: "XOM", company: "Exxon"),
+                          Stock(symbol: "WMT", company: "Walmart")]
 
     private let fileStore: FileStoreProtocol
 
@@ -53,6 +72,18 @@ final class DefaultValue {
                 switch error {
                 case .fileNotExists:
                     self?.fileStore.setAppInformation(filename: "category", file: self?.category)
+                }
+            }
+        }
+        
+        fileStore.readAppInformation("stocks") { [weak self] (result: Result<[Stock], FileManagerError>) in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                switch error {
+                case .fileNotExists:
+                    self?.fileStore.setAppInformation(filename: "stocks", file: self?.stocks)
                 }
             }
         }

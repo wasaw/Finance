@@ -29,6 +29,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let transactionsService = TransactionsService(coreData: coreData)
         let authService = AuthService(coreData: coreData)
         let userService = UserService(coreData: coreData, fileStore: fileStore)
+        let stocksService = StocksService(network: network,
+                                          config: config,
+                                          defaultValueService: defaultValueService)
         
 // MARK: - Coordinator
     
@@ -39,7 +42,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                               config: config,
                                               coreData: coreData,
                                               transactionsService: transactionsService,
-                                              userService: userService)
+                                              userService: userService,
+                                              stocksService: stocksService)
         let authCoordinator = AuthCoordinator(authAssembly: authAssembly, authService: authService)
         let profileCoordinator = ProfileCoordinator(profileAssembly: profileAssembly,
                                                     authService: authService,
