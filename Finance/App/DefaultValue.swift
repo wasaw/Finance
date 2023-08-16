@@ -46,6 +46,23 @@ final class DefaultValue {
                           Stock(symbol: "UBER", company: "Uber"),
                           Stock(symbol: "XOM", company: "Exxon"),
                           Stock(symbol: "WMT", company: "Walmart")]
+    
+    private let exchangeFullName = ["Болгарский лев",
+                            "Чешская крона",
+                            "Евро",
+                            "Фунт стерлингов",
+                            "Казахстанский тенге",
+                            "Новозеландский доллар",
+                            "Рубль",
+                            "Доллар"]
+    private let exchangeImg = ["bulgarian-lev.png",
+                       "czech-republic.png",
+                       "euro.png",
+                       "pound-sterling.png",
+                       "kazakhstani-tenge.png",
+                       "new-zealand.png",
+                       "ruble-currency.png",
+                       "dollar.png"]
 
     private let fileStore: FileStoreProtocol
 
@@ -84,6 +101,30 @@ final class DefaultValue {
                 switch error {
                 case .fileNotExists:
                     self?.fileStore.setAppInformation(filename: "stocks", file: self?.stocks)
+                }
+            }
+        }
+        
+        fileStore.readAppInformation("exchangeFullName") { [weak self] (result: Result<[String], FileManagerError>) in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                switch error {
+                case .fileNotExists:
+                    self?.fileStore.setAppInformation(filename: "exchangeFullName", file: self?.exchangeFullName)
+                }
+            }
+        }
+        
+        fileStore.readAppInformation("exchangeImg") { [weak self] (result: Result<[String], FileManagerError>) in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                switch error {
+                case .fileNotExists:
+                    self?.fileStore.setAppInformation(filename: "exchangeImg", file: self?.exchangeImg)
                 }
             }
         }

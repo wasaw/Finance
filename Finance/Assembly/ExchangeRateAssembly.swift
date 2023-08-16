@@ -10,10 +10,12 @@ import UIKit
 final class ExchangeRateAssembly {
     func makeExchangeRateModule(network: NetworkProtocol,
                                 config: NetworkConfiguration,
-                                coreData: CoreDataServiceProtocol) -> UIViewController {
+                                coreData: CoreDataServiceProtocol,
+                                exchangeRateService: ExchangeRateServiceProtocol) -> UIViewController {
         let presenter = ExchangeRatePresenter(network: network,
                                               config: config,
-                                              coreDataService: coreData)
+                                              coreDataService: coreData,
+                                              exchangeRateService: exchangeRateService)
         let vc = ExchangeRateViewController(output: presenter)
         presenter.input = vc
         return vc

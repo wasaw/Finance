@@ -8,7 +8,7 @@
 import UIKit
 
 private enum Constants {
-    static let topViewHeight: CGFloat = 350
+    static let topViewHeight: CGFloat = 290
     static let listCurrencyCornerRadius: CGFloat = 30
     static let listCurrencyPaddingTop: CGFloat = 15
     static let listCurrencyItemHeight: CGFloat = 90
@@ -96,11 +96,7 @@ extension ExchangeRateViewController: ExchangeRateInput {
         self.exchangeRate = exchangeRate
         listCurrencyCollectionView?.reloadData()
     }
-    
-    func setTotalAccount(_ total: Double) {
-        topView.setTotalAccount(total)
-    }
-    
+
     func setCurrency(currency: CurrentExchangeRate, requestCurrency: String) {
         topView.setCurrency(currency, requestCurrency: requestCurrency)
     }

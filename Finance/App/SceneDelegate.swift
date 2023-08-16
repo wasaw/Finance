@@ -32,6 +32,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let stocksService = StocksService(network: network,
                                           config: config,
                                           defaultValueService: defaultValueService)
+        let exchangeRateService = ExchangeRateService(network: network,
+                                                      config: config,
+                                                      defaultValueService: defaultValueService)
         
 // MARK: - Coordinator
     
@@ -43,7 +46,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                               coreData: coreData,
                                               transactionsService: transactionsService,
                                               userService: userService,
-                                              stocksService: stocksService)
+                                              stocksService: stocksService,
+                                              exchangeRateService: exchangeRateService)
         let authCoordinator = AuthCoordinator(authAssembly: authAssembly, authService: authService)
         let profileCoordinator = ProfileCoordinator(profileAssembly: profileAssembly,
                                                     authService: authService,

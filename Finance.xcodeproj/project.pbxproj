@@ -85,6 +85,9 @@
 		BB715F962A8653F8004266A0 /* AuthPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715F952A8653F8004266A0 /* AuthPresenterOutput.swift */; };
 		BB715F992A8B6733004266A0 /* StocksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715F982A8B6733004266A0 /* StocksService.swift */; };
 		BB715F9B2A8B6750004266A0 /* StocksServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715F9A2A8B6750004266A0 /* StocksServiceProtocol.swift */; };
+		BB715F9E2A8BA9F6004266A0 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715F9D2A8BA9F6004266A0 /* ExchangeRateService.swift */; };
+		BB715FA02A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715F9F2A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift */; };
+		BB715FA22A8CAE40004266A0 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715FA12A8CAE40004266A0 /* TopView.swift */; };
 		BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
@@ -96,7 +99,6 @@
 		BB9EFC0E2861B2AC00305776 /* AmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC0D2861B2AC00305776 /* AmountView.swift */; };
 		BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC0F2863023700305776 /* Model.xcdatamodeld */; };
 		BB9EFC13286B234700305776 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC12286B234600305776 /* CoreDataService.swift */; };
-		BB9EFC1D287830E800305776 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC1C287830E800305776 /* TopView.swift */; };
 		BB9EFC21287869D000305776 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC20287869D000305776 /* CurrencyCell.swift */; };
 		BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */; };
 		BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC052851F3FF003F9197 /* TitleView.swift */; };
@@ -203,6 +205,9 @@
 		BB715F952A8653F8004266A0 /* AuthPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenterOutput.swift; sourceTree = "<group>"; };
 		BB715F982A8B6733004266A0 /* StocksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksService.swift; sourceTree = "<group>"; };
 		BB715F9A2A8B6750004266A0 /* StocksServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksServiceProtocol.swift; sourceTree = "<group>"; };
+		BB715F9D2A8BA9F6004266A0 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
+		BB715F9F2A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceProtocol.swift; sourceTree = "<group>"; };
+		BB715FA12A8CAE40004266A0 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -214,7 +219,6 @@
 		BB9EFC0D2861B2AC00305776 /* AmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountView.swift; sourceTree = "<group>"; };
 		BB9EFC102863023700305776 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		BB9EFC12286B234600305776 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
-		BB9EFC1C287830E800305776 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		BB9EFC20287869D000305776 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 		BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionModalView.swift; sourceTree = "<group>"; };
 		BBCFDC052851F3FF003F9197 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
@@ -392,9 +396,9 @@
 			isa = PBXGroup;
 			children = (
 				BB5E37402A41996D0093AB95 /* ExchangeRateViewController.swift */,
+				BB715FA12A8CAE40004266A0 /* TopView.swift */,
 				BB5E37422A4199B40093AB95 /* ExchangeRateInput.swift */,
 				BB5E37442A4199E00093AB95 /* ExchangeRateOutput.swift */,
-				BB9EFC1C287830E800305776 /* TopView.swift */,
 				BB9EFC20287869D000305776 /* CurrencyCell.swift */,
 			);
 			path = View;
@@ -695,6 +699,7 @@
 				BB6A7F612A4C5FCB0028CC13 /* AuthService */,
 				BB659BA42A83C0EE009DB75B /* UserService */,
 				BB715F972A8B6716004266A0 /* StocksService */,
+				BB715F9C2A8BA9DA004266A0 /* ExchangeRateService */,
 				BB6A7F672A4C66040028CC13 /* DefaultValueService */,
 				BB6DF00F2A4B6F6C00A1B4BD /* TransactionsService */,
 			);
@@ -717,6 +722,15 @@
 				BB715F9A2A8B6750004266A0 /* StocksServiceProtocol.swift */,
 			);
 			path = StocksService;
+			sourceTree = "<group>";
+		};
+		BB715F9C2A8BA9DA004266A0 /* ExchangeRateService */ = {
+			isa = PBXGroup;
+			children = (
+				BB715F9D2A8BA9F6004266A0 /* ExchangeRateService.swift */,
+				BB715F9F2A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift */,
+			);
+			path = ExchangeRateService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -907,6 +921,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB9EFC21287869D000305776 /* CurrencyCell.swift in Sources */,
+				BB715FA02A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift in Sources */,
 				BB5E37432A4199B40093AB95 /* ExchangeRateInput.swift in Sources */,
 				BB5C40F02A4345CF002DC6A0 /* ProfileCoordinator.swift in Sources */,
 				BB5E37412A41996D0093AB95 /* ExchangeRateViewController.swift in Sources */,
@@ -934,6 +949,7 @@
 				BB9EFC0A285E2A9200305776 /* CategoryCell.swift in Sources */,
 				BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */,
 				BB5C41042A444675002DC6A0 /* AuthViewController.swift in Sources */,
+				BB715F9E2A8BA9F6004266A0 /* ExchangeRateService.swift in Sources */,
 				BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */,
 				BB659BA62A83C101009DB75B /* UserService.swift in Sources */,
 				BB5E37382A41888D0093AB95 /* HomeCoordinator.swift in Sources */,
@@ -959,6 +975,7 @@
 				BB5E37452A4199E00093AB95 /* ExchangeRateOutput.swift in Sources */,
 				BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */,
 				BB5E37342A4098BE0093AB95 /* LastTransactionOutput.swift in Sources */,
+				BB715FA22A8CAE40004266A0 /* TopView.swift in Sources */,
 				BB5E374F2A41CD020093AB95 /* StocksInput.swift in Sources */,
 				BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */,
 				BB5C40FD2A443FB1002DC6A0 /* StocksAssembly.swift in Sources */,
@@ -987,7 +1004,6 @@
 				BB5E37512A41CD1C0093AB95 /* StocksOutput.swift in Sources */,
 				BB6A7F692A4C66210028CC13 /* DefaultValueService.swift in Sources */,
 				BB5C410A2A444D27002DC6A0 /* AuthAssembly.swift in Sources */,
-				BB9EFC1D287830E800305776 /* TopView.swift in Sources */,
 				BB6DF0112A4B6F9B00A1B4BD /* TransactionsService.swift in Sources */,
 				BB5E373A2A418A4D0093AB95 /* HomePresenterOutput.swift in Sources */,
 				BB715F962A8653F8004266A0 /* AuthPresenterOutput.swift in Sources */,

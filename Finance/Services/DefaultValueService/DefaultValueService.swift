@@ -61,4 +61,28 @@ extension DefaultValueService: DefaultValueServiceProtocol {
         }
         return stocks
     }
+    
+    func fetchExchangeValue() -> ([String], [String]) {
+        var fullName = [String]()
+        var img = [String]()
+        
+        fileStore.readAppInformation("exchangeFullName") { (result: Result<[String], FileManagerError>) in
+            switch result {
+            case .success(let answer):
+                fullName = answer
+            case .failure:
+                break
+            }
+        }
+        
+        fileStore.readAppInformation("exchangeImg") { (result: Result<[String], FileManagerError>)  in
+            switch result {
+            case .success(let answer):
+                img = answer
+            case .failure:
+                break
+            }
+        }
+        return (fullName, img)
+    }
 }
