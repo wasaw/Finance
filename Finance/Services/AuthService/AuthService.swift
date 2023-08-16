@@ -91,6 +91,10 @@ extension AuthService: AuthServiceProtocol {
                                     let email = dictionary["email"] as? String else { return }
                             self.saveUser(uid: uid, login: login, email: email)
                         }
+                    } else {
+                        UserDefaults.standard.set(uid, forKey: "uid")
+                        let userDataDict: [String: String] = ["uid": uid]
+                        self.notification.post(name: Notification.Name("updateCredential"), object: nil, userInfo: userDataDict)
                     }
                 } catch {
                     print(error.localizedDescription)

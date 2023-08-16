@@ -34,6 +34,12 @@ final class ProfilePresenter {
         if let uid = notification.userInfo?["uid"] as? String {
             if let user = userService.getUser(uid) {
                 input?.showUserCredential(user)
+                if let image = user.profileImage {
+                    input?.setUserImage(image)
+                } else {
+                    guard let image = UIImage(named: "add-photo.png") else { return }
+                    input?.setUserImage(image)
+                }
             }
         }
     }
@@ -47,8 +53,9 @@ extension ProfilePresenter: ProfileOutput {
         if let uid = authService.authVerification() {
             if let user = userService.getUser(uid) {
                 input?.showUserCredential(user)
-                guard let image = userService.getImage(uid: uid) else { return }
-                input?.setUserImage(image)
+                if let image = user.profileImage {
+                    input?.setUserImage(image)
+                }
             }
         } else {
             output.showAuth()

@@ -51,10 +51,4 @@ extension UserService: UserServiceProtocol {
         guard let dataImage = image.jpegData(compressionQuality: 0.7) else { return }
         fileStore.saveImage(data: dataImage, with: uid)
     }
-    
-    func getImage(uid: String) -> UIImage? {
-        guard let imageData = fileStore.getImage(uid) else { return nil}
-        let image = UIImage(data: imageData)
-        return image
-    }
 }
