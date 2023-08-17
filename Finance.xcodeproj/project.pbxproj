@@ -49,7 +49,6 @@
 		BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */; };
 		BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */; };
 		BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */; };
-		BB63FDA52902D3B800D28166 /* CurrencyRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB63FDA42902D3B800D28166 /* CurrencyRate.swift */; };
 		BB659BA32A83776E009DB75B /* ProfilePresenterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB659BA22A83776E009DB75B /* ProfilePresenterInput.swift */; };
 		BB659BA62A83C101009DB75B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB659BA52A83C101009DB75B /* UserService.swift */; };
 		BB659BA82A83C11C009DB75B /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB659BA72A83C11C009DB75B /* UserServiceProtocol.swift */; };
@@ -167,7 +166,6 @@
 		BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalAccountView.swift; sourceTree = "<group>"; };
 		BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
-		BB63FDA42902D3B800D28166 /* CurrencyRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRate.swift; sourceTree = "<group>"; };
 		BB659BA22A83776E009DB75B /* ProfilePresenterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterInput.swift; sourceTree = "<group>"; };
 		BB659BA52A83C101009DB75B /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BB659BA72A83C11C009DB75B /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
@@ -492,7 +490,6 @@
 			isa = PBXGroup;
 			children = (
 				BB66934C285B885A002DFAAD /* Model.swift */,
-				BB63FDA42902D3B800D28166 /* CurrencyRate.swift */,
 				BB6BDB9C2989574C0000584A /* ModelDecodable.swift */,
 				BB6A7F6D2A4DCE470028CC13 /* ModelError.swift */,
 			);
@@ -991,7 +988,6 @@
 				BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */,
 				BB9EFC0C2861AADF00305776 /* RevenueView.swift in Sources */,
 				BB9B6FD828CF79E9000B1D53 /* ProfileImageView.swift in Sources */,
-				BB63FDA52902D3B800D28166 /* CurrencyRate.swift in Sources */,
 				BB5E374D2A41CCE30093AB95 /* StocksPresenter.swift in Sources */,
 				BB5C411C2A463050002DC6A0 /* FileStoreProtocol.swift in Sources */,
 				BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */,

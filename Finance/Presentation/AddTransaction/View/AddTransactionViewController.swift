@@ -50,6 +50,8 @@ final class AddTransactionViewController: UIViewController {
     private let datePicker = UIDatePicker()
         
     private var revenue = [ChoiceTypeRevenue]()
+    private var currency: Currency = .rub
+    private var currencyRate = 1.0
     private var category = [ChoiceCategoryExpense]()
     private var selectedType: Int? {
         didSet {
@@ -258,9 +260,14 @@ final class AddTransactionViewController: UIViewController {
 // MARK: - AddTransactionInput
 
 extension AddTransactionViewController: AddTransactionInput {
-    func showData(category: [ChoiceCategoryExpense], revenue: [ChoiceTypeRevenue]) {
+    func showData(category: [ChoiceCategoryExpense],
+                  revenue: [ChoiceTypeRevenue],
+                  currency: Currency,
+                  currencyRate: Double) {
         self.category = category
         self.revenue = revenue
+        self.currency = currency
+        self.currencyRate = currencyRate
         typeCollectionView?.reloadData()
         categoryCollectionView?.reloadData()
     }
@@ -305,8 +312,8 @@ extension AddTransactionViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TypeCell.identifire,
                                                                 for: indexPath) as? TypeCell else { return UICollectionViewCell() }
             let currentRevenue = revenue[indexPath.row]
-            let amount = currentRevenue.amount / CurrencyRate.rate
-            cell.setInfornation(title: currentRevenue.name, img: currentRevenue.img, amount: amount, currency: CurrencyRate.currentCurrency)
+            let amount = currentRevenue.amount / currencyRate
+            cell.setInfornation(title: currentRevenue.name, img: currentRevenue.img, amount: amount, currency: currency)
             cell.disableSelect()
             if selectedType == indexPath.row {
                 cell.setSelect()
@@ -318,7 +325,7 @@ extension AddTransactionViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifire,
                                                                 for: indexPath) as? CategoryCell else { return UICollectionViewCell() }
             let currentCategory = category[indexPath.row]
-            cell.setInfornation(title: currentCategory.name, img: currentCategory.img, currency: CurrencyRate.currentCurrency)
+            cell.setInfornation(title: currentCategory.name, img: currentCategory.img, currency: currency)
             cell.disableSelect()
             if selectedCategory == indexPath.row {
                 cell.setSelect()
@@ -359,7 +366,7 @@ extension AddTransactionViewController: HandleDoneDelegate {
         if isFillingCompleted.0 {
             let amountDouble = Double(amount) ?? 0
             addTransaction.amount = isRevenue ? amountDouble : -1 * amountDouble
-            addTransaction.amount *= CurrencyRate.rate
+            addTransaction.amount *= currencyRate
             addTransaction.comment = comment
             output.saveTransaction(addTransaction)
         } else {

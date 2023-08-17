@@ -36,7 +36,16 @@ final class AddTransactionPresenter {
         } catch {
             input?.showAlert(with: "Ошибка", and: error.localizedDescription)
         }
-        input?.showData(category: category, revenue: revenue)
+        guard let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
+              let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
+              let currentCurrency = Currency(rawValue: currency) else { return }
+        for index in 0..<revenue.count {
+            revenue[index].amount /= currencyRate
+        }
+        input?.showData(category: category,
+                        revenue: revenue,
+                        currency: currentCurrency,
+                        currencyRate: currencyRate)
     }
 }
 

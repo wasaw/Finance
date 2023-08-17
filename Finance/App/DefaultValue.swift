@@ -128,5 +128,10 @@ final class DefaultValue {
                 }
             }
         }
+        
+        if UserDefaults.standard.value(forKey: "currencyRate") == nil {
+            UserDefaults.standard.set(1, forKey: "currencyRate")
+            UserDefaults.standard.set(0, forKey: "currency")
+        }
     }
 }

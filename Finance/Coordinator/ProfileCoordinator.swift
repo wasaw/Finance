@@ -16,6 +16,7 @@ final class ProfileCoordinator {
     private let authService: AuthServiceProtocol
     private let userService: UserServiceProtocol
     private let authCoordinator: AuthCoordinator
+    private let exchangeRateService: ExchangeRateServiceProtocol
     private var presenterViewController: UIViewController?
     
 // MARK: - Lifecycle
@@ -23,17 +24,22 @@ final class ProfileCoordinator {
     init(profileAssembly: ProfileAssembly,
          authService: AuthServiceProtocol,
          userService: UserServiceProtocol,
-         authCoordinator: AuthCoordinator) {
+         authCoordinator: AuthCoordinator,
+         exchageRateService: ExchangeRateServiceProtocol) {
         self.profileAssembly = profileAssembly
         self.authService = authService
         self.userService = userService
         self.authCoordinator = authCoordinator
+        self.exchangeRateService = exchageRateService
     }
     
 // MARK: - Helpers
     
     func start() -> UINavigationController {
-        let vc = profileAssembly.makeProfileModule(output: self, authService: authService, userService: userService)
+        let vc = profileAssembly.makeProfileModule(output: self,
+                                                   authService: authService,
+                                                   userService: userService,
+                                                   exchageRateService: exchangeRateService)
         let nav = UINavigationController(rootViewController: vc)
         presenterViewController = vc
         profileView = vc

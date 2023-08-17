@@ -43,6 +43,9 @@ final class HomePresenter {
                 input?.setUserName(user.login)
             }
         }
+        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
+              let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
+              let currentCurrency = Currency(rawValue: currency) else { return }
         var revenue: Double = 0
         do {
             lastTransaction = try transactionsService.fetchTransactions()
@@ -51,18 +54,16 @@ final class HomePresenter {
         }
         if !self.lastTransaction.isEmpty {
             self.input?.showLastTransaction()
-            lastTransaction.forEach { transaction in
-                revenue += transaction.amount
+            for index in 0..<lastTransaction.count {
+                revenue += lastTransaction[index].amount
+                lastTransaction[index].amount /= currencyRate
             }
         }
-        if CurrencyRate.currentCurrency == .dollar {
-            revenue /= CurrencyRate.usd
-        }
-        if CurrencyRate.currentCurrency == .euro {
-            revenue /= CurrencyRate.eur
-        }
+        
+        revenue /= currencyRate
         self.input?.showData(total: revenue,
-                             currency: CurrencyRate.currentCurrency,
+                             currency: currentCurrency,
+                             rate: currencyRate,
                              service: self.service,
                              lastTransaction: self.lastTransaction)
         
@@ -81,8 +82,13 @@ final class HomePresenter {
                 lastTransaction.forEach { transaction in
                     revenue += transaction.amount
                 }
+                guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
+                      let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
+                      let currentCurrency = Currency(rawValue: currency) else { return }
+                revenue /= currencyRate
                 input?.showData(total: revenue,
-                                currency: CurrencyRate.currentCurrency,
+                                currency: currentCurrency,
+                                rate: currencyRate,
                                 service: self.service,
                                 lastTransaction: lastTransaction)
             }

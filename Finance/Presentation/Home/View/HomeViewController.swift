@@ -56,6 +56,8 @@ final class HomeViewController: UIViewController {
     private var heightView: CGFloat = 0
     private var service: [ChoiceService] = []
     private var lastTransaction: [LastTransaction] = []
+    private var currency: Currency = .rub
+    private var rate = 1.0
 
 // MARK: - Lifecycle
     
@@ -99,8 +101,6 @@ final class HomeViewController: UIViewController {
     
     private func configureTotalAccountView() {
         view.addSubview(totalAccountView)
-//        let height = heightView / 5.5
-//        let height: CGFloat = 180
         totalAccountView.anchor(leading: view.leadingAnchor,
                                 top: fullNameLabel.bottomAnchor,
                                 trailing: view.trailingAnchor,
@@ -186,9 +186,11 @@ final class HomeViewController: UIViewController {
 // MARK: - HomeInput
 
 extension HomeViewController: HomeInput {
-    func showData(total: Double, currency: Currency, service: [ChoiceService], lastTransaction: [LastTransaction]) {
+    func showData(total: Double, currency: Currency, rate: Double, service: [ChoiceService], lastTransaction: [LastTransaction]) {
         totalAccountView.setAccountLabel(total: total, currency: currency)
         self.service = service
+        self.currency = currency
+        self.rate = rate
         servicesCollectionView?.reloadData()
         self.lastTransaction = lastTransaction
         lastTransactionsCollectionView?.reloadData()
@@ -213,13 +215,9 @@ extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.servicesCollectionView {
             output.showService(at: indexPath.row)
-//            navigationController?.pushViewController(service[indexPath.row].vc, animated: true)
         }
         
         if collectionView == self.lastTransactionsCollectionView {
-//            let vc = LastTransactionModalController(transaction: lastTransaction[indexPath.row],
-//                                                    currency: CurrencyRate.currentCurrency,
-//                                                    rate: CurrencyRate.rate)
             let vc = LastTransactionViewController()
             if let sheet = vc.sheetPresentationController {
                 sheet.detents = [.medium()]
@@ -253,7 +251,7 @@ extension HomeViewController: UICollectionViewDataSource {
         if collectionView == self.lastTransactionsCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LastTransactionCell.identifire,
                                                                 for: indexPath) as? LastTransactionCell else { return UICollectionViewCell() }
-            cell.setInformation(lastTransaction: lastTransaction[indexPath.row], currency: CurrencyRate.currentCurrency, rate: CurrencyRate.rate)
+            cell.setInformation(lastTransaction: lastTransaction[indexPath.row], currency: currency, rate: rate)
             return cell
         }
         return UICollectionViewCell()

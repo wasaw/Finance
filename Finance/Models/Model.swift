@@ -96,6 +96,17 @@ enum Currency: Int {
             return "евро"
         }
     }
+    
+    func forRequest() -> String {
+        switch self {
+        case .rub:
+            return "RUB"
+        case .dollar:
+            return "USD"
+        case .euro:
+            return "EUR"
+        }
+    }
 }
 
 struct Stock: Codable {
@@ -113,4 +124,11 @@ struct Stock: Codable {
 enum RequestType {
     case exchange
     case stock
+}
+
+struct CurrencyButton {
+    let title: String
+    let image: String
+    let displayCurrency: Currency
+    var isSelected: Bool
 }

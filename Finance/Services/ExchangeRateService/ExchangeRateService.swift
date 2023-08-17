@@ -56,4 +56,17 @@ extension ExchangeRateService: ExchangeRateServiceProtocol {
             }
         }
     }
+    
+    func updateExchangeRate(for currency: Currency) {
+        fetchExchangeRate(currency.forRequest()) { result in
+            switch result {
+            case .success(let answer):
+                if let currency = answer.first(where: { $0.name == "RUB" }) {
+                    UserDefaults.standard.set(currency.amount, forKey: "currencyRate")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

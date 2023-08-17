@@ -86,30 +86,26 @@ final class ProfileViewController: UIViewController {
                      paddingLeading: Constants.horizontalPadding,
                      paddingTop: Constants.stackViewPaddingTop,
                      paddingTrailing: -Constants.horizontalPadding)
-
-        currentCurrencyBtn.menu = generationMenu()
+        
         currentCurrencyBtn.showsMenuAsPrimaryAction = true
         logOutBtn.addTarget(self, action: #selector(handleLogOutBtn), for: .touchUpInside)
     }
     
-    private func generationMenu() -> UIMenu {
-        let first = createUIAction(title: "Рубль", image: "ruble-currency.png", displayedCurrency: .rub)
-        let second = createUIAction(title: "Доллар", image: "dollar.png", displayedCurrency: .dollar)
-        let third = createUIAction(title: "Евро", image: "euro.png", displayedCurrency: .euro)
+    private func generationMenu(_ currencyButton: [CurrencyButton]) -> UIMenu {
+        let first = createUIAction(currencyButton[0])
+        let second = createUIAction(currencyButton[1])
+        let third = createUIAction(currencyButton[2])
         let elements = [first, second, third]
         let menu = UIMenu(children: elements)
         return menu
     }
     
-    private func createUIAction(title: String, image: String, displayedCurrency: Currency) -> UIAction {
-        return UIAction(title: title, image: UIImage(named: image), state: checkCurrency(currency: displayedCurrency) ? .on : .off) { _ in
-            CurrencyRate.currentCurrency = displayedCurrency
-            self.currentCurrencyBtn.menu = self.generationMenu()
+    private func createUIAction(_ currencyButton: CurrencyButton) -> UIAction {
+        return UIAction(title: currencyButton.title,
+                        image: UIImage(named: currencyButton.image),
+                        state: currencyButton.isSelected ? .on : .off) { _ in
+            self.output.setCurrency(currencyButton)
         }
-    }
-    
-    private func checkCurrency(currency: Currency) -> Bool {
-        return currency == CurrencyRate.currentCurrency ? true : false
     }
     
 // MARK: - Selecters
@@ -132,6 +128,10 @@ extension ProfileViewController: ProfileInput {
     
     func setUserImage(_ image: UIImage) {
         imageView.setImage(image: image)
+    }
+    
+    func updateCurrencyMenu(_ currencyButton: [CurrencyButton]) {
+        currentCurrencyBtn.menu = generationMenu(currencyButton)
     }
 }
 

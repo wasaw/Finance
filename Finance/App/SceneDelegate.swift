@@ -52,7 +52,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let profileCoordinator = ProfileCoordinator(profileAssembly: profileAssembly,
                                                     authService: authService,
                                                     userService: userService,
-                                                    authCoordinator: authCoordinator)
+                                                    authCoordinator: authCoordinator,
+                                                    exchageRateService: exchangeRateService)
 
         guard let scene = (scene as? UIWindowScene) else { return }
         

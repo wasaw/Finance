@@ -8,7 +8,10 @@
 import Foundation
 
 protocol AddTransactionInput: AnyObject {
-    func showData(category: [ChoiceCategoryExpense], revenue: [ChoiceTypeRevenue])
+    func showData(category: [ChoiceCategoryExpense],
+                  revenue: [ChoiceTypeRevenue],
+                  currency: Currency,
+                  currencyRate: Double)
     func dismissView()
     func showAlert(with title: String, and text: String)
 }

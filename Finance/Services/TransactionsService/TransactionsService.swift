@@ -50,13 +50,16 @@ extension TransactionsService: TransactionsServiceProtocol {
     }
     
     func saveTransaction(_ transaction: LastTransaction) {
+        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
+            return
+        }
         coreData.save { context in
             let transactionManagedObject = TransactionManagedObject(context: context)
             transactionManagedObject.type = transaction.type
             transactionManagedObject.category = transaction.category
             transactionManagedObject.img = transaction.img
             transactionManagedObject.date = transaction.date
-            transactionManagedObject.amount = transaction.amount
+            transactionManagedObject.amount = transaction.amount * currencyRate
             transactionManagedObject.comment = transaction.comment
         }
     }
