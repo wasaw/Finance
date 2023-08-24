@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let exchangeAssembly = ExchangeRateAssembly()
         let stocksAssembly = StocksAssembly()
         let authAssembly = AuthAssembly()
+        let lastTransaction = LastTransactionAssembly()
         let network = Network()
         let config = NetworkConfiguration()
         let fileStore = FileStore()
@@ -41,6 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let homeCoordinator = HomeCoordinator(homeAssembly: homeAssembly,
                                               exchangeAssembly: exchangeAssembly,
                                               stocksAssembly: stocksAssembly,
+                                              lastTransaction: lastTransaction,
                                               network: network,
                                               config: config,
                                               coreData: coreData,

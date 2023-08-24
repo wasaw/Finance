@@ -10,4 +10,5 @@ import Foundation
 protocol HomeOutput: AnyObject {
     func viewIsReady()
     func showService(at: Int)
+    func showTransaction(for index: Int)
 }

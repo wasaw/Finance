@@ -33,6 +33,7 @@ final class HomePresenter {
         self.userService = userService
         notification.addObserver(self, selector: #selector(reloadView), name: Notification.Name("AddTransaction"), object: nil)
         notification.addObserver(self, selector: #selector(updateCredential(_:)), name: Notification.Name("updateCredential"), object: nil)
+        notification.addObserver(self, selector: #selector(updateCurrency), name: Notification.Name("updateCurrency"), object: nil)
     }
     
 // MARK: - Helpers
@@ -102,6 +103,10 @@ final class HomePresenter {
             }
         }
     }
+    
+    @objc private func updateCurrency() {
+        loadInformation()
+    }
 }
 
 // MARK: - HomeOutput
@@ -117,5 +122,9 @@ extension HomePresenter: HomeOutput {
         } else {
             output.showStock()
         }
+    }
+    
+    func showTransaction(for index: Int) {
+        output.showLastTransaction(lastTransaction[index])
     }
 }

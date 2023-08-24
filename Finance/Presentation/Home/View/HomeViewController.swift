@@ -218,12 +218,7 @@ extension HomeViewController: UICollectionViewDelegate {
         }
         
         if collectionView == self.lastTransactionsCollectionView {
-            let vc = LastTransactionViewController()
-            if let sheet = vc.sheetPresentationController {
-                sheet.detents = [.medium()]
-                sheet.preferredCornerRadius = Constants.sheetPresentationCornerRadius
-            }
-            self.present(vc, animated: false)
+            output.showTransaction(for: indexPath.row)
         }
     }
 }

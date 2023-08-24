@@ -41,6 +41,7 @@
 		BB5E374D2A41CCE30093AB95 /* StocksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E374C2A41CCE30093AB95 /* StocksPresenter.swift */; };
 		BB5E374F2A41CD020093AB95 /* StocksInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E374E2A41CD020093AB95 /* StocksInput.swift */; };
 		BB5E37512A41CD1C0093AB95 /* StocksOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37502A41CD1C0093AB95 /* StocksOutput.swift */; };
+		BB5E8D7D2A9737A700BC1010 /* LastTransactionAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E8D7C2A9737A700BC1010 /* LastTransactionAssembly.swift */; };
 		BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */; };
 		BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */; };
 		BB61DE962850A33800A08AC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB61DE952850A33800A08AC6 /* Assets.xcassets */; };
@@ -155,6 +156,7 @@
 		BB5E374C2A41CCE30093AB95 /* StocksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksPresenter.swift; sourceTree = "<group>"; };
 		BB5E374E2A41CD020093AB95 /* StocksInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksInput.swift; sourceTree = "<group>"; };
 		BB5E37502A41CD1C0093AB95 /* StocksOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksOutput.swift; sourceTree = "<group>"; };
+		BB5E8D7C2A9737A700BC1010 /* LastTransactionAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionAssembly.swift; sourceTree = "<group>"; };
 		BB5F1E862A4F076D0054F3A6 /* ApiKey.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ApiKey.xcconfig; sourceTree = "<group>"; };
 		BB61DE892850A33300A08AC6 /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 			children = (
 				BB5C40F42A442A50002DC6A0 /* HomeAssembly.swift */,
 				BB5C40F62A443544002DC6A0 /* AddTransactionAssembly.swift */,
+				BB5E8D7C2A9737A700BC1010 /* LastTransactionAssembly.swift */,
 				BB5C40F82A443AB2002DC6A0 /* ProfileAssembly.swift */,
 				BB5C40FA2A443C5B002DC6A0 /* ExchangeRateAssembly.swift */,
 				BB5C40FC2A443FB1002DC6A0 /* StocksAssembly.swift */,
@@ -951,6 +954,7 @@
 				BB659BA62A83C101009DB75B /* UserService.swift in Sources */,
 				BB5E37382A41888D0093AB95 /* HomeCoordinator.swift in Sources */,
 				BB6A7F6E2A4DCE470028CC13 /* ModelError.swift in Sources */,
+				BB5E8D7D2A9737A700BC1010 /* LastTransactionAssembly.swift in Sources */,
 				BB715F9B2A8B6750004266A0 /* StocksServiceProtocol.swift in Sources */,
 				BB5C41022A44464F002DC6A0 /* AuthPresenter.swift in Sources */,
 				BB5C41142A4481BD002DC6A0 /* Network.swift in Sources */,

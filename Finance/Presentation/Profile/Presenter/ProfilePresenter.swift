@@ -5,8 +5,7 @@
 //  Created by Александр Меренков on 13.06.2023.
 //
 
-import Foundation
-import Firebase
+import UIKit
 
 final class ProfilePresenter {
     
@@ -119,6 +118,7 @@ extension ProfilePresenter: ProfilePresenterInput {
                 currencyButtonArr[index].isSelected = false
             }
         }
+        notification.post(Notification(name: Notification.Name("updateCurrency")))
         input?.updateCurrencyMenu(currencyButtonArr)
         if currencyButton.displayCurrency != .rub {
             exchangeRateService.updateExchangeRate(for: currencyButton.displayCurrency)

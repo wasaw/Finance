@@ -12,15 +12,23 @@ final class LastTransactionViewController: UIViewController {
 // MARK: - Properties
     
     private let textView = LastTransactionModalView()
-    private let output = LastTransactionPresenter()
+    private let output: LastTransactionOutput
     
 // MARK: - Lifecycle
+    
+    init(output: LastTransactionOutput) {
+        self.output = output
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
-        output.input = self
         output.viewIsReady()
         view.backgroundColor = .white
     }
