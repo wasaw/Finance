@@ -12,4 +12,5 @@ protocol ProfileInput: AnyObject {
     func showUserCredential(_ user: User)
     func setUserImage(_ image: UIImage)
     func updateCurrencyMenu(_ currencyButton: [CurrencyButton])
+    func showAlert(with title: String, and message: String)
 }

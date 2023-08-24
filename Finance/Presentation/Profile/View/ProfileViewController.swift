@@ -133,6 +133,10 @@ extension ProfileViewController: ProfileInput {
     func updateCurrencyMenu(_ currencyButton: [CurrencyButton]) {
         currentCurrencyBtn.menu = generationMenu(currencyButton)
     }
+    
+    func showAlert(with title: String, and message: String) {
+        alert(with: title, massage: message)
+    }
 }
 
 // MARK: - UIImagePickerControllerDelegate

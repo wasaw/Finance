@@ -22,6 +22,7 @@ extension ConfigFileError: LocalizedError {
 
 enum FileManagerError: Error {
     case fileNotExists
+    case notRead
 }
 
 extension FileManagerError: LocalizedError {
@@ -29,6 +30,8 @@ extension FileManagerError: LocalizedError {
         switch self {
         case .fileNotExists:
             return NSLocalizedString("Информация отсутствует", comment: "")
+        case .notRead:
+            return NSLocalizedString("Информация недоступна", comment: "")
         }
     }
 }

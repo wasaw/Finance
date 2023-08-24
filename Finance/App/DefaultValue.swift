@@ -75,7 +75,7 @@ final class DefaultValue {
                 break
             case .failure(let error):
                 switch error {
-                case .fileNotExists:
+                case .fileNotExists, .notRead:
                     self?.fileStore.setAppInformation(filename: "revenue", file: self?.revenue)
                 }
             }
@@ -87,7 +87,7 @@ final class DefaultValue {
                 break
             case .failure(let error):
                 switch error {
-                case .fileNotExists:
+                case .fileNotExists, .notRead:
                     self?.fileStore.setAppInformation(filename: "category", file: self?.category)
                 }
             }
@@ -99,7 +99,7 @@ final class DefaultValue {
                 break
             case .failure(let error):
                 switch error {
-                case .fileNotExists:
+                case .fileNotExists, .notRead:
                     self?.fileStore.setAppInformation(filename: "stocks", file: self?.stocks)
                 }
             }
@@ -111,7 +111,7 @@ final class DefaultValue {
                 break
             case .failure(let error):
                 switch error {
-                case .fileNotExists:
+                case .fileNotExists, .notRead:
                     self?.fileStore.setAppInformation(filename: "exchangeFullName", file: self?.exchangeFullName)
                 }
             }
@@ -123,7 +123,7 @@ final class DefaultValue {
                 break
             case .failure(let error):
                 switch error {
-                case .fileNotExists:
+                case .fileNotExists, .notRead:
                     self?.fileStore.setAppInformation(filename: "exchangeImg", file: self?.exchangeImg)
                 }
             }

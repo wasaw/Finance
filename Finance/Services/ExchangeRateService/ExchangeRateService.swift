@@ -64,8 +64,8 @@ extension ExchangeRateService: ExchangeRateServiceProtocol {
                 if let currency = answer.first(where: { $0.name == "RUB" }) {
                     UserDefaults.standard.set(currency.amount, forKey: "currencyRate")
                 }
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .failure:
+                UserDefaults.standard.set(1, forKey: "currencyRate")
             }
         }
     }

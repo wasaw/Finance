@@ -38,35 +38,35 @@ extension FileStore: FileStoreProtocol {
                 let fileDecode = try JSONDecoder().decode(T.self, from: fileData)
                 completion(.success(fileDecode))
             } catch {
-                print(error)
+                completion(.failure(FileManagerError.notRead))
             }
         } else {
             completion(.failure(FileManagerError.fileNotExists))
         }
     }
     
-    func saveImage(data: Data, with name: String) {
+    func saveImage(data: Data, with name: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
         guard let directlyUrl = manager.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let fileUrl = directlyUrl.appendingPathComponent(name)
         do {
             try data.write(to: fileUrl)
+            completion(.success(()))
         } catch {
-            print(error.localizedDescription)
+            completion(.failure(error))
         }
     }
     
-    func getImage(_ uid: String) -> Data? {
-        guard let directoryUrl = manager.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+    func getImage(_ uid: String, completion: @escaping ((Result<Data, Error>) -> Void)) {
+        guard let directoryUrl = manager.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let fileUrl = directoryUrl.appendingPathComponent(uid)
         
         if manager.fileExists(atPath: fileUrl.path) {
             do {
                 let fileData = try Data(contentsOf: fileUrl)
-                return fileData
+                completion(.success(fileData))
             } catch {
-                print(error)
+                completion(.failure(error))
             }
         }
-        return nil
     }
 }

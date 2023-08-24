@@ -40,7 +40,6 @@ final class ProfilePresenter {
         self.authService = authService
         self.userService = userService
         self.exchangeRateService = exchangeRateService
-        self.authService.profilePresenterInput = self
         notification.addObserver(self, selector: #selector(updateCredentiall(_:)), name: Notification.Name("updateCredential"), object: nil)
     }
     
@@ -90,14 +89,29 @@ extension ProfilePresenter: ProfileOutput {
     }
     
     func logOut() {
-        authService.logOut()
+        authService.logOut { result in
+            switch result {
+            case .success:
+                self.output.showAuth()
+            case .failure:
+                self.input?.showAlert(with: "Ошибка", and: "Не удалось разлогиниться")
+            }
+        }
     }
     
     func saveImage(_ imageData: Any?) {
         guard let image = imageData as? UIImage else { return }
-        input?.setUserImage(image)
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
-            userService.saveImage(image: image, for: uid)
+            userService.saveImage(image: image, for: uid) { [weak self] result in
+                switch result {
+                case .success:
+                    self?.input?.setUserImage(image)
+                case .failure:
+                    DispatchQueue.main.async {
+                        self?.input?.showAlert(with: "Внимание", and: "Не удалось сохранить фотографию, попобуйте еще раз.")
+                    }
+                }
+            }
         }
     }
 }

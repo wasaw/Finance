@@ -33,7 +33,7 @@ extension DefaultValueService: DefaultValueServiceProtocol {
             case .success(let answer):
                 category = answer
             case .failure:
-                break
+                category = []
             }
         }
         
@@ -42,7 +42,7 @@ extension DefaultValueService: DefaultValueServiceProtocol {
             case .success(let answer):
                 revenue = answer
             case .failure:
-                break
+                revenue = []
             }
         }
         
@@ -56,7 +56,7 @@ extension DefaultValueService: DefaultValueServiceProtocol {
             case .success(let answer):
                 stocks = answer
             case .failure:
-                break
+                stocks = []
             }
         }
         return stocks
@@ -71,7 +71,7 @@ extension DefaultValueService: DefaultValueServiceProtocol {
             case .success(let answer):
                 fullName = answer
             case .failure:
-                break
+                fullName = []
             }
         }
         
@@ -80,7 +80,7 @@ extension DefaultValueService: DefaultValueServiceProtocol {
             case .success(let answer):
                 img = answer
             case .failure:
-                break
+                img = []
             }
         }
         return (fullName, img)

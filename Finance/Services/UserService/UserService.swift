@@ -32,8 +32,13 @@ extension UserService: UserServiceProtocol {
                 guard let login = loadedUser.login,
                       let email = loadedUser.email else { return nil }
                 var image: UIImage?
-                if let imageData = fileStore.getImage(uid) {
-                    image = UIImage(data: imageData)
+                fileStore.getImage(uid) { result in
+                    switch result {
+                    case .success(let data):
+                        image = UIImage(data: data)
+                    case .failure:
+                        image = UIImage(named: "add-photo")
+                    }
                 }
                 return User(uid: uid,
                             login: login,
@@ -42,13 +47,12 @@ extension UserService: UserServiceProtocol {
             }
             return user.first
         } catch {
-            print(error.localizedDescription)
             return nil
         }
     }
     
-    func saveImage(image: UIImage, for uid: String) {
+    func saveImage(image: UIImage, for uid: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
         guard let dataImage = image.jpegData(compressionQuality: 0.7) else { return }
-        fileStore.saveImage(data: dataImage, with: uid)
+        fileStore.saveImage(data: dataImage, with: uid, completion: completion)
     }
 }

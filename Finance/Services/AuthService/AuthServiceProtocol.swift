@@ -7,11 +7,9 @@
 
 import Foundation
 
-protocol AuthServiceProtocol: AnyObject {
-    var profilePresenterInput: ProfilePresenterInput? { get set }
-    
+protocol AuthServiceProtocol: AnyObject {    
     func authVerification() -> String?
-    func logOut()
+    func logOut(completion: @escaping (Result<Void, Error>) -> Void)
     func signInUser(credentials: AuthCredentials, completion: @escaping ((Bool) -> Void))
     func logInUser(email: String, password: String, completion: @escaping (Bool) -> Void)
 }

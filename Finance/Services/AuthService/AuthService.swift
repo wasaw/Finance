@@ -13,7 +13,6 @@ final class AuthService {
     
 // MARK: - Properties
     
-    weak var profilePresenterInput: ProfilePresenterInput?
     private let coreData: CoreDataService
     private let notification = NotificationCenter.default
     
@@ -62,13 +61,13 @@ extension AuthService: AuthServiceProtocol {
         }
     }
     
-    func logOut() {
+    func logOut(completion: @escaping (Result<Void, Error>) -> Void) {
         do {
             try Auth.auth().signOut()
             UserDefaults.standard.set(nil, forKey: "uid")
-            profilePresenterInput?.showAuth()
-        } catch let error {
-            print("Error is \(error.localizedDescription)")
+            completion(.success(()))
+        } catch {
+            completion(.failure(error))
         }
     }
     
@@ -111,8 +110,7 @@ extension AuthService: AuthServiceProtocol {
         let password = credentials.password
         
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let error = error {
-                print("Error is \(error.localizedDescription)")
+            if error != nil {
                 completion(false)
             }
             
