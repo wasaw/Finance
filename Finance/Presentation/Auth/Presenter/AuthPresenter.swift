@@ -37,12 +37,13 @@ extension AuthPresenter: AuthOutput {
             } else {
                 let email = credentials.email
                 let password = credentials.password
-                authService.logInUser(email: email, password: password) { result in
-                    if result {
-                        self.output.dismissView()
-                        self.input?.dismissView()
-                    } else {
-                        print("DEBUG: not logIn")
+                authService.logInUser(email: email, password: password) { [weak self] result in
+                    switch result {
+                    case .success:
+                        self?.output.dismissView()
+                        self?.input?.clearForm()
+                    case .failure(let error):
+                        self?.input?.showAlert(message: error.localizedDescription)
                     }
                 }
             }
@@ -66,11 +67,12 @@ extension AuthPresenter: AuthOutput {
             }
             if isReady {
                 authService.signInUser(credentials: credentials) { result in
-                    if result {
+                    switch result {
+                    case .success:
                         self.output.dismissView()
-                        self.input?.dismissView()
-                    } else {
-                        print("DEBUG: not registered")
+                        self.input?.clearForm()
+                    case .failure:
+                        self.input?.showAlert(message: "Ошибка. Попробуйте снова.")
                     }
                 }
             }

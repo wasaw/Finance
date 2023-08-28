@@ -145,18 +145,6 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         output.saveImage(info[.editedImage])
         dismiss(animated: true)
-//        guard let dataImage = profileImage.jpegData(compressionQuality: 0.3) else { return }
-//        let filename = UUID().uuidString
-//        let storageImageRef = REF_PROFILE_IMAGE.child(filename)
-//
-//        storageImageRef.putData(dataImage) { _, _ in
-//            storageImageRef.downloadURL { _, _ in
-////                guard let profileImageUrl = url?.absoluteString else { return }
-////                guard let uid = Auth.auth().currentUser?.uid else { return }
-////                let values = ["profileImageUrl": profileImageUrl]
-////                REF_USERS.child(uid).updateChildValues(values)
-//            }
-//        }
     }
 }
 

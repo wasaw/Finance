@@ -7,11 +7,10 @@ target 'Finance' do
 
   # Pods for Finance
 
+pod 'Firebase'
 pod 'FirebaseAuth'
-pod 'FirebaseFirestore'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
-pod 'SDWebImage', '~> 5.0'
 pod 'SwiftLint'
 
   target 'FinanceUnitTests' do

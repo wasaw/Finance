@@ -13,12 +13,16 @@ final class UserService {
     
     private let coreData: CoreDataService
     private let fileStore: FileStoreProtocol
+    private let firebaseService: FirebaseServiceProtocol
     
 // MARK: - Lifecycle
     
-    init(coreData: CoreDataService, fileStore: FileStoreProtocol) {
+    init(coreData: CoreDataService,
+         fileStore: FileStoreProtocol,
+         firebaseService: FirebaseServiceProtocol) {
         self.coreData = coreData
         self.fileStore = fileStore
+        self.firebaseService = firebaseService
     }
 }
 
@@ -54,5 +58,6 @@ extension UserService: UserServiceProtocol {
     func saveImage(image: UIImage, for uid: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
         guard let dataImage = image.jpegData(compressionQuality: 0.7) else { return }
         fileStore.saveImage(data: dataImage, with: uid, completion: completion)
+        firebaseService.saveImage(dataImage: dataImage, with: uid, completion: completion)
     }
 }

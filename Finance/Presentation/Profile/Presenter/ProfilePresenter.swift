@@ -65,26 +65,31 @@ final class ProfilePresenter {
 extension ProfilePresenter: ProfileOutput {
     func viewIsReady() {
         input?.showProfile()
-        if let uid = authService.authVerification() {
-            if let user = userService.getUser(uid) {
-                input?.showUserCredential(user)
-                if let image = user.profileImage {
-                    input?.setUserImage(image)
-                }
-                if let currencyRaw = UserDefaults.standard.value(forKey: "currency") as? Int {
-                    guard let currency = Currency(rawValue: currencyRaw) else { return }
-                    for index in 0..<currencyButtonArr.count {
-                        if currencyButtonArr[index].displayCurrency == currency {
-                            currencyButtonArr[index].isSelected = true
-                        } else {
-                            currencyButtonArr[index].isSelected = false
-                        }
+        authService.authVerification { [weak self] result in
+            switch result {
+            case .success(let uid):
+                if let user = self?.userService.getUser(uid) {
+                    self?.input?.showUserCredential(user)
+                    if let image = user.profileImage {
+                        self?.input?.setUserImage(image)
                     }
-                    input?.updateCurrencyMenu(currencyButtonArr)
+                    if let currencyRaw = UserDefaults.standard.value(forKey: "currency") as? Int {
+                        guard let currency = Currency(rawValue: currencyRaw) else { return }
+                        guard let count = self?.currencyButtonArr.count else { return }
+                        for index in 0..<count {
+                            if self?.currencyButtonArr[index].displayCurrency == currency {
+                                self?.currencyButtonArr[index].isSelected = true
+                            } else {
+                                self?.currencyButtonArr[index].isSelected = false
+                            }
+                        }
+                        guard let currencyButtonArr = self?.currencyButtonArr else { return }
+                        self?.input?.updateCurrencyMenu(currencyButtonArr)
+                    }
                 }
+            case .failure:
+                self?.output.showAuth()
             }
-        } else {
-            output.showAuth()
         }
     }
     
@@ -92,6 +97,7 @@ extension ProfilePresenter: ProfileOutput {
         authService.logOut { result in
             switch result {
             case .success:
+                UserDefaults.standard.set(nil, forKey: "uid")
                 self.output.showAuth()
             case .failure:
                 self.input?.showAlert(with: "Ошибка", and: "Не удалось разлогиниться")

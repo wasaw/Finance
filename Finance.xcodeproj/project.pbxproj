@@ -42,6 +42,8 @@
 		BB5E374F2A41CD020093AB95 /* StocksInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E374E2A41CD020093AB95 /* StocksInput.swift */; };
 		BB5E37512A41CD1C0093AB95 /* StocksOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37502A41CD1C0093AB95 /* StocksOutput.swift */; };
 		BB5E8D7D2A9737A700BC1010 /* LastTransactionAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E8D7C2A9737A700BC1010 /* LastTransactionAssembly.swift */; };
+		BB5E8D802A979C2800BC1010 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E8D7F2A979C2800BC1010 /* FirebaseService.swift */; };
+		BB5E8D822A979C4100BC1010 /* FirebaseServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E8D812A979C4100BC1010 /* FirebaseServiceProtocol.swift */; };
 		BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */; };
 		BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */; };
 		BB61DE962850A33800A08AC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB61DE952850A33800A08AC6 /* Assets.xcassets */; };
@@ -157,6 +159,8 @@
 		BB5E374E2A41CD020093AB95 /* StocksInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksInput.swift; sourceTree = "<group>"; };
 		BB5E37502A41CD1C0093AB95 /* StocksOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksOutput.swift; sourceTree = "<group>"; };
 		BB5E8D7C2A9737A700BC1010 /* LastTransactionAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionAssembly.swift; sourceTree = "<group>"; };
+		BB5E8D7F2A979C2800BC1010 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		BB5E8D812A979C4100BC1010 /* FirebaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServiceProtocol.swift; sourceTree = "<group>"; };
 		BB5F1E862A4F076D0054F3A6 /* ApiKey.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ApiKey.xcconfig; sourceTree = "<group>"; };
 		BB61DE892850A33300A08AC6 /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -441,6 +445,15 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		BB5E8D7E2A978EDE00BC1010 /* FirebaseService */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E8D7F2A979C2800BC1010 /* FirebaseService.swift */,
+				BB5E8D812A979C4100BC1010 /* FirebaseServiceProtocol.swift */,
+			);
+			path = FirebaseService;
+			sourceTree = "<group>";
+		};
 		BB61DE802850A33300A08AC6 = {
 			isa = PBXGroup;
 			children = (
@@ -698,6 +711,7 @@
 			children = (
 				BB6A7F612A4C5FCB0028CC13 /* AuthService */,
 				BB659BA42A83C0EE009DB75B /* UserService */,
+				BB5E8D7E2A978EDE00BC1010 /* FirebaseService */,
 				BB715F972A8B6716004266A0 /* StocksService */,
 				BB715F9C2A8BA9DA004266A0 /* ExchangeRateService */,
 				BB6A7F672A4C66040028CC13 /* DefaultValueService */,
@@ -984,6 +998,7 @@
 				BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */,
 				BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */,
 				BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */,
+				BB5E8D822A979C4100BC1010 /* FirebaseServiceProtocol.swift in Sources */,
 				BB5C410E2A446D49002DC6A0 /* AuthCoordinator.swift in Sources */,
 				BB659BA32A83776E009DB75B /* ProfilePresenterInput.swift in Sources */,
 				BB9EFC13286B234700305776 /* CoreDataService.swift in Sources */,
@@ -1006,6 +1021,7 @@
 				BB5C410A2A444D27002DC6A0 /* AuthAssembly.swift in Sources */,
 				BB6DF0112A4B6F9B00A1B4BD /* TransactionsService.swift in Sources */,
 				BB5E373A2A418A4D0093AB95 /* HomePresenterOutput.swift in Sources */,
+				BB5E8D802A979C2800BC1010 /* FirebaseService.swift in Sources */,
 				BB715F962A8653F8004266A0 /* AuthPresenterOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

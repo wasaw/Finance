@@ -74,7 +74,7 @@ final class AuthViewController: UIViewController {
 // MARK: - AuthInput
 
 extension AuthViewController: AuthInput {
-    func dismissView() {
+    func clearForm() {
         authView.clearForm()
     }
     

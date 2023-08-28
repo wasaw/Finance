@@ -66,3 +66,25 @@ extension CoreDataError: LocalizedError {
         }
     }
 }
+
+enum AuthError: Error {
+    case invalidPassword
+    case noIdentifier
+    case emailBadlyFormatted
+    case somethingError
+}
+
+extension AuthError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .invalidPassword:
+            return NSLocalizedString("Неверный пароль", comment: "")
+        case .noIdentifier:
+            return NSLocalizedString("Такой почты не существует", comment: "")
+        case .emailBadlyFormatted:
+            return NSLocalizedString("Неправильный формат почты", comment: "")
+        case .somethingError:
+            return NSLocalizedString("Ошибка. Попробуйте снова", comment: "")
+        }
+    }
+}

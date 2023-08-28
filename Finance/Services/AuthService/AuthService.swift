@@ -6,20 +6,20 @@
 //
 
 import Foundation
-import FirebaseAuth
-import FirebaseDatabase
 
 final class AuthService {
     
 // MARK: - Properties
     
     private let coreData: CoreDataService
+    private let firebaseService: FirebaseServiceProtocol
     private let notification = NotificationCenter.default
     
 // MARK: - Lifecycle
     
-    init(coreData: CoreDataService) {
+    init(coreData: CoreDataService, firebaseService: FirebaseServiceProtocol) {
         self.coreData = coreData
+        self.firebaseService = firebaseService
     }
     
 // MARK: - Helpers
@@ -53,72 +53,60 @@ final class AuthService {
 // MARK: - AuthServiceProtocol
 
 extension AuthService: AuthServiceProtocol {
-    func authVerification() -> String? {
-        if let uid = Auth.auth().currentUser?.uid {
-            return uid
-        } else {
-            return nil
-        }
+    func authVerification(completion: @escaping (Result<String, Error>) -> Void) {
+        firebaseService.authVerification(compeltion: completion)
     }
     
-    func logOut(completion: @escaping (Result<Void, Error>) -> Void) {
-        do {
-            try Auth.auth().signOut()
-            UserDefaults.standard.set(nil, forKey: "uid")
-            completion(.success(()))
-        } catch {
-            completion(.failure(error))
-        }
+    func logOut(completion: @escaping (Result<Void, AuthError>) -> Void) {
+        firebaseService.logOut(completion: completion)
     }
     
-    func logInUser(email: String, password: String, completion: @escaping (Bool) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            if let error = error {
-                if error.localizedDescription.contains("The password is invalid") {
-            //      self.alert(with: "Внимание", massage: "Введен неверный пароль")
-                }
-                print("Logging error is \(error.localizedDescription)")
-                completion(false)
-            }
-            if let uid = result?.user.uid {
+    func logInUser(email: String, password: String, completion: @escaping (Result<Void, AuthError>) -> Void) {
+        firebaseService.logIn(withEmail: email, password: password) { result in
+            switch result {
+            case .success(let uid):
                 do {
                     let user = try self.coreData.fetchUserInformation(uid: uid)
                     if user.isEmpty {
-                        REF_USERS.child(uid).observeSingleEvent(of: .value) { snapshot in
-                            guard let dictionary = snapshot.value as? [String: AnyObject],
-                                    let login = dictionary["login"] as? String,
-                                    let email = dictionary["email"] as? String else { return }
-                            self.saveUser(uid: uid, login: login, email: email)
-                        }
-                    } else {
-                        UserDefaults.standard.set(uid, forKey: "uid")
-                        let userDataDict: [String: String] = ["uid": uid]
-                        self.notification.post(name: Notification.Name("updateCredential"), object: nil, userInfo: userDataDict)
+                        self.saveUser(uid: uid, login: "", email: email)
                     }
+                    UserDefaults.standard.set(uid, forKey: "uid")
+                    let userDataDict: [String: String] = ["uid": uid]
+                    self.notification.post(name: Notification.Name("updateCredential"), object: nil, userInfo: userDataDict)
+                    completion(.success(()))
                 } catch {
-                    print(error.localizedDescription)
+                    completion(.failure(AuthError.somethingError))
                 }
-                completion(true)
+            case .failure(let error):
+                if error.localizedDescription.contains("The password is invalid") {
+                    completion(.failure(.invalidPassword))
+                }
+                if error.localizedDescription.contains("There is no user record corresponding to this identifier") {
+                    completion(.failure(.noIdentifier))
+                }
+                if error.localizedDescription.contains("The email address is badly formatted") {
+                    completion(.failure(.emailBadlyFormatted))
+                }
+                completion(.failure(AuthError.somethingError))
             }
         }
     }
     
-    func signInUser(credentials: AuthCredentials, completion: @escaping ((Bool) -> Void)) {
+    func signInUser(credentials: AuthCredentials, completion: @escaping (Result<Void, Error>) -> Void) {
         
         let login = credentials.login
         let email = credentials.email
         let password = credentials.password
         
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if error != nil {
-                completion(false)
+        firebaseService.signIn(login: login, email: email, password: password) { result in
+            switch result {
+            case .success(let uid):
+                guard let uid = uid else { return }
+                self.saveUser(uid: uid, login: login, email: email)
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
             }
-            
-            guard let uid = result?.user.uid else { return }
-            let values = ["login": login, "email": email]
-            REF_USERS.child(uid).updateChildValues(values)
-            self.saveUser(uid: uid, login: credentials.login, email: credentials.email)
-            completion(true)
         }
     }
 }
