@@ -18,7 +18,7 @@ final class AddTransactionPresenter {
     
     private var category = [ChoiceCategoryExpense]()
     private var revenue = [ChoiceTypeRevenue]()
-    
+        
     private let notification = NotificationCenter.default
 
 // MARK: - Lifecycle

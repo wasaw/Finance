@@ -23,12 +23,12 @@ struct ChoiceCategoryExpense: Codable {
     var isChecked = false
 }
 struct LastTransaction {
-    var type: String = "Зарплата"
-    var amount: Double = 0
-    var img: String = "other.png"
-    var date: Date = Date(timeIntervalSinceNow: 0)
-    var comment: String = ""
-    var category: String = "Прочее"
+    var type: String
+    var amount: Double
+    var img: String
+    var date: Date
+    var comment: String
+    var category: String
 }
 
 struct CurrentExchangeRate {
@@ -55,10 +55,6 @@ struct User {
         self.uid = uid
         self.login = dictionary["login"] as? String ?? ""
         self.email = dictionary["email"] as? String ?? ""
-//        if let profileImageString = dictionary["profileImageUrl"] as? String {
-//            guard let url = URL(string: profileImageString) else { return }
-//            self.profileImageUrl = url
-//        }
         self.profileImage = nil
     }
     

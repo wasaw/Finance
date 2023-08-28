@@ -44,7 +44,10 @@ final class AddTransactionViewController: UIViewController {
     private let revenueView = RevenueView()
     private let amountView = AmountView()
     
-    private var addTransaction = LastTransaction()
+    private var selectDate = Date()
+    private var type = ""
+    private var categoryName = ""
+    private var img = ""
     
     private var isRevenue = false
     private let datePicker = UIDatePicker()
@@ -248,7 +251,7 @@ final class AddTransactionViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         amountView.setDateInformation(date: formatter.string(from: datePicker.date))
-        addTransaction.date = datePicker.date
+        selectDate = datePicker.date
         view.endEditing(true)
     }
     
@@ -317,7 +320,7 @@ extension AddTransactionViewController: UICollectionViewDataSource {
             cell.disableSelect()
             if selectedType == indexPath.row {
                 cell.setSelect()
-                addTransaction.type = revenue[indexPath.row].name
+                type = revenue[indexPath.row].name
             }
             return cell
         }
@@ -329,8 +332,8 @@ extension AddTransactionViewController: UICollectionViewDataSource {
             cell.disableSelect()
             if selectedCategory == indexPath.row {
                 cell.setSelect()
-                addTransaction.category = category[indexPath.row].name
-                addTransaction.img = category[indexPath.row].img
+                categoryName = category[indexPath.row].name
+                img = category[indexPath.row].img
             }
             return cell
         }
@@ -365,10 +368,9 @@ extension AddTransactionViewController: HandleDoneDelegate {
         let isFillingCompleted = checkCompleted(amount, date)
         if isFillingCompleted.0 {
             let amountDouble = Double(amount) ?? 0
-            addTransaction.amount = isRevenue ? amountDouble : -1 * amountDouble
-            addTransaction.amount *= currencyRate
-            addTransaction.comment = comment
-            output.saveTransaction(addTransaction)
+            var amount = isRevenue ? amountDouble : -1 * amountDouble
+            amount *= currencyRate
+            output.saveTransaction(LastTransaction(type: type, amount: amount, img: img, date: selectDate, comment: comment, category: categoryName))
         } else {
             var alertText = "Вы не выполнили следующие действия:\n"
             for alert in isFillingCompleted.1 {
