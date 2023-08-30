@@ -49,6 +49,17 @@ extension TransactionsService: TransactionsServiceProtocol {
         }
     }
     
+    func fetchAmountBy(_ predicate: String) throws -> Double {
+        do {
+            let transactionManagedObject = try self.coreData.fetchTransactionsByRevenue(predicate)
+            let transactionsAmount = transactionManagedObject.compactMap({ $0.amount })
+            let amount = transactionsAmount.reduce(0, +)
+            return amount
+        } catch {
+            throw error
+        }
+    }
+    
     func saveTransaction(_ transaction: Transaction) {
         guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
             return

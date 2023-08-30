@@ -33,6 +33,12 @@ extension CoreDataService: CoreDataServiceProtocol {
         return try viewContext.fetch(fetchRequest)
     }
     
+    func fetchTransactionsByRevenue(_ predicate: String) throws -> [TransactionManagedObject] {
+        let fetchRequest = TransactionManagedObject.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "type == %@", predicate)
+        return try viewContext.fetch(fetchRequest)
+    }
+    
     func fetchUserInformation(uid: String) throws -> [UserManagedObject] {
         let fetchRequest = UserManagedObject.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "uid == %@", uid)

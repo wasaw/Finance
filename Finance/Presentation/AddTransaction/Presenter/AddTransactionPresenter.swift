@@ -45,7 +45,12 @@ final class AddTransactionPresenter {
               let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
               let currentCurrency = Currency(rawValue: currency) else { return }
         for index in 0..<revenue.count {
-            revenue[index].amount /= currencyRate
+            do {
+                let amount = try transactionsService.fetchAmountBy(revenue[index].name)
+                revenue[index].amount = amount / currencyRate
+            } catch {
+                revenue[index].amount = 0
+            }
         }
         input?.showData(category: category,
                         revenue: revenue,
