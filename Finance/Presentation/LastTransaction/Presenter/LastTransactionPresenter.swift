@@ -11,13 +11,13 @@ final class LastTransactionPresenter {
     
 // MARK: - Properties
     
-    private let transaction: LastTransaction
+    private let transaction: Transaction
     
     weak var input: LastTransactionInput?
     
 // MARK: - Lifecycle
     
-    init(transaction: LastTransaction) {
+    init(transaction: Transaction) {
         self.transaction = transaction
     }
     

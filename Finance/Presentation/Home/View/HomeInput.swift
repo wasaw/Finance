@@ -12,7 +12,7 @@ protocol HomeInput: AnyObject {
                   currency: Currency,
                   rate: Double,
                   service: [ChoiceService],
-                  lastTransaction: [LastTransaction])
+                  lastTransaction: [Transaction])
     func showLastTransaction()
     func showAlert(message: String)
     func setUserName(_ name: String)

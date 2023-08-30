@@ -24,10 +24,10 @@ final class TransactionsService {
 // MARK: - TransactionsServiceProtocol
 
 extension TransactionsService: TransactionsServiceProtocol {
-    func fetchTransactions() throws -> [LastTransaction] {
+    func fetchTransactions() throws -> [Transaction] {
         do {
             let transactionManagedObject = try self.coreData.fetchTransactions()
-            let lastTransaction: [LastTransaction] = transactionManagedObject.compactMap { transaction in
+            let lastTransaction: [Transaction] = transactionManagedObject.compactMap { transaction in
                 guard let type = transaction.type,
                       let img = transaction.img,
                       let date = transaction.date,
@@ -36,7 +36,7 @@ extension TransactionsService: TransactionsServiceProtocol {
                 else {
                     return nil
                 }
-                return LastTransaction(type: type,
+                return Transaction(type: type,
                                        amount: transaction.amount,
                                        img: img,
                                        date: date,
@@ -49,7 +49,7 @@ extension TransactionsService: TransactionsServiceProtocol {
         }
     }
     
-    func saveTransaction(_ transaction: LastTransaction) {
+    func saveTransaction(_ transaction: Transaction) {
         guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
             return
         }

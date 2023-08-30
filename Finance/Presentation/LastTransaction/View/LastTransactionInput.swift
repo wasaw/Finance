@@ -8,5 +8,5 @@
 import Foundation
 
 protocol LastTransactionInput: AnyObject {
-    func showData(transaction: LastTransaction, currency: Currency, rate: Double)
+    func showData(transaction: Transaction, currency: Currency, rate: Double)
 }

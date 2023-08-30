@@ -55,7 +55,7 @@ final class HomeViewController: UIViewController {
     
     private var heightView: CGFloat = 0
     private var service: [ChoiceService] = []
-    private var lastTransaction: [LastTransaction] = []
+    private var lastTransaction: [Transaction] = []
     private var currency: Currency = .rub
     private var rate = 1.0
 
@@ -186,7 +186,7 @@ final class HomeViewController: UIViewController {
 // MARK: - HomeInput
 
 extension HomeViewController: HomeInput {
-    func showData(total: Double, currency: Currency, rate: Double, service: [ChoiceService], lastTransaction: [LastTransaction]) {
+    func showData(total: Double, currency: Currency, rate: Double, service: [ChoiceService], lastTransaction: [Transaction]) {
         totalAccountView.setAccountLabel(total: total, currency: currency)
         self.service = service
         self.currency = currency

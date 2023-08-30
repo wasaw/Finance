@@ -9,5 +9,8 @@ import Foundation
 
 protocol AddTransactionOutput: AnyObject {
     func viewIsReady()
-    func saveTransaction(_ transaction: LastTransaction)
+    func selectedRevenue(_ index: Int)
+    func selectedCategory(_ index: Int)
+    func isRevenue(_ value: Bool)
+    func saveTransaction(_ transaction: SaveTransaction)
 }

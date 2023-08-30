@@ -1,5 +1,5 @@
 //
-//  TypeCell.swift
+//  RevenueCell.swift
 //  Finance
 //
 //  Created by Александр Меренков on 02.02.2023.
@@ -12,7 +12,7 @@ private enum Constants {
     static let amountLabelHeight: CGFloat = 20
 }
 
-final class TypeCell: CategoryCell {
+final class RevenueCell: CategoryCell {
     
 // MARK: - Properties
     

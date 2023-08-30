@@ -45,7 +45,7 @@ final class TransactionsServiceTest: XCTestCase {
     }
     
     func testSaveTransaction() {
-        let lastTransaction = LastTransaction(type: "Доход", amount: 2, img: "house.fill", date: Date(timeIntervalSince1970: 2000), comment: "Пусто", category: "Новая")
+        let lastTransaction = Transaction(type: "Доход", amount: 2, img: "house.fill", date: Date(timeIntervalSince1970: 2000), comment: "Пусто", category: "Новая")
         
         transactionsService.saveTransaction(lastTransaction)
         

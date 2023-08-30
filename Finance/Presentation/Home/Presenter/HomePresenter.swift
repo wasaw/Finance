@@ -19,7 +19,7 @@ final class HomePresenter {
     private let service = [ChoiceService(name: "Курс валют", img: "exchange-rate.png"),
                            ChoiceService(name: "Акции", img: "stock-market.png")]
 
-    private var lastTransaction = [LastTransaction]()
+    private var lastTransaction = [Transaction]()
     
     private let notification = NotificationCenter.default
     
@@ -74,7 +74,7 @@ final class HomePresenter {
     
     @objc private func reloadView(_ notification: NSNotification) {
         if let dictionary = notification.userInfo as? NSDictionary {
-            if let transaction = dictionary["lastTransaction"] as? LastTransaction {
+            if let transaction = dictionary["lastTransaction"] as? Transaction {
                 if lastTransaction.isEmpty {
                     input?.showLastTransaction()
                 }

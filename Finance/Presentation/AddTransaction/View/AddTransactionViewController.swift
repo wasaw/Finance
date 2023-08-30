@@ -9,21 +9,22 @@ import UIKit
 
 private enum Constants {
     static let horizontalPadding: CGFloat = 10
-    static let paddingTopTen: CGFloat = 10
-    static let paddingTopTwenty: CGFloat = 20
+    static let paddingTop: CGFloat = 10
+    static let paddingTopContent: CGFloat = 20
     static let scrollViewHeight: CGFloat = 830
-    static let typeTitleHeight: CGFloat = 30
     static let typeCollectionViewHeight: CGFloat = 90
-    static let categoryTitleViewHeight: CGFloat = 30
     static let categoryCollectionViewHeight: CGFloat = 135
     static let revenueViewHeight: CGFloat = 20
-    static let amountViewHeight: CGFloat = 20
     static let typeCollectionItemHeight: CGFloat = 80
-    static let typeCollectionItemWidth: CGFloat = 90
+    static let collectionItemWidth: CGFloat = 90
     static let categoryCollectionItemHeight: CGFloat = 60
-    static let categoryCollectionItemWidth: CGFloat = 90
     static let collectionViewLayoutHorizontal: CGFloat = 5
     static let collectionViewLayoutVertical: CGFloat = 2
+    static let titleHeight: CGFloat = 20
+    static let textFieldHeight: CGFloat = 40
+    static let paddingTopTwentyFive: CGFloat = 25
+    static let doneButtonHeight: CGFloat = 80
+    static let switchTitleTop: CGFloat = 5
 }
 
 final class AddTransactionViewController: UIViewController {
@@ -31,41 +32,67 @@ final class AddTransactionViewController: UIViewController {
 // MARK: - Properties
     
     private let output: AddTransactionOutput
+    private let revenueAdapter = RevenueAdaper()
+    private let categoryAdapter = CategoryAdapter()
     
-    private let scrollView = UIScrollView()
-    private let contentView = UIView()
+    private lazy var scrollView = UIScrollView()
+    private lazy var contentView = UIView()
     
-    private let typeTitleView = TitleView()
-    private var typeCollectionView: UICollectionView?
+    private lazy var revenueTitleView = TitleView()
+    private var revenueCollectionView: UICollectionView?
     
-    private let categoryTitleView = TitleView()
+    private lazy var categoryTitleView = TitleView()
     private var categoryCollectionView: UICollectionView?
     
-    private let revenueView = RevenueView()
-    private let amountView = AmountView()
-    
-    private var selectDate = Date()
-    private var type = ""
-    private var categoryName = ""
-    private var img = ""
-    
-    private var isRevenue = false
-    private let datePicker = UIDatePicker()
+    private lazy var switcher: UISwitch = {
+        let sw = UISwitch()
+        sw.isOn = false
+        sw.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        sw.addTarget(self, action: #selector(tapSwitcher), for: .valueChanged)
+        return sw
+    }()
+    private let textLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Доход"
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = .black
+        return label
+    }()
+    private lazy var amountTitle = TitleView()
+    private lazy var amountTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Сумма"
+        tf.keyboardType = .asciiCapableNumberPad
+        tf.textColor = .black
+        return tf
+    }()
+    private lazy var dateTitle = TitleView()
+    private lazy var dateTextField: UITextField = {
+       let tf = UITextField()
+        tf.placeholder = "Дата"
+        tf.textColor = .black
+        return tf
+    }()
+    private lazy var commentTitle = TitleView()
+    private lazy var commentTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Комментарий"
+        tf.textColor = .black
+        tf.returnKeyType = .done
+        return tf
+    }()
+    private lazy var doneButton: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("Готово", for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 27)
+        btn.setTitleColor(UIColor.white, for: .normal)
+        btn.layer.cornerRadius = 20
+        btn.backgroundColor = .systemGreen
+        btn.addTarget(self, action: #selector(handleDoneButton), for: .touchUpInside)
+        return btn
+    }()
         
-    private var revenue = [ChoiceTypeRevenue]()
-    private var currency: Currency = .rub
-    private var currencyRate = 1.0
-    private var category = [ChoiceCategoryExpense]()
-    private var selectedType: Int? {
-        didSet {
-            typeCollectionView?.reloadData()
-        }
-    }
-    private var selectedCategory: Int? {
-        didSet {
-            categoryCollectionView?.reloadData()
-        }
-    }
+    private let datePicker = UIDatePicker()
     
 // MARK: - Lifecycle
     
@@ -78,13 +105,20 @@ final class AddTransactionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        amountTextField.addLine()
+        commentTextField.addLine()
+        dateTextField.addLine()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
         contentView.backgroundColor = .white
         view.backgroundColor = .white
-        amountView.delegate = self
         setDate()
         output.viewIsReady()
     }
@@ -93,11 +127,11 @@ final class AddTransactionViewController: UIViewController {
     
     private func configureUI() {
         configureScrollView()
-        configureTypeTitleView()
-        configureTypeCollectionView()
+        configureRevenueTitleView()
+        configureRevenueCollectionView()
         configureCategoryTitleView()
         configureCategoryCollectionView()
-        configureRevenueView()
+        configureSwitcher()
         configureAmountView()
     }
     
@@ -117,48 +151,48 @@ final class AddTransactionViewController: UIViewController {
                            height: Constants.scrollViewHeight)
     }
     
-    private func configureTypeTitleView() {
-        contentView.addSubview(typeTitleView)
-        typeTitleView.anchor(leading: contentView.leadingAnchor,
+    private func configureRevenueTitleView() {
+        contentView.addSubview(revenueTitleView)
+        revenueTitleView.anchor(leading: contentView.leadingAnchor,
                              top: contentView.topAnchor,
                              trailing: contentView.trailingAnchor,
                              paddingLeading: Constants.horizontalPadding,
-                             paddingTop: Constants.paddingTopTwenty,
+                             paddingTop: Constants.paddingTopContent,
                              paddingTrailing: -Constants.horizontalPadding,
-                             height: Constants.typeTitleHeight)
-        typeTitleView.setTitle(title: "Выбрать тип дохода")
+                             height: Constants.titleHeight)
+        revenueTitleView.setTitle(title: "Выбрать тип дохода")
     }
     
-    private func configureTypeCollectionView() {
-        let typeLayout = UICollectionViewFlowLayout()
-        typeLayout.scrollDirection = .horizontal
-        typeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: typeLayout)
-        guard let typeCollectionView = typeCollectionView else { return }
-        typeCollectionView.register(TypeCell.self, forCellWithReuseIdentifier: TypeCell.identifire)
-        typeCollectionView.delegate = self
-        typeCollectionView.dataSource = self
-        typeCollectionView.showsHorizontalScrollIndicator = false
-        typeCollectionView.backgroundColor = .white
-        contentView.addSubview(typeCollectionView)
-        typeCollectionView.anchor(leading: contentView.leadingAnchor,
-                                  top: typeTitleView.bottomAnchor,
+    private func configureRevenueCollectionView() {
+        let revenueLayout = UICollectionViewFlowLayout()
+        revenueLayout.scrollDirection = .horizontal
+        revenueCollectionView = UICollectionView(frame: .zero, collectionViewLayout: revenueLayout)
+        guard let revenueCollectionView = revenueCollectionView else { return }
+        revenueCollectionView.register(RevenueCell.self, forCellWithReuseIdentifier: RevenueCell.identifire)
+        revenueCollectionView.delegate = self
+        revenueCollectionView.dataSource = revenueAdapter
+        revenueCollectionView.showsHorizontalScrollIndicator = false
+        revenueCollectionView.backgroundColor = .white
+        contentView.addSubview(revenueCollectionView)
+        revenueCollectionView.anchor(leading: contentView.leadingAnchor,
+                                  top: revenueTitleView.bottomAnchor,
                                   trailing: contentView.trailingAnchor,
                                   paddingLeading: Constants.horizontalPadding,
-                                  paddingTop: Constants.paddingTopTen,
+                                  paddingTop: Constants.paddingTop,
                                   paddingTrailing: -Constants.horizontalPadding,
                                   height: Constants.typeCollectionViewHeight)
     }
     
     private func configureCategoryTitleView() {
         contentView.addSubview(categoryTitleView)
-        guard let typeCollectionView = typeCollectionView else { return }
+        guard let typeCollectionView = revenueCollectionView else { return }
         categoryTitleView.anchor(leading: contentView.leadingAnchor,
                                  top: typeCollectionView.bottomAnchor,
                                  trailing: contentView.trailingAnchor,
                                  paddingLeading: Constants.horizontalPadding,
-                                 paddingTop: Constants.paddingTopTen,
+                                 paddingTop: Constants.paddingTop,
                                  paddingTrailing: -Constants.horizontalPadding,
-                                 height: Constants.categoryTitleViewHeight)
+                                 height: Constants.titleHeight)
         categoryTitleView.setTitle(title: "Выбрать категорию трат")
     }
     
@@ -169,7 +203,7 @@ final class AddTransactionViewController: UIViewController {
         guard let categotyCollectionView = categoryCollectionView else { return }
         categotyCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifire)
         categotyCollectionView.delegate = self
-        categotyCollectionView.dataSource = self
+        categotyCollectionView.dataSource = categoryAdapter
         categotyCollectionView.showsHorizontalScrollIndicator = false
         categotyCollectionView.backgroundColor = .white
         contentView.addSubview(categotyCollectionView)
@@ -177,33 +211,89 @@ final class AddTransactionViewController: UIViewController {
                                       top: categoryTitleView.bottomAnchor,
                                       trailing: contentView.trailingAnchor,
                                       paddingLeading: Constants.horizontalPadding,
-                                      paddingTop: Constants.paddingTopTen,
+                                      paddingTop: Constants.paddingTop,
                                       paddingTrailing: -Constants.horizontalPadding,
                                       height: Constants.categoryCollectionViewHeight)
     }
     
-    private func configureRevenueView() {
-        contentView.addSubview(revenueView)
-        revenueView.delegate = self
-        guard let categoryCollectionView = categoryCollectionView else { return }
-        revenueView.anchor(leading: contentView.leadingAnchor,
-                           top: categoryCollectionView.bottomAnchor,
-                           trailing: contentView.trailingAnchor,
-                           paddingLeading: Constants.horizontalPadding,
-                           paddingTop: Constants.paddingTopTen,
-                           paddingTrailing: -Constants.horizontalPadding,
-                           height: Constants.revenueViewHeight)
+    private func configureSwitcher() {
+        contentView.addSubview(switcher)
+        switcher.anchor(leading: contentView.leadingAnchor,
+                        top: categoryCollectionView?.bottomAnchor,
+                        paddingLeading: Constants.horizontalPadding,
+                        paddingTop: Constants.paddingTop,
+                        height: Constants.revenueViewHeight)
+        
+        contentView.addSubview(textLabel)
+        textLabel.anchor(leading: switcher.trailingAnchor,
+                         paddingLeading: Constants.horizontalPadding)
+        textLabel.centerYAnchor.constraint(equalTo: switcher.centerYAnchor,
+                                           constant: Constants.switchTitleTop).isActive = true
     }
     
     private func configureAmountView() {
-        contentView.addSubview(amountView)
-        amountView.anchor(leading: contentView.leadingAnchor,
-                          top: revenueView.bottomAnchor,
+        contentView.addSubview(amountTitle)
+        amountTitle.anchor(leading: contentView.leadingAnchor,
+                           top: switcher.bottomAnchor,
+                           trailing: contentView.trailingAnchor,
+                           paddingLeading: Constants.horizontalPadding,
+                           paddingTop: Constants.titleHeight,
+                           paddingTrailing: -Constants.horizontalPadding,
+                           height: Constants.titleHeight)
+        amountTitle.setTitle(title: "Сумма")
+        contentView.addSubview(amountTextField)
+        amountTextField.anchor(leading: contentView.leadingAnchor,
+                               top: amountTitle.bottomAnchor,
+                               trailing: contentView.trailingAnchor,
+                               paddingLeading: Constants.horizontalPadding,
+                               paddingTop: Constants.paddingTop,
+                               paddingTrailing: -Constants.horizontalPadding,
+                               height: Constants.textFieldHeight)
+        
+        contentView.addSubview(dateTitle)
+        dateTitle.anchor(leading: contentView.leadingAnchor,
+                         top: amountTextField.bottomAnchor,
+                         trailing: contentView.trailingAnchor,
+                         paddingLeading: Constants.horizontalPadding,
+                         paddingTop: Constants.paddingTopTwentyFive,
+                         paddingTrailing: -Constants.horizontalPadding,
+                         height: Constants.titleHeight)
+        dateTitle.setTitle(title: "Дата")
+        contentView.addSubview(dateTextField)
+        dateTextField.anchor(leading: contentView.leadingAnchor,
+                             top: dateTitle.bottomAnchor,
+                             trailing: contentView.trailingAnchor,
+                             paddingLeading: Constants.horizontalPadding,
+                             paddingTop: Constants.paddingTop,
+                             paddingTrailing: -Constants.horizontalPadding,
+                             height: Constants.textFieldHeight)
+        
+        contentView.addSubview(commentTitle)
+        commentTitle.anchor(leading: contentView.leadingAnchor,
+                            top: dateTextField.bottomAnchor,
+                            trailing: contentView.trailingAnchor,
+                            paddingLeading: Constants.horizontalPadding,
+                            paddingTop: Constants.paddingTopTwentyFive,
+                            paddingTrailing: -Constants.horizontalPadding,
+                            height: Constants.titleHeight)
+        commentTitle.setTitle(title: "Комментарий")
+        contentView.addSubview(commentTextField)
+        commentTextField.anchor(leading: contentView.leadingAnchor,
+                                top: commentTitle.bottomAnchor,
+                                trailing: contentView.trailingAnchor,
+                                paddingLeading: Constants.horizontalPadding,
+                                paddingTop: Constants.paddingTop,
+                                paddingTrailing: -Constants.horizontalPadding,
+                                height: Constants.textFieldHeight)
+        
+        contentView.addSubview(doneButton)
+        doneButton.anchor(leading: contentView.leadingAnchor,
+                          top: commentTextField.bottomAnchor,
                           trailing: contentView.trailingAnchor,
-                          bottom: contentView.safeAreaLayoutGuide.bottomAnchor,
                           paddingLeading: Constants.horizontalPadding,
-                          paddingTop: Constants.amountViewHeight,
-                          paddingTrailing: -Constants.horizontalPadding)
+                          paddingTop: Constants.paddingTopTwentyFive,
+                          paddingTrailing: -Constants.horizontalPadding,
+                          height: Constants.doneButtonHeight)
         configureKeyboard()
     }
     
@@ -213,21 +303,8 @@ final class AddTransactionViewController: UIViewController {
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(cancelAction))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         toolBar.setItems([flexSpace, doneButton], animated: true)
-        amountView.amountTextField.inputAccessoryView = toolBar
-        amountView.commentTextField.delegate = self
-    }
-    
-    private func checkCompleted(_ amount: String, _ date: String) -> (Bool, [String]) {
-        var listForCompleted: [String] = []
-        if selectedType == nil { listForCompleted.append("выберите тип дохода") }
-        if selectedCategory == nil { listForCompleted.append("выберите категорию") }
-        if amount == "" { listForCompleted.append("введите сумму")}
-        if date == "" { listForCompleted.append("выберите дату")}
-        if listForCompleted.isEmpty {
-            return (true, [])
-        } else {
-            return (false, listForCompleted)
-        }
+        amountTextField.inputAccessoryView = toolBar
+        commentTextField.delegate = self
     }
     
     private func setDate() {
@@ -242,7 +319,8 @@ final class AddTransactionViewController: UIViewController {
         toolBar.setItems([cancelButton, flexSpace, doneButton], animated: true)
         toolBar.sizeToFit()
 
-        amountView.setDateConfiguration(datePicket: datePicker, toolBar: toolBar)
+        dateTextField.inputView = datePicker
+        dateTextField.inputAccessoryView = toolBar
     }
     
 // MARK: - Selectors
@@ -250,13 +328,22 @@ final class AddTransactionViewController: UIViewController {
     @objc private func doneAction() {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
-        amountView.setDateInformation(date: formatter.string(from: datePicker.date))
-        selectDate = datePicker.date
+        dateTextField.text = formatter.string(from: datePicker.date)
         view.endEditing(true)
     }
     
     @objc private func cancelAction() {
         view.endEditing(true)
+    }
+    
+    @objc private func handleDoneButton() {
+        output.saveTransaction(SaveTransaction(amount: amountTextField.text,
+                                               date: datePicker.date,
+                                               comment: commentTextField.text))
+    }
+    
+    @objc private func tapSwitcher(sender: UISwitch) {
+        output.isRevenue(switcher.isOn)
     }
 }
 
@@ -267,11 +354,9 @@ extension AddTransactionViewController: AddTransactionInput {
                   revenue: [ChoiceTypeRevenue],
                   currency: Currency,
                   currencyRate: Double) {
-        self.category = category
-        self.revenue = revenue
-        self.currency = currency
-        self.currencyRate = currencyRate
-        typeCollectionView?.reloadData()
+        revenueAdapter.configure(RevenueCellValues(revenue: revenue, currency: currency, currencyRate: currencyRate))
+        categoryAdapter.configure(CategoryCellValues(category: category, currency: currency, currencyRate: currencyRate))
+        revenueCollectionView?.reloadData()
         categoryCollectionView?.reloadData()
     }
     
@@ -288,56 +373,16 @@ extension AddTransactionViewController: AddTransactionInput {
 
 extension AddTransactionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == self.typeCollectionView {
-            selectedType = indexPath.row
+        if collectionView == self.revenueCollectionView {
+            revenueAdapter.setSelected(at: indexPath.row)
+            output.selectedRevenue(indexPath.row)
+            collectionView.reloadData()
         }
         if collectionView == self.categoryCollectionView {
-            selectedCategory = indexPath.row
+            categoryAdapter.setSelected(at: indexPath.row)
+            output.selectedCategory(indexPath.row)
+            collectionView.reloadData()
         }
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-
-extension AddTransactionViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == self.typeCollectionView {
-            return revenue.count
-        }
-        if collectionView == self.categoryCollectionView {
-            return category.count
-        }
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == self.typeCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TypeCell.identifire,
-                                                                for: indexPath) as? TypeCell else { return UICollectionViewCell() }
-            let currentRevenue = revenue[indexPath.row]
-            let amount = currentRevenue.amount / currencyRate
-            cell.setInfornation(title: currentRevenue.name, img: currentRevenue.img, amount: amount, currency: currency)
-            cell.disableSelect()
-            if selectedType == indexPath.row {
-                cell.setSelect()
-                type = revenue[indexPath.row].name
-            }
-            return cell
-        }
-        if collectionView == self.categoryCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifire,
-                                                                for: indexPath) as? CategoryCell else { return UICollectionViewCell() }
-            let currentCategory = category[indexPath.row]
-            cell.setInfornation(title: currentCategory.name, img: currentCategory.img, currency: currency)
-            cell.disableSelect()
-            if selectedCategory == indexPath.row {
-                cell.setSelect()
-                categoryName = category[indexPath.row].name
-                img = category[indexPath.row].img
-            }
-            return cell
-        }
-        return UICollectionViewCell()
     }
 }
 
@@ -345,11 +390,11 @@ extension AddTransactionViewController: UICollectionViewDataSource {
 
 extension AddTransactionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == self.typeCollectionView {
-            return CGSize(width: Constants.typeCollectionItemWidth,
+        if collectionView == self.revenueCollectionView {
+            return CGSize(width: Constants.collectionItemWidth,
                           height: Constants.typeCollectionItemHeight)
         }
-        return CGSize(width: Constants.categoryCollectionItemWidth,
+        return CGSize(width: Constants.collectionItemWidth,
                       height: Constants.categoryCollectionItemHeight)
     }
     
@@ -363,36 +408,11 @@ extension AddTransactionViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension AddTransactionViewController: HandleDoneDelegate {
-    func saveInformation(amount: String, date: String, comment: String) {
-        let isFillingCompleted = checkCompleted(amount, date)
-        if isFillingCompleted.0 {
-            let amountDouble = Double(amount) ?? 0
-            var amount = isRevenue ? amountDouble : -1 * amountDouble
-            amount *= currencyRate
-            output.saveTransaction(LastTransaction(type: type, amount: amount, img: img, date: selectDate, comment: comment, category: categoryName))
-        } else {
-            var alertText = "Вы не выполнили следующие действия:\n"
-            for alert in isFillingCompleted.1 {
-                alertText += alert + "\n"
-            }
-            alertText.removeLast(1)
-            let alert = UIAlertController(title: "Внимание", message: alertText, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ок", style: .default))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-}
-
-extension AddTransactionViewController: SwitcherValueDelegate {
-    func switchChanged(value: Bool) {
-        isRevenue = value
-    }
-}
+// MARK: - UITextFieldDelegate
 
 extension AddTransactionViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        amountView.commentTextField.resignFirstResponder()
+        commentTextField.resignFirstResponder()
         return true
     }
 }

@@ -15,20 +15,24 @@ struct ChoiceTypeRevenue: Codable {
     let name: String
     let img: String
     var amount: Double = 0
-    var isChecked = false
 }
 struct ChoiceCategoryExpense: Codable {
     let name: String
     let img: String
-    var isChecked = false
 }
-struct LastTransaction {
+struct Transaction {
     var type: String
     var amount: Double
     var img: String
     var date: Date
     var comment: String
     var category: String
+}
+
+struct SaveTransaction {
+    let amount: String?
+    let date: Date
+    let comment: String?
 }
 
 struct CurrentExchangeRate {

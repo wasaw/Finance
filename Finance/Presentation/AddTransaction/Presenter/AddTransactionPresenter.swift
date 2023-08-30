@@ -16,8 +16,11 @@ final class AddTransactionPresenter {
     private let transactionsService: TransactionsServiceProtocol
     private let defaultValueService: DefaultValueServiceProtocol
     
-    private var category = [ChoiceCategoryExpense]()
     private var revenue = [ChoiceTypeRevenue]()
+    private var category = [ChoiceCategoryExpense]()
+    private var selectedRevenue: ChoiceTypeRevenue?
+    private var selectedCategory: ChoiceCategoryExpense?
+    private var isRevenue = false
         
     private let notification = NotificationCenter.default
 
@@ -33,6 +36,8 @@ final class AddTransactionPresenter {
     private func loadData() {
         do {
             (category, revenue) = try defaultValueService.fetchValue()
+            selectedCategory = category.first
+            selectedRevenue = revenue.first
         } catch {
             input?.showAlert(with: "Ошибка", and: error.localizedDescription)
         }
@@ -52,13 +57,46 @@ final class AddTransactionPresenter {
 // MARK: - AddTransactionOutput
 
 extension AddTransactionPresenter: AddTransactionOutput {
+    func selectedRevenue(_ index: Int) {
+        selectedRevenue = revenue[index]
+    }
+    
+    func selectedCategory(_ index: Int) {
+        selectedCategory = category[index]
+    }
+    
+    func isRevenue(_ value: Bool) {
+        isRevenue = value
+    }
+    
     func viewIsReady() {
         loadData()
     }
     
-    func saveTransaction(_ transaction: LastTransaction) {
-        transactionsService.saveTransaction(transaction)
-        let addTransaction: [String: LastTransaction] = ["lastTransaction": transaction]
+    func saveTransaction(_ transaction: SaveTransaction) {
+        guard let type = selectedRevenue?.name,
+              let amountString = transaction.amount,
+              let img = selectedCategory?.img,
+              let category = selectedCategory?.name,
+              let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
+              var amount = Double(amountString) else {
+            if transaction.amount == "" {
+                input?.showAlert(with: "Внимание", and: "Не заполнено поле сумма")
+            }
+            return
+        }
+        if !isRevenue {
+            amount *= -1
+        }
+        amount *= currencyRate
+        let lastTransaction = Transaction(type: type,
+                                              amount: amount,
+                                              img: img,
+                                              date: transaction.date,
+                                              comment: transaction.comment ?? "",
+                                              category: category)
+        transactionsService.saveTransaction(lastTransaction)
+        let addTransaction: [String: Transaction] = ["lastTransaction": lastTransaction]
         notification.post(Notification(name: Notification.Name("AddTransaction"), object: nil, userInfo: addTransaction))
         input?.dismissView()
     }

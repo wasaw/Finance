@@ -81,7 +81,7 @@ extension HomeCoordinator: HomePresenterOutput {
         navigation?.pushViewController(vc, animated: true)
     }
     
-    func showLastTransaction(_ transaction: LastTransaction) {
+    func showLastTransaction(_ transaction: Transaction) {
         let vc = lastTransaction.makeLastTransactionModule(transaction)
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.medium()]

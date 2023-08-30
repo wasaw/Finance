@@ -8,6 +8,6 @@
 import Foundation
 
 protocol TransactionsServiceProtocol: AnyObject {
-    func fetchTransactions() throws -> [LastTransaction]
-    func saveTransaction(_ transaction: LastTransaction)
+    func fetchTransactions() throws -> [Transaction]
+    func saveTransaction(_ transaction: Transaction)
 }
