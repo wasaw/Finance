@@ -17,6 +17,7 @@ final class ExchangeRatePresenter {
     private let config: NetworkConfiguration
     private let coreDataService: CoreDataServiceProtocol
     private let exchangeRateService: ExchangeRateServiceProtocol
+    private var exchangeRate: [CurrentExchangeRate] = []
         
 // MARK: - Lifecycle
     
@@ -60,7 +61,9 @@ extension ExchangeRatePresenter: ExchangeRateOutput {
         loadInformation("USD")
     }
     
-    func loadCurrency(_ requestCurrency: String) {
-        loadInformation(requestCurrency)
+    func loadCurrency(_ index: Int) {
+        if index < exchangeRate.count {
+            loadInformation(exchangeRate[index].name)
+        }
     }
 }

@@ -9,5 +9,5 @@ import Foundation
 
 protocol ExchangeRateOutput: AnyObject {
     func viewIsReady()
-    func loadCurrency(_ requestCurrency: String)
+    func loadCurrency(_ index: Int)
 }

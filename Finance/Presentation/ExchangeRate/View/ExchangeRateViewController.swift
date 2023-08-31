@@ -20,10 +20,10 @@ final class ExchangeRateViewController: UIViewController {
     
     private let output: ExchangeRatePresenter
     
-    private let topView = TopView()
-    private let loadAnimateView = CircleAnimation()
+    private lazy var topView = TopView()
+    private lazy var loadAnimateView = CircleAnimation()
     private var listCurrencyCollectionView: UICollectionView?
-    private var exchangeRate = [CurrentExchangeRate]()
+    private let listCurrencyAdapter = ListCurrencyAdapter()
     
 // MARK: - Lifecycle
     
@@ -68,7 +68,7 @@ final class ExchangeRateViewController: UIViewController {
         guard let listCurrencyCollectionView = listCurrencyCollectionView else { return }
         listCurrencyCollectionView.register(CurrencyCell.self, forCellWithReuseIdentifier: CurrencyCell.identifire)
         listCurrencyCollectionView.delegate = self
-        listCurrencyCollectionView.dataSource = self
+        listCurrencyCollectionView.dataSource = listCurrencyAdapter
         listCurrencyCollectionView.layer.cornerRadius = Constants.listCurrencyCornerRadius
         view.addSubview(listCurrencyCollectionView)
         listCurrencyCollectionView.backgroundColor = .white
@@ -93,7 +93,7 @@ extension ExchangeRateViewController: ExchangeRateInput {
     }
     
     func showData(_ exchangeRate: [CurrentExchangeRate]) {
-        self.exchangeRate = exchangeRate
+        listCurrencyAdapter.configure(exchangeRate)
         listCurrencyCollectionView?.reloadData()
     }
 
@@ -110,23 +110,7 @@ extension ExchangeRateViewController: ExchangeRateInput {
 
 extension ExchangeRateViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let requestCurrency = exchangeRate[indexPath.row].name
-        output.loadCurrency(requestCurrency)
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-
-extension ExchangeRateViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return exchangeRate.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurrencyCell.identifire,
-                                                            for: indexPath) as? CurrencyCell else { return UICollectionViewCell() }
-        cell.setInformation(currency: exchangeRate[indexPath.row])
-        return cell
+        output.loadCurrency(indexPath.row)
     }
 }
 
