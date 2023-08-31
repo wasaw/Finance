@@ -16,7 +16,6 @@ final class StocksService {
     private let defaultValueService: DefaultValueServiceProtocol
     
     private let dayInSeconds = 86400.0
-    private var stockList = [Stock]()
     
 // MARK: - Lifecycle
     
@@ -26,18 +25,18 @@ final class StocksService {
         self.network = network
         self.config = config
         self.defaultValueService = defaultValueService
-        stockList = defaultValueService.fetchStocks()
     }
 }
 
 // MARK: - StocksServiceProtocol
 
 extension StocksService: StocksServiceProtocol {
-    func getStocks(completion: @escaping ((ResultStatus<[Stock]>) -> Void)) {
+    func getStocks(completion: @escaping ((Result<[Stock], Error>) -> Void)) {
         let currentDate = Date() - dayInSeconds
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let stringDate = formatter.string(from: currentDate)
+        var stockList = defaultValueService.fetchStocks()
         DispatchQueue.main.async {
             do {
                 let urlString = try self.config.getUrl(.stock, date: stringDate)
@@ -47,18 +46,18 @@ extension StocksService: StocksServiceProtocol {
                     switch result {
                     case .success(let stocks):
                         let result = stocks.results
-                        for i in 0..<self.stockList.count {
-                            if let answer = result.first(where: { $0.symbol == self.stockList[i].symbol }) {
-                                self.stockList[i].value = answer.value
+                        for i in 0..<stockList.count {
+                            if let answer = result.first(where: { $0.symbol == stockList[i].symbol }) {
+                                stockList[i].value = answer.value
                             }
                         }
-                        completion(ResultStatus.success(self.stockList))
+                        completion(.success(stockList))
                     case .failure(let error):
-                        completion(ResultStatus.failure(error))
+                        completion(.failure(error))
                     }
                 }
             } catch {
-                completion(ResultStatus.failure(error))
+                completion(.failure(error))
             }
         }
     }

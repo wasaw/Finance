@@ -31,7 +31,7 @@ final class ExchangeRateService {
 // MARK: - ExchangeRateServiceProtocol
 
 extension ExchangeRateService: ExchangeRateServiceProtocol {
-    func fetchExchangeRate(_ requestCurrency: String, completion: @escaping (ResultStatus<[CurrentExchangeRate]>) -> Void) {
+    func fetchExchangeRate(_ requestCurrency: String, completion: @escaping (Result<[CurrentExchangeRate], Error>) -> Void) {
         (fullName, img) = defaultValueService.fetchExchangeValue()
         DispatchQueue.main.async {
             do {

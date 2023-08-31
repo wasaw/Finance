@@ -51,14 +51,10 @@ final class HomeViewController: UIViewController {
     }()
 
     private var servicesCollectionView: UICollectionView?
+    private let serviceAdapter = ServiceAdapter()
     private var lastTransactionsCollectionView: UICollectionView?
+    private let lastTransactionsAdapter = LastTransactionsAdapter()
     
-    private var heightView: CGFloat = 0
-    private var service: [ChoiceService] = []
-    private var lastTransaction: [Transaction] = []
-    private var currency: Currency = .rub
-    private var rate = 1.0
-
 // MARK: - Lifecycle
     
     init(output: HomeOutput) {
@@ -129,7 +125,7 @@ final class HomeViewController: UIViewController {
         guard let servicesCollectionView = servicesCollectionView else { return }
         servicesCollectionView.register(ServicesCell.self, forCellWithReuseIdentifier: ServicesCell.identifire)
         servicesCollectionView.delegate = self
-        servicesCollectionView.dataSource = self
+        servicesCollectionView.dataSource = serviceAdapter
         servicesCollectionView.showsHorizontalScrollIndicator = false
         view.addSubview(servicesCollectionView)
         servicesCollectionView.anchor(leading: view.leadingAnchor,
@@ -167,7 +163,7 @@ final class HomeViewController: UIViewController {
         guard let lastTransactionsCollectionView = lastTransactionsCollectionView else { return }
         lastTransactionsCollectionView.register(LastTransactionCell.self, forCellWithReuseIdentifier: LastTransactionCell.identifire)
         lastTransactionsCollectionView.delegate = self
-        lastTransactionsCollectionView.dataSource = self
+        lastTransactionsCollectionView.dataSource = lastTransactionsAdapter
         lastTransactionsCollectionView.showsVerticalScrollIndicator = false
         view.addSubview(lastTransactionsCollectionView)
         lastTransactionsCollectionView.anchor(leading: view.leadingAnchor,
@@ -188,11 +184,9 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: HomeInput {
     func showData(total: Double, currency: Currency, rate: Double, service: [ChoiceService], lastTransaction: [Transaction]) {
         totalAccountView.setAccountLabel(total: total, currency: currency)
-        self.service = service
-        self.currency = currency
-        self.rate = rate
+        serviceAdapter.configure(service)
         servicesCollectionView?.reloadData()
-        self.lastTransaction = lastTransaction
+        lastTransactionsAdapter.configure(transaction: lastTransaction, currency: currency, rate: rate)
         lastTransactionsCollectionView?.reloadData()
     }
     
@@ -220,36 +214,6 @@ extension HomeViewController: UICollectionViewDelegate {
         if collectionView == self.lastTransactionsCollectionView {
             output.showTransaction(for: indexPath.row)
         }
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-
-extension HomeViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == self.servicesCollectionView {
-            return service.count
-        }
-        if collectionView == self.lastTransactionsCollectionView {
-            return lastTransaction.count
-        }
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == self.servicesCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ServicesCell.identifire,
-                                                                for: indexPath) as? ServicesCell else { return UICollectionViewCell() }
-            cell.setInformation(service: service[indexPath.row])
-            return cell
-        }
-        if collectionView == self.lastTransactionsCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LastTransactionCell.identifire,
-                                                                for: indexPath) as? LastTransactionCell else { return UICollectionViewCell() }
-            cell.setInformation(lastTransaction: lastTransaction[indexPath.row], currency: currency, rate: rate)
-            return cell
-        }
-        return UICollectionViewCell()
     }
 }
 

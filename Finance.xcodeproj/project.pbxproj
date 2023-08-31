@@ -105,6 +105,8 @@
 		BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */; };
 		BBD518642A9CD50F0052B895 /* RevenueAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD518632A9CD50F0052B895 /* RevenueAdapter.swift */; };
 		BBD518692A9CE44A0052B895 /* CategoryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD518682A9CE44A0052B895 /* CategoryAdapter.swift */; };
+		BBD5186C2AA0890C0052B895 /* ServiceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5186B2AA0890C0052B895 /* ServiceAdapter.swift */; };
+		BBD5186E2AA08B4A0052B895 /* LastTransactionsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5186D2AA08B4A0052B895 /* LastTransactionsAdapter.swift */; };
 		CD1B985395D0FAF2426A5433 /* Pods_FinanceUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2BCC379728124EA43B7C99 /* Pods_FinanceUnitTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -227,6 +229,8 @@
 		BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionsCell.swift; sourceTree = "<group>"; };
 		BBD518632A9CD50F0052B895 /* RevenueAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueAdapter.swift; sourceTree = "<group>"; };
 		BBD518682A9CE44A0052B895 /* CategoryAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAdapter.swift; sourceTree = "<group>"; };
+		BBD5186B2AA0890C0052B895 /* ServiceAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAdapter.swift; sourceTree = "<group>"; };
+		BBD5186D2AA08B4A0052B895 /* LastTransactionsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionsAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -648,6 +652,7 @@
 			children = (
 				BB6D21902A33CA76000C22D7 /* Presenter */,
 				BB6D21922A33CA81000C22D7 /* View */,
+				BBD5186A2AA088E00052B895 /* Adapter */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -751,6 +756,15 @@
 			children = (
 				BBD518632A9CD50F0052B895 /* RevenueAdapter.swift */,
 				BBD518682A9CE44A0052B895 /* CategoryAdapter.swift */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
+		BBD5186A2AA088E00052B895 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				BBD5186B2AA0890C0052B895 /* ServiceAdapter.swift */,
+				BBD5186D2AA08B4A0052B895 /* LastTransactionsAdapter.swift */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -953,6 +967,7 @@
 				BB5E37322A4098B00093AB95 /* LastTransactionInput.swift in Sources */,
 				BB5E372E2A4098850093AB95 /* LastTransactionPresenter.swift in Sources */,
 				BB66934D285B885A002DFAAD /* Model.swift in Sources */,
+				BBD5186C2AA0890C0052B895 /* ServiceAdapter.swift in Sources */,
 				BB5C41162A44829A002DC6A0 /* NetworkProtocol.swift in Sources */,
 				BB6D21972A33CB1A000C22D7 /* HomeOutput.swift in Sources */,
 				BB5C41062A4446DD002DC6A0 /* AuthInput.swift in Sources */,
@@ -969,6 +984,7 @@
 				BB6BDB9D2989574C0000584A /* ModelDecodable.swift in Sources */,
 				BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */,
 				BBD518642A9CD50F0052B895 /* RevenueAdapter.swift in Sources */,
+				BBD5186E2AA08B4A0052B895 /* LastTransactionsAdapter.swift in Sources */,
 				BB9EFC0A285E2A9200305776 /* CategoryCell.swift in Sources */,
 				BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */,
 				BB5C41042A444675002DC6A0 /* AuthViewController.swift in Sources */,

@@ -36,11 +36,6 @@ extension FileManagerError: LocalizedError {
     }
 }
 
-enum ResultStatus<T> {
-    case success(T)
-    case failure(Error)
-}
-
 enum RequestError: Error {
     case somethingError
 }
