@@ -68,7 +68,7 @@ final class AddTransactionViewController: UIViewController {
     }()
     private lazy var dateTitle = TitleView()
     private lazy var dateTextField: UITextField = {
-       let tf = UITextField()
+        let tf = UITextField()
         tf.placeholder = "Дата"
         tf.textColor = .black
         return tf
@@ -91,10 +91,10 @@ final class AddTransactionViewController: UIViewController {
         btn.addTarget(self, action: #selector(handleDoneButton), for: .touchUpInside)
         return btn
     }()
-        
+    
     private let datePicker = UIDatePicker()
     
-// MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     init(output: AddTransactionOutput) {
         self.output = output
@@ -123,7 +123,7 @@ final class AddTransactionViewController: UIViewController {
         output.viewIsReady()
     }
     
-// MARK: - Helpers
+    // MARK: - Helpers
     
     private func configureUI() {
         configureScrollView()
@@ -141,7 +141,7 @@ final class AddTransactionViewController: UIViewController {
                           top: view.topAnchor,
                           trailing: view.trailingAnchor,
                           bottom: view.bottomAnchor)
-
+        
         scrollView.addSubview(contentView)
         contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         contentView.anchor(leading: scrollView.leadingAnchor,
@@ -154,12 +154,12 @@ final class AddTransactionViewController: UIViewController {
     private func configureRevenueTitleView() {
         contentView.addSubview(revenueTitleView)
         revenueTitleView.anchor(leading: contentView.leadingAnchor,
-                             top: contentView.topAnchor,
-                             trailing: contentView.trailingAnchor,
-                             paddingLeading: Constants.horizontalPadding,
-                             paddingTop: Constants.paddingTopContent,
-                             paddingTrailing: -Constants.horizontalPadding,
-                             height: Constants.titleHeight)
+                                top: contentView.topAnchor,
+                                trailing: contentView.trailingAnchor,
+                                paddingLeading: Constants.horizontalPadding,
+                                paddingTop: Constants.paddingTopContent,
+                                paddingTrailing: -Constants.horizontalPadding,
+                                height: Constants.titleHeight)
         revenueTitleView.setTitle(title: "Выбрать тип дохода")
     }
     
@@ -175,12 +175,12 @@ final class AddTransactionViewController: UIViewController {
         revenueCollectionView.backgroundColor = .white
         contentView.addSubview(revenueCollectionView)
         revenueCollectionView.anchor(leading: contentView.leadingAnchor,
-                                  top: revenueTitleView.bottomAnchor,
-                                  trailing: contentView.trailingAnchor,
-                                  paddingLeading: Constants.horizontalPadding,
-                                  paddingTop: Constants.paddingTop,
-                                  paddingTrailing: -Constants.horizontalPadding,
-                                  height: Constants.typeCollectionViewHeight)
+                                     top: revenueTitleView.bottomAnchor,
+                                     trailing: contentView.trailingAnchor,
+                                     paddingLeading: Constants.horizontalPadding,
+                                     paddingTop: Constants.paddingTop,
+                                     paddingTrailing: -Constants.horizontalPadding,
+                                     height: Constants.typeCollectionViewHeight)
     }
     
     private func configureCategoryTitleView() {
@@ -305,6 +305,8 @@ final class AddTransactionViewController: UIViewController {
         toolBar.setItems([flexSpace, doneButton], animated: true)
         amountTextField.inputAccessoryView = toolBar
         commentTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     private func setDate() {
@@ -318,12 +320,12 @@ final class AddTransactionViewController: UIViewController {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAction))
         toolBar.setItems([cancelButton, flexSpace, doneButton], animated: true)
         toolBar.sizeToFit()
-
+        
         dateTextField.inputView = datePicker
         dateTextField.inputAccessoryView = toolBar
     }
     
-// MARK: - Selectors
+    // MARK: - Selectors
     
     @objc private func doneAction() {
         let formatter = DateFormatter()
@@ -344,6 +346,14 @@ final class AddTransactionViewController: UIViewController {
     
     @objc private func tapSwitcher(sender: UISwitch) {
         output.isRevenue(switcher.isOn)
+    }
+    
+    @objc private func keyboardWillShow(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if commentTextField.isFirstResponder {
+                scrollView.setContentOffset(CGPoint(x: 0, y: keyboardSize.height), animated: true)
+            }
+        }
     }
 }
 
@@ -412,6 +422,9 @@ extension AddTransactionViewController: UICollectionViewDelegateFlowLayout {
 
 extension AddTransactionViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if commentTextField.isFirstResponder {
+            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        }
         commentTextField.resignFirstResponder()
         return true
     }
