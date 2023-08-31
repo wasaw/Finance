@@ -43,10 +43,15 @@ struct CurrentExchangeRate {
 }
 
 struct AuthCredentials {
+    let email: String
+    let password: String
+}
+
+struct RegCredentials {
     let login: String
     let email: String
     let password: String
-    var confirmPass: String = ""
+    var confirmPass: String
 }
 
 struct User {

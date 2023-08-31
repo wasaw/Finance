@@ -61,14 +61,14 @@ extension AuthService: AuthServiceProtocol {
         firebaseService.logOut(completion: completion)
     }
     
-    func logInUser(email: String, password: String, completion: @escaping (Result<Void, AuthError>) -> Void) {
-        firebaseService.logIn(withEmail: email, password: password) { result in
+    func logInUser(credentials: AuthCredentials, completion: @escaping (Result<Void, AuthError>) -> Void) {
+        firebaseService.logIn(withEmail: credentials.email, password: credentials.password) { result in
             switch result {
             case .success(let uid):
                 do {
                     let user = try self.coreData.fetchUserInformation(uid: uid)
                     if user.isEmpty {
-                        self.saveUser(uid: uid, login: "", email: email)
+                        self.saveUser(uid: uid, login: "", email: credentials.email)
                     }
                     UserDefaults.standard.set(uid, forKey: "uid")
                     let userDataDict: [String: String] = ["uid": uid]
@@ -92,7 +92,7 @@ extension AuthService: AuthServiceProtocol {
         }
     }
     
-    func signInUser(credentials: AuthCredentials, completion: @escaping (Result<Void, Error>) -> Void) {
+    func signInUser(credentials: RegCredentials, completion: @escaping (Result<Void, Error>) -> Void) {
         
         let login = credentials.login
         let email = credentials.email

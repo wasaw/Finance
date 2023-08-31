@@ -90,7 +90,6 @@
 		BB715F9E2A8BA9F6004266A0 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715F9D2A8BA9F6004266A0 /* ExchangeRateService.swift */; };
 		BB715FA02A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715F9F2A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift */; };
 		BB715FA22A8CAE40004266A0 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715FA12A8CAE40004266A0 /* TopView.swift */; };
-		BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
 		BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */; };
@@ -215,7 +214,6 @@
 		BB715F9D2A8BA9F6004266A0 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
 		BB715F9F2A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceProtocol.swift; sourceTree = "<group>"; };
 		BB715FA12A8CAE40004266A0 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
-		BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -302,7 +300,6 @@
 			isa = PBXGroup;
 			children = (
 				BB5C41032A444675002DC6A0 /* AuthViewController.swift */,
-				BB74FA2B2858CD8900EA2CD8 /* AuthView.swift */,
 				BB5C41052A4446DD002DC6A0 /* AuthInput.swift */,
 				BB5C41072A4446F7002DC6A0 /* AuthOutput.swift */,
 			);
@@ -428,6 +425,7 @@
 			children = (
 				BB5E37482A41CC2C0093AB95 /* Presenter */,
 				BB5E37472A41CC280093AB95 /* View */,
+				BBD518722AA096800052B895 /* Adapter */,
 			);
 			path = Stocks;
 			sourceTree = "<group>";
@@ -644,7 +642,6 @@
 				BB5E372A2A40983C0093AB95 /* LastTransaction */,
 				BB5E373B2A41991B0093AB95 /* ExchangeRate */,
 				BB5E37462A41CC160093AB95 /* Stocks */,
-				BBD518722AA096800052B895 /* Adapter */,
 				BB5C40FE2A444628002DC6A0 /* Auth */,
 			);
 			path = Presentation;
@@ -1032,7 +1029,6 @@
 				BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */,
 				BB5C40FD2A443FB1002DC6A0 /* StocksAssembly.swift in Sources */,
 				BB5C411E2A4996D1002DC6A0 /* DefaultValue.swift in Sources */,
-				BB74FA2C2858CD8900EA2CD8 /* AuthView.swift in Sources */,
 				BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */,
 				BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */,
 				BB5E8D822A979C4100BC1010 /* FirebaseServiceProtocol.swift in Sources */,

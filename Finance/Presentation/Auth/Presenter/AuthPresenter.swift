@@ -21,63 +21,56 @@ final class AuthPresenter {
         self.output = output
         self.authService = authService
     }
+    
+// MARK: - Helpers
+    
+    private func isValid(_ credentials: RegCredentials) -> Result<Void, ValidError> {
+        let emailPattern = #"^\S+@\S+\.\S+$"#
+        
+        guard !credentials.login.isEmpty,
+              !credentials.email.isEmpty,
+              !credentials.password.isEmpty,
+              !credentials.confirmPass.isEmpty else { return .failure(.notAllField)}
+        guard credentials.email.range(of: emailPattern, options: .regularExpression) != nil else { return .failure(.invalidEmail)}
+        guard credentials.password == credentials.confirmPass else { return .failure(.notMatchPassword)}
+        guard credentials.password.count > 6 else { return .failure(.shortPass)}
+        
+        return .success(())
+    }
 }
 
 // MARK: - AuthOutput
 
 extension AuthPresenter: AuthOutput {
-    func validation(segment: Int, credentials: AuthCredentials) {
-        let emailPattern = #"^\S+@\S+\.\S+$"#
-        let resultEmailPattern = credentials.email.range(of: emailPattern, options: .regularExpression)
-        
-        switch segment {
-        case 0:
-            if credentials.email == "" || credentials.password == "" {
-                input?.showAlert(message: "Заполнены не все поля")
-            } else {
-                let email = credentials.email
-                let password = credentials.password
-                authService.logInUser(email: email, password: password) { [weak self] result in
-                    switch result {
-                    case .success:
-                        self?.output.dismissView()
-                        self?.input?.clearForm()
-                    case .failure(let error):
-                        self?.input?.showAlert(message: error.localizedDescription)
-                    }
+    func logIn(_ credentials: AuthCredentials) {
+        if credentials.email == "" || credentials.password == "" {
+            input?.showAlert(message: "Заполнены не все поля")
+        } else {
+            authService.logInUser(credentials: credentials) { [weak self] result in
+                switch result {
+                case .success:
+                    self?.output.dismissView()
+                case .failure(let error):
+                    self?.input?.showAlert(message: error.localizedDescription)
                 }
             }
-        case 1:
-            var isReady = true
-            if resultEmailPattern == nil {
-                input?.showAlert(message: "Неправильно введен email")
-                isReady = false
-            }
-            if credentials.password == "" || credentials.confirmPass == "" {
-                input?.showAlert(message: "Заполнены не все поля")
-                isReady = false
-            }
-            if credentials.password != credentials.confirmPass {
-                input?.showAlert(message: "Пароли не совпадают")
-                isReady = false
-            }
-            if credentials.password.count < 6 {
-                input?.showAlert(message: "Длина пароля минимум 6 символов")
-                isReady = false
-            }
-            if isReady {
-                authService.signInUser(credentials: credentials) { result in
-                    switch result {
-                    case .success:
-                        self.output.dismissView()
-                        self.input?.clearForm()
-                    case .failure:
-                        self.input?.showAlert(message: "Ошибка. Попробуйте снова.")
-                    }
+        }
+    }
+    
+    func signIn(_ credentials: RegCredentials) {
+        let result = isValid(credentials)
+        switch result {
+        case .success:
+            authService.signInUser(credentials: credentials) { result in
+                switch result {
+                case .success:
+                    self.output.dismissView()
+                case .failure:
+                    self.input?.showAlert(message: "Ошибка. Попробуйте снова.")
                 }
             }
-        default:
-            break
+        case .failure(let error):
+            input?.showAlert(message: error.localizedDescription)
         }
     }
 }

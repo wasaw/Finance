@@ -83,3 +83,25 @@ extension AuthError: LocalizedError {
         }
     }
 }
+
+enum ValidError: Error {
+    case invalidEmail
+    case notAllField
+    case notMatchPassword
+    case shortPass
+}
+
+extension ValidError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .invalidEmail:
+            return NSLocalizedString("Неверный формат почты", comment: "")
+        case .notAllField:
+            return NSLocalizedString("Заполнены не все поля", comment: "")
+        case .notMatchPassword:
+            return NSLocalizedString("Пароли не совпадают", comment: "")
+        case .shortPass:
+            return NSLocalizedString("Длина пароля минимум 6 символов", comment: "")
+        }
+    }
+}

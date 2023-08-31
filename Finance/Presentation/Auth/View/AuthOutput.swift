@@ -8,5 +8,6 @@
 import Foundation
 
 protocol AuthOutput: AnyObject {
-    func validation(segment: Int, credentials: AuthCredentials)
+    func logIn(_ credentials: AuthCredentials)
+    func signIn(_ credentials: RegCredentials)
 }

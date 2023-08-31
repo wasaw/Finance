@@ -9,5 +9,4 @@ import Foundation
 
 protocol AuthInput: AnyObject {
     func showAlert(message: String)
-    func clearForm()
 }

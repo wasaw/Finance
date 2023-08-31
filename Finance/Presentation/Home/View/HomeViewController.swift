@@ -34,7 +34,7 @@ final class HomeViewController: UIViewController {
     
     private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ваше имя"
+        label.text = "Здравствуйте"
         label.textColor = .totalTintColor
         label.font = UIFont.boldSystemFont(ofSize: 27)
         return label
