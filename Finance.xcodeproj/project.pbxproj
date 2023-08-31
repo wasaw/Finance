@@ -107,6 +107,7 @@
 		BBD518692A9CE44A0052B895 /* CategoryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD518682A9CE44A0052B895 /* CategoryAdapter.swift */; };
 		BBD5186C2AA0890C0052B895 /* ServiceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5186B2AA0890C0052B895 /* ServiceAdapter.swift */; };
 		BBD5186E2AA08B4A0052B895 /* LastTransactionsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5186D2AA08B4A0052B895 /* LastTransactionsAdapter.swift */; };
+		BBD518742AA0969D0052B895 /* StockAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD518732AA0969D0052B895 /* StockAdapter.swift */; };
 		CD1B985395D0FAF2426A5433 /* Pods_FinanceUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2BCC379728124EA43B7C99 /* Pods_FinanceUnitTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -231,6 +232,7 @@
 		BBD518682A9CE44A0052B895 /* CategoryAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAdapter.swift; sourceTree = "<group>"; };
 		BBD5186B2AA0890C0052B895 /* ServiceAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAdapter.swift; sourceTree = "<group>"; };
 		BBD5186D2AA08B4A0052B895 /* LastTransactionsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionsAdapter.swift; sourceTree = "<group>"; };
+		BBD518732AA0969D0052B895 /* StockAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -642,6 +644,7 @@
 				BB5E372A2A40983C0093AB95 /* LastTransaction */,
 				BB5E373B2A41991B0093AB95 /* ExchangeRate */,
 				BB5E37462A41CC160093AB95 /* Stocks */,
+				BBD518722AA096800052B895 /* Adapter */,
 				BB5C40FE2A444628002DC6A0 /* Auth */,
 			);
 			path = Presentation;
@@ -765,6 +768,14 @@
 			children = (
 				BBD5186B2AA0890C0052B895 /* ServiceAdapter.swift */,
 				BBD5186D2AA08B4A0052B895 /* LastTransactionsAdapter.swift */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
+		BBD518722AA096800052B895 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				BBD518732AA0969D0052B895 /* StockAdapter.swift */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -1014,6 +1025,7 @@
 				BB5E373F2A4199440093AB95 /* ExchangeRatePresenter.swift in Sources */,
 				BB5E37452A4199E00093AB95 /* ExchangeRateOutput.swift in Sources */,
 				BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */,
+				BBD518742AA0969D0052B895 /* StockAdapter.swift in Sources */,
 				BB5E37342A4098BE0093AB95 /* LastTransactionOutput.swift in Sources */,
 				BB715FA22A8CAE40004266A0 /* TopView.swift in Sources */,
 				BB5E374F2A41CD020093AB95 /* StocksInput.swift in Sources */,

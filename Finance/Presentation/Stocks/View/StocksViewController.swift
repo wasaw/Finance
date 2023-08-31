@@ -17,9 +17,9 @@ final class StocksViewController: UIViewController {
     
     private let output: StocksPresenter
     
-    private let loadAnimationView = CircleAnimation()
-    private var stockList = [Stock]()
+    private lazy var loadAnimationView = CircleAnimation()
     private var tableView: UITableView?
+    private let stockAdapter = StockAdapter()
     
 // MARK: - Lifecycle
     
@@ -56,8 +56,7 @@ final class StocksViewController: UIViewController {
         guard let tableView = tableView else { return }
         tableView.register(StockCell.self, forCellReuseIdentifier: StockCell.reuseIdentifite)
         tableView.backgroundColor = .white
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.dataSource = stockAdapter
         view.addSubview(tableView)
         tableView.anchor(leading: view.leadingAnchor,
                          top: view.safeAreaLayoutGuide.topAnchor,
@@ -79,34 +78,12 @@ extension StocksViewController: StocksInput {
     }
     
     func setData(_ stockList: [Stock]) {
-        self.stockList = stockList
+        stockAdapter.configure(stockList)
         tableView?.reloadData()
         tableView?.isHidden = false
     }
     
     func showAlert(with title: String, and text: String) {
         alert(with: title, massage: text)
-    }
-}
-
-// MARK: - UITableViewDelegate
-
-extension StocksViewController: UITableViewDelegate {
-   
-}
-
-// MARK: - UITableViewDataSource
-
-extension StocksViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stockList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: StockCell.reuseIdentifite,
-                                                       for: indexPath) as? StockCell else { return UITableViewCell() }
-        cell.setValue(stock: stockList[indexPath.row], index: indexPath.row)
-        cell.selectionStyle = .none
-        return cell
     }
 }

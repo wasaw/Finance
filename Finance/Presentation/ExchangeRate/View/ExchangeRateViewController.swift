@@ -21,7 +21,7 @@ final class ExchangeRateViewController: UIViewController {
     private let output: ExchangeRatePresenter
     
     private let topView = TopView()
-    private let loadAnimateView = CircleAnimation()
+    private lazy var loadAnimateView = CircleAnimation()
     private var listCurrencyCollectionView: UICollectionView?
     private var exchangeRate = [CurrentExchangeRate]()
     
