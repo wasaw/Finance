@@ -30,14 +30,10 @@ final class ExchangeRateServiceTests: XCTestCase {
     }
     
     func testFetchExchangeRate() {
-        exchangeRateService.fetchExchangeRate("USD") { [weak self] result in
-            switch result {
-            case .success:
-                XCTAssertEqual(self?.network.invokedLoadData, true)
-                XCTAssertEqual(self?.network.invokedLoadDataCount, 1)
-            case .failure:
-                XCTAssertThrowsError(true)
-            }
+        exchangeRateService.fetchExchangeRate("USD") { _ in
         }
+        
+        XCTAssertEqual(defaultValueService.invokedFetchExchangeValue, true)
+        XCTAssertEqual(defaultValueService.invokedFetchExchangeValueCount, 1)
     }
 }

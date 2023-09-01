@@ -11,13 +11,13 @@ final class AuthService {
     
 // MARK: - Properties
     
-    private let coreData: CoreDataService
+    private let coreData: CoreDataServiceProtocol
     private let firebaseService: FirebaseServiceProtocol
     private let notification = NotificationCenter.default
     
 // MARK: - Lifecycle
     
-    init(coreData: CoreDataService, firebaseService: FirebaseServiceProtocol) {
+    init(coreData: CoreDataServiceProtocol, firebaseService: FirebaseServiceProtocol) {
         self.coreData = coreData
         self.firebaseService = firebaseService
     }

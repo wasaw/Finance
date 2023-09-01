@@ -41,20 +41,16 @@ final class UserServiceTests: XCTestCase {
         let result = userService.getUser("0201")
         XCTAssertEqual(coreData.invokedFetchUserInformation, true)
         XCTAssertEqual(coreData.invokedFetchUserInformationCount, 1)
-        XCTAssertEqual(result?.login, "First")
+        XCTAssertEqual(result?.login, userManagedObject.login)
     }
     
     func testSaveImage() {
-        userService.saveImage(image: UIImage(named: "savings")!, for: "0201") { [weak self] result in
-            switch result {
-            case .success:
-                XCTAssertEqual(self?.fileStore.invokedSaveImage, true)
-                XCTAssertEqual(self?.fileStore.invokedSaveImageCount, 1)
-                XCTAssertEqual(self?.firebaseService.invokedSaveImage, true)
-                XCTAssertEqual(self?.firebaseService.invokedSaveImageCount, 1)
-            case .failure:
-                XCTAssertThrowsError(true)
-            }
+        userService.saveImage(image: UIImage(named: "savings")!, for: "0201") { _ in
         }
+        
+        XCTAssertEqual(fileStore.invokedSaveImage, true)
+        XCTAssertEqual(fileStore.invokedSaveImageCount, 1)
+        XCTAssertEqual(firebaseService.invokedSaveImage, true)
+        XCTAssertEqual(firebaseService.invokedSaveImageCount, 1)
     }
 }

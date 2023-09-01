@@ -38,7 +38,7 @@ final class TransactionsServiceTest: XCTestCase {
         do {
             let answer = try transactionsService.fetchTransactions()
             XCTAssertEqual(coreData.invokedFetchTransactions, true)
-            XCTAssertEqual(answer[0].category, "Новая")
+            XCTAssertEqual(answer[0].category, transactionsManagedObject.category)
         } catch {
             XCTAssertThrowsError(true)
         }
@@ -62,12 +62,14 @@ final class TransactionsServiceTest: XCTestCase {
         transactionsManagedObjectOther.img = "house.fill"
         transactionsManagedObjectOther.type = "Доход"
         
+        let checkResult = transactionsManagedObject.amount + transactionsManagedObjectOther.amount
+        
         coreData.stubbedFetchTransactionsByRevenueResult = ([transactionsManagedObject, transactionsManagedObjectOther])
         
         do {
             let answer = try transactionsService.fetchAmountBy("Зарплата")
             XCTAssertEqual(coreData.invokedFetchTransactionsByRevenue, true)
-            XCTAssertEqual(answer, 439)
+            XCTAssertEqual(answer, checkResult)
         } catch {
             XCTAssertThrowsError(true)
         }

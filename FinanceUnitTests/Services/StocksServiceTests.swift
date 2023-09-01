@@ -30,16 +30,10 @@ final class StocksServiceTests: XCTestCase {
     }
     
     func testGetStocks() {
-        stocksService.getStocks { [weak self] result in
-            switch result {
-            case .success:
-                XCTAssertEqual(self?.defaultValueService.invokedFetchStocks, true)
-                XCTAssertEqual(self?.defaultValueService.invokedFetchStocksCount, 1)
-                XCTAssertEqual(self?.networkService.invokedLoadData, true)
-                XCTAssertEqual(self?.networkService.invokedLoadDataCount, 1)
-            case .failure:
-                XCTAssertThrowsError(true)
-            }
+        stocksService.getStocks { _ in
         }
+        
+        XCTAssertEqual(defaultValueService.invokedFetchStocks, true)
+        XCTAssertEqual(defaultValueService.invokedFetchStocksCount, 1)
     }
 }

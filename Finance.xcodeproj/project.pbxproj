@@ -16,6 +16,7 @@
 		BB51422B2AA1DDBB00663609 /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB51422A2AA1DDBB00663609 /* NetworkServiceMock.swift */; };
 		BB51422F2AA1E77E00663609 /* UserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB51422E2AA1E77E00663609 /* UserServiceTests.swift */; };
 		BB5142312AA1E82D00663609 /* FirebaseServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5142302AA1E82D00663609 /* FirebaseServiceMock.swift */; };
+		BB5142332AA200D500663609 /* AuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5142322AA200D500663609 /* AuthServiceTests.swift */; };
 		BB5C40F02A4345CF002DC6A0 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40EF2A4345CF002DC6A0 /* ProfileCoordinator.swift */; };
 		BB5C40F52A442A50002DC6A0 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40F42A442A50002DC6A0 /* HomeAssembly.swift */; };
 		BB5C40F72A443544002DC6A0 /* AddTransactionAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40F62A443544002DC6A0 /* AddTransactionAssembly.swift */; };
@@ -144,6 +145,7 @@
 		BB51422A2AA1DDBB00663609 /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
 		BB51422E2AA1E77E00663609 /* UserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTests.swift; sourceTree = "<group>"; };
 		BB5142302AA1E82D00663609 /* FirebaseServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServiceMock.swift; sourceTree = "<group>"; };
+		BB5142322AA200D500663609 /* AuthServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceTests.swift; sourceTree = "<group>"; };
 		BB5C40EF2A4345CF002DC6A0 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		BB5C40F42A442A50002DC6A0 /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
 		BB5C40F62A443544002DC6A0 /* AddTransactionAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionAssembly.swift; sourceTree = "<group>"; };
@@ -580,6 +582,7 @@
 				BB5142242AA1DBCA00663609 /* StocksServiceTests.swift */,
 				BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */,
 				BB51422E2AA1E77E00663609 /* UserServiceTests.swift */,
+				BB5142322AA200D500663609 /* AuthServiceTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1107,6 +1110,7 @@
 				BB5142312AA1E82D00663609 /* FirebaseServiceMock.swift in Sources */,
 				BB5142232AA1D74C00663609 /* ExchangeRateProtocolMock.swift in Sources */,
 				BB66A33A2A7D2F1C003A8871 /* TransactionsServiceTest.swift in Sources */,
+				BB5142332AA200D500663609 /* AuthServiceTests.swift in Sources */,
 				BB51422F2AA1E77E00663609 /* UserServiceTests.swift in Sources */,
 				BB8056C62AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift in Sources */,
 				BB69A5D32A7D1572001941F0 /* FileStoreProtocolMock.swift in Sources */,
