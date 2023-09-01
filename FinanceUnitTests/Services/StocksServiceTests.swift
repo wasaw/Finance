@@ -1,0 +1,42 @@
+//
+//  StocksServiceTests.swift
+//  FinanceUnitTests
+//
+//  Created by Александр Меренков on 01.09.2023.
+//
+
+import XCTest
+@testable import Finance
+
+final class StocksServiceTests: XCTestCase {
+    
+    var networkService: NetworkServiceMock!
+    var config: NetworkConfiguration!
+    var defaultValueService: DefaultValueServiceMock!
+    var stocksService: StocksServiceProtocol!
+    
+    override func setUp() {
+        networkService = NetworkServiceMock()
+        config = NetworkConfiguration()
+        defaultValueService = DefaultValueServiceMock()
+        stocksService  = StocksService(network: networkService, config: config, defaultValueService: defaultValueService)
+    }
+    
+    override func tearDown() {
+        stocksService = nil
+    }
+    
+    func testGetStocks() {
+        stocksService.getStocks { [weak self] result in
+            switch result {
+            case .success:
+                XCTAssertEqual(self?.defaultValueService.invokedFetchStocks, true)
+                XCTAssertEqual(self?.defaultValueService.invokedFetchStocksCount, 1)
+                XCTAssertEqual(self?.networkService.invokedLoadData, true)
+                XCTAssertEqual(self?.networkService.invokedLoadDataCount, 1)
+            case .failure:
+                XCTAssertThrowsError(true)
+            }
+        }
+    }
+}
