@@ -23,6 +23,9 @@ final class StocksServiceTests: XCTestCase {
     }
     
     override func tearDown() {
+        networkService = nil
+        config = nil
+        defaultValueService = nil
         stocksService = nil
     }
     

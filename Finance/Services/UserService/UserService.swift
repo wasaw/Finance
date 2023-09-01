@@ -11,13 +11,13 @@ final class UserService {
     
 // MARK: - Properties
     
-    private let coreData: CoreDataService
+    private let coreData: CoreDataServiceProtocol
     private let fileStore: FileStoreProtocol
     private let firebaseService: FirebaseServiceProtocol
     
 // MARK: - Lifecycle
     
-    init(coreData: CoreDataService,
+    init(coreData: CoreDataServiceProtocol,
          fileStore: FileStoreProtocol,
          firebaseService: FirebaseServiceProtocol) {
         self.coreData = coreData
