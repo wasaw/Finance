@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9AF4048141F3230E754689C8 /* Pods_Finance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53022AC9E214609030662D0 /* Pods_Finance.framework */; };
 		BB44C5F72988079600776D4E /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB44C5F62988079600776D4E /* Animations.swift */; };
+		BB5142232AA1D74C00663609 /* ExchangeRateProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5142222AA1D74C00663609 /* ExchangeRateProtocolMock.swift */; };
 		BB5C40F02A4345CF002DC6A0 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40EF2A4345CF002DC6A0 /* ProfileCoordinator.swift */; };
 		BB5C40F52A442A50002DC6A0 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40F42A442A50002DC6A0 /* HomeAssembly.swift */; };
 		BB5C40F72A443544002DC6A0 /* AddTransactionAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C40F62A443544002DC6A0 /* AddTransactionAssembly.swift */; };
@@ -73,6 +74,7 @@
 		BB6BDB99298942130000584A /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB98298942130000584A /* NetworkConfiguration.swift */; };
 		BB6BDB9D2989574C0000584A /* ModelDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB9C2989574C0000584A /* ModelDecodable.swift */; };
 		BB6BDBA1298B994C0000584A /* RevenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDBA0298B994C0000584A /* RevenueCell.swift */; };
+		BB6C96AE2AA1BE74002338C9 /* ListCurrencyAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6C96AD2AA1BE74002338C9 /* ListCurrencyAdapter.swift */; };
 		BB6D21942A33CADB000C22D7 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21932A33CADB000C22D7 /* HomePresenter.swift */; };
 		BB6D21972A33CB1A000C22D7 /* HomeOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21962A33CB1A000C22D7 /* HomeOutput.swift */; };
 		BB6D21992A33CC33000C22D7 /* HomeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21982A33CC33000C22D7 /* HomeInput.swift */; };
@@ -90,6 +92,7 @@
 		BB715F9E2A8BA9F6004266A0 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715F9D2A8BA9F6004266A0 /* ExchangeRateService.swift */; };
 		BB715FA02A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715F9F2A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift */; };
 		BB715FA22A8CAE40004266A0 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715FA12A8CAE40004266A0 /* TopView.swift */; };
+		BB8056C62AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
 		BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */; };
@@ -128,6 +131,7 @@
 		8B68B2028077D098EA217496 /* Pods-Finance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finance.debug.xcconfig"; path = "Target Support Files/Pods-Finance/Pods-Finance.debug.xcconfig"; sourceTree = "<group>"; };
 		A53022AC9E214609030662D0 /* Pods_Finance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Finance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB44C5F62988079600776D4E /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		BB5142222AA1D74C00663609 /* ExchangeRateProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateProtocolMock.swift; sourceTree = "<group>"; };
 		BB5C40EF2A4345CF002DC6A0 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		BB5C40F42A442A50002DC6A0 /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
 		BB5C40F62A443544002DC6A0 /* AddTransactionAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionAssembly.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 		BB6BDB98298942130000584A /* NetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
 		BB6BDB9C2989574C0000584A /* ModelDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDecodable.swift; sourceTree = "<group>"; };
 		BB6BDBA0298B994C0000584A /* RevenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCell.swift; sourceTree = "<group>"; };
+		BB6C96AD2AA1BE74002338C9 /* ListCurrencyAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCurrencyAdapter.swift; sourceTree = "<group>"; };
 		BB6D21932A33CADB000C22D7 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		BB6D21962A33CB1A000C22D7 /* HomeOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOutput.swift; sourceTree = "<group>"; };
 		BB6D21982A33CC33000C22D7 /* HomeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInput.swift; sourceTree = "<group>"; };
@@ -214,6 +219,7 @@
 		BB715F9D2A8BA9F6004266A0 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
 		BB715F9F2A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceProtocol.swift; sourceTree = "<group>"; };
 		BB715FA12A8CAE40004266A0 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
+		BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceTests.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -396,7 +402,7 @@
 			children = (
 				BB5E373D2A41992F0093AB95 /* Presenter */,
 				BB5E373C2A41992C0093AB95 /* View */,
-				BBD5186F2AA08F950052B895 /* Adapter */,
+				BB6C96AC2AA1BE64002338C9 /* Adapter */,
 			);
 			path = ExchangeRate;
 			sourceTree = "<group>";
@@ -559,6 +565,7 @@
 			children = (
 				BB69A5D02A7D1554001941F0 /* DefaultValueServiceTests.swift */,
 				BB66A3392A7D2F1C003A8871 /* TransactionsServiceTest.swift */,
+				BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -569,6 +576,7 @@
 				BB69A5D22A7D1572001941F0 /* FileStoreProtocolMock.swift */,
 				BB66A33B2A7D2FDE003A8871 /* CoreDataServiceProtocolMock.swift */,
 				BB66A33D2A7D3315003A8871 /* TestCoreDataStack.swift */,
+				BB5142222AA1D74C00663609 /* ExchangeRateProtocolMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -632,6 +640,14 @@
 				BB5F1E862A4F076D0054F3A6 /* ApiKey.xcconfig */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		BB6C96AC2AA1BE64002338C9 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				BB6C96AD2AA1BE74002338C9 /* ListCurrencyAdapter.swift */,
+			);
+			path = Adapter;
 			sourceTree = "<group>";
 		};
 		BB6D218E2A33C9FB000C22D7 /* Presentation */ = {
@@ -1026,7 +1042,6 @@
 				BBD518742AA0969D0052B895 /* StockAdapter.swift in Sources */,
 				BB5E37342A4098BE0093AB95 /* LastTransactionOutput.swift in Sources */,
 				BB715FA22A8CAE40004266A0 /* TopView.swift in Sources */,
-				BBD518712AA08FAE0052B895 /* ListCurrencyAdapter.swift in Sources */,
 				BB5E374F2A41CD020093AB95 /* StocksInput.swift in Sources */,
 				BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */,
 				BB5C40FD2A443FB1002DC6A0 /* StocksAssembly.swift in Sources */,
@@ -1054,6 +1069,7 @@
 				BB6A7F692A4C66210028CC13 /* DefaultValueService.swift in Sources */,
 				BB5C410A2A444D27002DC6A0 /* AuthAssembly.swift in Sources */,
 				BB6DF0112A4B6F9B00A1B4BD /* TransactionsService.swift in Sources */,
+				BB6C96AE2AA1BE74002338C9 /* ListCurrencyAdapter.swift in Sources */,
 				BB5E373A2A418A4D0093AB95 /* HomePresenterOutput.swift in Sources */,
 				BB5E8D802A979C2800BC1010 /* FirebaseService.swift in Sources */,
 				BB715F962A8653F8004266A0 /* AuthPresenterOutput.swift in Sources */,
@@ -1067,7 +1083,9 @@
 				BB66A33C2A7D2FDE003A8871 /* CoreDataServiceProtocolMock.swift in Sources */,
 				BB66A33E2A7D3315003A8871 /* TestCoreDataStack.swift in Sources */,
 				BB69A5D12A7D1554001941F0 /* DefaultValueServiceTests.swift in Sources */,
+				BB5142232AA1D74C00663609 /* ExchangeRateProtocolMock.swift in Sources */,
 				BB66A33A2A7D2F1C003A8871 /* TransactionsServiceTest.swift in Sources */,
+				BB8056C62AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift in Sources */,
 				BB69A5D32A7D1572001941F0 /* FileStoreProtocolMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,6 +24,24 @@ final class CoreDataServiceProtocolMock: CoreDataServiceProtocol {
         return stubbedFetchTransactionsResult
     }
 
+    var invokedFetchTransactionsByRevenue = false
+    var invokedFetchTransactionsByRevenueCount = 0
+    var invokedFetchTransactionsByRevenueParameters: (predicate: String, Void)?
+    var invokedFetchTransactionsByRevenueParametersList = [(predicate: String, Void)]()
+    var stubbedFetchTransactionsByRevenueError: Error?
+    var stubbedFetchTransactionsByRevenueResult: [TransactionManagedObject]! = []
+
+    func fetchTransactionsByRevenue(_ predicate: String) throws -> [TransactionManagedObject] {
+        invokedFetchTransactionsByRevenue = true
+        invokedFetchTransactionsByRevenueCount += 1
+        invokedFetchTransactionsByRevenueParameters = (predicate, ())
+        invokedFetchTransactionsByRevenueParametersList.append((predicate, ()))
+        if let error = stubbedFetchTransactionsByRevenueError {
+            throw error
+        }
+        return stubbedFetchTransactionsByRevenueResult
+    }
+
     var invokedFetchUserInformation = false
     var invokedFetchUserInformationCount = 0
     var invokedFetchUserInformationParameters: (uid: String, Void)?

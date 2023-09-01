@@ -32,4 +32,16 @@ final class DefaultValueServiceTests: XCTestCase {
             XCTAssertThrowsError(true)
         }
     }
+    
+    func testFetchStocks() {
+        _ = defautlValueService.fetchStocks()
+        XCTAssertEqual(fileStore.invokedReadAppInformation, true)
+        XCTAssertEqual(fileStore.invokedReadAppInformationCount, 1)
+    }
+    
+    func testFetchExchageValue() {
+        _ = defautlValueService.fetchExchangeValue()
+        XCTAssertEqual(fileStore.invokedReadAppInformation, true)
+        XCTAssertEqual(fileStore.invokedReadAppInformationCount, 2)
+    }
 }

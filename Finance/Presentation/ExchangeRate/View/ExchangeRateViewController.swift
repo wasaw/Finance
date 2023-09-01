@@ -23,6 +23,7 @@ final class ExchangeRateViewController: UIViewController {
     private lazy var topView = TopView()
     private lazy var loadAnimateView = CircleAnimation()
     private var listCurrencyCollectionView: UICollectionView?
+    private let listCurrencyAdapter = ListCurrencyAdapter()
     
 // MARK: - Lifecycle
     
