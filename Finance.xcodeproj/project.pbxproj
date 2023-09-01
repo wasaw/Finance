@@ -396,6 +396,7 @@
 			children = (
 				BB5E373D2A41992F0093AB95 /* Presenter */,
 				BB5E373C2A41992C0093AB95 /* View */,
+				BBD5186F2AA08F950052B895 /* Adapter */,
 			);
 			path = ExchangeRate;
 			sourceTree = "<group>";
@@ -1025,6 +1026,7 @@
 				BBD518742AA0969D0052B895 /* StockAdapter.swift in Sources */,
 				BB5E37342A4098BE0093AB95 /* LastTransactionOutput.swift in Sources */,
 				BB715FA22A8CAE40004266A0 /* TopView.swift in Sources */,
+				BBD518712AA08FAE0052B895 /* ListCurrencyAdapter.swift in Sources */,
 				BB5E374F2A41CD020093AB95 /* StocksInput.swift in Sources */,
 				BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */,
 				BB5C40FD2A443FB1002DC6A0 /* StocksAssembly.swift in Sources */,
