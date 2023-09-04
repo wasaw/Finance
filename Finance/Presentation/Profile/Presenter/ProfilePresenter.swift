@@ -47,13 +47,18 @@ final class ProfilePresenter {
     
     @objc private func updateCredentiall(_ notification: NSNotification) {
         if let uid = notification.userInfo?["uid"] as? String {
-            if let user = userService.getUser(uid) {
-                input?.showUserCredential(user)
-                if let image = user.profileImage {
-                    input?.setUserImage(image)
-                } else {
-                    guard let image = UIImage(named: "add-photo.png") else { return }
-                    input?.setUserImage(image)
+            userService.getUser(uid) { [weak self] result in
+                switch result {
+                case .success(let user):
+                    self?.input?.showUserCredential(user)
+                    if let image = user.profileImage {
+                        self?.input?.setUserImage(image)
+                    } else {
+                        guard let image = UIImage(named: "add-photo.png") else { return }
+                        self?.input?.setUserImage(image)
+                    }
+                case .failure:
+                    break
                 }
             }
         }
@@ -68,23 +73,28 @@ extension ProfilePresenter: ProfileOutput {
         authService.authVerification { [weak self] result in
             switch result {
             case .success(let uid):
-                if let user = self?.userService.getUser(uid) {
-                    self?.input?.showUserCredential(user)
-                    if let image = user.profileImage {
-                        self?.input?.setUserImage(image)
-                    }
-                    if let currencyRaw = UserDefaults.standard.value(forKey: "currency") as? Int {
-                        guard let currency = Currency(rawValue: currencyRaw) else { return }
-                        guard let count = self?.currencyButtonArr.count else { return }
-                        for index in 0..<count {
-                            if self?.currencyButtonArr[index].displayCurrency == currency {
-                                self?.currencyButtonArr[index].isSelected = true
-                            } else {
-                                self?.currencyButtonArr[index].isSelected = false
-                            }
+                self?.userService.getUser(uid) { result in
+                    switch result {
+                    case .success(let user):
+                        self?.input?.showUserCredential(user)
+                        if let image = user.profileImage {
+                            self?.input?.setUserImage(image)
                         }
-                        guard let currencyButtonArr = self?.currencyButtonArr else { return }
-                        self?.input?.updateCurrencyMenu(currencyButtonArr)
+                        if let currencyRaw = UserDefaults.standard.value(forKey: "currency") as? Int {
+                            guard let currency = Currency(rawValue: currencyRaw) else { return }
+                            guard let count = self?.currencyButtonArr.count else { return }
+                            for index in 0..<count {
+                                if self?.currencyButtonArr[index].displayCurrency == currency {
+                                    self?.currencyButtonArr[index].isSelected = true
+                                } else {
+                                    self?.currencyButtonArr[index].isSelected = false
+                                }
+                            }
+                            guard let currencyButtonArr = self?.currencyButtonArr else { return }
+                            self?.input?.updateCurrencyMenu(currencyButtonArr)
+                        }
+                    case .failure:
+                        break
                     }
                 }
             case .failure:

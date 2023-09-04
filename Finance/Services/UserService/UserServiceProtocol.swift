@@ -8,6 +8,6 @@
 import UIKit
 
 protocol UserServiceProtocol: AnyObject {
-    func getUser(_ uid: String) -> User?
+    func getUser(_ uid: String, completion: @escaping (Result<User, UserLoadError>) -> Void)
     func saveImage(image: UIImage, for uid: String, completion: @escaping ((Result<Void, Error>) -> Void))
 }

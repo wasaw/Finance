@@ -105,3 +105,8 @@ extension ValidError: LocalizedError {
         }
     }
 }
+
+enum UserLoadError: Error {
+    case isEmptyUser
+    case somethingError
+}

@@ -29,7 +29,7 @@ final class UserService {
 // MARK: - Helpers
 
 extension UserService: UserServiceProtocol {
-    func getUser(_ uid: String) -> User? {
+    func getUser(_ uid: String, completion: @escaping (Result<User, UserLoadError>) -> Void) {
         do {
             let userManagedObject = try coreData.fetchUserInformation(uid: uid)
             let user: [User] = userManagedObject.compactMap { loadedUser in
@@ -49,9 +49,13 @@ extension UserService: UserServiceProtocol {
                             email: email,
                             profileImage: image)
             }
-            return user.first
+            if let user = user.first {
+                completion(.success(user))
+            } else {
+                completion(.failure(UserLoadError.isEmptyUser))
+            }
         } catch {
-            return nil
+            completion(.failure(UserLoadError.somethingError))
         }
     }
     

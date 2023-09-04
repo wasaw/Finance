@@ -40,8 +40,13 @@ final class HomePresenter {
     
     func loadInformation() {
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
-            if let user = userService.getUser(uid) {
-                input?.setUserName(user.login)
+            userService.getUser(uid) { [weak self] result in
+                switch result {
+                case .success(let user):
+                    self?.input?.setUserName(user.login)
+                case .failure:
+                    break
+                }
             }
         }
         guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
@@ -98,8 +103,13 @@ final class HomePresenter {
     
     @objc private func updateCredential(_ notification: NSNotification) {
         if let uid = notification.userInfo?["uid"] as? String {
-            if let user = userService.getUser(uid) {
-                input?.setUserName(user.login)
+            userService.getUser(uid) { [weak self] result in
+                switch result {
+                case .success(let user):
+                    self?.input?.setUserName(user.login)
+                case .failure:
+                    break
+                }
             }
         }
     }
