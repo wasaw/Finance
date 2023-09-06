@@ -79,7 +79,7 @@
 		BB6B5BBA2A3C9C9B00E16FFB /* AddTransactionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6B5BB92A3C9C9B00E16FFB /* AddTransactionOutput.swift */; };
 		BB6BDB9729891CBD0000584A /* StockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB9629891CBD0000584A /* StockCell.swift */; };
 		BB6BDB99298942130000584A /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB98298942130000584A /* NetworkConfiguration.swift */; };
-		BB6BDB9D2989574C0000584A /* ModelDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB9C2989574C0000584A /* ModelDecodable.swift */; };
+		BB6BDB9D2989574C0000584A /* ModelNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB9C2989574C0000584A /* ModelNetwork.swift */; };
 		BB6BDBA1298B994C0000584A /* RevenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDBA0298B994C0000584A /* RevenueCell.swift */; };
 		BB6C96AE2AA1BE74002338C9 /* ListCurrencyAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6C96AD2AA1BE74002338C9 /* ListCurrencyAdapter.swift */; };
 		BB6D21942A33CADB000C22D7 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21932A33CADB000C22D7 /* HomePresenter.swift */; };
@@ -213,7 +213,7 @@
 		BB6B5BB92A3C9C9B00E16FFB /* AddTransactionOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionOutput.swift; sourceTree = "<group>"; };
 		BB6BDB9629891CBD0000584A /* StockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCell.swift; sourceTree = "<group>"; };
 		BB6BDB98298942130000584A /* NetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
-		BB6BDB9C2989574C0000584A /* ModelDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDecodable.swift; sourceTree = "<group>"; };
+		BB6BDB9C2989574C0000584A /* ModelNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelNetwork.swift; sourceTree = "<group>"; };
 		BB6BDBA0298B994C0000584A /* RevenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCell.swift; sourceTree = "<group>"; };
 		BB6C96AD2AA1BE74002338C9 /* ListCurrencyAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCurrencyAdapter.swift; sourceTree = "<group>"; };
 		BB6D21932A33CADB000C22D7 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -531,7 +531,7 @@
 			isa = PBXGroup;
 			children = (
 				BB66934C285B885A002DFAAD /* Model.swift */,
-				BB6BDB9C2989574C0000584A /* ModelDecodable.swift */,
+				BB6BDB9C2989574C0000584A /* ModelNetwork.swift */,
 				BB6A7F6D2A4DCE470028CC13 /* ModelError.swift */,
 			);
 			path = Models;
@@ -1027,7 +1027,7 @@
 				BBD518692A9CE44A0052B895 /* CategoryAdapter.swift in Sources */,
 				BB6DF0132A4B6FBE00A1B4BD /* TransactionsServiceProtocol.swift in Sources */,
 				BB61DEA52850A3C200A08AC6 /* TabBarController.swift in Sources */,
-				BB6BDB9D2989574C0000584A /* ModelDecodable.swift in Sources */,
+				BB6BDB9D2989574C0000584A /* ModelNetwork.swift in Sources */,
 				BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */,
 				BBD518642A9CD50F0052B895 /* RevenueAdapter.swift in Sources */,
 				BBD5186E2AA08B4A0052B895 /* LastTransactionsAdapter.swift in Sources */,

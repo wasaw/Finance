@@ -37,6 +37,7 @@ final class ExchangeRatePresenter {
         exchangeRateService.fetchExchangeRate(requestCurrency) { result in
             switch result {
             case .success(let exchangeRate):
+                self.exchangeRate = exchangeRate
                 DispatchQueue.main.async {
                     if let currency = exchangeRate.first(where: { $0.name == "RUB" }) {
                         self.input?.setCurrency(currency: currency, requestCurrency: requestCurrency)

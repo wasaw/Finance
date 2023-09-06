@@ -13,6 +13,12 @@ final class Network {
     
     private let session = URLSession(configuration: .default)
     private let decoder = JSONDecoder()
+    
+// MARK: - Lifecycle
+    
+    init() {
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+    }
 }
 
 // MARK: - NetworkProtocol

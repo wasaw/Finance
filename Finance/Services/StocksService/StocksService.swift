@@ -15,7 +15,7 @@ final class StocksService {
     private let config: NetworkConfiguration
     private let defaultValueService: DefaultValueServiceProtocol
     
-    private let dayInSeconds = 86400.0
+    private var dayInSeconds = 86400.0
     
 // MARK: - Lifecycle
     
@@ -32,6 +32,11 @@ final class StocksService {
 
 extension StocksService: StocksServiceProtocol {
     func getStocks(completion: @escaping ((Result<[Stock], Error>) -> Void)) {
+        let currentWeekday = Calendar.current.dateComponents([.weekday], from: Date())
+// Limitation API
+        if  currentWeekday.weekday == 2 || currentWeekday.weekday == 1 {
+            dayInSeconds *= 2
+        }
         let currentDate = Date() - dayInSeconds
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -42,7 +47,7 @@ extension StocksService: StocksServiceProtocol {
                 let urlString = try self.config.getUrl(.stock, date: stringDate)
                 guard let url = URL(string: urlString) else { return }
                 let urlRequest = URLRequest(url: url)
-                self.network.loadData(request: urlRequest) { (result: Result<StockRate, Error>) in
+                self.network.loadData(request: urlRequest) { (result: Result<StockRateDataModel, Error>) in
                     switch result {
                     case .success(let stocks):
                         let result = stocks.results

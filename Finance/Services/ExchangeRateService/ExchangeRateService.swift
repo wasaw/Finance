@@ -38,13 +38,11 @@ extension ExchangeRateService: ExchangeRateServiceProtocol {
                 let urlString = try self.config.getUrl(.exchange) + requestCurrency
                 guard let url = URL(string: urlString) else { return }
                 let request = URLRequest(url: url)
-                self.network.loadData(request: request) { (result: Result<ConversionRates, Error>) in
+                self.network.loadData(request: request) { (result: Result<ExchangeRateDataModel, Error>) in
                     switch result {
                     case .success(let rate):
-                        var index = -1
-                        let exchangeRate = rate.conversion_rates.map { (name, exchangeRate) in
-                            index += 1
-                            return CurrentExchangeRate(name: name, amount: exchangeRate, fullName: self.fullName[index], img: self.img[index])
+                        let exchangeRate = rate.conversionRates.enumerated().compactMap { (index, pair) in
+                            return CurrentExchangeRate(name: pair.0, amount: pair.1, fullName: self.fullName[index], img: self.img[index])
                         }
                         completion(.success(exchangeRate))
                     case .failure(let error):
