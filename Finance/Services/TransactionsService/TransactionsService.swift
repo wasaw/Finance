@@ -12,11 +12,13 @@ final class TransactionsService {
 // MARK: - Properties
     
     private let coreData: CoreDataServiceProtocol
+    private let firebaseService: FirebaseServiceProtocol
     
 // MARK: - Lifecycle
     
-    init(coreData: CoreDataServiceProtocol) {
+    init(coreData: CoreDataServiceProtocol, firebaseService: FirebaseServiceProtocol) {
         self.coreData = coreData
+        self.firebaseService = firebaseService
     }
     
 }
@@ -73,5 +75,6 @@ extension TransactionsService: TransactionsServiceProtocol {
             transactionManagedObject.amount = transaction.amount * currencyRate
             transactionManagedObject.comment = transaction.comment
         }
+        firebaseService.saveTransaction(transaction)
     }
 }

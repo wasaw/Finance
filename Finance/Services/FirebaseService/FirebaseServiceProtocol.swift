@@ -13,4 +13,5 @@ protocol FirebaseServiceProtocol: AnyObject {
     func authVerification(compeltion: @escaping (Result<String, Error>) -> Void)
     func logOut(completion: @escaping (Result<Void, AuthError>) -> Void)
     func saveImage(dataImage: Data, with uid: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func saveTransaction(_ transaction: Transaction)
 }

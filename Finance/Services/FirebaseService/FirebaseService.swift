@@ -74,4 +74,18 @@ extension FirebaseService: FirebaseServiceProtocol {
             }
         }
     }
+    
+    func saveTransaction(_ transaction: Transaction) {
+        if let uid = Auth.auth().currentUser?.uid {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd.MM.yyyy"
+            let value: [String: Any] = ["type": transaction.type,
+                         "amount": transaction.amount,
+                         "img": transaction.img,
+                         "date": formatter.string(from: transaction.date),
+                         "comment": transaction.comment,
+                         "category": transaction.category]
+            REF_USER_TRANSACTIONS.child(uid).childByAutoId().updateChildValues(value)
+        }
+    }
 }
