@@ -58,25 +58,25 @@ extension AuthService: AuthServiceProtocol {
     }
     
     func logOut(completion: @escaping (Result<Void, AuthError>) -> Void) {
+        coreData.deleteUser()
+        coreData.deleteTransactions()
         firebaseService.logOut(completion: completion)
     }
     
     func logInUser(credentials: AuthCredentials, completion: @escaping (Result<Void, AuthError>) -> Void) {
         firebaseService.logIn(withEmail: credentials.email, password: credentials.password) { result in
             switch result {
-            case .success(let uid):
-                do {
-                    let user = try self.coreData.fetchUserInformation(uid: uid)
-                    if user.isEmpty {
-                        self.saveUser(uid: uid, login: "", email: credentials.email)
-                    }
-                    UserDefaults.standard.set(uid, forKey: "uid")
-                    let userDataDict: [String: String] = ["uid": uid]
-                    self.notification.post(name: Notification.Name("updateCredential"), object: nil, userInfo: userDataDict)
-                    completion(.success(()))
-                } catch {
-                    completion(.failure(AuthError.somethingError))
+            case .success(let user):
+                self.coreData.save { context in
+                    let userManagedObject = UserManagedObject(context: context)
+                    userManagedObject.uid = user.uid
+                    userManagedObject.login = user.login
+                    userManagedObject.email = user.email
                 }
+                UserDefaults.standard.set(user.uid, forKey: "uid")
+                let userDataDict: [String: String] = ["uid": user.uid]
+                self.notification.post(name: Notification.Name("updateCredential"), object: nil, userInfo: userDataDict)
+                completion(.success(()))
             case .failure(let error):
                 if error.localizedDescription.contains("The password is invalid") {
                     completion(.failure(.invalidPassword))

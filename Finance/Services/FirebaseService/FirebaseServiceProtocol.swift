@@ -8,7 +8,7 @@
 import Foundation
 
 protocol FirebaseServiceProtocol: AnyObject {
-    func logIn(withEmail email: String, password: String, completion: @escaping (Result<String, Error>) -> Void)
+    func logIn(withEmail email: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
     func signIn(login: String, email: String, password: String, completion: @escaping (Result<String?, Error>) -> Void)
     func authVerification(compeltion: @escaping (Result<String, Error>) -> Void)
     func logOut(completion: @escaping (Result<Void, AuthError>) -> Void)

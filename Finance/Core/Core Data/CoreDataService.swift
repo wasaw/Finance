@@ -59,11 +59,21 @@ extension CoreDataService: CoreDataServiceProtocol {
         }
     }
     
+    func deleteUser() {
+        let backgroundContext = persistentContainer.newBackgroundContext()
+        backgroundContext.perform {
+            let fetchRequest = UserManagedObject.fetchRequest()
+            guard let userCollection = try? backgroundContext.fetch(fetchRequest).first else { return }
+            backgroundContext.delete(userCollection)
+            try? backgroundContext.save()
+        }
+    }
+    
     func deleteTransactions() {
         let backgroundContext = persistentContainer.newBackgroundContext()
         backgroundContext.perform {
-            let fetchReqest = TransactionManagedObject.fetchRequest()
-            guard let transactionsCollection = try? backgroundContext.fetch(fetchReqest).first else { return }
+            let fetchRequest = TransactionManagedObject.fetchRequest()
+            guard let transactionsCollection = try? backgroundContext.fetch(fetchRequest).first else { return }
             backgroundContext.delete(transactionsCollection)
             try? backgroundContext.save()
         }

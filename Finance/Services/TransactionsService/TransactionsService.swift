@@ -78,6 +78,12 @@ extension TransactionsService: TransactionsServiceProtocol {
         firebaseService.saveTransaction(transaction)
     }
     
+    func upload(_ transactions: [Transaction]) {
+        for item in transactions {
+            firebaseService.saveTransaction(item)
+        }
+    }
+    
     func delete() {
         coreData.deleteTransactions()
     }

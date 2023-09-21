@@ -15,13 +15,23 @@ final class FirebaseService {
 // MARK: - FirebaseServiceProtocol
 
 extension FirebaseService: FirebaseServiceProtocol {
-    func logIn(withEmail email: String, password: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func logIn(withEmail email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 completion(.failure(error))
             }
             if let uid = result?.user.uid {
-                completion(.success(uid))
+                REF_USERS.child(uid).getData { error, snapshot in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    
+                    let value = snapshot?.value as? NSDictionary
+                    let emain = value?["email"] as? String ?? ""
+                    let login = value?["login"] as? String ?? ""
+                    let user = User(uid: uid, login: login, email: email)
+                    completion(.success(user))
+                }
             }
         }
     }

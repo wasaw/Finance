@@ -99,6 +99,12 @@ extension AuthPresenter: AuthOutput {
     
     func dismissView(with isSave: Bool) {
         if isSave {
+            do {
+                let transansaction = try transactionsService.fetchTransactions()
+                transactionsService.upload(transansaction)
+            } catch {
+                print(error.localizedDescription)
+            }
             output.dismissView()
         } else {
             transactionsService.delete()
