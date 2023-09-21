@@ -77,4 +77,8 @@ extension TransactionsService: TransactionsServiceProtocol {
         }
         firebaseService.saveTransaction(transaction)
     }
+    
+    func delete() {
+        coreData.deleteTransactions()
+    }
 }

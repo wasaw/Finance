@@ -84,6 +84,6 @@ extension StocksViewController: StocksInput {
     }
     
     func showAlert(with title: String, and text: String) {
-        alert(with: title, massage: text)
+        alert(with: title, message: text)
     }
 }

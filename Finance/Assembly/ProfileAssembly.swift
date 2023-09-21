@@ -11,11 +11,13 @@ final class ProfileAssembly {
     func makeProfileModule(output: ProfilePresenterOutput,
                            authService: AuthServiceProtocol,
                            userService: UserServiceProtocol,
-                           exchageRateService: ExchangeRateServiceProtocol) -> UIViewController {
+                           exchageRateService: ExchangeRateServiceProtocol,
+                           transactionsService: TransactionsServiceProtocol) -> UIViewController {
         let presenter = ProfilePresenter(output: output,
                                          authService: authService,
                                          userService: userService,
-                                         exchangeRateService: exchageRateService)
+                                         exchangeRateService: exchageRateService,
+                                         transactionsService: transactionsService)
         let vc = ProfileViewController(output: presenter)
         presenter.input = vc
         return vc

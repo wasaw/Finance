@@ -195,7 +195,7 @@ extension HomeViewController: HomeInput {
     }
     
     func showAlert(message: String) {
-        self.alert(with: "Ошибка", massage: message)
+        self.alert(with: "Ошибка", message: message)
     }
     
     func setUserName(_ name: String) {

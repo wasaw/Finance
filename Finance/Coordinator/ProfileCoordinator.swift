@@ -17,6 +17,7 @@ final class ProfileCoordinator {
     private let userService: UserServiceProtocol
     private let authCoordinator: AuthCoordinator
     private let exchangeRateService: ExchangeRateServiceProtocol
+    private let transactionsService: TransactionsServiceProtocol
     private var presenterViewController: UIViewController?
     
 // MARK: - Lifecycle
@@ -25,12 +26,14 @@ final class ProfileCoordinator {
          authService: AuthServiceProtocol,
          userService: UserServiceProtocol,
          authCoordinator: AuthCoordinator,
-         exchageRateService: ExchangeRateServiceProtocol) {
+         exchageRateService: ExchangeRateServiceProtocol,
+         transactionsService: TransactionsServiceProtocol) {
         self.profileAssembly = profileAssembly
         self.authService = authService
         self.userService = userService
         self.authCoordinator = authCoordinator
         self.exchangeRateService = exchageRateService
+        self.transactionsService = transactionsService
     }
     
 // MARK: - Helpers
@@ -39,7 +42,8 @@ final class ProfileCoordinator {
         let vc = profileAssembly.makeProfileModule(output: self,
                                                    authService: authService,
                                                    userService: userService,
-                                                   exchageRateService: exchangeRateService)
+                                                   exchageRateService: exchangeRateService,
+                                                   transactionsService: transactionsService)
         let nav = UINavigationController(rootViewController: vc)
         presenterViewController = vc
         profileView = vc

@@ -322,13 +322,15 @@ final class AuthViewController: UIViewController {
     }
     
     @objc private func handleButton() {
-        guard let email = emailTextField.text else { return }
-        guard let password = passTextField.text else { return }
         if segmentedController.selectedSegmentIndex == 0 {
+            guard let email = emailTextField.text else { return }
+            guard let password = passTextField.text else { return }
             let credentials = AuthCredentials(email: email, password: password)
             output.logIn(credentials)
         } else {
+            guard let email = emailRegTextField.text else { return }
             guard let login = loginTextField.text else { return }
+            guard let password = passRegTextField.text else { return }
             guard let confirmPass = confirmPassTextField.text else { return }
             let credentials = RegCredentials(login: login, email: email, password: password, confirmPass: confirmPass)
             output.signIn(credentials)
@@ -344,7 +346,20 @@ final class AuthViewController: UIViewController {
 
 extension AuthViewController: AuthInput {
     func showAlert(message: String) {
-        alert(with: "Внимание", massage: message)
+        alert(with: "Внимание", message: message)
+    }
+    
+    func showAsk() {
+        let alert = UIAlertController(title: "Внимание",
+                                      message: "У вас есть введенные транзакции. Сохранить их для нового пользователя или удалить?",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Сохранить", style: .default, handler: { _ in
+            self.output.dismissView(with: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Не сохранять", style: .default, handler: { _ in
+            self.output.dismissView(with: false)
+        }))
+        self.present(alert, animated: true)
     }
 }
 

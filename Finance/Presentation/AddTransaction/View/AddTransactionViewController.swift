@@ -375,7 +375,7 @@ extension AddTransactionViewController: AddTransactionInput {
     }
     
     func showAlert(with title: String, and text: String) {
-        self.alert(with: title, massage: text)
+        self.alert(with: title, message: text)
     }
 }
 

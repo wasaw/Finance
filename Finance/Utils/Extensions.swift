@@ -74,8 +74,8 @@ extension UIView {
 // MARK: - UIViewController
 
 extension UIViewController {
-    func alert(with title: String, massage: String, completion: ((UIAlertAction) -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: massage, preferredStyle: .alert)
+    func alert(with title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: completion))
         self.present(alert, animated: true)
     }

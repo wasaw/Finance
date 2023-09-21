@@ -135,7 +135,7 @@ extension ProfileViewController: ProfileInput {
     }
     
     func showAlert(with title: String, and message: String) {
-        alert(with: title, massage: message)
+        alert(with: title, message: message)
     }
 }
 

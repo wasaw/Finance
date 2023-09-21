@@ -14,19 +14,25 @@ final class AuthCoordinator {
     private let authAssembly: AuthAssembly
     private let authService: AuthServiceProtocol
     private let coreData = CoreDataService()
+    private let transactionsService: TransactionsServiceProtocol
     private var authViewController: UIViewController?
     
 // MARK: - Lifecycle
     
-    init(authAssembly: AuthAssembly, authService: AuthServiceProtocol) {
+    init(authAssembly: AuthAssembly,
+         authService: AuthServiceProtocol,
+         transactionsService: TransactionsServiceProtocol) {
         self.authAssembly = authAssembly
         self.authService = authService
+        self.transactionsService = transactionsService
     }
     
 // MARK: - Helpers
     
     func start() -> UIViewController {
-        let vc = authAssembly.makeAuthModul(output: self, authService: authService)
+        let vc = authAssembly.makeAuthModul(output: self,
+                                            authService: authService,
+                                            transactionsService: transactionsService)
         authViewController = vc
         return vc
     }

@@ -16,6 +16,7 @@ final class ProfilePresenter {
     private let authService: AuthServiceProtocol
     private let userService: UserServiceProtocol
     private let exchangeRateService: ExchangeRateServiceProtocol
+    private let transactionsService: TransactionsServiceProtocol
     private let notification = NotificationCenter.default
     
     private var currencyButtonArr = [CurrencyButton(title: "Рубль",
@@ -35,11 +36,13 @@ final class ProfilePresenter {
     init(output: ProfilePresenterOutput,
          authService: AuthServiceProtocol,
          userService: UserServiceProtocol,
-         exchangeRateService: ExchangeRateServiceProtocol) {
+         exchangeRateService: ExchangeRateServiceProtocol,
+         transactionsService: TransactionsServiceProtocol) {
         self.output = output
         self.authService = authService
         self.userService = userService
         self.exchangeRateService = exchangeRateService
+        self.transactionsService = transactionsService
         notification.addObserver(self, selector: #selector(updateCredentiall(_:)), name: Notification.Name("updateCredential"), object: nil)
     }
     
@@ -104,13 +107,15 @@ extension ProfilePresenter: ProfileOutput {
     }
     
     func logOut() {
-        authService.logOut { result in
+        authService.logOut { [weak self] result in
             switch result {
             case .success:
                 UserDefaults.standard.set(nil, forKey: "uid")
-                self.output.showAuth()
+                self?.transactionsService.delete()
+                self?.output.showAuth()
+                self?.notification.post(Notification(name: Notification.Name("AddTransaction"), object: nil))
             case .failure:
-                self.input?.showAlert(with: "Ошибка", and: "Не удалось разлогиниться")
+                self?.input?.showAlert(with: "Ошибка", and: "Не удалось разлогиниться")
             }
         }
     }
