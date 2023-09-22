@@ -27,7 +27,7 @@ extension FirebaseService: FirebaseServiceProtocol {
                     }
                     
                     let value = snapshot?.value as? NSDictionary
-                    let emain = value?["email"] as? String ?? ""
+                    let email = value?["email"] as? String ?? ""
                     let login = value?["login"] as? String ?? ""
                     let user = User(uid: uid, login: login, email: email)
                     completion(.success(user))
@@ -96,6 +96,36 @@ extension FirebaseService: FirebaseServiceProtocol {
                          "comment": transaction.comment,
                          "category": transaction.category]
             REF_USER_TRANSACTIONS.child(uid).childByAutoId().updateChildValues(value)
+        }
+    }
+    
+    func fetchTransactions(_ uid: String, completion: @escaping (Result<[Transaction], TransactionError>) -> Void) {
+        REF_USER_TRANSACTIONS.child(uid).getData { error, snapshot in
+            if error != nil {
+                completion(.failure(TransactionError.notFound))
+            }
+            guard let value = snapshot?.value as? NSDictionary else { return }
+            var transactions: [Transaction] = []
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd.MM.yyyy"
+            for item in value {
+                guard let list = item.value as? NSDictionary,
+                      let amount = list["amount"] as? Double,
+                      let category = list["category"] as? String,
+                      let comment = list["comment"] as? String,
+                      let dateString = list["date"] as? String,
+                      let img = list["img"] as? String,
+                      let type = list["type"] as? String,
+                      let date = formatter.date(from: dateString) else { return }
+                let transaction = Transaction(type: type,
+                                              amount: amount,
+                                              img: img,
+                                              date: date,
+                                              comment: comment,
+                                              category: category)
+                transactions.append(transaction)
+            }
+            completion(.success(transactions))
         }
     }
 }

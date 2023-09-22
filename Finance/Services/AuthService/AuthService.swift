@@ -64,18 +64,40 @@ extension AuthService: AuthServiceProtocol {
     }
     
     func logInUser(credentials: AuthCredentials, completion: @escaping (Result<Void, AuthError>) -> Void) {
-        firebaseService.logIn(withEmail: credentials.email, password: credentials.password) { result in
+        firebaseService.logIn(withEmail: credentials.email, password: credentials.password) { [weak self] result in
             switch result {
             case .success(let user):
-                self.coreData.save { context in
+                self?.coreData.save { context in
                     let userManagedObject = UserManagedObject(context: context)
                     userManagedObject.uid = user.uid
                     userManagedObject.login = user.login
                     userManagedObject.email = user.email
                 }
+                self?.firebaseService.fetchTransactions(user.uid, completion: { result in
+                    switch result {
+                    case .success(let transactions):
+                        transactions.forEach { transaction in
+                            self?.coreData.save { context in
+                                let transactionManagedObject = TransactionManagedObject(context: context)
+                                transactionManagedObject.type = transaction.type
+                                transactionManagedObject.category = transaction.category
+                                transactionManagedObject.img = transaction.img
+                                transactionManagedObject.date = transaction.date
+                                transactionManagedObject.amount = transaction.amount
+                                transactionManagedObject.comment = transaction.comment
+                            }
+                        }
+                        self?.notification.post(Notification(name: Notification.Name("AddTransaction"), object: nil))
+                    case .failure(let error):
+                        switch error {
+                        case .notFound:
+                            break
+                        }
+                    }
+                })
                 UserDefaults.standard.set(user.uid, forKey: "uid")
                 let userDataDict: [String: String] = ["uid": user.uid]
-                self.notification.post(name: Notification.Name("updateCredential"), object: nil, userInfo: userDataDict)
+                self?.notification.post(name: Notification.Name("updateCredential"), object: nil, userInfo: userDataDict)
                 completion(.success(()))
             case .failure(let error):
                 if error.localizedDescription.contains("The password is invalid") {

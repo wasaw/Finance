@@ -110,3 +110,7 @@ enum UserLoadError: Error {
     case isEmptyUser
     case somethingError
 }
+
+enum TransactionError: Error {
+    case notFound
+}

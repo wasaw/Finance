@@ -73,9 +73,15 @@ extension CoreDataService: CoreDataServiceProtocol {
         let backgroundContext = persistentContainer.newBackgroundContext()
         backgroundContext.perform {
             let fetchRequest = TransactionManagedObject.fetchRequest()
-            guard let transactionsCollection = try? backgroundContext.fetch(fetchRequest).first else { return }
-            backgroundContext.delete(transactionsCollection)
-            try? backgroundContext.save()
+            do {
+                let items = try backgroundContext.fetch(fetchRequest)
+                for item in items {
+                    backgroundContext.delete(item)
+                }
+                try backgroundContext.save()
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 }
