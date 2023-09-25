@@ -41,4 +41,17 @@ extension Network: NetworkProtocol {
         }
         dataTask.resume()
     }
+    
+    func loadImage(request: URLRequest, completion: @escaping(Result<Data, Error>) -> Void) {
+        let dataTask = session.dataTask(with: request) { data, _, error in
+            if let error = error {
+                completion(.failure(error))
+            }
+
+            if let data = data {
+                completion(.success(data))
+            }
+        }
+        dataTask.resume()
+    }
 }

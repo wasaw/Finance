@@ -10,13 +10,24 @@ import FirebaseAuth
 
 final class FirebaseService {
     
+// MARK: - Properties
+    
+    private let network: NetworkProtocol
+    private let fileStore: FileStoreProtocol
+    
+// MARK: - Lifecycle
+    
+    init(network: NetworkProtocol, fileStore: FileStoreProtocol) {
+        self.network = network
+        self.fileStore = fileStore
+    }
 }
 
 // MARK: - FirebaseServiceProtocol
 
 extension FirebaseService: FirebaseServiceProtocol {
     func logIn(withEmail email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
             if let error = error {
                 completion(.failure(error))
             }
@@ -29,6 +40,19 @@ extension FirebaseService: FirebaseServiceProtocol {
                     let value = snapshot?.value as? NSDictionary
                     let email = value?["email"] as? String ?? ""
                     let login = value?["login"] as? String ?? ""
+                    if let imgUrl = value?["profileImageUrl"] as? String {
+                        guard let url = URL(string: imgUrl) else { return }
+                        let request = URLRequest(url: url)
+                        self?.network.loadImage(request: request) { result in
+                            switch result {
+                            case .success(let imageData):
+                                self?.fileStore.saveImage(data: imageData, with: uid) { _ in
+                                }
+                            case .failure:
+                                break
+                            }
+                        }
+                    }
                     let user = User(uid: uid, login: login, email: email)
                     completion(.success(user))
                 }

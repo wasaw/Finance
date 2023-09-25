@@ -9,4 +9,5 @@ import Foundation
 
 protocol NetworkProtocol: AnyObject {
     func loadData<T: Decodable>(request: URLRequest, completion: @escaping(Result<T, Error>) -> Void)
+    func loadImage(request: URLRequest, completion: @escaping(Result<Data, Error>) -> Void)
 }

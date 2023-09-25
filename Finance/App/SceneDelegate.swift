@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let fileStore = FileStore()
         let coreData = CoreDataService()
         let defaultValueService = DefaultValueService(fileStore: fileStore)
-        let firebaseService = FirebaseService()
+        let firebaseService = FirebaseService(network: network, fileStore: fileStore)
         let transactionsService = TransactionsService(coreData: coreData, firebaseService: firebaseService)
         let authService = AuthService(coreData: coreData, firebaseService: firebaseService)
         let userService = UserService(coreData: coreData,
