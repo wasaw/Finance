@@ -10,12 +10,12 @@ import XCTest
 
 final class AuthServiceTests: XCTestCase {
     
-    var coreData: CoreDataServiceProtocolMock!
+    var coreData: CoreDataServiceMock!
     var firebaseService: FirebaseServiceMock!
     var authService: AuthService!
     
     override func setUp() {
-        coreData = CoreDataServiceProtocolMock()
+        coreData = CoreDataServiceMock()
         firebaseService = FirebaseServiceMock()
         authService = AuthService(coreData: coreData, firebaseService: firebaseService)
     }

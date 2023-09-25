@@ -1,5 +1,5 @@
 //
-//  ExchangeRateProtocolMock.swift
+//  ExchangeRateMock.swift
 //  FinanceUnitTests
 //
 //  Created by Александр Меренков on 01.09.2023.
@@ -8,7 +8,7 @@
 import Foundation
 @testable import Finance
 
-final class ExchangeRateProtocolMock: ExchangeRateServiceProtocol {
+final class ExchangeRateMock: ExchangeRateServiceProtocol {
 
     var invokedFetchExchangeRate = false
     var invokedFetchExchangeRateCount = 0

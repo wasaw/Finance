@@ -14,9 +14,9 @@ final class FirebaseServiceMock: FirebaseServiceProtocol {
     var invokedLogInCount = 0
     var invokedLogInParameters: (email: String, password: String)?
     var invokedLogInParametersList = [(email: String, password: String)]()
-    var stubbedLogInCompletionResult: (Result<String, Error>, Void)?
+    var stubbedLogInCompletionResult: (Result<User, Error>, Void)?
 
-    func logIn(withEmail email: String, password: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func logIn(withEmail email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
         invokedLogIn = true
         invokedLogInCount += 1
         invokedLogInParameters = (email, password)
@@ -78,6 +78,34 @@ final class FirebaseServiceMock: FirebaseServiceProtocol {
         invokedSaveImageParameters = (dataImage, uid)
         invokedSaveImageParametersList.append((dataImage, uid))
         if let result = stubbedSaveImageCompletionResult {
+            completion(result.0)
+        }
+    }
+
+    var invokedSaveTransaction = false
+    var invokedSaveTransactionCount = 0
+    var invokedSaveTransactionParameters: (transaction: Transaction, Void)?
+    var invokedSaveTransactionParametersList = [(transaction: Transaction, Void)]()
+
+    func saveTransaction(_ transaction: Transaction) {
+        invokedSaveTransaction = true
+        invokedSaveTransactionCount += 1
+        invokedSaveTransactionParameters = (transaction, ())
+        invokedSaveTransactionParametersList.append((transaction, ()))
+    }
+
+    var invokedFetchTransactions = false
+    var invokedFetchTransactionsCount = 0
+    var invokedFetchTransactionsParameters: (uid: String, Void)?
+    var invokedFetchTransactionsParametersList = [(uid: String, Void)]()
+    var stubbedFetchTransactionsCompletionResult: (Result<[Transaction], TransactionError>, Void)?
+
+    func fetchTransactions(_ uid: String, completion: @escaping (Result<[Transaction], TransactionError>) -> Void) {
+        invokedFetchTransactions = true
+        invokedFetchTransactionsCount += 1
+        invokedFetchTransactionsParameters = (uid, ())
+        invokedFetchTransactionsParametersList.append((uid, ()))
+        if let result = stubbedFetchTransactionsCompletionResult {
             completion(result.0)
         }
     }

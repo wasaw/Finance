@@ -1,5 +1,5 @@
 //
-//  FileStoreProtocolMock.swift
+//  FileStoreMock.swift
 //  FinanceUnitTests
 //
 //  Created by Александр Меренков on 03.08.2023.
@@ -8,7 +8,7 @@
 import Foundation
 @testable import Finance
 
-final class FileStoreProtocolMock: FileStoreProtocol {
+final class FileStoreMock: FileStoreProtocol {
 
     var invokedSetAppInformation = false
     var invokedSetAppInformationCount = 0

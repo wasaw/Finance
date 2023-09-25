@@ -10,17 +10,20 @@ import XCTest
 
 final class TransactionsServiceTest: XCTestCase {
     
-    var coreData: CoreDataServiceProtocolMock!
+    var coreData: CoreDataServiceMock!
     var transactionsService: TransactionsServiceProtocol!
+    var firebaseService: FirebaseServiceProtocol!
     
     override func setUp() {
-        coreData = CoreDataServiceProtocolMock()
-        transactionsService = TransactionsService(coreData: coreData)
+        coreData = CoreDataServiceMock()
+        firebaseService = FirebaseServiceMock()
+        transactionsService = TransactionsService(coreData: coreData, firebaseService: firebaseService)
     }
     
     override func tearDown() {
         coreData = nil
         transactionsService = nil
+        firebaseService = nil
     }
     
     func testFetchTransactions() throws {

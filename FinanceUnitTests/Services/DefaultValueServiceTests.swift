@@ -10,11 +10,11 @@ import XCTest
 
 final class DefaultValueServiceTests: XCTestCase {
     
-    var fileStore: FileStoreProtocolMock!
+    var fileStore: FileStoreMock!
     var defautlValueService: DefaultValueService!
     
     override func setUp() {
-        fileStore = FileStoreProtocolMock()
+        fileStore = FileStoreMock()
         defautlValueService = DefaultValueService(fileStore: fileStore)
     }
     

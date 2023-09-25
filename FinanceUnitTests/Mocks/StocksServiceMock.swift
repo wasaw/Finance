@@ -1,5 +1,5 @@
 //
-//  StocksServiceProtocolMock.swift
+//  StocksServiceMock.swift
 //  FinanceUnitTests
 //
 //  Created by Александр Меренков on 01.09.2023.
@@ -8,7 +8,7 @@
 import Foundation
 @testable import Finance
 
-final class StocksServiceProtocolMock: StocksServiceProtocol {
+final class StocksServiceMock: StocksServiceProtocol {
     var invokedGetStocks = false
     var invokedGetStocksCount = 0
     var stubbedGetStocksCompletionResult: (Result<[Stock], Error>, Void)?

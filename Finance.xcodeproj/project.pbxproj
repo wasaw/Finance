@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		9AF4048141F3230E754689C8 /* Pods_Finance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53022AC9E214609030662D0 /* Pods_Finance.framework */; };
 		BB44C5F72988079600776D4E /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB44C5F62988079600776D4E /* Animations.swift */; };
-		BB5142232AA1D74C00663609 /* ExchangeRateProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5142222AA1D74C00663609 /* ExchangeRateProtocolMock.swift */; };
+		BB5142232AA1D74C00663609 /* ExchangeRateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5142222AA1D74C00663609 /* ExchangeRateMock.swift */; };
 		BB5142252AA1DBCA00663609 /* StocksServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5142242AA1DBCA00663609 /* StocksServiceTests.swift */; };
-		BB5142272AA1DC3500663609 /* StocksServiceProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5142262AA1DC3500663609 /* StocksServiceProtocolMock.swift */; };
+		BB5142272AA1DC3500663609 /* StocksServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5142262AA1DC3500663609 /* StocksServiceMock.swift */; };
 		BB5142292AA1DD5700663609 /* DefaultValueServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5142282AA1DD5700663609 /* DefaultValueServiceMock.swift */; };
 		BB51422B2AA1DDBB00663609 /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB51422A2AA1DDBB00663609 /* NetworkServiceMock.swift */; };
 		BB51422F2AA1E77E00663609 /* UserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB51422E2AA1E77E00663609 /* UserServiceTests.swift */; };
@@ -65,10 +65,10 @@
 		BB659BA82A83C11C009DB75B /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB659BA72A83C11C009DB75B /* UserServiceProtocol.swift */; };
 		BB66934D285B885A002DFAAD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66934C285B885A002DFAAD /* Model.swift */; };
 		BB66A33A2A7D2F1C003A8871 /* TransactionsServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66A3392A7D2F1C003A8871 /* TransactionsServiceTest.swift */; };
-		BB66A33C2A7D2FDE003A8871 /* CoreDataServiceProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66A33B2A7D2FDE003A8871 /* CoreDataServiceProtocolMock.swift */; };
+		BB66A33C2A7D2FDE003A8871 /* CoreDataServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66A33B2A7D2FDE003A8871 /* CoreDataServiceMock.swift */; };
 		BB66A33E2A7D3315003A8871 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66A33D2A7D3315003A8871 /* TestCoreDataStack.swift */; };
 		BB69A5D12A7D1554001941F0 /* DefaultValueServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB69A5D02A7D1554001941F0 /* DefaultValueServiceTests.swift */; };
-		BB69A5D32A7D1572001941F0 /* FileStoreProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB69A5D22A7D1572001941F0 /* FileStoreProtocolMock.swift */; };
+		BB69A5D32A7D1572001941F0 /* FileStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB69A5D22A7D1572001941F0 /* FileStoreMock.swift */; };
 		BB6A7F632A4C5FF60028CC13 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A7F622A4C5FF60028CC13 /* AuthServiceProtocol.swift */; };
 		BB6A7F692A4C66210028CC13 /* DefaultValueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A7F682A4C66210028CC13 /* DefaultValueService.swift */; };
 		BB6A7F6C2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A7F6B2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift */; };
@@ -138,9 +138,9 @@
 		8B68B2028077D098EA217496 /* Pods-Finance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finance.debug.xcconfig"; path = "Target Support Files/Pods-Finance/Pods-Finance.debug.xcconfig"; sourceTree = "<group>"; };
 		A53022AC9E214609030662D0 /* Pods_Finance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Finance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB44C5F62988079600776D4E /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
-		BB5142222AA1D74C00663609 /* ExchangeRateProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateProtocolMock.swift; sourceTree = "<group>"; };
+		BB5142222AA1D74C00663609 /* ExchangeRateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateMock.swift; sourceTree = "<group>"; };
 		BB5142242AA1DBCA00663609 /* StocksServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksServiceTests.swift; sourceTree = "<group>"; };
-		BB5142262AA1DC3500663609 /* StocksServiceProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksServiceProtocolMock.swift; sourceTree = "<group>"; };
+		BB5142262AA1DC3500663609 /* StocksServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksServiceMock.swift; sourceTree = "<group>"; };
 		BB5142282AA1DD5700663609 /* DefaultValueServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueServiceMock.swift; sourceTree = "<group>"; };
 		BB51422A2AA1DDBB00663609 /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
 		BB51422E2AA1E77E00663609 /* UserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTests.swift; sourceTree = "<group>"; };
@@ -197,12 +197,12 @@
 		BB659BA72A83C11C009DB75B /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
 		BB66934C285B885A002DFAAD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		BB66A3392A7D2F1C003A8871 /* TransactionsServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsServiceTest.swift; sourceTree = "<group>"; };
-		BB66A33B2A7D2FDE003A8871 /* CoreDataServiceProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceProtocolMock.swift; sourceTree = "<group>"; };
+		BB66A33B2A7D2FDE003A8871 /* CoreDataServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceMock.swift; sourceTree = "<group>"; };
 		BB66A33D2A7D3315003A8871 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 		BB66A33F2A810F24003A8871 /* UnitServiceTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitServiceTestPlan.xctestplan; sourceTree = "<group>"; };
 		BB69A5C52A7D106F001941F0 /* FinanceUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinanceUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB69A5D02A7D1554001941F0 /* DefaultValueServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueServiceTests.swift; sourceTree = "<group>"; };
-		BB69A5D22A7D1572001941F0 /* FileStoreProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStoreProtocolMock.swift; sourceTree = "<group>"; };
+		BB69A5D22A7D1572001941F0 /* FileStoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStoreMock.swift; sourceTree = "<group>"; };
 		BB6A7F622A4C5FF60028CC13 /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
 		BB6A7F682A4C66210028CC13 /* DefaultValueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueService.swift; sourceTree = "<group>"; };
 		BB6A7F6B2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueServiceProtocol.swift; sourceTree = "<group>"; };
@@ -591,11 +591,11 @@
 			isa = PBXGroup;
 			children = (
 				BB5142282AA1DD5700663609 /* DefaultValueServiceMock.swift */,
-				BB69A5D22A7D1572001941F0 /* FileStoreProtocolMock.swift */,
-				BB66A33B2A7D2FDE003A8871 /* CoreDataServiceProtocolMock.swift */,
+				BB69A5D22A7D1572001941F0 /* FileStoreMock.swift */,
+				BB66A33B2A7D2FDE003A8871 /* CoreDataServiceMock.swift */,
 				BB66A33D2A7D3315003A8871 /* TestCoreDataStack.swift */,
-				BB5142262AA1DC3500663609 /* StocksServiceProtocolMock.swift */,
-				BB5142222AA1D74C00663609 /* ExchangeRateProtocolMock.swift */,
+				BB5142262AA1DC3500663609 /* StocksServiceMock.swift */,
+				BB5142222AA1D74C00663609 /* ExchangeRateMock.swift */,
 				BB51422A2AA1DDBB00663609 /* NetworkServiceMock.swift */,
 				BB5142302AA1E82D00663609 /* FirebaseServiceMock.swift */,
 			);
@@ -1101,19 +1101,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB66A33C2A7D2FDE003A8871 /* CoreDataServiceProtocolMock.swift in Sources */,
+				BB66A33C2A7D2FDE003A8871 /* CoreDataServiceMock.swift in Sources */,
 				BB66A33E2A7D3315003A8871 /* TestCoreDataStack.swift in Sources */,
 				BB5142252AA1DBCA00663609 /* StocksServiceTests.swift in Sources */,
-				BB5142272AA1DC3500663609 /* StocksServiceProtocolMock.swift in Sources */,
+				BB5142272AA1DC3500663609 /* StocksServiceMock.swift in Sources */,
 				BB69A5D12A7D1554001941F0 /* DefaultValueServiceTests.swift in Sources */,
 				BB5142292AA1DD5700663609 /* DefaultValueServiceMock.swift in Sources */,
 				BB5142312AA1E82D00663609 /* FirebaseServiceMock.swift in Sources */,
-				BB5142232AA1D74C00663609 /* ExchangeRateProtocolMock.swift in Sources */,
+				BB5142232AA1D74C00663609 /* ExchangeRateMock.swift in Sources */,
 				BB66A33A2A7D2F1C003A8871 /* TransactionsServiceTest.swift in Sources */,
 				BB5142332AA200D500663609 /* AuthServiceTests.swift in Sources */,
 				BB51422F2AA1E77E00663609 /* UserServiceTests.swift in Sources */,
 				BB8056C62AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift in Sources */,
-				BB69A5D32A7D1572001941F0 /* FileStoreProtocolMock.swift in Sources */,
+				BB69A5D32A7D1572001941F0 /* FileStoreMock.swift in Sources */,
 				BB51422B2AA1DDBB00663609 /* NetworkServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

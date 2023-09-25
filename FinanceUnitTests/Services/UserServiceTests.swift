@@ -10,14 +10,14 @@ import XCTest
 
 final class UserServiceTests: XCTestCase {
     
-    var coreData: CoreDataServiceProtocolMock!
-    var fileStore: FileStoreProtocolMock!
+    var coreData: CoreDataServiceMock!
+    var fileStore: FileStoreMock!
     var firebaseService: FirebaseServiceMock!
     var userService: UserServiceProtocol!
     
     override func setUp() {
-        coreData = CoreDataServiceProtocolMock()
-        fileStore = FileStoreProtocolMock()
+        coreData = CoreDataServiceMock()
+        fileStore = FileStoreMock()
         firebaseService = FirebaseServiceMock()
         userService = UserService(coreData: coreData, fileStore: fileStore, firebaseService: firebaseService)
     }

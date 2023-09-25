@@ -26,4 +26,20 @@ final class NetworkServiceMock: NetworkProtocol {
             completion(result.0 as! Result<T, Error>)
         }
     }
+
+    var invokedLoadImage = false
+    var invokedLoadImageCount = 0
+    var invokedLoadImageParameters: (request: URLRequest, Void)?
+    var invokedLoadImageParametersList = [(request: URLRequest, Void)]()
+    var stubbedLoadImageCompletionResult: (Result<Data, Error>, Void)?
+
+    func loadImage(request: URLRequest, completion: @escaping(Result<Data, Error>) -> Void) {
+        invokedLoadImage = true
+        invokedLoadImageCount += 1
+        invokedLoadImageParameters = (request, ())
+        invokedLoadImageParametersList.append((request, ()))
+        if let result = stubbedLoadImageCompletionResult {
+            completion(result.0)
+        }
+    }
 }

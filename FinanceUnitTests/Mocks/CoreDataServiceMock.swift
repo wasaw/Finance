@@ -1,5 +1,5 @@
 //
-//  CoreDataServiceProtocolMock.swift
+//  CoreDataServiceMock.swift
 //  FinanceUnitTests
 //
 //  Created by Александр Меренков on 04.08.2023.
@@ -8,7 +8,7 @@
 import CoreData
 @testable import Finance
 
-final class CoreDataServiceProtocolMock: CoreDataServiceProtocol {
+final class CoreDataServiceMock: CoreDataServiceProtocol {
 
     var invokedFetchTransactions = false
     var invokedFetchTransactionsCount = 0
@@ -70,5 +70,21 @@ final class CoreDataServiceProtocolMock: CoreDataServiceProtocol {
         if let result = stubbedSaveCompletionResult {
             try? completion(result.0)
         }
+    }
+
+    var invokedDeleteUser = false
+    var invokedDeleteUserCount = 0
+
+    func deleteUser() {
+        invokedDeleteUser = true
+        invokedDeleteUserCount += 1
+    }
+
+    var invokedDeleteTransactions = false
+    var invokedDeleteTransactionsCount = 0
+
+    func deleteTransactions() {
+        invokedDeleteTransactions = true
+        invokedDeleteTransactionsCount += 1
     }
 }
