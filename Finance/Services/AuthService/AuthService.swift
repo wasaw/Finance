@@ -40,11 +40,12 @@ final class AuthService {
     
 // MARK: - Selectors
     
-    @objc private func endSaving() {
+    @objc private func endSaving(_ notification: Notification) {
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
             let uidDataDict: [String: String] = ["uid": uid]
             DispatchQueue.main.async {
                 self.notification.post(Notification(name: Notification.Name("updateCredential"), object: nil, userInfo: uidDataDict))
+                self.notification.post(Notification(name: Notification.Name("updateTransactions"), object: nil))
             }
         }
     }
@@ -72,6 +73,10 @@ extension AuthService: AuthServiceProtocol {
                     userManagedObject.uid = user.uid
                     userManagedObject.login = user.login
                     userManagedObject.email = user.email
+                    NotificationCenter.default.addObserver(self as Any,
+                                                           selector: #selector(self?.endSaving),
+                                                           name: Notification.Name.NSManagedObjectContextDidSave,
+                                                           object: nil)
                 }
                 self?.firebaseService.fetchTransactions(user.uid, completion: { result in
                     switch result {
@@ -87,7 +92,7 @@ extension AuthService: AuthServiceProtocol {
                                 transactionManagedObject.comment = transaction.comment
                             }
                         }
-                        self?.notification.post(Notification(name: Notification.Name("AddTransaction"), object: nil))
+                        self?.notification.post(Notification(name: Notification.Name("addTransaction"), object: nil))
                     case .failure(let error):
                         switch error {
                         case .notFound:

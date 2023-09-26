@@ -31,9 +31,10 @@ final class HomePresenter {
         self.output = homeCoordinator
         self.transactionsService = transactionsService
         self.userService = userService
-        notification.addObserver(self, selector: #selector(reloadView), name: Notification.Name("AddTransaction"), object: nil)
+        notification.addObserver(self, selector: #selector(reloadView), name: Notification.Name("addTransaction"), object: nil)
         notification.addObserver(self, selector: #selector(updateCredential(_:)), name: Notification.Name("updateCredential"), object: nil)
         notification.addObserver(self, selector: #selector(updateCurrency), name: Notification.Name("updateCurrency"), object: nil)
+        notification.addObserver(self, selector: #selector(updateTransactions), name: Notification.Name("updateTransactions"), object: nil)
     }
     
 // MARK: - Helpers
@@ -115,6 +116,10 @@ final class HomePresenter {
     }
     
     @objc private func updateCurrency() {
+        loadInformation()
+    }
+    
+    @objc private func updateTransactions() {
         loadInformation()
     }
 }

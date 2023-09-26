@@ -14,6 +14,7 @@ final class FirebaseService {
     
     private let network: NetworkProtocol
     private let fileStore: FileStoreProtocol
+    private let notification = NotificationCenter.default
     
 // MARK: - Lifecycle
     
@@ -46,7 +47,18 @@ extension FirebaseService: FirebaseServiceProtocol {
                         self?.network.loadImage(request: request) { result in
                             switch result {
                             case .success(let imageData):
-                                self?.fileStore.saveImage(data: imageData, with: uid) { _ in
+                                self?.fileStore.saveImage(data: imageData, with: uid) { result in
+                                    switch result {
+                                    case .success:
+                                        let uidDataDict: [String: String] = ["uid": uid]
+                                        DispatchQueue.main.async {
+                                            self?.notification.post(Notification(name: Notification.Name("updateCredential"),
+                                                                                 object: nil,
+                                                                                 userInfo: uidDataDict))
+                                        }
+                                    case .failure:
+                                        break
+                                    }
                                 }
                             case .failure:
                                 break

@@ -109,7 +109,7 @@ extension AuthPresenter: AuthOutput {
         } else {
             transactionsService.delete()
             output.dismissView()
-            notification.post(Notification(name: Notification.Name("AddTransaction"), object: nil))
+            notification.post(Notification(name: Notification.Name("addTransaction"), object: nil))
         }
     }
 }

@@ -102,7 +102,7 @@ extension AddTransactionPresenter: AddTransactionOutput {
                                               category: category)
         transactionsService.saveTransaction(lastTransaction)
         let addTransaction: [String: Transaction] = ["lastTransaction": lastTransaction]
-        notification.post(Notification(name: Notification.Name("AddTransaction"), object: nil, userInfo: addTransaction))
+        notification.post(Notification(name: Notification.Name("addTransaction"), object: nil, userInfo: addTransaction))
         input?.dismissView()
     }
 }
