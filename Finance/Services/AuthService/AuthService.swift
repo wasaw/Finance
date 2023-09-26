@@ -44,8 +44,8 @@ final class AuthService {
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
             let uidDataDict: [String: String] = ["uid": uid]
             DispatchQueue.main.async {
-                self.notification.post(Notification(name: Notification.Name("updateCredential"), object: nil, userInfo: uidDataDict))
-                self.notification.post(Notification(name: Notification.Name("updateTransactions"), object: nil))
+                self.notification.post(Notification(name: .updateCredential, object: nil, userInfo: uidDataDict))
+                self.notification.post(Notification(name: .updateTransactions, object: nil))
             }
         }
     }
@@ -92,7 +92,7 @@ extension AuthService: AuthServiceProtocol {
                                 transactionManagedObject.comment = transaction.comment
                             }
                         }
-                        self?.notification.post(Notification(name: Notification.Name("addTransaction"), object: nil))
+                        self?.notification.post(Notification(name: .addTransactions, object: nil))
                     case .failure(let error):
                         switch error {
                         case .notFound:
@@ -102,7 +102,7 @@ extension AuthService: AuthServiceProtocol {
                 })
                 UserDefaults.standard.set(user.uid, forKey: "uid")
                 let userDataDict: [String: String] = ["uid": user.uid]
-                self?.notification.post(name: Notification.Name("updateCredential"), object: nil, userInfo: userDataDict)
+                self?.notification.post(name: .updateCredential, object: nil, userInfo: userDataDict)
                 completion(.success(()))
             case .failure(let error):
                 if error.localizedDescription.contains("The password is invalid") {

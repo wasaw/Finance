@@ -35,7 +35,7 @@ extension FirebaseService: FirebaseServiceProtocol {
             if let uid = result?.user.uid {
                 REF_USERS.child(uid).getData { error, snapshot in
                     if let error = error {
-                        print(error.localizedDescription)
+                        completion(.failure(error))
                     }
                     
                     let value = snapshot?.value as? NSDictionary
@@ -52,7 +52,7 @@ extension FirebaseService: FirebaseServiceProtocol {
                                     case .success:
                                         let uidDataDict: [String: String] = ["uid": uid]
                                         DispatchQueue.main.async {
-                                            self?.notification.post(Notification(name: Notification.Name("updateCredential"),
+                                            self?.notification.post(Notification(name: .updateCredential,
                                                                                  object: nil,
                                                                                  userInfo: uidDataDict))
                                         }

@@ -31,22 +31,26 @@ final class HomePresenter {
         self.output = homeCoordinator
         self.transactionsService = transactionsService
         self.userService = userService
-        notification.addObserver(self, selector: #selector(reloadView), name: Notification.Name("addTransaction"), object: nil)
-        notification.addObserver(self, selector: #selector(updateCredential(_:)), name: Notification.Name("updateCredential"), object: nil)
-        notification.addObserver(self, selector: #selector(updateCurrency), name: Notification.Name("updateCurrency"), object: nil)
-        notification.addObserver(self, selector: #selector(updateTransactions), name: Notification.Name("updateTransactions"), object: nil)
+        registerNotification()
     }
-    
+
 // MARK: - Helpers
     
-    func loadInformation() {
+    private func registerNotification() {
+        notification.addObserver(self, selector: #selector(reloadView), name: .addTransactions, object: nil)
+        notification.addObserver(self, selector: #selector(updateCredential(_:)), name: .updateCredential, object: nil)
+        notification.addObserver(self, selector: #selector(updateCurrency), name: .updateCurrency, object: nil)
+        notification.addObserver(self, selector: #selector(updateTransactions), name: .updateTransactions, object: nil)
+    }
+    
+    private func loadInformation() {
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
             userService.getUser(uid) { [weak self] result in
                 switch result {
                 case .success(let user):
                     self?.input?.setUserName(user.login)
                 case .failure:
-                    break
+                    self?.input?.setUserName("Здравствуйте")
                 }
             }
         }
@@ -108,8 +112,13 @@ final class HomePresenter {
                 switch result {
                 case .success(let user):
                     self?.input?.setUserName(user.login)
-                case .failure:
-                    break
+                case .failure(let error):
+                    switch error {
+                    case .isEmptyUser:
+                        self?.input?.setUserName("Здравствуйте")
+                    case .somethingError:
+                        self?.input?.showAlert(message: error.localizedDescription)
+                    }
                 }
             }
         }

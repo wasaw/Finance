@@ -66,7 +66,7 @@ extension AuthPresenter: AuthOutput {
                     }
                 }
             } catch {
-                print(error.localizedDescription)
+                self.input?.showAlert(message: "Не удается авторизоваться")
             }
         }
     }
@@ -90,7 +90,7 @@ extension AuthPresenter: AuthOutput {
                     }
                 }
             } catch {
-                print(error.localizedDescription)
+                self.input?.showAlert(message: "Не удается зарегистрироваться")
             }
         case .failure(let error):
             input?.showAlert(message: error.localizedDescription)
@@ -103,13 +103,12 @@ extension AuthPresenter: AuthOutput {
                 let transansaction = try transactionsService.fetchTransactions()
                 transactionsService.upload(transansaction)
             } catch {
-                print(error.localizedDescription)
             }
             output.dismissView()
         } else {
             transactionsService.delete()
             output.dismissView()
-            notification.post(Notification(name: Notification.Name("addTransaction"), object: nil))
+            notification.post(Notification(name: .addTransactions, object: nil))
         }
     }
 }

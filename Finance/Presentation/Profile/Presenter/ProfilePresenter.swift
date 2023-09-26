@@ -43,7 +43,7 @@ final class ProfilePresenter {
         self.userService = userService
         self.exchangeRateService = exchangeRateService
         self.transactionsService = transactionsService
-        notification.addObserver(self, selector: #selector(updateCredentiall(_:)), name: Notification.Name("updateCredential"), object: nil)
+        notification.addObserver(self, selector: #selector(updateCredentiall(_:)), name: .updateCredential, object: nil)
     }
     
 // MARK: - Selectors
@@ -60,8 +60,13 @@ final class ProfilePresenter {
                         guard let image = UIImage(named: "add-photo.png") else { return }
                         self?.input?.setUserImage(image)
                     }
-                case .failure:
-                    break
+                case .failure(let error):
+                    switch error {
+                    case .isEmptyUser:
+                        break
+                    case .somethingError:
+                        self?.input?.showAlert(with: "Внимание", and: error.localizedDescription)
+                    }
                 }
             }
         }
@@ -96,8 +101,13 @@ extension ProfilePresenter: ProfileOutput {
                             guard let currencyButtonArr = self?.currencyButtonArr else { return }
                             self?.input?.updateCurrencyMenu(currencyButtonArr)
                         }
-                    case .failure:
-                        break
+                    case .failure(let error):
+                        switch error {
+                        case .isEmptyUser:
+                            break
+                        case .somethingError:
+                            self?.input?.showAlert(with: "Внимание", and: error.localizedDescription)
+                        }
                     }
                 }
             case .failure:
@@ -113,7 +123,7 @@ extension ProfilePresenter: ProfileOutput {
                 UserDefaults.standard.set(nil, forKey: "uid")
                 self?.transactionsService.delete()
                 self?.output.showAuth()
-                self?.notification.post(Notification(name: Notification.Name("addTransaction"), object: nil))
+                self?.notification.post(Notification(name: .addTransactions, object: nil))
             case .failure:
                 self?.input?.showAlert(with: "Ошибка", and: "Не удалось разлогиниться")
             }
@@ -153,7 +163,7 @@ extension ProfilePresenter: ProfilePresenterInput {
                 currencyButtonArr[index].isSelected = false
             }
         }
-        notification.post(Notification(name: Notification.Name("updateCurrency")))
+        notification.post(Notification(name: .updateCurrency))
         input?.updateCurrencyMenu(currencyButtonArr)
         if currencyButton.displayCurrency != .rub {
             exchangeRateService.updateExchangeRate(for: currencyButton.displayCurrency)
