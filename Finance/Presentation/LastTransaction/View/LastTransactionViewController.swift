@@ -47,7 +47,7 @@ final class LastTransactionViewController: UIViewController {
 // MARK: - LastTransactionInput
 
 extension LastTransactionViewController: LastTransactionInput {
-    func showData(transaction: Transaction, currency: Currency) {
-        textView.setInformation(transaction, currency: currency)
+    func showData(transaction: Transaction) {
+        textView.setInformation(transaction)
     }
 }

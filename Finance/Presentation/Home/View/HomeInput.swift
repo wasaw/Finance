@@ -8,8 +8,7 @@
 import Foundation
 
 protocol HomeInput: AnyObject {
-    func showData(total: Double,
-                  currency: Currency,
+    func showData(total: String,
                   service: [ChoiceService],
                   lastTransaction: [Transaction])
     func showLastTransaction()

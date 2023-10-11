@@ -12,14 +12,11 @@ final class LastTransactionsAdapter: NSObject {
 // MARK: - Properties
     
     private var transaction: [Transaction] = []
-    private var currency: Currency = .rub
 
 // MARK: - Helpers
     
-    func configure(transaction: [Transaction],
-                   currency: Currency) {
+    func configure(transaction: [Transaction]) {
         self.transaction = transaction
-        self.currency = currency
     }
 }
 
@@ -33,7 +30,7 @@ extension LastTransactionsAdapter: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LastTransactionCell.identifire,
                                                             for: indexPath) as? LastTransactionCell else { return UICollectionViewCell() }
-        cell.setInformation(lastTransaction: transaction[indexPath.row], currency: currency)
+        cell.setInformation(lastTransaction: transaction[indexPath.row])
         return cell
     }
 }

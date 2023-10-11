@@ -85,9 +85,9 @@ final class LastTransactionModalView: UIView {
                      paddingBottom: -Constants.verticalPadding)
     }
     
-    func setInformation(_ transaction: Transaction, currency: Currency) {
+    func setInformation(_ transaction: Transaction) {
         typeLabel.text = transaction.type
-        amountLabel.text = transaction.amountOutput + currency.getMark()
+        amountLabel.text = transaction.amountOutput + transaction.currencyMark
         if transaction.amount >= 0 {
             amountLabel.textColor = .systemGreen
         } else {

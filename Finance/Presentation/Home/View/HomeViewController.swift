@@ -182,11 +182,13 @@ final class HomeViewController: UIViewController {
 // MARK: - HomeInput
 
 extension HomeViewController: HomeInput {
-    func showData(total: Double, currency: Currency, service: [ChoiceService], lastTransaction: [Transaction]) {
-        totalAccountView.setAccountLabel(total: total, currency: currency)
+    func showData(total: String,
+                  service: [ChoiceService],
+                  lastTransaction: [Transaction]) {
+        totalAccountView.setAccountLabel(total)
         serviceAdapter.configure(service)
         servicesCollectionView?.reloadData()
-        lastTransactionsAdapter.configure(transaction: lastTransaction, currency: currency)
+        lastTransactionsAdapter.configure(transaction: lastTransaction)
         lastTransactionsCollectionView?.reloadData()
     }
     

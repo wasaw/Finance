@@ -23,12 +23,6 @@ struct ChoiceCategoryExpense: Codable {
 struct Transaction {
     var type: String
     var amount: Double
-    var amountOutput: String {
-        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
-            return String(format: "%.2f", amount)
-        }
-        return String(format: "%.2f", amount / currencyRate)
-    }
     var img: String
     var date: Date
     var comment: String
@@ -42,6 +36,21 @@ struct Transaction {
     
     var dateString: String {
         Transaction.dateFormatter.string(from: date)
+    }
+    
+    var amountOutput: String {
+        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
+            return String(format: "%.2f", amount)
+        }
+        return String(format: "%.2f", amount / currencyRate)
+    }
+    
+    var currencyMark: String {
+        guard let rawValue = UserDefaults.standard.value(forKey: "currency") as? Int,
+        let currency = Currency(rawValue: rawValue) else {
+            return Currency.rub.getMark()
+        }
+        return currency.getMark()
     }
 }
 

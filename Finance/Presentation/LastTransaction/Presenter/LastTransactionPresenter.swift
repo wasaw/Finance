@@ -11,10 +11,10 @@ final class LastTransactionPresenter {
     
 // MARK: - Properties
     
-    private let transaction: Transaction
-    
     weak var input: LastTransactionInput?
-    
+
+    private let transaction: Transaction
+        
 // MARK: - Lifecycle
     
     init(transaction: Transaction) {
@@ -27,8 +27,6 @@ final class LastTransactionPresenter {
 
 extension LastTransactionPresenter: LastTransactionOutput {
     func viewIsReady() {
-        guard let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
-              let currentCurrency = Currency(rawValue: currency) else { return }
-        input?.showData(transaction: transaction, currency: currentCurrency)
+        input?.showData(transaction: transaction)
     }
 }
