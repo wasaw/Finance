@@ -83,9 +83,8 @@ final class LastTransactionCell: UICollectionViewCell {
     
 // MARK: - Helpers
     
-    func setInformation(lastTransaction: Transaction, currency: Currency, rate: Double) {
-        let transaction = lastTransaction.amount / rate
-        amountLabel.text = String(format: "%.2f", transaction) + currency.getMark()
+    func setInformation(lastTransaction: Transaction, currency: Currency) {
+        amountLabel.text = lastTransaction.amountOutput + currency.getMark()
         categoryLabel.text = lastTransaction.category
         imageView.image = UIImage(named: lastTransaction.img)
         dateLabel.text = lastTransaction.dateString

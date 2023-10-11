@@ -23,6 +23,12 @@ struct ChoiceCategoryExpense: Codable {
 struct Transaction {
     var type: String
     var amount: Double
+    var amountOutput: String {
+        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
+            return String(format: "%.2f", amount)
+        }
+        return String(format: "%.2f", amount / currencyRate)
+    }
     var img: String
     var date: Date
     var comment: String

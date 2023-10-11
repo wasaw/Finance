@@ -167,7 +167,6 @@ extension ProfilePresenter: ProfilePresenterInput {
                 currencyButtonArr[index].isSelected = false
             }
         }
-        notification.post(Notification(name: .updateCurrency))
         input?.updateCurrencyMenu(currencyButtonArr)
         if currencyButton.displayCurrency != .rub {
             exchangeRateService.updateExchangeRate(for: currencyButton.displayCurrency)
@@ -175,5 +174,6 @@ extension ProfilePresenter: ProfilePresenterInput {
             UserDefaults.standard.set(0, forKey: "currency")
             UserDefaults.standard.set(1, forKey: "currencyRate")
         }
+        notification.post(Notification(name: .updateCurrency))
     }
 }

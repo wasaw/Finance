@@ -71,14 +71,13 @@ final class HomePresenter {
             self.input?.showLastTransaction()
             for index in 0..<lastTransaction.count {
                 revenue += lastTransaction[index].amount
-                lastTransaction[index].amount /= currencyRate
+//                lastTransaction[index].amount /= currencyRate
             }
         }
         
         revenue /= currencyRate
         self.input?.showData(total: revenue,
                              currency: currentCurrency,
-                             rate: currencyRate,
                              service: self.service,
                              lastTransaction: self.lastTransaction)
         
@@ -103,7 +102,6 @@ final class HomePresenter {
                 revenue /= currencyRate
                 input?.showData(total: revenue,
                                 currency: currentCurrency,
-                                rate: currencyRate,
                                 service: self.service,
                                 lastTransaction: lastTransaction)
             }

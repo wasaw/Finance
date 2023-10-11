@@ -28,8 +28,7 @@ final class LastTransactionPresenter {
 extension LastTransactionPresenter: LastTransactionOutput {
     func viewIsReady() {
         guard let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
-              let currentCurrency = Currency(rawValue: currency),
-              let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else { return }
-        input?.showData(transaction: transaction, currency: currentCurrency, rate: currencyRate)
+              let currentCurrency = Currency(rawValue: currency) else { return }
+        input?.showData(transaction: transaction, currency: currentCurrency)
     }
 }

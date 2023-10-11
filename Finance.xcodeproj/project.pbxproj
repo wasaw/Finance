@@ -394,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */,
+				BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */,
 				BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */,
 				BB5E37332A4098BE0093AB95 /* LastTransactionOutput.swift */,
 			);
@@ -713,7 +714,6 @@
 				BB61DEA92850DA9F00A08AC6 /* TotalAccountView.swift */,
 				BB61DEB02851DC3100A08AC6 /* ServicesCell.swift */,
 				BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */,
-				BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

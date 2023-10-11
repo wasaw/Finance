@@ -10,7 +10,6 @@ import Foundation
 protocol HomeInput: AnyObject {
     func showData(total: Double,
                   currency: Currency,
-                  rate: Double,
                   service: [ChoiceService],
                   lastTransaction: [Transaction])
     func showLastTransaction()
