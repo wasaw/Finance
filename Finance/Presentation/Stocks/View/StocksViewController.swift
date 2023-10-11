@@ -77,8 +77,8 @@ extension StocksViewController: StocksInput {
         }
     }
     
-    func setData(_ stockList: [Stock]) {
-        stockAdapter.configure(stockList)
+    func setData(_ stockList: [Stock], rate: Double) {
+        stockAdapter.configure(stockList, rate: rate)
         tableView?.reloadData()
         tableView?.isHidden = false
     }

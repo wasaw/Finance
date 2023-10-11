@@ -108,9 +108,9 @@ final class CurrencyCell: UICollectionViewCell {
                             height: Constants.dividingLineHeight)
     }
     
-    func setInformation(currency: CurrentExchangeRate) {
+    func setInformation(currency: CurrentExchangeRate, rate: Double) {
         shortTitle.text = currency.name
-        valueLabel.text = String(format: "%.3f", currency.amount)
+        valueLabel.text = String(format: "%.3f", currency.amount / rate)
         fullTitle.text = currency.fullName
         currencyImage.image = UIImage(named: currency.img)
     }

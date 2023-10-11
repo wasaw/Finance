@@ -27,6 +27,16 @@ struct Transaction {
     var date: Date
     var comment: String
     var category: String
+    
+    private static let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "dd.MM.yyyy"
+        return df
+    }()
+    
+    var dateString: String {
+        Transaction.dateFormatter.string(from: date)
+    }
 }
 
 struct SaveTransaction {

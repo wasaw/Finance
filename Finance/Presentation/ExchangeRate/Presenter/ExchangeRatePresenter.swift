@@ -39,10 +39,11 @@ final class ExchangeRatePresenter {
             case .success(let exchangeRate):
                 self.exchangeRate = exchangeRate
                 DispatchQueue.main.async {
+                    guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else { return }
                     if let currency = exchangeRate.first(where: { $0.name == "RUB" }) {
-                        self.input?.setCurrency(currency: currency, requestCurrency: requestCurrency)
+                        self.input?.setCurrency(currency: currency, requestCurrency: requestCurrency, rate: currencyRate)
                     }
-                    self.input?.showData(exchangeRate)
+                    self.input?.showData(exchangeRate, rate: currencyRate)
                     self.input?.setLoading(enable: false)
                 }
             case .failure(let error):

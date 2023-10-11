@@ -27,6 +27,10 @@ final class AuthPresenter {
         self.transactionsService = transactionsService
     }
     
+    deinit {
+        notification.removeObserver(self)
+    }
+    
 // MARK: - Helpers
     
     private func isValid(_ credentials: RegCredentials) -> Result<Void, ValidError> {

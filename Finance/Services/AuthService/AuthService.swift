@@ -22,6 +22,10 @@ final class AuthService {
         self.firebaseService = firebaseService
     }
     
+    deinit {
+        notification.removeObserver(self)
+    }
+    
 // MARK: - Helpers
     
     private func saveUser(uid: String, login: String, email: String) {

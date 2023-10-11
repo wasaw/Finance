@@ -33,6 +33,10 @@ final class HomePresenter {
         self.userService = userService
         registerNotification()
     }
+    
+    deinit {
+        notification.removeObserver(self)
+    }
 
 // MARK: - Helpers
     

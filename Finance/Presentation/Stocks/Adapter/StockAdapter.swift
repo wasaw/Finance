@@ -12,11 +12,13 @@ final class StockAdapter: NSObject {
     // MARK: - Properties
     
     private var stockList = [Stock]()
+    private var currencyRate: Double = 1
     
     // MARK: - Helpers
     
-    func configure(_ stockList: [Stock]) {
+    func configure(_ stockList: [Stock], rate: Double) {
         self.stockList = stockList
+        self.currencyRate = rate
     }
 }
 
@@ -30,7 +32,7 @@ extension StockAdapter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StockCell.reuseIdentifite,
                                                        for: indexPath) as? StockCell else { return UITableViewCell() }
-        cell.setValue(stock: stockList[indexPath.row], index: indexPath.row)
+        cell.setValue(stock: stockList[indexPath.row], index: indexPath.row, rate: currencyRate)
         cell.selectionStyle = .none
         return cell
     }

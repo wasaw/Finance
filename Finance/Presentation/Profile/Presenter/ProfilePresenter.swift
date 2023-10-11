@@ -46,6 +46,10 @@ final class ProfilePresenter {
         notification.addObserver(self, selector: #selector(updateCredentiall(_:)), name: .updateCredential, object: nil)
     }
     
+    deinit {
+        notification.removeObserver(self)
+    }
+    
 // MARK: - Selectors
     
     @objc private func updateCredentiall(_ notification: NSNotification) {

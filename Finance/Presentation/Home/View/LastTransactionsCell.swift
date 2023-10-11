@@ -88,8 +88,6 @@ final class LastTransactionCell: UICollectionViewCell {
         amountLabel.text = String(format: "%.2f", transaction) + currency.getMark()
         categoryLabel.text = lastTransaction.category
         imageView.image = UIImage(named: lastTransaction.img)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        dateLabel.text = formatter.string(from: lastTransaction.date)
+        dateLabel.text = lastTransaction.dateString
     }
 }

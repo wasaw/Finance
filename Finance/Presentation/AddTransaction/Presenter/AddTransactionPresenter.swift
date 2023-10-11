@@ -31,6 +31,10 @@ final class AddTransactionPresenter {
         self.defaultValueService = defaultValueService
     }
     
+    deinit {
+        notification.removeObserver(self)
+    }
+    
 // MARK: - Helpers
     
     private func loadData() {

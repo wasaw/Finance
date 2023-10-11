@@ -123,6 +123,10 @@ final class AddTransactionViewController: UIViewController {
         output.viewIsReady()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - Helpers
     
     private func configureUI() {

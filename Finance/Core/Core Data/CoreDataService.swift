@@ -54,7 +54,7 @@ extension CoreDataService: CoreDataServiceProtocol {
                     try backgroundContext.save()
                 }
             } catch {
-                print(error)
+                print(error.localizedDescription)
             }
         }
     }

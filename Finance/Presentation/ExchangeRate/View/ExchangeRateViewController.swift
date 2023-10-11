@@ -92,13 +92,13 @@ extension ExchangeRateViewController: ExchangeRateInput {
         }
     }
     
-    func showData(_ exchangeRate: [CurrentExchangeRate]) {
-        listCurrencyAdapter.configure(exchangeRate)
+    func showData(_ exchangeRate: [CurrentExchangeRate], rate: Double) {
+        listCurrencyAdapter.configure(exchangeRate, rate: rate)
         listCurrencyCollectionView?.reloadData()
     }
 
-    func setCurrency(currency: CurrentExchangeRate, requestCurrency: String) {
-        topView.setCurrency(currency, requestCurrency: requestCurrency)
+    func setCurrency(currency: CurrentExchangeRate, requestCurrency: String, rate: Double) {
+        topView.setCurrency(currency, requestCurrency: requestCurrency, rate: rate)
     }
     
     func showAlert(with title: String, and text: String) {

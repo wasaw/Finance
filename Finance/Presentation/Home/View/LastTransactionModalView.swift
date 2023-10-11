@@ -96,8 +96,6 @@ final class LastTransactionModalView: UIView {
         }
         commentLabel.text = transaction.comment
         categoryLabel.text = transaction.category
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        dateLabel.text = formatter.string(from: transaction.date)
+        dateLabel.text = transaction.dateString
     }
 }
