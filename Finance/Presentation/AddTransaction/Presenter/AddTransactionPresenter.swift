@@ -48,9 +48,9 @@ final class AddTransactionPresenter {
         guard let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
               let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
               let currentCurrency = Currency(rawValue: currency) else { return }
-        for index in 0..<revenue.count {
+        for (index, type) in revenue.enumerated() {
             do {
-                let amount = try transactionsService.fetchAmountBy(revenue[index].name)
+                let amount = try transactionsService.fetchAmountBy(type.name)
                 revenue[index].amount = amount / currencyRate
             } catch {
                 revenue[index].amount = 0
@@ -88,18 +88,17 @@ extension AddTransactionPresenter: AddTransactionOutput {
               let img = selectedCategory?.img,
               let category = selectedCategory?.name,
               let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
-              var amount = Double(amountString) else {
+              let amount = Double(amountString) else {
             if transaction.amount == "" {
                 input?.showAlert(with: "Внимание", and: "Не заполнено поле сумма")
             }
             return
         }
-        if !isRevenue {
-            amount *= -1
-        }
-        amount *= currencyRate
+        let signedAmount = isRevenue ? amount : -amount
+        let convertedAmount = signedAmount * currencyRate
+        
         let lastTransaction = Transaction(type: type,
-                                              amount: amount,
+                                              amount: convertedAmount,
                                               img: img,
                                               date: transaction.date,
                                               comment: transaction.comment ?? "",

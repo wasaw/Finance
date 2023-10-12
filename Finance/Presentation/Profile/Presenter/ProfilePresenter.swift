@@ -19,7 +19,7 @@ final class ProfilePresenter {
     private let transactionsService: TransactionsServiceProtocol
     private let notification = NotificationCenter.default
     
-    private var currencyButtonArr = [CurrencyButton(title: "Рубль",
+    private var currencyButtons = [CurrencyButton(title: "Рубль",
                                                     image: "ruble-currency.png",
                                                     displayCurrency: .rub, isSelected: true),
                                   CurrencyButton(title: "Доллар",
@@ -48,6 +48,52 @@ final class ProfilePresenter {
     
     deinit {
         notification.removeObserver(self)
+    }
+    
+// MARK: - Helpers
+    
+    private func getUserInfo(_ uid: String) {
+        userService.getUser(uid) { [weak self] result in
+            switch result {
+            case .success(let user):
+                self?.updateUserInfo(user)
+            case .failure(let error):
+                switch error {
+                case .isEmptyUser:
+                    break
+                case .somethingError:
+                    self?.input?.showAlert(with: "Внимание", and: error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    private func updateUserInfo(_ user: User) {
+        input?.showUserCredential(user)
+        if let image = user.profileImage {
+            input?.setUserImage(image)
+        }
+    }
+    
+    private func setMenu() {
+        if let currencyRaw = UserDefaults.standard.value(forKey: "currency") as? Int {
+            guard let currency = Currency(rawValue: currencyRaw) else { return }
+            for (index, button) in currencyButtons.enumerated() {
+                currencyButtons[index].isSelected = button.displayCurrency == currency
+            }
+            updateCurrency(currency)
+        }
+    }
+    
+    private func updateCurrency(_ currency: Currency) {
+        input?.updateCurrencyMenu(currencyButtons)
+        if currency != .rub {
+            exchangeRateService.updateExchangeRate(for: currency)
+        } else {
+            UserDefaults.standard.set(0, forKey: "currency")
+            UserDefaults.standard.set(1, forKey: "currencyRate")
+        }
+        notification.post(Notification(name: .updateCurrency))
     }
     
 // MARK: - Selectors
@@ -85,35 +131,8 @@ extension ProfilePresenter: ProfileOutput {
         authService.authVerification { [weak self] result in
             switch result {
             case .success(let uid):
-                self?.userService.getUser(uid) { result in
-                    switch result {
-                    case .success(let user):
-                        self?.input?.showUserCredential(user)
-                        if let image = user.profileImage {
-                            self?.input?.setUserImage(image)
-                        }
-                        if let currencyRaw = UserDefaults.standard.value(forKey: "currency") as? Int {
-                            guard let currency = Currency(rawValue: currencyRaw) else { return }
-                            guard let count = self?.currencyButtonArr.count else { return }
-                            for index in 0..<count {
-                                if self?.currencyButtonArr[index].displayCurrency == currency {
-                                    self?.currencyButtonArr[index].isSelected = true
-                                } else {
-                                    self?.currencyButtonArr[index].isSelected = false
-                                }
-                            }
-                            guard let currencyButtonArr = self?.currencyButtonArr else { return }
-                            self?.input?.updateCurrencyMenu(currencyButtonArr)
-                        }
-                    case .failure(let error):
-                        switch error {
-                        case .isEmptyUser:
-                            break
-                        case .somethingError:
-                            self?.input?.showAlert(with: "Внимание", and: error.localizedDescription)
-                        }
-                    }
-                }
+                self?.getUserInfo(uid)
+                self?.setMenu()
             case .failure:
                 self?.output.showAuth()
             }
@@ -159,21 +178,10 @@ extension ProfilePresenter: ProfilePresenterInput {
     }
     
     func setCurrency(_ currencyButton: CurrencyButton) {
-        for index in 0..<currencyButtonArr.count {
-            if currencyButtonArr[index].title == currencyButton.title {
-                currencyButtonArr[index].isSelected = true
-                UserDefaults.standard.set(currencyButtonArr[index].displayCurrency.rawValue, forKey: "currency")
-            } else {
-                currencyButtonArr[index].isSelected = false
-            }
+        for (index, button) in currencyButtons.enumerated() {
+            currencyButtons[index].isSelected = button.title == currencyButton.title
         }
-        input?.updateCurrencyMenu(currencyButtonArr)
-        if currencyButton.displayCurrency != .rub {
-            exchangeRateService.updateExchangeRate(for: currencyButton.displayCurrency)
-        } else {
-            UserDefaults.standard.set(0, forKey: "currency")
-            UserDefaults.standard.set(1, forKey: "currencyRate")
-        }
-        notification.post(Notification(name: .updateCurrency))
+        UserDefaults.standard.set(currencyButton.displayCurrency.rawValue, forKey: "currency")
+        updateCurrency(currencyButton.displayCurrency)
     }
 }

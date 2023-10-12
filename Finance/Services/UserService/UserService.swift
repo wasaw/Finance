@@ -32,28 +32,23 @@ extension UserService: UserServiceProtocol {
     func getUser(_ uid: String, completion: @escaping (Result<User, UserLoadError>) -> Void) {
         do {
             let userManagedObject = try coreData.fetchUserInformation(uid: uid)
-            let user: [User] = userManagedObject.compactMap { loadedUser in
-                guard let login = loadedUser.login,
-                      let email = loadedUser.email else { return nil }
-                var image: UIImage?
-                fileStore.getImage(uid) { result in
-                    switch result {
-                    case .success(let data):
-                        image = UIImage(data: data)
-                    case .failure:
-                        image = UIImage(named: "add-photo")
-                    }
-                }
-                return User(uid: uid,
-                            login: login,
-                            email: email,
-                            profileImage: image)
-            }
-            if let user = user.first {
-                completion(.success(user))
-            } else {
-                completion(.failure(UserLoadError.isEmptyUser))
-            }
+            if let loadedUser = userManagedObject.first,
+               let login = loadedUser.login,
+               let email = loadedUser.email {
+                   var image: UIImage?
+                   fileStore.getImage(uid) { result in
+                       switch result {
+                       case .success(let data):
+                           image = UIImage(data: data)
+                       case .failure:
+                           image = UIImage(named: "add-photo")
+                       }
+                   }
+                   let user = User(uid: uid, login: login, email: email, profileImage: image)
+                   completion(.success(user))
+           } else {
+               completion(.failure(.isEmptyUser))
+           }
         } catch {
             completion(.failure(UserLoadError.somethingError))
         }

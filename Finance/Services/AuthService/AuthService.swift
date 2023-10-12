@@ -72,16 +72,7 @@ extension AuthService: AuthServiceProtocol {
         firebaseService.logIn(withEmail: credentials.email, password: credentials.password) { [weak self] result in
             switch result {
             case .success(let user):
-                self?.coreData.save { context in
-                    let userManagedObject = UserManagedObject(context: context)
-                    userManagedObject.uid = user.uid
-                    userManagedObject.login = user.login
-                    userManagedObject.email = user.email
-                    NotificationCenter.default.addObserver(self as Any,
-                                                           selector: #selector(self?.endSaving),
-                                                           name: Notification.Name.NSManagedObjectContextDidSave,
-                                                           object: nil)
-                }
+                self?.saveUser(uid: user.uid, login: user.login, email: user.email)
                 self?.firebaseService.fetchTransactions(user.uid, completion: { result in
                     switch result {
                     case .success(let transactions):
@@ -104,7 +95,6 @@ extension AuthService: AuthServiceProtocol {
                         }
                     }
                 })
-                UserDefaults.standard.set(user.uid, forKey: "uid")
                 let userDataDict: [String: String] = ["uid": user.uid]
                 self?.notification.post(name: .updateCredential, object: nil, userInfo: userDataDict)
                 completion(.success(()))

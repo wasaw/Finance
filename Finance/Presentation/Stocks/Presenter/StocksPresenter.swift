@@ -13,29 +13,51 @@ final class StocksPresenter {
     
     weak var input: StocksInput?
     private let stocksService: StocksServiceProtocol
+    private var stocks: [Stock]?
+    private let notification = NotificationCenter.default
     
 // MARK: - Lifecycle
     
     init(stocksService: StocksServiceProtocol) {
         self.stocksService = stocksService
+        notification.addObserver(self,
+                                 selector: #selector(updateData),
+                                 name: .updateCurrency,
+                                 object: nil)
+    }
+    
+    deinit {
+        notification.removeObserver(self)
     }
     
 // MARK: - Helpers
     
     private func loadData() {
-        stocksService.getStocks { result in
+        stocksService.getStocks { [weak self] result in
             switch result {
             case .success(let stocks):
-                DispatchQueue.main.async {
-                    self.input?.setLoading(enable: false)
-                    self.input?.setData(stocks)
-                }
+                self?.handleStocksResponse(stocks)
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
+                    self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
                 }
             }
         }
+    }
+    
+    private func handleStocksResponse(_ stocks: [Stock]) {
+        self.stocks = stocks
+        DispatchQueue.main.async {
+            self.input?.setLoading(enable: false)
+            self.input?.setData(stocks)
+        }
+    }
+    
+// MARK: - Selectors
+    
+    @objc private func updateData() {
+        guard let stocks = stocks else { return }
+        input?.setData(stocks)
     }
 }
 

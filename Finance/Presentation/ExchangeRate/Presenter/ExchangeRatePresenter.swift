@@ -18,6 +18,7 @@ final class ExchangeRatePresenter {
     private let coreDataService: CoreDataServiceProtocol
     private let exchangeRateService: ExchangeRateServiceProtocol
     private var exchangeRate: [CurrentExchangeRate] = []
+    private let notification = NotificationCenter.default
         
 // MARK: - Lifecycle
     
@@ -29,28 +30,43 @@ final class ExchangeRatePresenter {
         self.config = config
         self.coreDataService = coreDataService
         self.exchangeRateService = exchangeRateService
+        notification.addObserver(self, selector: #selector(updateInformation), name: .updateCurrency, object: nil)
+    }
+    
+    deinit {
+        notification.removeObserver(self)
     }
     
 // MARK: - Helpers
     
     private func loadInformation(_ requestCurrency: String) {
-        exchangeRateService.fetchExchangeRate(requestCurrency) { result in
+        exchangeRateService.fetchExchangeRate(requestCurrency) { [weak self] result in
             switch result {
             case .success(let exchangeRate):
-                self.exchangeRate = exchangeRate
-                DispatchQueue.main.async {
-                    if let currency = exchangeRate.first(where: { $0.name == "RUB" }) {
-                        self.input?.setCurrency(currency: currency, requestCurrency: requestCurrency)
-                    }
-                    self.input?.showData(exchangeRate)
-                    self.input?.setLoading(enable: false)
-                }
+                self?.handleExchangeRateResponse(exchangeRate, requestCurrency)
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
+                    self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
                 }
             }
         }
+    }
+    
+    private func handleExchangeRateResponse(_ exchangeRate: [CurrentExchangeRate], _ requestCurrency: String) {
+        self.exchangeRate = exchangeRate
+        DispatchQueue.main.async {
+            if let currency = exchangeRate.first(where: { $0.name == "RUB" }) {
+                self.input?.setCurrency(currency: currency, requestCurrency: requestCurrency)
+            }
+            self.input?.showData(exchangeRate)
+            self.input?.setLoading(enable: false)
+        }
+    }
+    
+// MARK: - Selectors
+    
+    @objc private func updateInformation() {
+        loadInformation("USD")
     }
 }
 

@@ -108,11 +108,10 @@ extension AuthPresenter: AuthOutput {
                 transactionsService.upload(transansaction)
             } catch {
             }
-            output.dismissView()
         } else {
             transactionsService.delete()
-            output.dismissView()
             notification.post(Notification(name: .addTransactions, object: nil))
         }
+        output.dismissView()
     }
 }

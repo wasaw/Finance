@@ -69,15 +69,12 @@ final class HomePresenter {
         }
         if !self.lastTransaction.isEmpty {
             self.input?.showLastTransaction()
-            for index in 0..<lastTransaction.count {
-                revenue += lastTransaction[index].amount
-            }
+            revenue = lastTransaction.reduce(0) { $0 + $1.amount }
         }
         
         revenue /= currencyRate
         let total = String(format: "%.2f", revenue) + currentCurrency.getMark()
         self.input?.showData(total: total,
-//                             currency: currentCurrency,
                              service: self.service,
                              lastTransaction: self.lastTransaction)
         

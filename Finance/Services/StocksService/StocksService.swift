@@ -51,9 +51,9 @@ extension StocksService: StocksServiceProtocol {
                     switch result {
                     case .success(let stocks):
                         let result = stocks.results
-                        for i in 0..<stockList.count {
-                            if let answer = result.first(where: { $0.symbol == stockList[i].symbol }) {
-                                stockList[i].value = answer.value
+                        for (index, stock) in stockList.enumerated() {
+                            if let answer = result.first(where: { $0.symbol == stock.symbol }) {
+                                stockList[index].value = answer.value
                             }
                         }
                         completion(.success(stockList))
