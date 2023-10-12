@@ -23,13 +23,12 @@ final class StocksPresenter {
 // MARK: - Helpers
     
     private func loadData() {
-        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else { return }
         stocksService.getStocks { result in
             switch result {
             case .success(let stocks):
                 DispatchQueue.main.async {
                     self.input?.setLoading(enable: false)
-                    self.input?.setData(stocks, rate: currencyRate)
+                    self.input?.setData(stocks)
                 }
             case .failure(let error):
                 DispatchQueue.main.async {

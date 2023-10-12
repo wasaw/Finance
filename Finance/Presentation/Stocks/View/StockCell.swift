@@ -58,10 +58,9 @@ final class StockCell: UITableViewCell {
                           paddingTrailing: -Constants.valueLabelPaddingTrailing)
     }
     
-    func setValue(stock: Stock, index: Int, rate: Double) {
+    func setValue(stock: Stock, index: Int) {
         symbolLabel.text = stock.symbol
-        let formattedValue = String(format: "%.2f", stock.value / rate)
-        valueLabel.text = formattedValue
+        valueLabel.text = stock.valueOutput
         if index % 2 == 0 {
             backgroundColor = .white
         } else {

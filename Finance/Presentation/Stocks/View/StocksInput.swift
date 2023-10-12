@@ -9,6 +9,6 @@ import Foundation
 
 protocol StocksInput: AnyObject {
     func setLoading(enable: Bool)
-    func setData(_ stockList: [Stock], rate: Double)
+    func setData(_ stockList: [Stock])
     func showAlert(with title: String, and text: String)
 }

@@ -156,6 +156,13 @@ struct Stock: Codable {
         self.company = company
         self.value = 0
     }
+    
+    var valueOutput: String {
+        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
+            return String(format: "%.2f", value)
+        }
+        return String(format: "%.2f", value / currencyRate)
+    }
 }
 
 enum RequestType {
