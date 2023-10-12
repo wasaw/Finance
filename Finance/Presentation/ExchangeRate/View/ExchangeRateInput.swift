@@ -9,7 +9,7 @@ import Foundation
 
 protocol ExchangeRateInput: AnyObject {
     func setLoading(enable: Bool)
-    func showData(_ exchangeRate: [CurrentExchangeRate], rate: Double)
-    func setCurrency(currency: CurrentExchangeRate, requestCurrency: String, rate: Double)
+    func showData(_ exchangeRate: [CurrentExchangeRate])
+    func setCurrency(currency: CurrentExchangeRate, requestCurrency: String)
     func showAlert(with title: String, and text: String)
 }

@@ -65,6 +65,13 @@ struct CurrentExchangeRate {
     let amount: Double
     let fullName: String
     let img: String
+    
+    var amountOutput: String {
+        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
+            return String(format: "%.2f", amount)
+        }
+        return String(format: "%.2f", amount / currencyRate)
+    }
 }
 
 struct AuthCredentials {

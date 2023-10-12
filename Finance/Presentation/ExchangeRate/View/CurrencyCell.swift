@@ -42,6 +42,7 @@ final class CurrencyCell: UICollectionViewCell {
     private let valueLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 21)
+        label.textAlignment = .center
         return label
     }()
     
@@ -108,9 +109,9 @@ final class CurrencyCell: UICollectionViewCell {
                             height: Constants.dividingLineHeight)
     }
     
-    func setInformation(currency: CurrentExchangeRate, rate: Double) {
+    func setInformation(currency: CurrentExchangeRate) {
         shortTitle.text = currency.name
-        valueLabel.text = String(format: "%.3f", currency.amount / rate)
+        valueLabel.text = currency.amountOutput
         fullTitle.text = currency.fullName
         currencyImage.image = UIImage(named: currency.img)
     }

@@ -48,7 +48,7 @@ final class TopView: UIView {
         rateLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
-    func setCurrency(_ currency: CurrentExchangeRate, requestCurrency: String, rate: Double) {
-        rateLabel.text = "Курс " + requestCurrency + " " + String(format: "%.2f", currency.amount / rate)
+    func setCurrency(_ currency: CurrentExchangeRate, requestCurrency: String) {
+        rateLabel.text = "Курс " + requestCurrency + " " + currency.amountOutput
     }
 }

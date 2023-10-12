@@ -12,13 +12,11 @@ final class ListCurrencyAdapter: NSObject {
 // MARK: - Properties
     
     private var exchangeRate = [CurrentExchangeRate]()
-    private var currencyRate: Double = 1
 
 // MARK: - Helpers
     
-    func configure(_ exchangeRate: [CurrentExchangeRate], rate: Double) {
+    func configure(_ exchangeRate: [CurrentExchangeRate]) {
         self.exchangeRate = exchangeRate
-        self.currencyRate = rate
     }
 }
 
@@ -32,7 +30,7 @@ extension ListCurrencyAdapter: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurrencyCell.identifire,
                                                             for: indexPath) as? CurrencyCell else { return UICollectionViewCell() }
-        cell.setInformation(currency: exchangeRate[indexPath.row], rate: currencyRate)
+        cell.setInformation(currency: exchangeRate[indexPath.row])
         return cell
     }
 }
