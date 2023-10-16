@@ -35,7 +35,7 @@ extension StocksService: StocksServiceProtocol {
         let currentWeekday = Calendar.current.dateComponents([.weekday], from: Date())
 // Limitation API
         if  currentWeekday.weekday == 2 || currentWeekday.weekday == 1 {
-            dayInSeconds *= 2
+            dayInSeconds = 259200
         }
         let currentDate = Date() - dayInSeconds
         let formatter = DateFormatter()
