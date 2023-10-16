@@ -10,7 +10,15 @@ import UIKit
 struct ChoiceService {
     let name: String
     let img: String
+    let type: TypeService
 }
+
+enum TypeService: Int {
+    case exchange
+    case stocks
+    case atm
+}
+
 struct ChoiceTypeRevenue: Codable {
     let name: String
     let img: String

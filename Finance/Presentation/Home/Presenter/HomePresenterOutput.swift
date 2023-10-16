@@ -10,5 +10,6 @@ import Foundation
 protocol HomePresenterOutput: AnyObject {
     func showExchangeRate()
     func showStock()
+    func showATM()
     func showLastTransaction(_ transaction: Transaction)
 }

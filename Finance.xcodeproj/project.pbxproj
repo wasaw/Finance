@@ -109,6 +109,11 @@
 		BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC0F2863023700305776 /* Model.xcdatamodeld */; };
 		BB9EFC13286B234700305776 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC12286B234600305776 /* CoreDataService.swift */; };
 		BB9EFC21287869D000305776 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9EFC20287869D000305776 /* CurrencyCell.swift */; };
+		BBA242392ADD5EE100756EAA /* ATMPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA242382ADD5EE100756EAA /* ATMPresenter.swift */; };
+		BBA2423B2ADD5EF200756EAA /* ATMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2423A2ADD5EF200756EAA /* ATMViewController.swift */; };
+		BBA2423D2ADD5EFD00756EAA /* ATMInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2423C2ADD5EFD00756EAA /* ATMInput.swift */; };
+		BBA2423F2ADD5F0700756EAA /* ATMOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2423E2ADD5F0700756EAA /* ATMOutput.swift */; };
+		BBA242412ADD613D00756EAA /* ATMAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA242402ADD613D00756EAA /* ATMAssembly.swift */; };
 		BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */; };
 		BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC052851F3FF003F9197 /* TitleView.swift */; };
 		BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */; };
@@ -243,6 +248,11 @@
 		BB9EFC102863023700305776 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		BB9EFC12286B234600305776 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		BB9EFC20287869D000305776 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
+		BBA242382ADD5EE100756EAA /* ATMPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATMPresenter.swift; sourceTree = "<group>"; };
+		BBA2423A2ADD5EF200756EAA /* ATMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATMViewController.swift; sourceTree = "<group>"; };
+		BBA2423C2ADD5EFD00756EAA /* ATMInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATMInput.swift; sourceTree = "<group>"; };
+		BBA2423E2ADD5F0700756EAA /* ATMOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATMOutput.swift; sourceTree = "<group>"; };
+		BBA242402ADD613D00756EAA /* ATMAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATMAssembly.swift; sourceTree = "<group>"; };
 		BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionModalView.swift; sourceTree = "<group>"; };
 		BBCFDC052851F3FF003F9197 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionsCell.swift; sourceTree = "<group>"; };
@@ -303,6 +313,7 @@
 				BB5C40FA2A443C5B002DC6A0 /* ExchangeRateAssembly.swift */,
 				BB5C40FC2A443FB1002DC6A0 /* StocksAssembly.swift */,
 				BB5C41092A444D27002DC6A0 /* AuthAssembly.swift */,
+				BBA242402ADD613D00756EAA /* ATMAssembly.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -681,6 +692,7 @@
 				BB5E372A2A40983C0093AB95 /* LastTransaction */,
 				BB5E373B2A41991B0093AB95 /* ExchangeRate */,
 				BB5E37462A41CC160093AB95 /* Stocks */,
+				BBA242352ADD5EA200756EAA /* ATM */,
 				BB5C40FE2A444628002DC6A0 /* Auth */,
 			);
 			path = Presentation;
@@ -787,6 +799,33 @@
 				BB715F9F2A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift */,
 			);
 			path = ExchangeRateService;
+			sourceTree = "<group>";
+		};
+		BBA242352ADD5EA200756EAA /* ATM */ = {
+			isa = PBXGroup;
+			children = (
+				BBA242372ADD5EAB00756EAA /* Presenter */,
+				BBA242362ADD5EA700756EAA /* View */,
+			);
+			path = ATM;
+			sourceTree = "<group>";
+		};
+		BBA242362ADD5EA700756EAA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BBA2423A2ADD5EF200756EAA /* ATMViewController.swift */,
+				BBA2423C2ADD5EFD00756EAA /* ATMInput.swift */,
+				BBA2423E2ADD5F0700756EAA /* ATMOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BBA242372ADD5EAB00756EAA /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BBA242382ADD5EE100756EAA /* ATMPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		BBD518652A9CD8800052B895 /* Adapter */ = {
@@ -1051,6 +1090,7 @@
 				BB6D21A62A38AA5E000C22D7 /* ProfileOutput.swift in Sources */,
 				BB6A7F6C2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift in Sources */,
 				BB6B5BB62A3C9C1600E16FFB /* AddTransactionViewController.swift in Sources */,
+				BBA242392ADD5EE100756EAA /* ATMPresenter.swift in Sources */,
 				BB5E374A2A41CC420093AB95 /* StocksViewController.swift in Sources */,
 				BB659BA82A83C11C009DB75B /* UserServiceProtocol.swift in Sources */,
 				BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */,
@@ -1058,8 +1098,10 @@
 				BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */,
 				BB5C40FB2A443C5B002DC6A0 /* ExchangeRateAssembly.swift in Sources */,
 				BB5E373F2A4199440093AB95 /* ExchangeRatePresenter.swift in Sources */,
+				BBA2423B2ADD5EF200756EAA /* ATMViewController.swift in Sources */,
 				BB5E37452A4199E00093AB95 /* ExchangeRateOutput.swift in Sources */,
 				BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */,
+				BBA2423F2ADD5F0700756EAA /* ATMOutput.swift in Sources */,
 				BBD518742AA0969D0052B895 /* StockAdapter.swift in Sources */,
 				BB5E37342A4098BE0093AB95 /* LastTransactionOutput.swift in Sources */,
 				BB715FA22A8CAE40004266A0 /* TopView.swift in Sources */,
@@ -1086,12 +1128,14 @@
 				BB715F992A8B6733004266A0 /* StocksService.swift in Sources */,
 				BB5C40F72A443544002DC6A0 /* AddTransactionAssembly.swift in Sources */,
 				BB5C411A2A462D6A002DC6A0 /* FileStore.swift in Sources */,
+				BBA242412ADD613D00756EAA /* ATMAssembly.swift in Sources */,
 				BB5E37512A41CD1C0093AB95 /* StocksOutput.swift in Sources */,
 				BB6A7F692A4C66210028CC13 /* DefaultValueService.swift in Sources */,
 				BB5C410A2A444D27002DC6A0 /* AuthAssembly.swift in Sources */,
 				BB6DF0112A4B6F9B00A1B4BD /* TransactionsService.swift in Sources */,
 				BB6C96AE2AA1BE74002338C9 /* ListCurrencyAdapter.swift in Sources */,
 				BB5E373A2A418A4D0093AB95 /* HomePresenterOutput.swift in Sources */,
+				BBA2423D2ADD5EFD00756EAA /* ATMInput.swift in Sources */,
 				BB5E8D802A979C2800BC1010 /* FirebaseService.swift in Sources */,
 				BB715F962A8653F8004266A0 /* AuthPresenterOutput.swift in Sources */,
 			);

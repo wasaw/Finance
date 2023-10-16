@@ -16,8 +16,9 @@ final class HomePresenter {
     private let transactionsService: TransactionsServiceProtocol
     private let userService: UserServiceProtocol
     
-    private let service = [ChoiceService(name: "Курс валют", img: "exchange-rate.png"),
-                           ChoiceService(name: "Акции", img: "stock-market.png")]
+    private let service = [ChoiceService(name: "Курс валют", img: "exchange-rate.png", type: .exchange),
+                           ChoiceService(name: "Акции", img: "stock-market.png", type: .stocks),
+                           ChoiceService(name: "Банкоматы", img: "atm-machine", type: .atm)]
 
     private var lastTransaction = [Transaction]()
     
@@ -140,10 +141,15 @@ extension HomePresenter: HomeOutput {
     }
     
     func showService(at index: Int) {
-        if index == 0 {
+        switch TypeService(rawValue: index) {
+        case .exchange:
             output.showExchangeRate()
-        } else {
+        case .stocks:
             output.showStock()
+        case .atm:
+            output.showATM()
+        case .none:
+            break
         }
     }
     
