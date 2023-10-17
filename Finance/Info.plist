@@ -23,5 +23,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Для получения вашей текущей позиций</string>
 </dict>
 </plist>

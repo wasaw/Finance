@@ -6,12 +6,23 @@
 //
 
 import UIKit
+import MapKit
+
+private enum Constants {
+    static let paddingButtom: CGFloat = -5
+}
 
 final class ATMViewController: UIViewController {
 
 // MARK: - Properties
     
     private let output: ATMOutput
+    
+    private lazy var mapView: MKMapView = {
+        let map = MKMapView()
+        map.delegate = self
+        return map
+    }()
     
 // MARK: - Lifecycle
     
@@ -28,12 +39,41 @@ final class ATMViewController: UIViewController {
         super.viewDidLoad()
         
         output.viewIsReady()
+        configureUI()
     }
     
+// MARK: - Helpers
+    
+    private func configureUI() {
+        view.addSubview(mapView)
+        mapView.anchor(leading: view.leadingAnchor,
+                       top: view.topAnchor,
+                       trailing: view.trailingAnchor,
+                       bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                       paddingBottom: Constants.paddingButtom)
+        view.backgroundColor = .white
+    }
 }
 
 // MARK: - ATMInput
 
 extension ATMViewController: ATMInput {
+    func showUserLocation() {
+        mapView.showsUserLocation = true
+    }
+    
+    func setUserLocation(_ cooridate: MKCoordinateRegion, animated: Bool) {
+        mapView.setRegion(cooridate, animated: animated)
+
+    }
+    
+    func showAlert(message: String) {
+        alert(with: "Внимание", message: message)
+    }
+}
+
+// MARK: - MKMapViewDelegate
+
+extension ATMViewController: MKMapViewDelegate {
     
 }
