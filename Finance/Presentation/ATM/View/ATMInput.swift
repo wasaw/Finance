@@ -12,4 +12,5 @@ protocol ATMInput: AnyObject {
     func showUserLocation()
     func setUserLocation(_ cooridate: MKCoordinateRegion, animated: Bool)
     func showAlert(message: String)
+    func showPlaces(_ places: [MKMapItem])
 }

@@ -38,7 +38,7 @@ final class ATMViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.viewIsReady()
+        output.viewIsReady(mapView.region)
         configureUI()
     }
     
@@ -69,6 +69,15 @@ extension ATMViewController: ATMInput {
     
     func showAlert(message: String) {
         alert(with: "Внимание", message: message)
+    }
+    
+    func showPlaces(_ places: [MKMapItem]) {
+        for place in places {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = place.placemark.coordinate
+            mapView.addAnnotation(annotation)
+            mapView.selectAnnotation(annotation, animated: false)
+        }
     }
 }
 

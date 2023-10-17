@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import MapKit
 
 protocol ATMOutput: AnyObject {
-    func viewIsReady()
+    func viewIsReady(_ region: MKCoordinateRegion)
 }
