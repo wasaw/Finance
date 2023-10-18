@@ -59,15 +59,19 @@ final class HomePresenter {
                 }
             }
         }
-        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
-              let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
-              let currentCurrency = Currency(rawValue: currency) else { return }
-        var revenue: Double = 0
         do {
             lastTransaction = try transactionsService.fetchTransactions()
         } catch {
             self.input?.showAlert(message: error.localizedDescription)
         }
+        showRevenue()
+    }
+    
+    private func showRevenue() {
+        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
+              let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
+              let currentCurrency = Currency(rawValue: currency) else { return }
+        var revenue: Double = 0
         if !self.lastTransaction.isEmpty {
             self.input?.showLastTransaction()
             revenue = lastTransaction.reduce(0) { $0 + $1.amount }
@@ -78,7 +82,6 @@ final class HomePresenter {
         self.input?.showData(total: total,
                              service: self.service,
                              lastTransaction: self.lastTransaction)
-        
     }
     
 // MARK: - Selectors
@@ -86,22 +89,8 @@ final class HomePresenter {
     @objc private func reloadView(_ notification: NSNotification) {
         if let dictionary = notification.userInfo as? NSDictionary {
             if let transaction = dictionary["lastTransaction"] as? Transaction {
-                if lastTransaction.isEmpty {
-                    input?.showLastTransaction()
-                }
                 lastTransaction.append(transaction)
-                var revenue: Double = 0
-                lastTransaction.forEach { transaction in
-                    revenue += transaction.amount
-                }
-                guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
-                      let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
-                      let currentCurrency = Currency(rawValue: currency) else { return }
-                revenue /= currencyRate
-                let total = String(format: "%.2f", revenue) + currentCurrency.getMark()
-                input?.showData(total: total,
-                                service: self.service,
-                                lastTransaction: lastTransaction)
+                showRevenue()
             }
         }
     }

@@ -62,6 +62,7 @@ final class ATMPresenter: NSObject {
             }
             
             self.input?.showPlaces(response.mapItems)
+            self.locationManager.stopUpdatingLocation()
         }
     }
 }
