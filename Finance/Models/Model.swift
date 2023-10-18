@@ -174,11 +174,6 @@ struct Stock: Codable {
     }
 }
 
-enum RequestType {
-    case exchange
-    case stock
-}
-
 struct CurrencyButton {
     let title: String
     let image: String

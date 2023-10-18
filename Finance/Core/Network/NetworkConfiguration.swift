@@ -19,6 +19,9 @@ struct NetworkConfiguration {
     private let stockCenter = "?adjusted=true&apiKey="
     private let stockApiKey = Bundle.main.infoDictionary?["STOCK_API_KEY"] as? String ?? ""
     
+    private let newsUrl = "https://api.marketaux.com/v1/news/all?countries=us&filter_entities=true&limit=10&published_after=2023-10-17T13:25&api_token="
+    private let newsApiKey = Bundle.main.infoDictionary?["NEWS_API_KEY"] as? String ?? ""
+    
 // MARK: - Helpers
     
     func getUrl(_ request: RequestType, date: String? = nil) throws -> String {
@@ -34,6 +37,11 @@ struct NetworkConfiguration {
                 throw ConfigFileError.lostFile
             }
             return stockUrl + date + stockCenter + stockApiKey
+        case .news:
+            if newsApiKey.isEmpty {
+                throw ConfigFileError.lostFile
+            }
+            return newsUrl + newsApiKey
         }
     }
 }

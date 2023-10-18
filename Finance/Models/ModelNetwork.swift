@@ -5,6 +5,12 @@
 //  Created by Александр Меренков on 31.01.2023.
 //
 
+enum RequestType {
+    case exchange
+    case stock
+    case news
+}
+
 // MARK: - Currency
 
 struct ExchangeRateDataModel: Codable {
@@ -81,5 +87,22 @@ extension StockRateDataModel {
             case symbol = "T"
             case value = "c"
         }
+    }
+}
+
+// MARK: - News
+
+struct NewsDataModel: Codable {
+    let meta: NewsMeta
+    let data: [NewsData]
+}
+
+extension NewsDataModel {
+    struct NewsMeta: Codable {
+        let found: Int
+    }
+    
+    struct NewsData: Codable {
+        let uuid: String
     }
 }

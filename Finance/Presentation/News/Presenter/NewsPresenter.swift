@@ -12,10 +12,19 @@ final class NewsPresenter {
 // MARK: - Properties
     
     weak var input: NewsInput?
+    private let newsService: NewsServiceProtocol
+    
+// MARK: - Lifecycle
+    
+    init(newsService: NewsServiceProtocol) {
+        self.newsService = newsService
+    }
 }
 
 // MARK: - NewsOutput
 
 extension NewsPresenter: NewsOutput {
-    
+    func viewIsReady() {
+        newsService.fetchNews()
+    }
 }

@@ -29,6 +29,7 @@ final class HomeCoordinator {
     private let userService: UserServiceProtocol
     private let stocksService: StocksServiceProtocol
     private let exchangeRateService: ExchangeRateServiceProtocol
+    private let newsService: NewsServiceProtocol
     
 // MARK: - Lifecycle
     
@@ -44,7 +45,8 @@ final class HomeCoordinator {
          transactionsService: TransactionsServiceProtocol,
          userService: UserServiceProtocol,
          stocksService: StocksServiceProtocol,
-         exchangeRateService: ExchangeRateServiceProtocol) {
+         exchangeRateService: ExchangeRateServiceProtocol,
+         newsService: NewsServiceProtocol) {
         self.homeAssembly = homeAssembly
         self.exchangeAssembly = exchangeAssembly
         self.stocksAssembly = stocksAssembly
@@ -58,6 +60,7 @@ final class HomeCoordinator {
         self.userService = userService
         self.stocksService = stocksService
         self.exchangeRateService = exchangeRateService
+        self.newsService = newsService
     }
     
 // MARK: - Helpers
@@ -93,7 +96,7 @@ extension HomeCoordinator: HomePresenterOutput {
     }
     
     func showNews() {
-        let vc = newsAssembly.makeNewsModule()
+        let vc = newsAssembly.makeNewsModule(newsService: newsService)
         navigation?.pushViewController(vc, animated: true)
     }
     

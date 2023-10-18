@@ -119,6 +119,8 @@
 		BBA2424A2AE004CC00756EAA /* NewsInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA242492AE004CC00756EAA /* NewsInput.swift */; };
 		BBA2424C2AE004F800756EAA /* NewsOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2424B2AE004F800756EAA /* NewsOutput.swift */; };
 		BBA2424E2AE007C900756EAA /* NewsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2424D2AE007C900756EAA /* NewsAssembly.swift */; };
+		BBA242512AE01A7B00756EAA /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA242502AE01A7B00756EAA /* NewsService.swift */; };
+		BBA242532AE01A8D00756EAA /* NewsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA242522AE01A8D00756EAA /* NewsServiceProtocol.swift */; };
 		BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */; };
 		BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC052851F3FF003F9197 /* TitleView.swift */; };
 		BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */; };
@@ -263,6 +265,8 @@
 		BBA242492AE004CC00756EAA /* NewsInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInput.swift; sourceTree = "<group>"; };
 		BBA2424B2AE004F800756EAA /* NewsOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsOutput.swift; sourceTree = "<group>"; };
 		BBA2424D2AE007C900756EAA /* NewsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAssembly.swift; sourceTree = "<group>"; };
+		BBA242502AE01A7B00756EAA /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
+		BBA242522AE01A8D00756EAA /* NewsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServiceProtocol.swift; sourceTree = "<group>"; };
 		BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionModalView.swift; sourceTree = "<group>"; };
 		BBCFDC052851F3FF003F9197 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionsCell.swift; sourceTree = "<group>"; };
@@ -782,6 +786,7 @@
 				BB715F9C2A8BA9DA004266A0 /* ExchangeRateService */,
 				BB6A7F672A4C66040028CC13 /* DefaultValueService */,
 				BB6DF00F2A4B6F6C00A1B4BD /* TransactionsService */,
+				BBA2424F2AE01A5F00756EAA /* NewsService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -865,6 +870,15 @@
 				BBA242452AE0047B00756EAA /* NewsPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BBA2424F2AE01A5F00756EAA /* NewsService */ = {
+			isa = PBXGroup;
+			children = (
+				BBA242502AE01A7B00756EAA /* NewsService.swift */,
+				BBA242522AE01A8D00756EAA /* NewsServiceProtocol.swift */,
+			);
+			path = NewsService;
 			sourceTree = "<group>";
 		};
 		BBD518652A9CD8800052B895 /* Adapter */ = {
@@ -1116,6 +1130,7 @@
 				BB5C41042A444675002DC6A0 /* AuthViewController.swift in Sources */,
 				BB715F9E2A8BA9F6004266A0 /* ExchangeRateService.swift in Sources */,
 				BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */,
+				BBA242532AE01A8D00756EAA /* NewsServiceProtocol.swift in Sources */,
 				BB659BA62A83C101009DB75B /* UserService.swift in Sources */,
 				BB5E37382A41888D0093AB95 /* HomeCoordinator.swift in Sources */,
 				BB6A7F6E2A4DCE470028CC13 /* ModelError.swift in Sources */,
@@ -1169,6 +1184,7 @@
 				BB6D21A22A38A995000C22D7 /* ProfileViewController.swift in Sources */,
 				BB6B5BBA2A3C9C9B00E16FFB /* AddTransactionOutput.swift in Sources */,
 				BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */,
+				BBA242512AE01A7B00756EAA /* NewsService.swift in Sources */,
 				BB715F992A8B6733004266A0 /* StocksService.swift in Sources */,
 				BB5C40F72A443544002DC6A0 /* AddTransactionAssembly.swift in Sources */,
 				BB5C411A2A462D6A002DC6A0 /* FileStore.swift in Sources */,
