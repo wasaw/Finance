@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let stocksAssembly = StocksAssembly()
         let authAssembly = AuthAssembly()
         let atmAssembly = ATMAssembly()
+        let newsAssembly = NewsAssembly()
         let lastTransaction = LastTransactionAssembly()
         let network = Network()
         let config = NetworkConfiguration()
@@ -47,6 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                               exchangeAssembly: exchangeAssembly,
                                               stocksAssembly: stocksAssembly,
                                               atmAssembly: atmAssembly,
+                                              newsAssembly: newsAssembly,
                                               lastTransaction: lastTransaction,
                                               network: network,
                                               config: config,

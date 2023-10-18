@@ -17,6 +17,7 @@ enum TypeService: Int {
     case exchange
     case stocks
     case atm
+    case news
 }
 
 struct ChoiceTypeRevenue: Codable {

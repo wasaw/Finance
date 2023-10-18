@@ -20,6 +20,7 @@ final class HomeCoordinator {
     private let exchangeAssembly: ExchangeRateAssembly
     private let stocksAssembly: StocksAssembly
     private let atmAssembly: ATMAssembly
+    private let newsAssembly: NewsAssembly
     private let lastTransaction: LastTransactionAssembly
     private let network: NetworkProtocol
     private let config: NetworkConfiguration
@@ -35,6 +36,7 @@ final class HomeCoordinator {
          exchangeAssembly: ExchangeRateAssembly,
          stocksAssembly: StocksAssembly,
          atmAssembly: ATMAssembly,
+         newsAssembly: NewsAssembly,
          lastTransaction: LastTransactionAssembly,
          network: NetworkProtocol,
          config: NetworkConfiguration,
@@ -47,6 +49,7 @@ final class HomeCoordinator {
         self.exchangeAssembly = exchangeAssembly
         self.stocksAssembly = stocksAssembly
         self.atmAssembly = atmAssembly
+        self.newsAssembly = newsAssembly
         self.lastTransaction = lastTransaction
         self.network = network
         self.config = config
@@ -86,6 +89,11 @@ extension HomeCoordinator: HomePresenterOutput {
     
     func showATM() {
         let vc = atmAssembly.makeATMModule()
+        navigation?.pushViewController(vc, animated: true)
+    }
+    
+    func showNews() {
+        let vc = newsAssembly.makeNewsModule()
         navigation?.pushViewController(vc, animated: true)
     }
     

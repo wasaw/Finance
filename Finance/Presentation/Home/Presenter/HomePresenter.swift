@@ -18,7 +18,8 @@ final class HomePresenter {
     
     private let service = [ChoiceService(name: "Курс валют", img: "exchange-rate.png", type: .exchange),
                            ChoiceService(name: "Акции", img: "stock-market.png", type: .stocks),
-                           ChoiceService(name: "Банкоматы", img: "atm-machine", type: .atm)]
+                           ChoiceService(name: "Банкоматы", img: "atm-machine", type: .atm),
+                           ChoiceService(name: "Новости", img: "newspaper", type: .news)]
 
     private var lastTransaction = [Transaction]()
     
@@ -137,6 +138,8 @@ extension HomePresenter: HomeOutput {
             output.showStock()
         case .atm:
             output.showATM()
+        case .news:
+            output.showNews()
         case .none:
             break
         }
