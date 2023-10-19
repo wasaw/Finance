@@ -8,5 +8,5 @@
 import Foundation
 
 protocol NewsInput: AnyObject {
-    
+    func setNews(_ news: [NewsItem])
 }

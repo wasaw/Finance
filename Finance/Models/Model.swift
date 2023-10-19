@@ -180,3 +180,12 @@ struct CurrencyButton {
     let displayCurrency: Currency
     var isSelected: Bool
 }
+
+struct News {
+    let uuid: String
+    let title: String
+    let descriptin: String
+    let url: URL
+    let imageUrl: URL
+    let publishedAt: Date
+}

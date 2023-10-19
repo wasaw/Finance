@@ -8,5 +8,5 @@
 import Foundation
 
 protocol NewsServiceProtocol: AnyObject {
-    func fetchNews()
+    func fetchNews(completion: @escaping ((Result<[News], Error>) -> Void))
 }

@@ -104,5 +104,10 @@ extension NewsDataModel {
     
     struct NewsData: Codable {
         let uuid: String
+        let title: String
+        let description: String
+        let url: String
+        let imageUrl: String
+        let publishedAt: String
     }
 }

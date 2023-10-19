@@ -26,7 +26,7 @@ final class NewsService {
 // MARK: - NewsServiceProtocol
 
 extension NewsService: NewsServiceProtocol {
-    func fetchNews() {
+    func fetchNews(completion: @escaping ((Result<[News], Error>) -> Void)) {
         do {
             let urlString = try config.getUrl(.news)
             guard let url = URL(string: urlString) else { return }
@@ -34,7 +34,18 @@ extension NewsService: NewsServiceProtocol {
             network.loadData(request: request) { (result: Result<NewsDataModel, Error>) in
                 switch result {
                 case .success(let news):
-                    print("DEBUG: news \(news)")
+                    let news: [News] = news.data.compactMap { newsData in
+                        guard let url = URL(string: newsData.url),
+                              let imageUrl = URL(string: newsData.imageUrl) else { return nil }
+                        let date = Date()
+                        return News(uuid: newsData.uuid,
+                                    title: newsData.title,
+                                    descriptin: newsData.description,
+                                    url: url,
+                                    imageUrl: imageUrl,
+                                    publishedAt: date)
+                    }
+                    completion(.success(news))
                 case .failure:
                     break
                 }

@@ -12,6 +12,8 @@ final class NewsViewController: UIViewController {
 // MARK: - Properties
     
     private let output: NewsOutput
+    private lazy var tableView = UITableView(frame: .zero)
+    private lazy var dataSource = DataSource(tableView)
     
 // MARK: - Lifecycle
     
@@ -28,11 +30,35 @@ final class NewsViewController: UIViewController {
         super.viewDidLoad()
         
         output.viewIsReady()
+        configureUI()
+    }
+    
+// MARK: - Helpers
+    
+    private func configureUI() {
+        tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.reuseIdentifire)
+        view.addSubview(tableView)
+        tableView.anchor(leading: view.leadingAnchor,
+                         top: view.topAnchor,
+                         trailing: view.trailingAnchor,
+                         bottom: view.bottomAnchor)
+    }
+    
+    private func setupDataSource(_ news: [NewsItem]) {
+        var snapshot = dataSource.snapshot()
+        snapshot.deleteAllItems()
+        snapshot.appendSections(Section.allCases)
+        snapshot.appendItems(news)
+        dataSource.apply(snapshot)
     }
 }
 
 // MARK: - NewsInput
 
 extension NewsViewController: NewsInput {
-    
+    func setNews(_ news: [NewsItem]) {
+        DispatchQueue.main.async {
+            self.setupDataSource(news)
+        }
+    }
 }

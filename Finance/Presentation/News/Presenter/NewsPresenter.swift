@@ -7,6 +7,15 @@
 
 import Foundation
 
+enum Section: Hashable, CaseIterable {
+    case section
+}
+
+struct NewsItem: Hashable {
+    let id: String
+    let title: String
+}
+
 final class NewsPresenter {
     
 // MARK: - Properties
@@ -25,6 +34,16 @@ final class NewsPresenter {
 
 extension NewsPresenter: NewsOutput {
     func viewIsReady() {
-        newsService.fetchNews()
+        newsService.fetchNews { [weak self] result in
+            switch result {
+            case .success(let news):
+                let itemNews = news.map { news in
+                    return NewsItem(id: news.uuid, title: news.title)
+                }
+                self?.input?.setNews(itemNews)
+            case .failure:
+                break
+            }
+        }
     }
 }

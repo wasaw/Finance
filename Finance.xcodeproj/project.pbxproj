@@ -99,6 +99,7 @@
 		BB715F9E2A8BA9F6004266A0 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715F9D2A8BA9F6004266A0 /* ExchangeRateService.swift */; };
 		BB715FA02A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715F9F2A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift */; };
 		BB715FA22A8CAE40004266A0 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715FA12A8CAE40004266A0 /* TopView.swift */; };
+		BB72DEF42AE17A7A001A3722 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEF32AE17A7A001A3722 /* DataSource.swift */; };
 		BB8056C62AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
@@ -121,6 +122,7 @@
 		BBA2424E2AE007C900756EAA /* NewsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2424D2AE007C900756EAA /* NewsAssembly.swift */; };
 		BBA242512AE01A7B00756EAA /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA242502AE01A7B00756EAA /* NewsService.swift */; };
 		BBA242532AE01A8D00756EAA /* NewsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA242522AE01A8D00756EAA /* NewsServiceProtocol.swift */; };
+		BBA242552AE12C3700756EAA /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA242542AE12C3600756EAA /* NewsCell.swift */; };
 		BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */; };
 		BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC052851F3FF003F9197 /* TitleView.swift */; };
 		BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */; };
@@ -245,6 +247,7 @@
 		BB715F9D2A8BA9F6004266A0 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
 		BB715F9F2A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceProtocol.swift; sourceTree = "<group>"; };
 		BB715FA12A8CAE40004266A0 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
+		BB72DEF32AE17A7A001A3722 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceTests.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -267,6 +270,7 @@
 		BBA2424D2AE007C900756EAA /* NewsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAssembly.swift; sourceTree = "<group>"; };
 		BBA242502AE01A7B00756EAA /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		BBA242522AE01A8D00756EAA /* NewsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServiceProtocol.swift; sourceTree = "<group>"; };
+		BBA242542AE12C3600756EAA /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionModalView.swift; sourceTree = "<group>"; };
 		BBCFDC052851F3FF003F9197 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionsCell.swift; sourceTree = "<group>"; };
@@ -818,6 +822,14 @@
 			path = ExchangeRateService;
 			sourceTree = "<group>";
 		};
+		BB72DEF22AE17A66001A3722 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				BB72DEF32AE17A7A001A3722 /* DataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
 		BBA242352ADD5EA200756EAA /* ATM */ = {
 			isa = PBXGroup;
 			children = (
@@ -850,6 +862,7 @@
 			children = (
 				BBA242442AE0045C00756EAA /* Presenter */,
 				BBA242432AE0045700756EAA /* View */,
+				BB72DEF22AE17A66001A3722 /* DataSource */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -860,6 +873,7 @@
 				BBA242472AE0049A00756EAA /* NewsViewController.swift */,
 				BBA242492AE004CC00756EAA /* NewsInput.swift */,
 				BBA2424B2AE004F800756EAA /* NewsOutput.swift */,
+				BBA242542AE12C3600756EAA /* NewsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1142,6 +1156,7 @@
 				BB6BDB9729891CBD0000584A /* StockCell.swift in Sources */,
 				BB5C41082A4446F7002DC6A0 /* AuthOutput.swift in Sources */,
 				BB6D21992A33CC33000C22D7 /* HomeInput.swift in Sources */,
+				BB72DEF42AE17A7A001A3722 /* DataSource.swift in Sources */,
 				BB6D21A02A38A90E000C22D7 /* ProfilePresenter.swift in Sources */,
 				BB6D21A62A38AA5E000C22D7 /* ProfileOutput.swift in Sources */,
 				BB6A7F6C2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift in Sources */,
@@ -1188,6 +1203,7 @@
 				BB715F992A8B6733004266A0 /* StocksService.swift in Sources */,
 				BB5C40F72A443544002DC6A0 /* AddTransactionAssembly.swift in Sources */,
 				BB5C411A2A462D6A002DC6A0 /* FileStore.swift in Sources */,
+				BBA242552AE12C3700756EAA /* NewsCell.swift in Sources */,
 				BBA242412ADD613D00756EAA /* ATMAssembly.swift in Sources */,
 				BB5E37512A41CD1C0093AB95 /* StocksOutput.swift in Sources */,
 				BB6A7F692A4C66210028CC13 /* DefaultValueService.swift in Sources */,
