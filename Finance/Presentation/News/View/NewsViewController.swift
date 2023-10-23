@@ -7,6 +7,10 @@
 
 import UIKit
 
+private enum Constants {
+    static let rowHeight: CGFloat = 150
+}
+
 final class NewsViewController: UIViewController {
     
 // MARK: - Properties
@@ -36,7 +40,9 @@ final class NewsViewController: UIViewController {
 // MARK: - Helpers
     
     private func configureUI() {
+        navigationItem.title = "Новости"
         tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.reuseIdentifire)
+        tableView.delegate = self
         view.addSubview(tableView)
         tableView.anchor(leading: view.leadingAnchor,
                          top: view.topAnchor,
@@ -60,5 +66,17 @@ extension NewsViewController: NewsInput {
         DispatchQueue.main.async {
             self.setupDataSource(news)
         }
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension NewsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.rowHeight
     }
 }

@@ -14,6 +14,8 @@ enum Section: Hashable, CaseIterable {
 struct NewsItem: Hashable {
     let id: String
     let title: String
+    let imageUrl: URL
+    let date: String
 }
 
 final class NewsPresenter {
@@ -38,7 +40,10 @@ extension NewsPresenter: NewsOutput {
             switch result {
             case .success(let news):
                 let itemNews = news.map { news in
-                    return NewsItem(id: news.uuid, title: news.title)
+                    let index = news.publishedAt.index(news.publishedAt.startIndex, offsetBy: 10)
+                    let dateSubstring = news.publishedAt.prefix(upTo: index)
+                    let date = String(dateSubstring)
+                    return NewsItem(id: news.uuid, title: news.title, imageUrl: news.imageUrl, date: date)
                 }
                 self?.input?.setNews(itemNews)
             case .failure:

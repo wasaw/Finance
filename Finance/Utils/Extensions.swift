@@ -102,3 +102,19 @@ extension Notification.Name {
     static let updateCurrency = Notification.Name("updateCurrency")
     static let updateTransactions = Notification.Name("updateTransactions")
 }
+
+// MARK: - UIImageView
+
+extension UIImageView {
+    func load(_ url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
+}

@@ -37,13 +37,12 @@ extension NewsService: NewsServiceProtocol {
                     let news: [News] = news.data.compactMap { newsData in
                         guard let url = URL(string: newsData.url),
                               let imageUrl = URL(string: newsData.imageUrl) else { return nil }
-                        let date = Date()
                         return News(uuid: newsData.uuid,
                                     title: newsData.title,
                                     descriptin: newsData.description,
                                     url: url,
                                     imageUrl: imageUrl,
-                                    publishedAt: date)
+                                    publishedAt: newsData.publishedAt)
                     }
                     completion(.success(news))
                 case .failure:
