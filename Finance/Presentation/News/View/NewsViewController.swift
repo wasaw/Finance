@@ -9,6 +9,7 @@ import UIKit
 
 private enum Constants {
     static let rowHeight: CGFloat = 150
+    static let loadPadding: CGFloat = 25
 }
 
 final class NewsViewController: UIViewController {
@@ -18,12 +19,14 @@ final class NewsViewController: UIViewController {
     private let output: NewsOutput
     private lazy var tableView = UITableView(frame: .zero)
     private lazy var dataSource = DataSource(tableView)
+    private lazy var loadAnimationView = CircleAnimation()
     
 // MARK: - Lifecycle
     
     init(output: NewsOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
+        hidesBottomBarWhenPushed = true
     }
     
     required init?(coder: NSCoder) {
@@ -48,6 +51,11 @@ final class NewsViewController: UIViewController {
                          top: view.topAnchor,
                          trailing: view.trailingAnchor,
                          bottom: view.bottomAnchor)
+        tableView.addSubview(loadAnimationView)
+        loadAnimationView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+        loadAnimationView.anchor(top: tableView.topAnchor,
+                                 paddingTop: Constants.loadPadding)
+        loadAnimationView.configureAnimation()
     }
     
     private func setupDataSource(_ news: [NewsItem]) {
@@ -62,6 +70,10 @@ final class NewsViewController: UIViewController {
 // MARK: - NewsInput
 
 extension NewsViewController: NewsInput {
+    func setLoading(enable: Bool) {
+        loadAnimationView.isHidden = !enable
+    }
+    
     func setNews(_ news: [NewsItem]) {
         DispatchQueue.main.async {
             self.setupDataSource(news)

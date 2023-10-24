@@ -29,6 +29,7 @@ final class ATMViewController: UIViewController {
     init(output: ATMOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
+        hidesBottomBarWhenPushed = true
     }
     
     required init?(coder: NSCoder) {
@@ -49,7 +50,7 @@ final class ATMViewController: UIViewController {
         mapView.anchor(leading: view.leadingAnchor,
                        top: view.topAnchor,
                        trailing: view.trailingAnchor,
-                       bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                       bottom: view.bottomAnchor,
                        paddingBottom: Constants.paddingButtom)
         view.backgroundColor = .white
     }

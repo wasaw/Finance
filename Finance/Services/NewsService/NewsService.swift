@@ -28,26 +28,36 @@ final class NewsService {
 extension NewsService: NewsServiceProtocol {
     func fetchNews(completion: @escaping ((Result<[News], Error>) -> Void)) {
         do {
-            let urlString = try config.getUrl(.news)
-            guard let url = URL(string: urlString) else { return }
-            let request = URLRequest(url: url)
-            network.loadData(request: request) { (result: Result<NewsDataModel, Error>) in
-                switch result {
-                case .success(let news):
-                    let news: [News] = news.data.compactMap { newsData in
-                        guard let url = URL(string: newsData.url),
-                              let imageUrl = URL(string: newsData.imageUrl) else { return nil }
-                        return News(uuid: newsData.uuid,
-                                    title: newsData.title,
-                                    descriptin: newsData.description,
-                                    url: url,
-                                    imageUrl: imageUrl,
-                                    publishedAt: newsData.publishedAt)
+            var sendNews: [News] = []
+            let group = DispatchGroup()
+//            Features NEWS API
+            for index in 1...3 {
+                group.enter()
+                let urlString = try config.getUrl(.news, page: index)
+                guard let url = URL(string: urlString) else { return }
+                let request = URLRequest(url: url)
+                network.loadData(request: request) { (result: Result<NewsDataModel, Error>) in
+                    switch result {
+                    case .success(let news):
+                        let news: [News] = news.data.compactMap { newsData in
+                            guard let url = URL(string: newsData.url),
+                                  let imageUrl = URL(string: newsData.imageUrl) else { return nil }
+                            return News(uuid: newsData.uuid,
+                                        title: newsData.title,
+                                        descriptin: newsData.description,
+                                        url: url,
+                                        imageUrl: imageUrl,
+                                        publishedAt: newsData.publishedAt)
+                        }
+                        sendNews += news
+                        group.leave()
+                    case .failure:
+                        break
                     }
-                    completion(.success(news))
-                case .failure:
-                    break
                 }
+            }
+            group.notify(queue: .main) {
+                completion(.success(sendNews))
             }
         } catch {
             print(error.localizedDescription)

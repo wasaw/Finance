@@ -36,6 +36,7 @@ final class NewsPresenter {
 
 extension NewsPresenter: NewsOutput {
     func viewIsReady() {
+        input?.setLoading(enable: true)
         newsService.fetchNews { [weak self] result in
             switch result {
             case .success(let news):
@@ -45,6 +46,7 @@ extension NewsPresenter: NewsOutput {
                     let date = String(dateSubstring)
                     return NewsItem(id: news.uuid, title: news.title, imageUrl: news.imageUrl, date: date)
                 }
+                self?.input?.setLoading(enable: false)
                 self?.input?.setNews(itemNews)
             case .failure:
                 break
