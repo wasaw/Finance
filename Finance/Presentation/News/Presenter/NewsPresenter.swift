@@ -30,13 +30,10 @@ final class NewsPresenter {
     init(newsService: NewsServiceProtocol) {
         self.newsService = newsService
     }
-}
-
-// MARK: - NewsOutput
-
-extension NewsPresenter: NewsOutput {
-    func viewIsReady() {
-        input?.setLoading(enable: true)
+    
+// MARK: - Helpers
+    
+    private func loadNews() {
         newsService.fetchNews { [weak self] result in
             switch result {
             case .success(let news):
@@ -52,5 +49,18 @@ extension NewsPresenter: NewsOutput {
                 break
             }
         }
+    }
+}
+
+// MARK: - NewsOutput
+
+extension NewsPresenter: NewsOutput {
+    func viewIsReady() {
+        input?.setLoading(enable: true)
+        loadNews()
+    }
+    
+    func updateData() {
+        loadNews()
     }
 }

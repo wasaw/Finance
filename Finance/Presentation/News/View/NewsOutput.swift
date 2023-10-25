@@ -9,4 +9,5 @@ import Foundation
 
 protocol NewsOutput: AnyObject {
     func viewIsReady()
+    func updateData()
 }

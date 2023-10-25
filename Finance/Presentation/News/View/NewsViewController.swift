@@ -20,6 +20,7 @@ final class NewsViewController: UIViewController {
     private lazy var tableView = UITableView(frame: .zero)
     private lazy var dataSource = DataSource(tableView)
     private lazy var loadAnimationView = CircleAnimation()
+    private lazy var refreshController = UIRefreshControl()
     
 // MARK: - Lifecycle
     
@@ -52,6 +53,8 @@ final class NewsViewController: UIViewController {
                          trailing: view.trailingAnchor,
                          bottom: view.bottomAnchor)
         tableView.addSubview(loadAnimationView)
+        refreshController.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.addSubview(refreshController)
         loadAnimationView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
         loadAnimationView.anchor(top: tableView.topAnchor,
                                  paddingTop: Constants.loadPadding)
@@ -65,6 +68,12 @@ final class NewsViewController: UIViewController {
         snapshot.appendItems(news)
         dataSource.apply(snapshot)
     }
+    
+// MARK: - Selectors
+    
+    @objc private func refresh() {
+        output.updateData()
+    }
 }
 
 // MARK: - NewsInput
@@ -72,6 +81,7 @@ final class NewsViewController: UIViewController {
 extension NewsViewController: NewsInput {
     func setLoading(enable: Bool) {
         loadAnimationView.isHidden = !enable
+        refreshController.endRefreshing()
     }
     
     func setNews(_ news: [NewsItem]) {
