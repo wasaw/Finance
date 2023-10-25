@@ -98,6 +98,8 @@ final class NewsCell: UITableViewCell {
     func configure(with news: NewsItem) {
         titleLabel.text = news.title
         dateLabel.text = news.date
-        newsImage.load(news.imageUrl)
+        ImageCache.publicCache.load(url: news.imageUrl, completion: { [weak self] image in
+            self?.newsImage.image = image
+        })
     }
 }

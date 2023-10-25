@@ -100,6 +100,7 @@
 		BB715FA02A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715F9F2A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift */; };
 		BB715FA22A8CAE40004266A0 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715FA12A8CAE40004266A0 /* TopView.swift */; };
 		BB72DEF42AE17A7A001A3722 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEF32AE17A7A001A3722 /* DataSource.swift */; };
+		BB72DEF82AE806D6001A3722 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEF72AE806D6001A3722 /* ImageCache.swift */; };
 		BB8056C62AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
@@ -248,6 +249,7 @@
 		BB715F9F2A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceProtocol.swift; sourceTree = "<group>"; };
 		BB715FA12A8CAE40004266A0 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		BB72DEF32AE17A7A001A3722 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		BB72DEF72AE806D6001A3722 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceTests.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -791,6 +793,7 @@
 				BB6A7F672A4C66040028CC13 /* DefaultValueService */,
 				BB6DF00F2A4B6F6C00A1B4BD /* TransactionsService */,
 				BBA2424F2AE01A5F00756EAA /* NewsService */,
+				BB72DEF72AE806D6001A3722 /* ImageCache.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1148,6 +1151,7 @@
 				BB659BA62A83C101009DB75B /* UserService.swift in Sources */,
 				BB5E37382A41888D0093AB95 /* HomeCoordinator.swift in Sources */,
 				BB6A7F6E2A4DCE470028CC13 /* ModelError.swift in Sources */,
+				BB72DEF82AE806D6001A3722 /* ImageCache.swift in Sources */,
 				BB5E8D7D2A9737A700BC1010 /* LastTransactionAssembly.swift in Sources */,
 				BB715F9B2A8B6750004266A0 /* StocksServiceProtocol.swift in Sources */,
 				BB5C41022A44464F002DC6A0 /* AuthPresenter.swift in Sources */,

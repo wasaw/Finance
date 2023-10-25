@@ -34,14 +34,23 @@ extension NewsService: NewsServiceProtocol {
             for index in 1...3 {
                 group.enter()
                 let urlString = try config.getUrl(.news, page: index)
-                guard let url = URL(string: urlString) else { return }
+                guard let url = URL(string: urlString) else {
+                    group.leave()
+                    return
+                }
                 let request = URLRequest(url: url)
                 network.loadData(request: request) { (result: Result<NewsDataModel, Error>) in
                     switch result {
                     case .success(let news):
                         let news: [News] = news.data.compactMap { newsData in
                             guard let url = URL(string: newsData.url),
-                                  let imageUrl = URL(string: newsData.imageUrl) else { return nil }
+                                  let imageUrl = URL(string: newsData.imageUrl)
+                            else {
+                                group.leave()
+                                return nil
+                            }
+                            ImageCache.publicCache.load(url: url, completion: { _ in
+                            })
                             return News(uuid: newsData.uuid,
                                         title: newsData.title,
                                         descriptin: newsData.description,
@@ -52,7 +61,7 @@ extension NewsService: NewsServiceProtocol {
                         sendNews += news
                         group.leave()
                     case .failure:
-                        break
+                        group.leave()
                     }
                 }
             }
