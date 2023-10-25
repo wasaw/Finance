@@ -19,7 +19,9 @@ final class UserServiceTests: XCTestCase {
         coreData = CoreDataServiceMock()
         fileStore = FileStoreMock()
         firebaseService = FirebaseServiceMock()
-        userService = UserService(coreData: coreData, fileStore: fileStore, firebaseService: firebaseService)
+        userService = UserService(coreData: coreData,
+                                  fileStore: fileStore,
+                                  firebaseService: firebaseService)
     }
     
     override func tearDown() {

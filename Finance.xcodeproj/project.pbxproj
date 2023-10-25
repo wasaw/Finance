@@ -101,6 +101,7 @@
 		BB715FA22A8CAE40004266A0 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB715FA12A8CAE40004266A0 /* TopView.swift */; };
 		BB72DEF42AE17A7A001A3722 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEF32AE17A7A001A3722 /* DataSource.swift */; };
 		BB72DEF82AE806D6001A3722 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEF72AE806D6001A3722 /* ImageCache.swift */; };
+		BB72DEFA2AE914F5001A3722 /* NewsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEF92AE914F5001A3722 /* NewsServiceTests.swift */; };
 		BB8056C62AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
@@ -250,6 +251,7 @@
 		BB715FA12A8CAE40004266A0 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		BB72DEF32AE17A7A001A3722 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		BB72DEF72AE806D6001A3722 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		BB72DEF92AE914F5001A3722 /* NewsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServiceTests.swift; sourceTree = "<group>"; };
 		BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceTests.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -616,6 +618,7 @@
 				BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */,
 				BB51422E2AA1E77E00663609 /* UserServiceTests.swift */,
 				BB5142322AA200D500663609 /* AuthServiceTests.swift */,
+				BB72DEF92AE914F5001A3722 /* NewsServiceTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1225,6 +1228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB72DEFA2AE914F5001A3722 /* NewsServiceTests.swift in Sources */,
 				BB66A33C2A7D2FDE003A8871 /* CoreDataServiceMock.swift in Sources */,
 				BB66A33E2A7D3315003A8871 /* TestCoreDataStack.swift in Sources */,
 				BB5142252AA1DBCA00663609 /* StocksServiceTests.swift in Sources */,

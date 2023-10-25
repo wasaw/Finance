@@ -19,7 +19,9 @@ final class ExchangeRateServiceTests: XCTestCase {
         network = NetworkServiceMock()
         config = NetworkConfiguration()
         defaultValueService = DefaultValueServiceMock()
-        exchangeRateService = ExchangeRateService(network: network, config: config, defaultValueService: defaultValueService)
+        exchangeRateService = ExchangeRateService(network: network,
+                                                  config: config,
+                                                  defaultValueService: defaultValueService)
     }
     
     override func tearDown() {

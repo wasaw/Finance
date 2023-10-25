@@ -19,7 +19,9 @@ final class StocksServiceTests: XCTestCase {
         networkService = NetworkServiceMock()
         config = NetworkConfiguration()
         defaultValueService = DefaultValueServiceMock()
-        stocksService  = StocksService(network: networkService, config: config, defaultValueService: defaultValueService)
+        stocksService  = StocksService(network: networkService,
+                                       config: config,
+                                       defaultValueService: defaultValueService)
     }
     
     override func tearDown() {
