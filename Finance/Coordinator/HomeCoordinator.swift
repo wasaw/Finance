@@ -20,7 +20,7 @@ final class HomeCoordinator {
     private let exchangeAssembly: ExchangeRateAssembly
     private let stocksAssembly: StocksAssembly
     private let atmAssembly: ATMAssembly
-    private let newsAssembly: NewsAssembly
+    private let newsCoordinator: NewsCoordinator
     private let lastTransaction: LastTransactionAssembly
     private let network: NetworkProtocol
     private let config: NetworkConfiguration
@@ -29,7 +29,6 @@ final class HomeCoordinator {
     private let userService: UserServiceProtocol
     private let stocksService: StocksServiceProtocol
     private let exchangeRateService: ExchangeRateServiceProtocol
-    private let newsService: NewsServiceProtocol
     
 // MARK: - Lifecycle
     
@@ -37,7 +36,7 @@ final class HomeCoordinator {
          exchangeAssembly: ExchangeRateAssembly,
          stocksAssembly: StocksAssembly,
          atmAssembly: ATMAssembly,
-         newsAssembly: NewsAssembly,
+         newsCoordinator: NewsCoordinator,
          lastTransaction: LastTransactionAssembly,
          network: NetworkProtocol,
          config: NetworkConfiguration,
@@ -45,13 +44,12 @@ final class HomeCoordinator {
          transactionsService: TransactionsServiceProtocol,
          userService: UserServiceProtocol,
          stocksService: StocksServiceProtocol,
-         exchangeRateService: ExchangeRateServiceProtocol,
-         newsService: NewsServiceProtocol) {
+         exchangeRateService: ExchangeRateServiceProtocol) {
         self.homeAssembly = homeAssembly
         self.exchangeAssembly = exchangeAssembly
         self.stocksAssembly = stocksAssembly
         self.atmAssembly = atmAssembly
-        self.newsAssembly = newsAssembly
+        self.newsCoordinator = newsCoordinator
         self.lastTransaction = lastTransaction
         self.network = network
         self.config = config
@@ -60,7 +58,6 @@ final class HomeCoordinator {
         self.userService = userService
         self.stocksService = stocksService
         self.exchangeRateService = exchangeRateService
-        self.newsService = newsService
     }
     
 // MARK: - Helpers
@@ -96,7 +93,7 @@ extension HomeCoordinator: HomePresenterOutput {
     }
     
     func showNews() {
-        let vc = newsAssembly.makeNewsModule(newsService: newsService)
+        let vc = newsCoordinator.start()
         navigation?.pushViewController(vc, animated: true)
     }
     

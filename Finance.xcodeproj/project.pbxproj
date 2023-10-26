@@ -102,6 +102,9 @@
 		BB72DEF42AE17A7A001A3722 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEF32AE17A7A001A3722 /* DataSource.swift */; };
 		BB72DEF82AE806D6001A3722 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEF72AE806D6001A3722 /* ImageCache.swift */; };
 		BB72DEFA2AE914F5001A3722 /* NewsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEF92AE914F5001A3722 /* NewsServiceTests.swift */; };
+		BB72DEFC2AE91BBE001A3722 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEFB2AE91BBE001A3722 /* WebViewController.swift */; };
+		BB72DEFE2AE93924001A3722 /* NewsPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEFD2AE93924001A3722 /* NewsPresenterOutput.swift */; };
+		BB72DF002AE939A7001A3722 /* NewsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEFF2AE939A7001A3722 /* NewsCoordinator.swift */; };
 		BB8056C62AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
@@ -252,6 +255,9 @@
 		BB72DEF32AE17A7A001A3722 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		BB72DEF72AE806D6001A3722 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		BB72DEF92AE914F5001A3722 /* NewsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServiceTests.swift; sourceTree = "<group>"; };
+		BB72DEFB2AE91BBE001A3722 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		BB72DEFD2AE93924001A3722 /* NewsPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresenterOutput.swift; sourceTree = "<group>"; };
+		BB72DEFF2AE939A7001A3722 /* NewsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCoordinator.swift; sourceTree = "<group>"; };
 		BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceTests.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -441,6 +447,7 @@
 				BB5E37372A41888D0093AB95 /* HomeCoordinator.swift */,
 				BB5C40EF2A4345CF002DC6A0 /* ProfileCoordinator.swift */,
 				BB5C410D2A446D49002DC6A0 /* AuthCoordinator.swift */,
+				BB72DEFF2AE939A7001A3722 /* NewsCoordinator.swift */,
 				BB61DEA42850A3C200A08AC6 /* TabBarController.swift */,
 			);
 			path = Coordinator;
@@ -719,6 +726,7 @@
 				BBA242352ADD5EA200756EAA /* ATM */,
 				BBA242422AE0044200756EAA /* News */,
 				BB5C40FE2A444628002DC6A0 /* Auth */,
+				BB72DEFB2AE91BBE001A3722 /* WebViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -888,6 +896,7 @@
 			isa = PBXGroup;
 			children = (
 				BBA242452AE0047B00756EAA /* NewsPresenter.swift */,
+				BB72DEFD2AE93924001A3722 /* NewsPresenterOutput.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -1123,6 +1132,7 @@
 				BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */,
 				BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */,
 				BB5E37322A4098B00093AB95 /* LastTransactionInput.swift in Sources */,
+				BB72DEFE2AE93924001A3722 /* NewsPresenterOutput.swift in Sources */,
 				BB5E372E2A4098850093AB95 /* LastTransactionPresenter.swift in Sources */,
 				BB66934D285B885A002DFAAD /* Model.swift in Sources */,
 				BBD5186C2AA0890C0052B895 /* ServiceAdapter.swift in Sources */,
@@ -1169,6 +1179,7 @@
 				BB6A7F6C2A4C666C0028CC13 /* DefaultValueServiceProtocol.swift in Sources */,
 				BB6B5BB62A3C9C1600E16FFB /* AddTransactionViewController.swift in Sources */,
 				BBA242392ADD5EE100756EAA /* ATMPresenter.swift in Sources */,
+				BB72DEFC2AE91BBE001A3722 /* WebViewController.swift in Sources */,
 				BB5E374A2A41CC420093AB95 /* StocksViewController.swift in Sources */,
 				BB659BA82A83C11C009DB75B /* UserServiceProtocol.swift in Sources */,
 				BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */,
@@ -1195,6 +1206,7 @@
 				BB5C410E2A446D49002DC6A0 /* AuthCoordinator.swift in Sources */,
 				BB659BA32A83776E009DB75B /* ProfilePresenterInput.swift in Sources */,
 				BB9EFC13286B234700305776 /* CoreDataService.swift in Sources */,
+				BB72DF002AE939A7001A3722 /* NewsCoordinator.swift in Sources */,
 				BB6D21A42A38AA25000C22D7 /* ProfileInput.swift in Sources */,
 				BB715F942A864CCB004266A0 /* ProfilePresenterOutput.swift in Sources */,
 				BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */,

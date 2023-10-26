@@ -45,11 +45,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
 // MARK: - Coordinator
     
+        let newsCoordinator = NewsCoordinator(newsAssembly: newsAssembly, newsService: newsService)
         let homeCoordinator = HomeCoordinator(homeAssembly: homeAssembly,
                                               exchangeAssembly: exchangeAssembly,
                                               stocksAssembly: stocksAssembly,
                                               atmAssembly: atmAssembly,
-                                              newsAssembly: newsAssembly,
+                                              newsCoordinator: newsCoordinator,
                                               lastTransaction: lastTransaction,
                                               network: network,
                                               config: config,
@@ -57,8 +58,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                               transactionsService: transactionsService,
                                               userService: userService,
                                               stocksService: stocksService,
-                                              exchangeRateService: exchangeRateService,
-                                              newsService: newsService)
+                                              exchangeRateService: exchangeRateService)
         let authCoordinator = AuthCoordinator(authAssembly: authAssembly,
                                               authService: authService,
                                               transactionsService: transactionsService)

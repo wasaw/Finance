@@ -10,4 +10,5 @@ import Foundation
 protocol NewsOutput: AnyObject {
     func viewIsReady()
     func updateData()
+    func showWebView(for index: Int)
 }
