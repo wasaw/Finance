@@ -8,7 +8,6 @@
 import UIKit
 
 private enum Constants {
-    static let amountLabelPaddingTop: CGFloat = 5
     static let amountLabelHeight: CGFloat = 20
 }
 
@@ -37,10 +36,8 @@ final class RevenueCell: CategoryCell {
 // MARK: - Helpers
     
     private func configureUI() {
-        addSubview(amountLabel)
-        amountLabel.anchor(top: imageView.bottomAnchor,
-                           paddingTop: Constants.amountLabelPaddingTop,
-                           height: Constants.amountLabelHeight)
+        contentView.addSubview(amountLabel)
+        amountLabel.anchor(bottom: contentView.bottomAnchor, height: Constants.amountLabelHeight)
         amountLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     

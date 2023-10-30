@@ -26,7 +26,7 @@ final class NewsService {
 // MARK: - NewsServiceProtocol
 
 extension NewsService: NewsServiceProtocol {
-    func fetchNews(completion: @escaping ((Result<[News], Error>) -> Void)) {
+    func fetchNews(completion: @escaping ((Result<[News], RequestError>) -> Void)) {
         do {
             var sendNews: [News] = []
             let group = DispatchGroup()
@@ -69,7 +69,7 @@ extension NewsService: NewsServiceProtocol {
                 completion(.success(sendNews))
             }
         } catch {
-            print(error.localizedDescription)
+            completion(.failure(RequestError.somethingError))
         }
     }
 }

@@ -188,14 +188,4 @@ struct News {
     let url: URL
     let imageUrl: URL
     let publishedAt: String
-    
-//    private static let dateFormetter: DateFormatter = {
-//        let df = DateFormatter()
-//        df.dateFormat = "dd.MM.yyyy"
-//        return df
-//    }()
-//
-//    var publishedString: String {
-//        News.dateFormetter.string(from: publishedAt)
-//    }
 }

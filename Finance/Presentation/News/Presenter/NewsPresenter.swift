@@ -56,7 +56,8 @@ final class NewsPresenter {
                 self?.input?.setNews(newsItem)
                 self?.news = news
             case .failure:
-                break
+                self?.input?.setLoading(enable: false)
+                self?.input?.showAlert(with: "Попробуйте загрузить снова.")
             }
         }
     }

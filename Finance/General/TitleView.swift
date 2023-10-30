@@ -22,13 +22,6 @@ final class TitleView: UIView {
         return label
     }()
     
-    private let arrowImage: UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: "arrow-down.png")?.withTintColor(.totalTintColor)
-        img.transform = CGAffineTransform(rotationAngle: -CGFloat(Double.pi / 2))
-        return img
-    }()
-    
 // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -38,12 +31,6 @@ final class TitleView: UIView {
         titleLable.translatesAutoresizingMaskIntoConstraints = false
         titleLable.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         titleLable.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-        addSubview(arrowImage)
-        arrowImage.anchor(trailing: trailingAnchor,
-                          width: Constants.arrowImageDimensions,
-                          height: Constants.arrowImageDimensions)
-        arrowImage.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
     required init?(coder: NSCoder) {

@@ -91,7 +91,7 @@ extension AuthService: AuthServiceProtocol {
                     case .failure(let error):
                         switch error {
                         case .notFound:
-                            break
+                            completion(.failure(AuthError.noIdentifier))
                         }
                     }
                 })

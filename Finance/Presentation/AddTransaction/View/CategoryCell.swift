@@ -25,7 +25,7 @@ class CategoryCell: UICollectionViewCell {
         return label
     }()
     
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let iv = UIImageView()
         return iv
     }()

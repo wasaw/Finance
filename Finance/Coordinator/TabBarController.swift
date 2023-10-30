@@ -7,6 +7,12 @@
 
 import UIKit
 
+private enum Constants {
+    static let tabBarReduction: CGFloat = 20
+    static let tabBarHeight: CGFloat = 75
+    static let tabBarYPadding: CGFloat = 90
+}
+
 final class TabBarController: UITabBarController {
     
 // MARK: - Properties
@@ -42,18 +48,19 @@ final class TabBarController: UITabBarController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let boundWidth: CGFloat = 20
-        tabBar.frame.size.width = view.frame.width - boundWidth
-        tabBar.frame.size.height *= 0.9
-        tabBar.frame.origin.y -= 10
-        tabBar.frame.origin.x = boundWidth / 2
-        tabBar.layer.cornerRadius = boundWidth
+       
+        tabBar.frame.size.width = view.frame.width - Constants.tabBarReduction
+        tabBar.frame.size.height = Constants.tabBarHeight
+        tabBar.frame.origin.y = view.frame.height - Constants.tabBarYPadding
+        tabBar.frame.origin.x = Constants.tabBarReduction / 2
+        tabBar.layer.cornerRadius = Constants.tabBarReduction
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.delegate = self
+
         tabBar.backgroundColor = .tabBarBackgroundColor
         tabBar.tintColor = .selectViewBackground
         tabBar.barTintColor = .white

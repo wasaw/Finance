@@ -89,6 +89,10 @@ extension NewsViewController: NewsInput {
             self.setupDataSource(news)
         }
     }
+    
+    func showAlert(with message: String) {
+        alert(with: "Внимание", message: message)
+    }
 }
 
 // MARK: - UITableViewDelegate
