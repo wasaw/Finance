@@ -105,6 +105,7 @@
 		BB72DEFC2AE91BBE001A3722 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEFB2AE91BBE001A3722 /* WebViewController.swift */; };
 		BB72DEFE2AE93924001A3722 /* NewsPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEFD2AE93924001A3722 /* NewsPresenterOutput.swift */; };
 		BB72DF002AE939A7001A3722 /* NewsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEFF2AE939A7001A3722 /* NewsCoordinator.swift */; };
+		BB7B1BCB2AF12D1800EF781B /* CachePolice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B1BCA2AF12D1800EF781B /* CachePolice.swift */; };
 		BB8056C62AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
@@ -258,6 +259,7 @@
 		BB72DEFB2AE91BBE001A3722 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		BB72DEFD2AE93924001A3722 /* NewsPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresenterOutput.swift; sourceTree = "<group>"; };
 		BB72DEFF2AE939A7001A3722 /* NewsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCoordinator.swift; sourceTree = "<group>"; };
+		BB7B1BCA2AF12D1800EF781B /* CachePolice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachePolice.swift; sourceTree = "<group>"; };
 		BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceTests.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 		BB5C41122A447F09002DC6A0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				BB7B1BC92AF12CF100EF781B /* Conventer */,
 				BB5C41132A4481BD002DC6A0 /* Network.swift */,
 				BB5C41152A44829A002DC6A0 /* NetworkProtocol.swift */,
 				BB6BDB98298942130000584A /* NetworkConfiguration.swift */,
@@ -844,6 +847,14 @@
 			path = DataSource;
 			sourceTree = "<group>";
 		};
+		BB7B1BC92AF12CF100EF781B /* Conventer */ = {
+			isa = PBXGroup;
+			children = (
+				BB7B1BCA2AF12D1800EF781B /* CachePolice.swift */,
+			);
+			path = Conventer;
+			sourceTree = "<group>";
+		};
 		BBA242352ADD5EA200756EAA /* ATM */ = {
 			isa = PBXGroup;
 			children = (
@@ -1207,6 +1218,7 @@
 				BB659BA32A83776E009DB75B /* ProfilePresenterInput.swift in Sources */,
 				BB9EFC13286B234700305776 /* CoreDataService.swift in Sources */,
 				BB72DF002AE939A7001A3722 /* NewsCoordinator.swift in Sources */,
+				BB7B1BCB2AF12D1800EF781B /* CachePolice.swift in Sources */,
 				BB6D21A42A38AA25000C22D7 /* ProfileInput.swift in Sources */,
 				BB715F942A864CCB004266A0 /* ProfilePresenterOutput.swift in Sources */,
 				BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */,
