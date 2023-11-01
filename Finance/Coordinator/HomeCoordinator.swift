@@ -22,8 +22,6 @@ final class HomeCoordinator {
     private let atmAssembly: ATMAssembly
     private let newsCoordinator: NewsCoordinator
     private let lastTransaction: LastTransactionAssembly
-    private let network: NetworkProtocol
-    private let config: NetworkConfiguration
     private let coreData: CoreDataServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
     private let userService: UserServiceProtocol
@@ -38,8 +36,6 @@ final class HomeCoordinator {
          atmAssembly: ATMAssembly,
          newsCoordinator: NewsCoordinator,
          lastTransaction: LastTransactionAssembly,
-         network: NetworkProtocol,
-         config: NetworkConfiguration,
          coreData: CoreDataServiceProtocol,
          transactionsService: TransactionsServiceProtocol,
          userService: UserServiceProtocol,
@@ -51,8 +47,6 @@ final class HomeCoordinator {
         self.atmAssembly = atmAssembly
         self.newsCoordinator = newsCoordinator
         self.lastTransaction = lastTransaction
-        self.network = network
-        self.config = config
         self.coreData = coreData
         self.transactionsService = transactionsService
         self.userService = userService
@@ -76,9 +70,7 @@ final class HomeCoordinator {
 
 extension HomeCoordinator: HomePresenterOutput {
     func showExchangeRate() {
-        let vc = exchangeAssembly.makeExchangeRateModule(network: network,
-                                                         config: config,
-                                                         coreData: coreData, exchangeRateService: exchangeRateService)
+        let vc = exchangeAssembly.makeExchangeRateModule(coreData: coreData, exchangeRateService: exchangeRateService)
         navigation?.pushViewController(vc, animated: true)
     }
     

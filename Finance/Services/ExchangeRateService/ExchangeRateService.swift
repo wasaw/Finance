@@ -12,7 +12,7 @@ final class ExchangeRateService {
 // MARK: - Properties
     
     private let network: NetworkProtocol
-    private let config: NetworkConfiguration
+    private let requestBuilder: RequestBuilderProtocol
     private let defaultValueService: DefaultValueServiceProtocol
 
     private var fullName = [String]()
@@ -20,11 +20,28 @@ final class ExchangeRateService {
     
 // MARK: - Lifecycle
     
-    init(network: NetworkProtocol, config: NetworkConfiguration,
+    init(network: NetworkProtocol,
+         requestBuilder: RequestBuilderProtocol,
          defaultValueService: DefaultValueServiceProtocol) {
         self.network = network
-        self.config = config
+        self.requestBuilder = requestBuilder
         self.defaultValueService = defaultValueService
+    }
+    
+// MARK: - Helpers
+    
+    private func load(urlRequest: URLRequest, completion: @escaping ((Result<[CurrentExchangeRate], Error>) -> Void)) {
+        network.loadData(request: urlRequest) { (result: Result<ExchangeRateDataModel, Error>) in
+            switch result {
+            case .success(let rate):
+                let exchangeRate = rate.conversionRates.enumerated().compactMap { (index, pair) in
+                    return CurrentExchangeRate(name: pair.0, amount: pair.1, fullName: self.fullName[index], img: self.img[index])
+                }
+                completion(.success(exchangeRate))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }
 
@@ -33,25 +50,13 @@ final class ExchangeRateService {
 extension ExchangeRateService: ExchangeRateServiceProtocol {
     func fetchExchangeRate(_ requestCurrency: String, completion: @escaping (Result<[CurrentExchangeRate], Error>) -> Void) {
         (fullName, img) = defaultValueService.fetchExchangeValue()
-        DispatchQueue.main.async {
-            do {
-                let urlString = try self.config.getUrl(.exchange) + requestCurrency
-                guard let url = URL(string: urlString) else { return }
-                let request = URLRequest(url: url)
-                self.network.loadData(request: request) { (result: Result<ExchangeRateDataModel, Error>) in
-                    switch result {
-                    case .success(let rate):
-                        let exchangeRate = rate.conversionRates.enumerated().compactMap { (index, pair) in
-                            return CurrentExchangeRate(name: pair.0, amount: pair.1, fullName: self.fullName[index], img: self.img[index])
-                        }
-                        completion(.success(exchangeRate))
-                    case .failure(let error):
-                        completion(.failure(error))
-                    }
-                }
-            } catch {
-                completion(.failure(error))
+        do {
+            let urlRequest = try requestBuilder.getExchangeRequest(requestCurrency)
+            DispatchQueue.main.async {
+                self.load(urlRequest: urlRequest, completion: completion)
             }
+        } catch {
+            completion(.failure(error))
         }
     }
     

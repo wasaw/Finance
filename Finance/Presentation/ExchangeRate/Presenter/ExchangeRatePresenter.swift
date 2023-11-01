@@ -13,8 +13,6 @@ final class ExchangeRatePresenter {
     
     weak var input: ExchangeRateInput?
     
-    private let network: NetworkProtocol
-    private let config: NetworkConfiguration
     private let coreDataService: CoreDataServiceProtocol
     private let exchangeRateService: ExchangeRateServiceProtocol
     private var exchangeRate: [CurrentExchangeRate] = []
@@ -22,12 +20,8 @@ final class ExchangeRatePresenter {
         
 // MARK: - Lifecycle
     
-    init(network: NetworkProtocol,
-         config: NetworkConfiguration,
-         coreDataService: CoreDataServiceProtocol,
+    init(coreDataService: CoreDataServiceProtocol,
          exchangeRateService: ExchangeRateServiceProtocol) {
-        self.network = network
-        self.config = config
         self.coreDataService = coreDataService
         self.exchangeRateService = exchangeRateService
         notification.addObserver(self, selector: #selector(updateInformation), name: .updateCurrency, object: nil)

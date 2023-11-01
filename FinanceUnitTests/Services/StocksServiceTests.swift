@@ -11,31 +11,31 @@ import XCTest
 final class StocksServiceTests: XCTestCase {
     
     var networkService: NetworkServiceMock!
-    var config: NetworkConfiguration!
+    var requestBuilder: RequestBuilderMock!
     var defaultValueService: DefaultValueServiceMock!
     var stocksService: StocksServiceProtocol!
     
     override func setUp() {
         networkService = NetworkServiceMock()
-        config = NetworkConfiguration()
+        requestBuilder = RequestBuilderMock()
         defaultValueService = DefaultValueServiceMock()
         stocksService  = StocksService(network: networkService,
-                                       config: config,
+                                       requestBuilder: requestBuilder,
                                        defaultValueService: defaultValueService)
     }
     
     override func tearDown() {
         networkService = nil
-        config = nil
+        requestBuilder = nil
         defaultValueService = nil
         stocksService = nil
     }
     
     func testGetStocks() {
-        stocksService.getStocks { _ in
+        stocksService.fetchStocks { _ in
         }
         
-        XCTAssertEqual(defaultValueService.invokedFetchStocks, true)
-        XCTAssertEqual(defaultValueService.invokedFetchStocksCount, 1)
+        XCTAssert(requestBuilder.invokedGetStocksRequest)
+        XCTAssertEqual(requestBuilder.invokedGetStocksRequestCount, 1)
     }
 }

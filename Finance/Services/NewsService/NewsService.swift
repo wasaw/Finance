@@ -12,13 +12,13 @@ final class NewsService {
 // MARK: - Properties
     
     private let network: NetworkProtocol
-    private let config: NetworkConfiguration
+    private let requestBuilder: RequestBuilderProtocol
     
 // MARK: - Lifecycle
     
-    init(network: NetworkProtocol, config: NetworkConfiguration) {
+    init(network: NetworkProtocol, requestBuilder: RequestBuilderProtocol) {
         self.network = network
-        self.config = config
+        self.requestBuilder = requestBuilder
     }
     
 }
@@ -33,13 +33,8 @@ extension NewsService: NewsServiceProtocol {
 //            Features NEWS API
             for index in 1...3 {
                 group.enter()
-                let urlString = try config.getUrl(.news, page: index)
-                guard let url = URL(string: urlString) else {
-                    group.leave()
-                    return
-                }
-                let request = URLRequest(url: url)
-                network.loadData(request: request) { (result: Result<NewsDataModel, Error>) in
+                let urlRequest = try requestBuilder.getNewsRequest(page: index)
+                network.loadData(request: urlRequest) { (result: Result<NewsDataModel, Error>) in
                     switch result {
                     case .success(let news):
                         let news: [News] = news.data.compactMap { newsData in

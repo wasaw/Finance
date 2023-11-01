@@ -78,7 +78,7 @@
 		BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6B5BB72A3C9C7200E16FFB /* AddTransactionInput.swift */; };
 		BB6B5BBA2A3C9C9B00E16FFB /* AddTransactionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6B5BB92A3C9C9B00E16FFB /* AddTransactionOutput.swift */; };
 		BB6BDB9729891CBD0000584A /* StockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB9629891CBD0000584A /* StockCell.swift */; };
-		BB6BDB99298942130000584A /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB98298942130000584A /* NetworkConfiguration.swift */; };
+		BB6BDB99298942130000584A /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB98298942130000584A /* RequestBuilder.swift */; };
 		BB6BDB9D2989574C0000584A /* ModelNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB9C2989574C0000584A /* ModelNetwork.swift */; };
 		BB6BDBA1298B994C0000584A /* RevenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDBA0298B994C0000584A /* RevenueCell.swift */; };
 		BB6C96AE2AA1BE74002338C9 /* ListCurrencyAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6C96AD2AA1BE74002338C9 /* ListCurrencyAdapter.swift */; };
@@ -105,6 +105,9 @@
 		BB72DEFC2AE91BBE001A3722 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEFB2AE91BBE001A3722 /* WebViewController.swift */; };
 		BB72DEFE2AE93924001A3722 /* NewsPresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEFD2AE93924001A3722 /* NewsPresenterOutput.swift */; };
 		BB72DF002AE939A7001A3722 /* NewsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB72DEFF2AE939A7001A3722 /* NewsCoordinator.swift */; };
+		BB76B0542AF2702100786B23 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB76B0532AF2702100786B23 /* NetworkError.swift */; };
+		BB76B0562AF27DD600786B23 /* RequestBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB76B0552AF27DD600786B23 /* RequestBuilderProtocol.swift */; };
+		BB76B0582AF2868F00786B23 /* RequestBuilderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB76B0572AF2868F00786B23 /* RequestBuilderMock.swift */; };
 		BB7B1BCB2AF12D1800EF781B /* CachePolice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B1BCA2AF12D1800EF781B /* CachePolice.swift */; };
 		BB8056C62AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
@@ -232,7 +235,7 @@
 		BB6B5BB72A3C9C7200E16FFB /* AddTransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionInput.swift; sourceTree = "<group>"; };
 		BB6B5BB92A3C9C9B00E16FFB /* AddTransactionOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionOutput.swift; sourceTree = "<group>"; };
 		BB6BDB9629891CBD0000584A /* StockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCell.swift; sourceTree = "<group>"; };
-		BB6BDB98298942130000584A /* NetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
+		BB6BDB98298942130000584A /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		BB6BDB9C2989574C0000584A /* ModelNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelNetwork.swift; sourceTree = "<group>"; };
 		BB6BDBA0298B994C0000584A /* RevenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCell.swift; sourceTree = "<group>"; };
 		BB6C96AD2AA1BE74002338C9 /* ListCurrencyAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCurrencyAdapter.swift; sourceTree = "<group>"; };
@@ -259,6 +262,9 @@
 		BB72DEFB2AE91BBE001A3722 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		BB72DEFD2AE93924001A3722 /* NewsPresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresenterOutput.swift; sourceTree = "<group>"; };
 		BB72DEFF2AE939A7001A3722 /* NewsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCoordinator.swift; sourceTree = "<group>"; };
+		BB76B0532AF2702100786B23 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		BB76B0552AF27DD600786B23 /* RequestBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilderProtocol.swift; sourceTree = "<group>"; };
+		BB76B0572AF2868F00786B23 /* RequestBuilderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilderMock.swift; sourceTree = "<group>"; };
 		BB7B1BCA2AF12D1800EF781B /* CachePolice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachePolice.swift; sourceTree = "<group>"; };
 		BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceTests.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -390,10 +396,10 @@
 		BB5C41122A447F09002DC6A0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				BB7B1BC92AF12CF100EF781B /* Conventer */,
+				BB7B1BC92AF12CF100EF781B /* Builder */,
 				BB5C41132A4481BD002DC6A0 /* Network.swift */,
+				BB76B0532AF2702100786B23 /* NetworkError.swift */,
 				BB5C41152A44829A002DC6A0 /* NetworkProtocol.swift */,
-				BB6BDB98298942130000584A /* NetworkConfiguration.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -644,6 +650,7 @@
 				BB5142222AA1D74C00663609 /* ExchangeRateMock.swift */,
 				BB51422A2AA1DDBB00663609 /* NetworkServiceMock.swift */,
 				BB5142302AA1E82D00663609 /* FirebaseServiceMock.swift */,
+				BB76B0572AF2868F00786B23 /* RequestBuilderMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -847,12 +854,14 @@
 			path = DataSource;
 			sourceTree = "<group>";
 		};
-		BB7B1BC92AF12CF100EF781B /* Conventer */ = {
+		BB7B1BC92AF12CF100EF781B /* Builder */ = {
 			isa = PBXGroup;
 			children = (
 				BB7B1BCA2AF12D1800EF781B /* CachePolice.swift */,
+				BB6BDB98298942130000584A /* RequestBuilder.swift */,
+				BB76B0552AF27DD600786B23 /* RequestBuilderProtocol.swift */,
 			);
-			path = Conventer;
+			path = Builder;
 			sourceTree = "<group>";
 		};
 		BBA242352ADD5EA200756EAA /* ATM */ = {
@@ -1135,6 +1144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB9EFC21287869D000305776 /* CurrencyCell.swift in Sources */,
+				BB76B0542AF2702100786B23 /* NetworkError.swift in Sources */,
 				BB715FA02A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift in Sources */,
 				BB5E37432A4199B40093AB95 /* ExchangeRateInput.swift in Sources */,
 				BB5C40F02A4345CF002DC6A0 /* ProfileCoordinator.swift in Sources */,
@@ -1152,7 +1162,7 @@
 				BB5C41062A4446DD002DC6A0 /* AuthInput.swift in Sources */,
 				BBA242482AE0049A00756EAA /* NewsViewController.swift in Sources */,
 				BB5C41202A4ACC6F002DC6A0 /* CoreDataServiceProtocol.swift in Sources */,
-				BB6BDB99298942130000584A /* NetworkConfiguration.swift in Sources */,
+				BB6BDB99298942130000584A /* RequestBuilder.swift in Sources */,
 				BB9B6FCF28CB5A59000B1D53 /* Constants.swift in Sources */,
 				BB44C5F72988079600776D4E /* Animations.swift in Sources */,
 				BB6D21942A33CADB000C22D7 /* HomePresenter.swift in Sources */,
@@ -1233,6 +1243,7 @@
 				BBA242512AE01A7B00756EAA /* NewsService.swift in Sources */,
 				BB715F992A8B6733004266A0 /* StocksService.swift in Sources */,
 				BB5C40F72A443544002DC6A0 /* AddTransactionAssembly.swift in Sources */,
+				BB76B0562AF27DD600786B23 /* RequestBuilderProtocol.swift in Sources */,
 				BB5C411A2A462D6A002DC6A0 /* FileStore.swift in Sources */,
 				BBA242552AE12C3700756EAA /* NewsCell.swift in Sources */,
 				BBA242412ADD613D00756EAA /* ATMAssembly.swift in Sources */,
@@ -1265,6 +1276,7 @@
 				BB5142332AA200D500663609 /* AuthServiceTests.swift in Sources */,
 				BB51422F2AA1E77E00663609 /* UserServiceTests.swift in Sources */,
 				BB8056C62AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift in Sources */,
+				BB76B0582AF2868F00786B23 /* RequestBuilderMock.swift in Sources */,
 				BB69A5D32A7D1572001941F0 /* FileStoreMock.swift in Sources */,
 				BB51422B2AA1DDBB00663609 /* NetworkServiceMock.swift in Sources */,
 			);

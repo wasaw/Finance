@@ -11,18 +11,18 @@ import XCTest
 final class NewsServiceTests: XCTestCase {
     
     var networkService: NetworkServiceMock!
-    var config: NetworkConfiguration!
+    var requestBuilder: RequestBuilderMock!
     var newsService: NewsService!
     
     override func setUp() {
         networkService = NetworkServiceMock()
-        config = NetworkConfiguration()
-        newsService = NewsService(network: networkService, config: config)
+        requestBuilder = RequestBuilderMock()
+        newsService = NewsService(network: networkService, requestBuilder: requestBuilder)
     }
     
     override func tearDown() {
         networkService = nil
-        config = nil
+        requestBuilder = nil
         newsService = nil
     }
     
@@ -32,5 +32,7 @@ final class NewsServiceTests: XCTestCase {
         
         XCTAssert(networkService.invokedLoadData)
         XCTAssertEqual(networkService.invokedLoadDataCount, 3)
+        XCTAssert(requestBuilder.invokedGetNewsRequest)
+        XCTAssertEqual(requestBuilder.invokedGetNewsRequestCount, 3)
     }
 }

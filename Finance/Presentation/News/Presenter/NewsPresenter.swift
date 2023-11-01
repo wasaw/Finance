@@ -12,7 +12,7 @@ enum Section: Hashable, CaseIterable {
 }
 
 struct NewsItem: Hashable {
-    let id: String
+    let id = UUID()
     let title: String
     let imageUrl: URL
     let date: String
@@ -42,7 +42,7 @@ final class NewsPresenter {
             let index = news.publishedAt.index(news.publishedAt.startIndex, offsetBy: 10)
             let dateSubstring = news.publishedAt.prefix(upTo: index)
             let date = String(dateSubstring)
-            return NewsItem(id: news.uuid, title: news.title, imageUrl: news.imageUrl, date: date)
+            return NewsItem(title: news.title, imageUrl: news.imageUrl, date: date)
         }
     }
     

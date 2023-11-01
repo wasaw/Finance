@@ -33,7 +33,7 @@ final class StocksPresenter {
 // MARK: - Helpers
     
     private func loadData() {
-        stocksService.getStocks { [weak self] result in
+        stocksService.fetchStocks { [weak self] result in
             switch result {
             case .success(let stocks):
                 self?.handleStocksResponse(stocks)

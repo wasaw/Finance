@@ -8,5 +8,5 @@
 import Foundation
 
 protocol StocksServiceProtocol: AnyObject {
-    func getStocks(completion: @escaping ((Result<[Stock], Error>) -> Void))
+    func fetchStocks(completion: @escaping ((Result<[Stock], Error>) -> Void))
 }

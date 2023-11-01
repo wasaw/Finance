@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let newsAssembly = NewsAssembly()
         let lastTransaction = LastTransactionAssembly()
         let network = Network()
-        let config = NetworkConfiguration()
+        let requestBuilder = RequestBuilder()
         let fileStore = FileStore()
         let coreData = CoreDataService()
         let defaultValueService = DefaultValueService(fileStore: fileStore)
@@ -36,12 +36,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                       fileStore: fileStore,
                                       firebaseService: firebaseService)
         let stocksService = StocksService(network: network,
-                                          config: config,
+                                          requestBuilder: requestBuilder,
                                           defaultValueService: defaultValueService)
         let exchangeRateService = ExchangeRateService(network: network,
-                                                      config: config,
+                                                      requestBuilder: requestBuilder,
                                                       defaultValueService: defaultValueService)
-        let newsService = NewsService(network: network, config: config)
+        let newsService = NewsService(network: network, requestBuilder: requestBuilder)
         
 // MARK: - Coordinator
     
@@ -52,8 +52,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                               atmAssembly: atmAssembly,
                                               newsCoordinator: newsCoordinator,
                                               lastTransaction: lastTransaction,
-                                              network: network,
-                                              config: config,
                                               coreData: coreData,
                                               transactionsService: transactionsService,
                                               userService: userService,

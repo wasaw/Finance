@@ -11,22 +11,22 @@ import XCTest
 final class ExchangeRateServiceTests: XCTestCase {
     
     var network: NetworkServiceMock!
-    var config: NetworkConfiguration!
+    var requestBuilder: RequestBuilder!
     var defaultValueService: DefaultValueServiceMock!
     var exchangeRateService: ExchangeRateServiceProtocol!
     
     override func setUp() {
         network = NetworkServiceMock()
-        config = NetworkConfiguration()
+        requestBuilder = RequestBuilder()
         defaultValueService = DefaultValueServiceMock()
         exchangeRateService = ExchangeRateService(network: network,
-                                                  config: config,
+                                                  requestBuilder: requestBuilder,
                                                   defaultValueService: defaultValueService)
     }
     
     override func tearDown() {
         network = nil
-        config = nil
+        requestBuilder = nil
         defaultValueService = nil
         exchangeRateService = nil
     }

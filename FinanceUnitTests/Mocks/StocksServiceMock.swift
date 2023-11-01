@@ -13,7 +13,7 @@ final class StocksServiceMock: StocksServiceProtocol {
     var invokedGetStocksCount = 0
     var stubbedGetStocksCompletionResult: (Result<[Stock], Error>, Void)?
 
-    func getStocks(completion: @escaping ((Result<[Stock], Error>) -> Void)) {
+    func fetchStocks(completion: @escaping ((Result<[Stock], Error>) -> Void)) {
         invokedGetStocks = true
         invokedGetStocksCount += 1
         if let result = stubbedGetStocksCompletionResult {
