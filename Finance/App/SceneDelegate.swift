@@ -31,17 +31,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let defaultValueService = DefaultValueService(fileStore: fileStore)
         let firebaseService = FirebaseService(network: network, fileStore: fileStore)
         let transactionsService = TransactionsService(coreData: coreData, firebaseService: firebaseService)
+        let exchangeRequest = ExchangeRateRequest()
+        let stocksRequest = StocksRequest()
+        let newsRequest = NewsRequest()
         let authService = AuthService(coreData: coreData, firebaseService: firebaseService)
         let userService = UserService(coreData: coreData,
                                       fileStore: fileStore,
                                       firebaseService: firebaseService)
         let stocksService = StocksService(network: network,
                                           requestBuilder: requestBuilder,
-                                          defaultValueService: defaultValueService)
+                                          defaultValueService: defaultValueService,
+                                          stocksRequest: stocksRequest)
         let exchangeRateService = ExchangeRateService(network: network,
                                                       requestBuilder: requestBuilder,
-                                                      defaultValueService: defaultValueService)
-        let newsService = NewsService(network: network, requestBuilder: requestBuilder)
+                                                      defaultValueService: defaultValueService,
+                                                      exchangeRequest: exchangeRequest)
+        let newsService = NewsService(network: network,
+                                      requestBuilder: requestBuilder,
+                                      newsRequest: newsRequest)
         
 // MARK: - Coordinator
     

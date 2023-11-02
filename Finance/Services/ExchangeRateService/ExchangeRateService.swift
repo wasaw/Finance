@@ -14,7 +14,8 @@ final class ExchangeRateService {
     private let network: NetworkProtocol
     private let requestBuilder: RequestBuilderProtocol
     private let defaultValueService: DefaultValueServiceProtocol
-
+    private let exchanteRequest: NetworkRequestProtocol
+    
     private var fullName = [String]()
     private var img = [String]()
     
@@ -22,10 +23,12 @@ final class ExchangeRateService {
     
     init(network: NetworkProtocol,
          requestBuilder: RequestBuilderProtocol,
-         defaultValueService: DefaultValueServiceProtocol) {
+         defaultValueService: DefaultValueServiceProtocol,
+         exchangeRequest: NetworkRequestProtocol) {
         self.network = network
         self.requestBuilder = requestBuilder
         self.defaultValueService = defaultValueService
+        self.exchanteRequest = exchangeRequest
     }
     
 // MARK: - Helpers
@@ -51,7 +54,8 @@ extension ExchangeRateService: ExchangeRateServiceProtocol {
     func fetchExchangeRate(_ requestCurrency: String, completion: @escaping (Result<[CurrentExchangeRate], Error>) -> Void) {
         (fullName, img) = defaultValueService.fetchExchangeValue()
         do {
-            let urlRequest = try requestBuilder.getExchangeRequest(requestCurrency)
+            exchanteRequest.requestValue = requestCurrency
+            let urlRequest = try requestBuilder.build(request: exchanteRequest)
             DispatchQueue.main.async {
                 self.load(urlRequest: urlRequest, completion: completion)
             }

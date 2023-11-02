@@ -14,6 +14,7 @@ final class StocksService {
     private let network: NetworkProtocol
     private let requestBuilder: RequestBuilderProtocol
     private let defaultValueService: DefaultValueServiceProtocol
+    private let stocksRequest: NetworkRequestProtocol
     
     private var dayInSeconds = 86400.0
     
@@ -21,10 +22,12 @@ final class StocksService {
     
     init(network: NetworkProtocol,
          requestBuilder: RequestBuilderProtocol,
-         defaultValueService: DefaultValueServiceProtocol) {
+         defaultValueService: DefaultValueServiceProtocol,
+         stocksRequest: NetworkRequestProtocol) {
         self.network = network
         self.requestBuilder = requestBuilder
         self.defaultValueService = defaultValueService
+        self.stocksRequest = stocksRequest
     }
     
 // MARK: - Helpers
@@ -62,7 +65,8 @@ extension StocksService: StocksServiceProtocol {
         formatter.dateFormat = "yyyy-MM-dd"
         let stringDate = formatter.string(from: currentDate)
             do {
-                let urlRequest = try requestBuilder.getStocksRequest(date: stringDate)
+                stocksRequest.requestValue = stringDate
+                let urlRequest = try requestBuilder.build(request: stocksRequest)
                 DispatchQueue.main.async {
                     self.load(urlRequest: urlRequest, completion: completion)
                 }
