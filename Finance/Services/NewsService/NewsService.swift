@@ -32,41 +32,30 @@ final class NewsService {
 extension NewsService: NewsServiceProtocol {
     func fetchNews(completion: @escaping ((Result<[News], RequestError>) -> Void)) {
         do {
-            var sendNews: [News] = []
-            let group = DispatchGroup()
-//            Features NEWS API
-            for index in 1...3 {
-                group.enter()
-                newsRequest.requestValue = String(index)
-                let urlRequest = try requestBuilder.build(request: newsRequest)
-                network.loadData(request: urlRequest) { (result: Result<NewsDataModel, Error>) in
-                    switch result {
-                    case .success(let news):
-                        let news: [News] = news.data.compactMap { newsData in
-                            guard let url = URL(string: newsData.url),
-                                  let imageUrl = URL(string: newsData.imageUrl)
-                            else {
-                                group.leave()
-                                return nil
-                            }
-                            ImageCache.publicCache.load(url: url, completion: { _ in
-                            })
-                            return News(uuid: newsData.uuid,
-                                        title: newsData.title,
-                                        descriptin: newsData.description,
-                                        url: url,
-                                        imageUrl: imageUrl,
-                                        publishedAt: newsData.publishedAt)
+            let urlRequest = try requestBuilder.build(request: newsRequest)
+            network.loadData(request: urlRequest) { (result: Result<NewsDataModel, Error>) in
+                switch result {
+                case .success(let news):
+                    let news: [News] = news.articles.compactMap { newsData in
+                        guard let url = URL(string: newsData.url),
+                              let urlToImage = newsData.urlToImage,
+                              let imageUrl = URL(string: urlToImage),
+                              let description = newsData.description
+                        else {
+                            return nil
                         }
-                        sendNews += news
-                        group.leave()
-                    case .failure:
-                        group.leave()
+                        ImageCache.publicCache.load(url: url, completion: { _ in
+                        })
+                        return News(title: newsData.title,
+                                    descriptin: description,
+                                    url: url,
+                                    imageUrl: imageUrl,
+                                    publishedAt: newsData.publishedAt)
                     }
+                    completion(.success(news))
+                case .failure:
+                    completion(.failure(RequestError.somethingError))
                 }
-            }
-            group.notify(queue: .main) {
-                completion(.success(sendNews))
             }
         } catch {
             completion(.failure(RequestError.somethingError))

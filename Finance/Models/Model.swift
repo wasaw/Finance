@@ -182,7 +182,6 @@ struct CurrencyButton {
 }
 
 struct News {
-    let uuid: String
     let title: String
     let descriptin: String
     let url: URL

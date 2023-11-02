@@ -80,8 +80,10 @@ final class NewsViewController: UIViewController {
 
 extension NewsViewController: NewsInput {
     func setLoading(enable: Bool) {
-        loadAnimationView.isHidden = !enable
-        refreshController.endRefreshing()
+        DispatchQueue.main.async {
+            self.loadAnimationView.isHidden = !enable
+            self.refreshController.endRefreshing()
+        }
     }
     
     func setNews(_ news: [NewsItem]) {
