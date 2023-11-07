@@ -91,7 +91,7 @@ fastlane/test_output
 iOSInjectionProject/
 
 # API KEY
-*.xcconfig
+ApiKey.xcconfig
 
 # DerivedData
 

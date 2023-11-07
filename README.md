@@ -4,7 +4,7 @@
 
 ## Установка
 
-Для установки достаточно клонировать проект, установить pod файлы и добавить в папку Finance/App фаил [ApiKey.xcconfig](https://drive.google.com/file/d/1JxfSS3qAOvJZrjx4OVakznHo4WYvyAs8/view?usp=share_link)
+Для установки достаточно клонировать проект, установить pod файлы и добавить в корневую папку фаил [ApiKey.xcconfig](https://drive.google.com/file/d/1JxfSS3qAOvJZrjx4OVakznHo4WYvyAs8/view?usp=share_link)
 
 ## Поддерживаемые технологии
 

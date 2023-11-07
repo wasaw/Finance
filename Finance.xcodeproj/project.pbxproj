@@ -272,6 +272,7 @@
 		BB76B05D2AF3A69200786B23 /* StocksRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksRequest.swift; sourceTree = "<group>"; };
 		BB76B05F2AF3A91200786B23 /* NewsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRequest.swift; sourceTree = "<group>"; };
 		BB7B1BCA2AF12D1800EF781B /* CachePolice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachePolice.swift; sourceTree = "<group>"; };
+		BB80311F2AFA2414000D8307 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceTests.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -542,6 +543,7 @@
 			isa = PBXGroup;
 			children = (
 				BB9EFC0F2863023700305776 /* Model.xcdatamodeld */,
+				BB5F1E862A4F076D0054F3A6 /* ApiKey.xcconfig */,
 				BB66A3402A810F40003A8871 /* TestPlans */,
 				BB61DE8B2850A33300A08AC6 /* Finance */,
 				BB69A5C62A7D1070001941F0 /* FinanceUnitTests */,
@@ -719,7 +721,7 @@
 				BB61DE8E2850A33300A08AC6 /* SceneDelegate.swift */,
 				BB61DE972850A33800A08AC6 /* LaunchScreen.storyboard */,
 				BB5C411D2A4996D1002DC6A0 /* DefaultValue.swift */,
-				BB5F1E862A4F076D0054F3A6 /* ApiKey.xcconfig */,
+				BB80311F2AFA2414000D8307 /* Config.xcconfig */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1326,7 +1328,7 @@
 /* Begin XCBuildConfiguration section */
 		BB61DE9B2850A33800A08AC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB5F1E862A4F076D0054F3A6 /* ApiKey.xcconfig */;
+			baseConfigurationReference = BB80311F2AFA2414000D8307 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1387,7 +1389,7 @@
 		};
 		BB61DE9C2850A33800A08AC6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB5F1E862A4F076D0054F3A6 /* ApiKey.xcconfig */;
+			baseConfigurationReference = BB80311F2AFA2414000D8307 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
