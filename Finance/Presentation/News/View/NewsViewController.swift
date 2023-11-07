@@ -27,11 +27,22 @@ final class NewsViewController: UIViewController {
     init(output: NewsOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
-        hidesBottomBarWhenPushed = true
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        tabBarController?.tabBar.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidLoad() {
