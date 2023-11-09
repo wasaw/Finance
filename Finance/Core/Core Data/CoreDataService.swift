@@ -39,6 +39,14 @@ extension CoreDataService: CoreDataServiceProtocol {
         return try viewContext.fetch(fetchRequest)
     }
     
+    func fetchTransactionsByMonth(startDate: Date, endDate: Date) throws -> [TransactionManagedObject] {
+        let fetchRequest = TransactionManagedObject.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "date >= %@ && date <= %@",
+                                             startDate as NSDate,
+                                             endDate as NSDate)
+        return try viewContext.fetch(fetchRequest)
+    }
+    
     func fetchUserInformation(uid: String) throws -> [UserManagedObject] {
         let fetchRequest = UserManagedObject.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "uid == %@", uid)

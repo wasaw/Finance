@@ -51,6 +51,39 @@ extension TransactionsService: TransactionsServiceProtocol {
         }
     }
     
+    func fetchTransactionByMonth() throws -> [Transaction] {
+        let components = Calendar.current.dateComponents([.month, .year], from: Date())
+        guard let startDateOfMonth = Calendar.current.date(from: components) else { return [Transaction]() }
+        var oneMonth = DateComponents()
+        oneMonth.month = 1
+        guard let endDateOfMonth = Calendar.current.date(byAdding: oneMonth, to: startDateOfMonth) else {
+            return [Transaction]()
+        }
+        
+        do {
+            let transactionManagedObject = try coreData.fetchTransactionsByMonth(startDate: startDateOfMonth, endDate: endDateOfMonth)
+            let transactions: [Transaction] = transactionManagedObject.compactMap { transaction in
+                guard let type = transaction.type,
+                      let img = transaction.img,
+                      let date = transaction.date,
+                      let comment = transaction.comment,
+                      let category = transaction.category
+                else {
+                    return nil
+                }
+                return Transaction(type: type,
+                                       amount: transaction.amount,
+                                       img: img,
+                                       date: date,
+                                       comment: comment,
+                                       category: category)
+            }
+            return transactions
+        } catch {
+            throw error
+        }
+    }
+    
     func fetchAmountBy(_ predicate: String) throws -> Double {
         do {
             let transactionManagedObject = try self.coreData.fetchTransactionsByRevenue(predicate)

@@ -24,6 +24,7 @@ final class HomePresenter {
     private var lastTransaction = [Transaction]()
     
     private let notification = NotificationCenter.default
+    private let userDefaults = UserDefaults.standard
     
 // MARK: - Lifecycle
     
@@ -34,6 +35,7 @@ final class HomePresenter {
         self.transactionsService = transactionsService
         self.userService = userService
         registerNotification()
+        userDefaults.set(true, forKey: "isProgress")
     }
     
     deinit {
@@ -50,7 +52,7 @@ final class HomePresenter {
     }
     
     private func loadInformation() {
-        if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
+        if let uid = userDefaults.value(forKey: "uid") as? String {
             userService.getUser(uid) { [weak self] result in
                 switch result {
                 case .success(let user):
@@ -66,11 +68,12 @@ final class HomePresenter {
             self.input?.showAlert(message: error.localizedDescription)
         }
         showRevenue()
+        showProgress()
     }
     
     private func showRevenue() {
-        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
-              let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
+        guard let currencyRate = userDefaults.value(forKey: "currencyRate") as? Double,
+              let currency = userDefaults.value(forKey: "currency") as? Int,
               let currentCurrency = Currency(rawValue: currency) else { return }
         var revenue: Double = 0
         if !self.lastTransaction.isEmpty {
@@ -83,6 +86,16 @@ final class HomePresenter {
         self.input?.showData(total: total,
                              service: self.service,
                              lastTransaction: self.lastTransaction)
+    }
+    
+    private func showProgress() {
+        if userDefaults.value(forKey: "isProgress") != nil {
+            do {
+                let transactions = try transactionsService.fetchTransactionByMonth()
+            } catch {
+                self.input?.showAlert(message: error.localizedDescription)
+            }
+        }
     }
     
 // MARK: - Selectors
