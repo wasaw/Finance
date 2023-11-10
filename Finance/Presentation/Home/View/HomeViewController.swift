@@ -39,7 +39,7 @@ final class HomeViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 27)
         return label
     }()
-    private lazy var totalAccountView = TotalAccountView()
+    private lazy var totalAccountView = ProgressView()
     private lazy var servicesTitleView = TitleView()
     private lazy var transactionTitleView = TitleView()
     private lazy var noTransactionsLabel: UILabel = {
@@ -185,7 +185,7 @@ extension HomeViewController: HomeInput {
     func showData(total: String,
                   service: [ChoiceService],
                   lastTransaction: [Transaction]) {
-        totalAccountView.setAccountLabel(total)
+//        totalAccountView.setAccountLabel(total)
         serviceAdapter.configure(service)
         servicesCollectionView?.reloadData()
         lastTransactionsAdapter.configure(transaction: lastTransaction)
@@ -202,6 +202,9 @@ extension HomeViewController: HomeInput {
     
     func setUserName(_ name: String) {
         fullNameLabel.text = name
+    }
+    
+    func showProgress(_ progress: Double) {
     }
 }
 

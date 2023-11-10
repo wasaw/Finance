@@ -92,6 +92,11 @@ final class HomePresenter {
         if userDefaults.value(forKey: "isProgress") != nil {
             do {
                 let transactions = try transactionsService.fetchTransactionByMonth()
+                var amount: Double = 0
+                transactions.forEach { transaction in
+                    amount += transaction.amount
+                }
+                input?.showProgress(amount)
             } catch {
                 self.input?.showAlert(message: error.localizedDescription)
             }

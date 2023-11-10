@@ -17,7 +17,7 @@ final class TotalAccountView: UIView {
     
 // MARK: - Propertries
     
-    private let titleLable: UILabel = {
+    private lazy var titleLable: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 19)
         label.textColor = .totalTintColor
@@ -26,14 +26,14 @@ final class TotalAccountView: UIView {
         return label
     }()
     
-    private let totalAccountLabel: UILabel = {
+    private lazy var totalAccountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 38)
         label.textColor = .totalTintColor
         return label
     }()
     
-    private let plusImage: UIImageView = {
+    private lazy var plusImage: UIImageView = {
         let img = UIImageView()
         img.image = UIImage(named: "plus.png")?.withTintColor(.totalTintColor)
         return img
