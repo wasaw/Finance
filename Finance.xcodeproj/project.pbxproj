@@ -113,6 +113,13 @@
 		BB76B0602AF3A91200786B23 /* NewsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB76B05F2AF3A91200786B23 /* NewsRequest.swift */; };
 		BB7B1BCB2AF12D1800EF781B /* CachePolice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B1BCA2AF12D1800EF781B /* CachePolice.swift */; };
 		BB8031212AFD2913000D8307 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031202AFD2913000D8307 /* ProgressView.swift */; };
+		BB8031262B0217B8000D8307 /* ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031252B0217B8000D8307 /* ProgressPresenter.swift */; };
+		BB8031282B0217D5000D8307 /* ProgressViewCotroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031272B0217D5000D8307 /* ProgressViewCotroller.swift */; };
+		BB80312A2B0217F4000D8307 /* ProgressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031292B0217F4000D8307 /* ProgressInput.swift */; };
+		BB80312C2B021813000D8307 /* ProgressOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80312B2B021813000D8307 /* ProgressOutput.swift */; };
+		BB80312E2B021A16000D8307 /* ProgressAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80312D2B021A16000D8307 /* ProgressAssembly.swift */; };
+		BB8031312B022406000D8307 /* ProgressDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031302B022406000D8307 /* ProgressDataSource.swift */; };
+		BB8031332B023C7D000D8307 /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031322B023C7D000D8307 /* ProgressCell.swift */; };
 		BB8056C62AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
@@ -275,6 +282,13 @@
 		BB7B1BCA2AF12D1800EF781B /* CachePolice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachePolice.swift; sourceTree = "<group>"; };
 		BB80311F2AFA2414000D8307 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		BB8031202AFD2913000D8307 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		BB8031252B0217B8000D8307 /* ProgressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPresenter.swift; sourceTree = "<group>"; };
+		BB8031272B0217D5000D8307 /* ProgressViewCotroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewCotroller.swift; sourceTree = "<group>"; };
+		BB8031292B0217F4000D8307 /* ProgressInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressInput.swift; sourceTree = "<group>"; };
+		BB80312B2B021813000D8307 /* ProgressOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressOutput.swift; sourceTree = "<group>"; };
+		BB80312D2B021A16000D8307 /* ProgressAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressAssembly.swift; sourceTree = "<group>"; };
+		BB8031302B022406000D8307 /* ProgressDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDataSource.swift; sourceTree = "<group>"; };
+		BB8031322B023C7D000D8307 /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceTests.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -360,6 +374,7 @@
 				BB5C41092A444D27002DC6A0 /* AuthAssembly.swift */,
 				BBA242402ADD613D00756EAA /* ATMAssembly.swift */,
 				BBA2424D2AE007C900756EAA /* NewsAssembly.swift */,
+				BB80312D2B021A16000D8307 /* ProgressAssembly.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -789,6 +804,7 @@
 		BB6D219C2A38A807000C22D7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				BB8031222B021776000D8307 /* Progress */,
 				BB6D219D2A38A81F000C22D7 /* Presenter */,
 				BB6D219E2A38A8F0000C22D7 /* View */,
 			);
@@ -884,6 +900,43 @@
 				BB6BDB98298942130000584A /* RequestBuilder.swift */,
 			);
 			path = Builder;
+			sourceTree = "<group>";
+		};
+		BB8031222B021776000D8307 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				BB8031242B021786000D8307 /* Presenter */,
+				BB8031232B02177D000D8307 /* View */,
+				BB80312F2B0223EF000D8307 /* DataSource */,
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
+		BB8031232B02177D000D8307 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB8031272B0217D5000D8307 /* ProgressViewCotroller.swift */,
+				BB8031292B0217F4000D8307 /* ProgressInput.swift */,
+				BB80312B2B021813000D8307 /* ProgressOutput.swift */,
+				BB8031322B023C7D000D8307 /* ProgressCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB8031242B021786000D8307 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB8031252B0217B8000D8307 /* ProgressPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB80312F2B0223EF000D8307 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				BB8031302B022406000D8307 /* ProgressDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		BBA242352ADD5EA200756EAA /* ATM */ = {
@@ -1167,6 +1220,7 @@
 			files = (
 				BB9EFC21287869D000305776 /* CurrencyCell.swift in Sources */,
 				BB76B0542AF2702100786B23 /* NetworkError.swift in Sources */,
+				BB8031332B023C7D000D8307 /* ProgressCell.swift in Sources */,
 				BB715FA02A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift in Sources */,
 				BB5E37432A4199B40093AB95 /* ExchangeRateInput.swift in Sources */,
 				BB5C40F02A4345CF002DC6A0 /* ProfileCoordinator.swift in Sources */,
@@ -1215,6 +1269,7 @@
 				BB5C41142A4481BD002DC6A0 /* Network.swift in Sources */,
 				BB6B5BB42A3C9BFF00E16FFB /* AddTransactionPresenter.swift in Sources */,
 				BB6BDB9729891CBD0000584A /* StockCell.swift in Sources */,
+				BB80312C2B021813000D8307 /* ProgressOutput.swift in Sources */,
 				BB5C41082A4446F7002DC6A0 /* AuthOutput.swift in Sources */,
 				BB6D21992A33CC33000C22D7 /* HomeInput.swift in Sources */,
 				BB72DEF42AE17A7A001A3722 /* DataSource.swift in Sources */,
@@ -1230,6 +1285,7 @@
 				BB5C40F52A442A50002DC6A0 /* HomeAssembly.swift in Sources */,
 				BB9EFC112863023700305776 /* Model.xcdatamodeld in Sources */,
 				BB5C40FB2A443C5B002DC6A0 /* ExchangeRateAssembly.swift in Sources */,
+				BB8031312B022406000D8307 /* ProgressDataSource.swift in Sources */,
 				BB5E373F2A4199440093AB95 /* ExchangeRatePresenter.swift in Sources */,
 				BBA2423B2ADD5EF200756EAA /* ATMViewController.swift in Sources */,
 				BB5E37452A4199E00093AB95 /* ExchangeRateOutput.swift in Sources */,
@@ -1244,6 +1300,7 @@
 				BB61DEB12851DC3200A08AC6 /* ServicesCell.swift in Sources */,
 				BBA2424A2AE004CC00756EAA /* NewsInput.swift in Sources */,
 				BB5C40FD2A443FB1002DC6A0 /* StocksAssembly.swift in Sources */,
+				BB8031262B0217B8000D8307 /* ProgressPresenter.swift in Sources */,
 				BB5C411E2A4996D1002DC6A0 /* DefaultValue.swift in Sources */,
 				BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */,
 				BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */,
@@ -1255,6 +1312,8 @@
 				BB7B1BCB2AF12D1800EF781B /* CachePolice.swift in Sources */,
 				BB6D21A42A38AA25000C22D7 /* ProfileInput.swift in Sources */,
 				BB715F942A864CCB004266A0 /* ProfilePresenterOutput.swift in Sources */,
+				BB80312A2B0217F4000D8307 /* ProgressInput.swift in Sources */,
+				BB8031282B0217D5000D8307 /* ProgressViewCotroller.swift in Sources */,
 				BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */,
 				BB9B6FD828CF79E9000B1D53 /* ProfileImageView.swift in Sources */,
 				BB5E374D2A41CCE30093AB95 /* StocksPresenter.swift in Sources */,
@@ -1275,6 +1334,7 @@
 				BB6A7F692A4C66210028CC13 /* DefaultValueService.swift in Sources */,
 				BB5C410A2A444D27002DC6A0 /* AuthAssembly.swift in Sources */,
 				BB6DF0112A4B6F9B00A1B4BD /* TransactionsService.swift in Sources */,
+				BB80312E2B021A16000D8307 /* ProgressAssembly.swift in Sources */,
 				BB6C96AE2AA1BE74002338C9 /* ListCurrencyAdapter.swift in Sources */,
 				BB5E373A2A418A4D0093AB95 /* HomePresenterOutput.swift in Sources */,
 				BBA2423D2ADD5EFD00756EAA /* ATMInput.swift in Sources */,

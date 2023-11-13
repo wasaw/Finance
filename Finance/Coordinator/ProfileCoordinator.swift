@@ -11,8 +11,10 @@ final class ProfileCoordinator {
     
 // MARK: - Properties
     
+    private var navigation: UINavigationController?
     private var profileView: UIViewController?
     private let profileAssembly: ProfileAssembly
+    private let progressAssembly: ProgressAssembly
     private let authService: AuthServiceProtocol
     private let userService: UserServiceProtocol
     private let authCoordinator: AuthCoordinator
@@ -23,12 +25,14 @@ final class ProfileCoordinator {
 // MARK: - Lifecycle
     
     init(profileAssembly: ProfileAssembly,
+         progressAssembly: ProgressAssembly,
          authService: AuthServiceProtocol,
          userService: UserServiceProtocol,
          authCoordinator: AuthCoordinator,
          exchageRateService: ExchangeRateServiceProtocol,
          transactionsService: TransactionsServiceProtocol) {
         self.profileAssembly = profileAssembly
+        self.progressAssembly = progressAssembly
         self.authService = authService
         self.userService = userService
         self.authCoordinator = authCoordinator
@@ -45,6 +49,7 @@ final class ProfileCoordinator {
                                                    exchageRateService: exchangeRateService,
                                                    transactionsService: transactionsService)
         let nav = UINavigationController(rootViewController: vc)
+        navigation = nav
         presenterViewController = vc
         profileView = vc
         return nav
@@ -59,5 +64,10 @@ extension ProfileCoordinator: ProfilePresenterOutput {
         presenterViewController?.view.addSubview(authViewController.view)
         presenterViewController?.addChild(authViewController)
         authViewController.didMove(toParent: presenterViewController)
+    }
+    
+    func showProgressMenu() {
+        let vc = progressAssembly.makeProgressModule(output: self)
+        navigation?.pushViewController(vc, animated: true)
     }
 }

@@ -9,4 +9,5 @@ import UIKit
 
 protocol ProfilePresenterOutput: AnyObject {
     func showAuth()
+    func showProgressMenu()
 }

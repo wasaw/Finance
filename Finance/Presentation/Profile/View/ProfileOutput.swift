@@ -12,4 +12,5 @@ protocol ProfileOutput: AnyObject {
     func logOut()
     func saveImage(_ imageData: Any?)
     func setCurrency(_ currencyButton: CurrencyButton)
+    func showProgressMenu()
 }

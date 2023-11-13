@@ -12,7 +12,8 @@ private enum Constants {
     static let paddingTopTen: CGFloat = 10
     static let paddingTopTwenty: CGFloat = 20
     static let nameLabelHeight: CGFloat = 50
-    static let totalAccountHeight: CGFloat = 180
+    static let centralViewHeight: CGFloat = 180
+    static let survicesTitlePaddingTop: CGFloat = 220
     static let servicesTitleHeight: CGFloat = 20
     static let servicesCollectionHeight: CGFloat = 140
     static let transactionTitleHeight: CGFloat = 20
@@ -39,7 +40,8 @@ final class HomeViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 27)
         return label
     }()
-    private lazy var totalAccountView = ProgressView()
+    private lazy var totalAccountView = TotalAccountView()
+    private lazy var progressView = ProgressView()
     private lazy var servicesTitleView = TitleView()
     private lazy var transactionTitleView = TitleView()
     private lazy var noTransactionsLabel: UILabel = {
@@ -79,6 +81,7 @@ final class HomeViewController: UIViewController {
     private func configureUI() {
         configurefullNameLabel()
         configureTotalAccountView()
+        configureProgressView()
         configureServicesTitleView()
         configureServicesCollectionView()
         configureTransactionTitleView()
@@ -103,16 +106,27 @@ final class HomeViewController: UIViewController {
                                 paddingLeading: Constants.horizontalPadding,
                                 paddingTop: Constants.paddingTopTwenty,
                                 paddingTrailing: -Constants.horizontalPadding,
-                                height: Constants.totalAccountHeight)
+                                height: Constants.centralViewHeight)
+    }
+    
+    private func configureProgressView() {
+        view.addSubview(progressView)
+        progressView.anchor(leading: view.leadingAnchor,
+                            top: fullNameLabel.bottomAnchor,
+                            trailing: view.trailingAnchor,
+                            paddingLeading: Constants.horizontalPadding,
+                            paddingTop: Constants.paddingTopTwenty,
+                            paddingTrailing: -Constants.horizontalPadding,
+                            height: Constants.centralViewHeight)
     }
     
     private func configureServicesTitleView() {
         view.addSubview(servicesTitleView)
         servicesTitleView.anchor(leading: view.leadingAnchor,
-                                 top: totalAccountView.bottomAnchor,
+                                 top: fullNameLabel.bottomAnchor,
                                  trailing: view.trailingAnchor,
                                  paddingLeading: Constants.horizontalPadding,
-                                 paddingTop: Constants.paddingTopTwenty,
+                                 paddingTop: Constants.survicesTitlePaddingTop,
                                  paddingTrailing: -Constants.horizontalPadding,
                                  height: Constants.servicesTitleHeight)
         servicesTitleView.setTitle(title: "Сервисы")
@@ -185,7 +199,8 @@ extension HomeViewController: HomeInput {
     func showData(total: String,
                   service: [ChoiceService],
                   lastTransaction: [Transaction]) {
-//        totalAccountView.setAccountLabel(total)
+        progressView.isHidden = true
+        totalAccountView.setAccountLabel(total)
         serviceAdapter.configure(service)
         servicesCollectionView?.reloadData()
         lastTransactionsAdapter.configure(transaction: lastTransaction)
@@ -205,7 +220,9 @@ extension HomeViewController: HomeInput {
     }
     
     func showProgress(_ progress: Progress) {
-        totalAccountView.setValue(progress)
+        totalAccountView.isHidden = true
+        progressView.isHidden = false
+        progressView.setValue(progress)
     }
 }
 

@@ -31,6 +31,7 @@ final class ProfileViewController: UIViewController {
         return label
     }()
 
+    private lazy var progressBtn = Utils().menuItemButton(image: "roadmap.png", title: "Прогресс")
     private lazy var currentCurrencyBtn = Utils().menuItemButton(image: "currencies.png", title: "Текущая валюта")
     private lazy var logOutBtn = Utils().menuItemButton(image: "logout.png", title: "Выход")
     
@@ -76,7 +77,9 @@ final class ProfileViewController: UIViewController {
                           paddingTrailing: -Constants.horizontalPadding,
                           height: Constants.loginLabelHeight)
         
-        let stack = UIStackView(arrangedSubviews: [currentCurrencyBtn, logOutBtn])
+        let stack = UIStackView(arrangedSubviews: [progressBtn,
+                                                   currentCurrencyBtn,
+                                                   logOutBtn])
         stack.axis = .vertical
         stack.spacing = Constants.stackViewSpacing
         view.addSubview(stack)
@@ -87,6 +90,7 @@ final class ProfileViewController: UIViewController {
                      paddingTop: Constants.stackViewPaddingTop,
                      paddingTrailing: -Constants.horizontalPadding)
         
+        progressBtn.addTarget(self, action: #selector(handleProgressBtn), for: .touchUpInside)
         currentCurrencyBtn.showsMenuAsPrimaryAction = true
         logOutBtn.addTarget(self, action: #selector(handleLogOutBtn), for: .touchUpInside)
     }
@@ -109,6 +113,10 @@ final class ProfileViewController: UIViewController {
     }
     
 // MARK: - Selecters
+    
+    @objc private func handleProgressBtn() {
+        output.showProgressMenu()
+    }
     
     @objc private func handleLogOutBtn() {
         output.logOut()

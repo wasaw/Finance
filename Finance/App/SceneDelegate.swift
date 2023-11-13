@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let homeAssembly = HomeAssembly()
         let addAssembly = AddTransactionAssembly()
         let profileAssembly = ProfileAssembly()
+        let progressAssembly = ProgressAssembly()
         let exchangeAssembly = ExchangeRateAssembly()
         let stocksAssembly = StocksAssembly()
         let authAssembly = AuthAssembly()
@@ -68,6 +69,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                               authService: authService,
                                               transactionsService: transactionsService)
         let profileCoordinator = ProfileCoordinator(profileAssembly: profileAssembly,
+                                                    progressAssembly: progressAssembly,
                                                     authService: authService,
                                                     userService: userService,
                                                     authCoordinator: authCoordinator,

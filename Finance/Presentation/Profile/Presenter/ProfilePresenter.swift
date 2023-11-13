@@ -168,6 +168,10 @@ extension ProfilePresenter: ProfileOutput {
             }
         }
     }
+    
+    func showProgressMenu() {
+        output.showProgressMenu()
+    }
 }
 
 // MARK: - ProfilePresenterInput
