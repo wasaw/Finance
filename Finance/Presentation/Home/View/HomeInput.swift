@@ -14,5 +14,5 @@ protocol HomeInput: AnyObject {
     func showLastTransaction()
     func showAlert(message: String)
     func setUserName(_ name: String)
-    func showProgress(_ progress: Double)
+    func showProgress(_ progress: Progress)
 }

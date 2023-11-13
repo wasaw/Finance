@@ -204,7 +204,8 @@ extension HomeViewController: HomeInput {
         fullNameLabel.text = name
     }
     
-    func showProgress(_ progress: Double) {
+    func showProgress(_ progress: Progress) {
+        totalAccountView.setValue(progress)
     }
 }
 

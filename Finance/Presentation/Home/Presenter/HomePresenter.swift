@@ -89,14 +89,25 @@ final class HomePresenter {
     }
     
     private func showProgress() {
-        if userDefaults.value(forKey: "isProgress") != nil {
+        if userDefaults.value(forKey: "isProgress") != nil,
+           let currencyRate = userDefaults.value(forKey: "currencyRate") as? Double,
+           let currency = userDefaults.value(forKey: "currency") as? Int,
+           let currentCurrency = Currency(rawValue: currency) {
             do {
                 let transactions = try transactionsService.fetchTransactionByMonth()
                 var amount: Double = 0
                 transactions.forEach { transaction in
                     amount += transaction.amount
                 }
-                input?.showProgress(amount)
+                let date = Date()
+                let calendar = Calendar.current
+                let day = calendar.component(.day, from: date)
+                let progress = Progress(amount: -amount,
+                                        purpose: 400,
+                                        currentDay: day,
+                                        currency: currentCurrency,
+                                        currencyRate: currencyRate)
+                input?.showProgress(progress)
             } catch {
                 self.input?.showAlert(message: error.localizedDescription)
             }
@@ -111,6 +122,7 @@ final class HomePresenter {
                 lastTransaction.append(transaction)
                 showRevenue()
             }
+            showProgress()
         }
     }
     

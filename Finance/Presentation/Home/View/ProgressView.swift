@@ -27,7 +27,6 @@ final class ProgressView: UIView {
     
     private lazy var expenseLabel: UILabel = {
         let label = UILabel()
-        label.text = "$2000"
         label.font = UIFont.boldSystemFont(ofSize: 29)
         label.textColor = .totalTintColor
         return label
@@ -49,7 +48,6 @@ final class ProgressView: UIView {
     
     private lazy var daysLabel: UILabel = {
         let label = UILabel()
-        label.text = "15 дней"
         label.font = UIFont.systemFont(ofSize: 27)
         label.textColor = .totalTintColor
         label.textAlignment = .center
@@ -59,12 +57,12 @@ final class ProgressView: UIView {
     private lazy var progressBar: UIProgressView = {
         let progressView = UIProgressView()
         progressView.tintColor = .selectedCellBackground
+        progressView.clipsToBounds = true
         return progressView
     }()
     
     private lazy var purposeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Цель $4000"
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = .totalTintColor
         return label
@@ -98,7 +96,6 @@ final class ProgressView: UIView {
                            height: Constants.progressHeight)
         progressBar.transform = progressBar.transform.scaledBy(x: Constants.transformX,
                                                                y: Constants.transformY)
-        progressBar.setProgress(0.3, animated: true)
         layer.borderWidth = Constants.borderWidth
         layer.borderColor = UIColor.lightGray.cgColor
         layer.cornerRadius = Constants.cornderRadius
@@ -133,5 +130,16 @@ final class ProgressView: UIView {
                             trailing: progressBar.trailingAnchor,
                             paddingTop: Constants.purposePaddingTop,
                             paddingTrailing: -Constants.horizontalPadding)
+    }
+    
+    func setValue(_ progress: Progress) {
+        expenseLabel.text = progress.currency.getMark() + progress.amountOutput
+        daysLabel.text = String(progress.currentDay) + " дней"
+        progressBar.setProgress(progress.ratio, animated: true)
+        purposeLabel.text = "Цель " + progress.purposeOutput + progress.currency.getMark()
+        if progress.amount > progress.purpose {
+            progressBar.tintColor = .red
+            progressBar.trackTintColor = .white
+        }
     }
 }

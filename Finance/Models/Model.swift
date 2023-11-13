@@ -188,3 +188,20 @@ struct News {
     let imageUrl: URL
     let publishedAt: String
 }
+
+struct Progress {
+    let amount: Double
+    let purpose: Double
+    let currentDay: Int
+    let currency: Currency
+    var ratio: Float {
+        Float(amount / purpose)
+    }
+    let currencyRate: Double
+    var amountOutput: String {
+        return String(format: "%.2f", amount / currencyRate)
+    }
+    var purposeOutput: String {
+        return String(format: "%.2f", purpose / currencyRate)
+    }
+}
