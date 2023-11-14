@@ -24,19 +24,20 @@ final class ProgressViewController: UIViewController {
     private lazy var tableView = UITableView(frame: .zero)
     private lazy var dataSource = ProgressDataSource(tableView, delegate: self)
     
-    private lazy var amountView: UIView = {
+    private lazy var expenseView: UIView = {
         let view = UIView()
+        view.isHidden = true
         return view
     }()
     
-    private lazy var amountLabel: UILabel = {
+    private lazy var expenseLabel: UILabel = {
         let label = UILabel()
         label.text = "Планируемые траты:"
         label.font = UIFont.boldSystemFont(ofSize: 19)
         return label
     }()
     
-    private lazy var amountTextField: UITextField = {
+    private lazy var expenseTextField: UITextField = {
         let tf = UITextField()
         tf.becomeFirstResponder()
         tf.layer.borderWidth = 0.3
@@ -46,7 +47,6 @@ final class ProgressViewController: UIViewController {
     
     private lazy var currencyLabel: UILabel = {
         let label = UILabel()
-        label.text = "₽"
         label.font = UIFont.boldSystemFont(ofSize: 19)
         return label
     }()
@@ -68,6 +68,13 @@ final class ProgressViewController: UIViewController {
         output.viewIsReady()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        let expense = expenseTextField.text ?? ""
+        output.saveExpense(expense)
+    }
+
 // MARK: - Helpers
     
     private func configureUI() {
@@ -80,29 +87,40 @@ final class ProgressViewController: UIViewController {
                          trailing: view.trailingAnchor,
                          height: Constants.tableHeight)
         
-        view.addSubview(amountView)
-        amountView.anchor(leading: view.leadingAnchor,
+        view.addSubview(expenseView)
+        expenseView.anchor(leading: view.leadingAnchor,
                           top: tableView.bottomAnchor,
                           trailing: view.trailingAnchor,
                           paddingLeading: Constants.horizontalPadding,
                           paddingTop: Constants.amountViewPaddingTop)
         
-        amountView.addSubview(amountLabel)
-        amountLabel.centerYAnchor.constraint(equalTo: amountView.centerYAnchor).isActive = true
-        amountLabel.anchor(leading: amountView.leadingAnchor)
+        expenseView.addSubview(expenseLabel)
+        expenseLabel.centerYAnchor.constraint(equalTo: expenseView.centerYAnchor).isActive = true
+        expenseLabel.anchor(leading: expenseView.leadingAnchor)
         
-        amountView.addSubview(currencyLabel)
-        currencyLabel.centerYAnchor.constraint(equalTo: amountView.centerYAnchor).isActive = true
-        currencyLabel.anchor(trailing: amountView.trailingAnchor,
+        expenseView.addSubview(currencyLabel)
+        currencyLabel.centerYAnchor.constraint(equalTo: expenseView.centerYAnchor).isActive = true
+        currencyLabel.anchor(trailing: expenseView.trailingAnchor,
                              paddingTrailing: -Constants.horizontalPadding)
         
-        amountView.addSubview(amountTextField)
-        amountTextField.centerYAnchor.constraint(equalTo: amountView.centerYAnchor).isActive = true
-        amountTextField.anchor(trailing: currencyLabel.leadingAnchor,
+        expenseView.addSubview(expenseTextField)
+        expenseTextField.centerYAnchor.constraint(equalTo: expenseView.centerYAnchor).isActive = true
+        expenseTextField.anchor(trailing: currencyLabel.leadingAnchor,
                                paddingTrailing: -Constants.horizontalPadding,
                                width: Constants.textFieldWidth)
         
         view.backgroundColor = .white
+        
+        configureKeyboard()
+    }
+    
+    private func configureKeyboard() {
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 50))
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        toolBar.setItems([flexSpace, doneButton], animated: true)
+        expenseTextField.inputAccessoryView = toolBar
     }
     
     private func setupDataSource(_ items: [ProgressItem]) {
@@ -112,12 +130,22 @@ final class ProgressViewController: UIViewController {
         snapshot.appendItems(items)
         dataSource.apply(snapshot)
     }
+    
+// MARK: - Selectors
+    
+    @objc private func doneAction() {
+        view.endEditing(true)
+    }
 }
 
 // ProgressInput
 
 extension ProgressViewController: ProgressInput {
     func setProgressItem(_ items: [ProgressItem]) {
+        guard !items.isEmpty else { return }
+        expenseView.isHidden = !items[0].isShow
+        expenseTextField.text = String(format: "%0.2f", items[0].expense)
+        currencyLabel.text = items[0].currency.getMark()
         configureUI()
         setupDataSource(items)
     }
@@ -135,6 +163,7 @@ extension ProgressViewController: UITableViewDelegate {
 
 extension ProgressViewController: ProgressCellDelegate {
     func showDetails(isShow: Bool) {
-        amountView.isHidden = !isShow
+        expenseView.isHidden = !isShow
+        output.setProgress(isShow)
     }
 }

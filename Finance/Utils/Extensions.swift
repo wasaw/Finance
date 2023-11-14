@@ -101,4 +101,5 @@ extension Notification.Name {
     static let updateCredential = Notification.Name("updateCredential")
     static let updateCurrency = Notification.Name("updateCurrency")
     static let updateTransactions = Notification.Name("updateTransactions")
+    static let updateProgress = Notification.Name("updateProgress")
 }

@@ -49,6 +49,7 @@ final class HomePresenter {
         notification.addObserver(self, selector: #selector(updateCredential(_:)), name: .updateCredential, object: nil)
         notification.addObserver(self, selector: #selector(updateCurrency), name: .updateCurrency, object: nil)
         notification.addObserver(self, selector: #selector(updateTransactions), name: .updateTransactions, object: nil)
+        notification.addObserver(self, selector: #selector(updateProgress), name: .updateProgress, object: nil)
     }
     
     private func loadInformation() {
@@ -92,7 +93,8 @@ final class HomePresenter {
         if userDefaults.value(forKey: "isProgress") != nil,
            let currencyRate = userDefaults.value(forKey: "currencyRate") as? Double,
            let currency = userDefaults.value(forKey: "currency") as? Int,
-           let currentCurrency = Currency(rawValue: currency) {
+           let currentCurrency = Currency(rawValue: currency),
+           let purpose = userDefaults.value(forKey: "expenseLimit") as? Double {
             do {
                 let transactions = try transactionsService.fetchTransactionByMonth()
                 var amount: Double = 0
@@ -103,7 +105,7 @@ final class HomePresenter {
                 let calendar = Calendar.current
                 let day = calendar.component(.day, from: date)
                 let progress = Progress(amount: -amount,
-                                        purpose: 400,
+                                        purpose: purpose,
                                         currentDay: day,
                                         currency: currentCurrency,
                                         currencyRate: currencyRate)
@@ -142,6 +144,10 @@ final class HomePresenter {
                 }
             }
         }
+    }
+    
+    @objc private func updateProgress() {
+        showProgress()
     }
     
     @objc private func updateCurrency() {

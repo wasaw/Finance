@@ -9,4 +9,6 @@ import Foundation
 
 protocol ProgressOutput: AnyObject {
     func viewIsReady()
+    func saveExpense(_ expense: String)
+    func setProgress(_ isOn: Bool)
 }
