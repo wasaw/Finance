@@ -56,7 +56,7 @@ extension AuthPresenter: AuthOutput {
             input?.showAlert(message: "Заполнены не все поля")
         } else {
             do {
-                let transactions = try transactionsService.fetchTransactions()
+                let transactions = try transactionsService.fetchTransactions(limit: nil)
                 authService.logInUser(credentials: credentials) { [weak self] result in
                     switch result {
                     case .success:
@@ -80,7 +80,7 @@ extension AuthPresenter: AuthOutput {
         switch result {
         case .success:
             do {
-                let transactions = try transactionsService.fetchTransactions()
+                let transactions = try transactionsService.fetchTransactions(limit: nil)
                 authService.signInUser(credentials: credentials) { [weak self] result in
                     switch result {
                     case .success:
@@ -104,7 +104,7 @@ extension AuthPresenter: AuthOutput {
     func dismissView(with isSave: Bool) {
         if isSave {
             do {
-                let transansaction = try transactionsService.fetchTransactions()
+                let transansaction = try transactionsService.fetchTransactions(limit: nil)
                 transactionsService.upload(transansaction)
             } catch {
             }

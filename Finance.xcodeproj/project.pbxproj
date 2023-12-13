@@ -586,7 +586,6 @@
 				BB61DEA32850A39800A08AC6 /* Models */,
 				BB5C40F32A442A3A002DC6A0 /* Assembly */,
 				BB5E37362A41886D0093AB95 /* Coordinator */,
-				BB61DEA22850A39400A08AC6 /* General */,
 				BB6D218E2A33C9FB000C22D7 /* Presentation */,
 				BB6DF00E2A4B6F4300A1B4BD /* Services */,
 				BB5C41112A447EE3002DC6A0 /* Core */,
@@ -595,14 +594,6 @@
 				BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */,
 			);
 			path = Finance;
-			sourceTree = "<group>";
-		};
-		BB61DEA22850A39400A08AC6 /* General */ = {
-			isa = PBXGroup;
-			children = (
-				BBCFDC052851F3FF003F9197 /* TitleView.swift */,
-			);
-			path = General;
 			sourceTree = "<group>";
 		};
 		BB61DEA32850A39800A08AC6 /* Models */ = {
@@ -763,6 +754,7 @@
 				BBA242352ADD5EA200756EAA /* ATM */,
 				BBA242422AE0044200756EAA /* News */,
 				BB5C40FE2A444628002DC6A0 /* Auth */,
+				BBCFDC052851F3FF003F9197 /* TitleView.swift */,
 				BB72DEFB2AE91BBE001A3722 /* WebViewController.swift */,
 			);
 			path = Presentation;
@@ -835,12 +827,12 @@
 		BB6DF00E2A4B6F4300A1B4BD /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BB6A7F672A4C66040028CC13 /* DefaultValueService */,
 				BB6A7F612A4C5FCB0028CC13 /* AuthService */,
 				BB659BA42A83C0EE009DB75B /* UserService */,
 				BB5E8D7E2A978EDE00BC1010 /* FirebaseService */,
 				BB715F972A8B6716004266A0 /* StocksService */,
 				BB715F9C2A8BA9DA004266A0 /* ExchangeRateService */,
-				BB6A7F672A4C66040028CC13 /* DefaultValueService */,
 				BB6DF00F2A4B6F6C00A1B4BD /* TransactionsService */,
 				BBA2424F2AE01A5F00756EAA /* NewsService */,
 				BB72DEF72AE806D6001A3722 /* ImageCache.swift */,

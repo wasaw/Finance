@@ -19,7 +19,6 @@ private enum Constants {
     static let transactionTitleHeight: CGFloat = 20
     static let noTransactionsHeight: CGFloat = 20
     static let lastTransactionsPaddingBottom: CGFloat = 25
-    static let sheetPresentationCornerRadius: CGFloat = 26
     static let servicesCollectionItemHeight: CGFloat = 110
     static let servicesCollectionItemWidth: CGFloat = 80
     static let lastTransactionsCollectionItemHeight: CGFloat = 70

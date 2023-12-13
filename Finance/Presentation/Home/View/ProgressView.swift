@@ -133,7 +133,7 @@ final class ProgressView: UIView {
     }
     
     func setValue(_ progress: Progress) {
-        expenseLabel.text = progress.currency.getMark() + progress.amountOutput
+        expenseLabel.text = String(format: "%.0f", progress.amount) + progress.currency.getMark()
         daysLabel.text = String(progress.currentDay) + " дней"
         progressBar.setProgress(progress.ratio, animated: true)
         purposeLabel.text = "Цель " + progress.purposeOutput + progress.currency.getMark()

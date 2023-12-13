@@ -7,10 +7,6 @@
 
 import UIKit
 
-private enum Constants {
-    static let arrowImageDimensions: CGFloat = 20
-}
-
 final class TitleView: UIView {
     
 // MARK: - Properties

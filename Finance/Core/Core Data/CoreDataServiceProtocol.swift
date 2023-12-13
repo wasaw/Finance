@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 protocol CoreDataServiceProtocol: AnyObject {
-    func fetchTransactions() throws -> [TransactionManagedObject]
+    func fetchTransactions(limit: Int?) throws -> [TransactionManagedObject]
     func fetchTransactionsByRevenue(_ predicate: String) throws -> [TransactionManagedObject]
     func fetchTransactionsByMonth(startDate: Date, endDate: Date) throws -> [TransactionManagedObject]
     func fetchUserInformation(uid: String) throws -> [UserManagedObject]

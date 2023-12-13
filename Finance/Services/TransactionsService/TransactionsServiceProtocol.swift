@@ -8,7 +8,7 @@
 import Foundation
 
 protocol TransactionsServiceProtocol: AnyObject {
-    func fetchTransactions() throws -> [Transaction]
+    func fetchTransactions(limit: Int?) throws -> [Transaction]
     func fetchTransactionByMonth() throws -> [Transaction]
     func fetchAmountBy(_ predicate: String) throws -> Double
     func saveTransaction(_ transaction: Transaction)

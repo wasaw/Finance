@@ -26,9 +26,9 @@ final class TransactionsService {
 // MARK: - TransactionsServiceProtocol
 
 extension TransactionsService: TransactionsServiceProtocol {
-    func fetchTransactions() throws -> [Transaction] {
+    func fetchTransactions(limit: Int?) throws -> [Transaction] {
         do {
-            let transactionManagedObject = try self.coreData.fetchTransactions()
+            let transactionManagedObject = try self.coreData.fetchTransactions(limit: limit)
             let lastTransaction: [Transaction] = transactionManagedObject.compactMap { transaction in
                 guard let type = transaction.type,
                       let img = transaction.img,

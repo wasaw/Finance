@@ -7,13 +7,6 @@
 
 import UIKit
 
-private enum Constants {
-    static let totalAccountViewDimensions: CGFloat = 25
-    static let paddingTopTen: CGFloat = 10
-    static let titleLableHeight: CGFloat = 20
-    static let totalAccountLabelHeight: CGFloat = 30
-}
-
 final class TopView: UIView {
     
 // MARK: - Properties

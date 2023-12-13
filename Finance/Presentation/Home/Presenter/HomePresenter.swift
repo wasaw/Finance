@@ -64,7 +64,7 @@ final class HomePresenter {
             }
         }
         do {
-            lastTransaction = try transactionsService.fetchTransactions()
+            lastTransaction = try transactionsService.fetchTransactions(limit: 5)
         } catch {
             self.input?.showAlert(message: error.localizedDescription)
         }

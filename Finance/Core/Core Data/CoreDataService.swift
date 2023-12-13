@@ -28,8 +28,13 @@ final class CoreDataService {
 // MARK: - CoreDataProtocol
 
 extension CoreDataService: CoreDataServiceProtocol {
-    func fetchTransactions() throws -> [TransactionManagedObject] {
+    func fetchTransactions(limit: Int?) throws -> [TransactionManagedObject] {
         let fetchRequest = TransactionManagedObject.fetchRequest()
+        let sort = NSSortDescriptor(key: "date", ascending: false)
+        fetchRequest.sortDescriptors = [sort]
+        if let limit = limit {
+            fetchRequest.fetchLimit = limit
+        }
         return try viewContext.fetch(fetchRequest)
     }
     
