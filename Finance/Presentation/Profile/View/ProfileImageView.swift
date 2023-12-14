@@ -27,6 +27,7 @@ final class ProfileImageView: UIView {
         btn.setImage(UIImage(named: "add-photo.pgn")?.withRenderingMode(.alwaysOriginal), for: .normal)
         btn.imageView?.contentMode = .center
         btn.layer.borderWidth = 3
+        btn.layer.borderColor = UIColor.totalTintColor.cgColor
         btn.addTarget(self, action: #selector(handleAddPhoto), for: .touchUpInside)
         return btn
     }()

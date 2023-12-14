@@ -28,6 +28,7 @@ final class ProfileViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 23)
         label.textAlignment = .center
+        label.textColor = .totalTintColor
         return label
     }()
 
@@ -56,6 +57,7 @@ final class ProfileViewController: UIViewController {
 // MARK: - Helpers
     
     private func configureUI() {
+        navigationItem.backButtonTitle = ""
         imageView.delegate = self
         imagePicker.delegate = self
         imagePicker.allowsEditing = true

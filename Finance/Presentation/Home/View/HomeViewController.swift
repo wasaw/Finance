@@ -72,6 +72,7 @@ final class HomeViewController: UIViewController {
         
         configureUI()
         output.viewIsReady()
+        navigationItem.backButtonTitle = ""
         view.backgroundColor = .white
     }
     

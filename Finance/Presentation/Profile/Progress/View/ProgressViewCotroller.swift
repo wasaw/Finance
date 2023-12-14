@@ -39,7 +39,7 @@ final class ProgressViewController: UIViewController {
     
     private lazy var expenseTextField: UITextField = {
         let tf = UITextField()
-        tf.becomeFirstResponder()
+//        tf.becomeFirstResponder()
         tf.layer.borderWidth = 0.3
         tf.layer.borderColor = UIColor.lightGray.cgColor
         return tf
@@ -103,7 +103,7 @@ final class ProgressViewController: UIViewController {
         currencyLabel.anchor(trailing: expenseView.trailingAnchor,
                              paddingTrailing: -Constants.horizontalPadding)
         
-        expenseView.addSubview(expenseTextField)
+        view.addSubview(expenseTextField)
         expenseTextField.centerYAnchor.constraint(equalTo: expenseView.centerYAnchor).isActive = true
         expenseTextField.anchor(trailing: currencyLabel.leadingAnchor,
                                paddingTrailing: -Constants.horizontalPadding,

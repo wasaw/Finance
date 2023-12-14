@@ -35,7 +35,6 @@ final class HomePresenter {
         self.transactionsService = transactionsService
         self.userService = userService
         registerNotification()
-        userDefaults.set(true, forKey: "isProgress")
     }
     
     deinit {
@@ -90,7 +89,8 @@ final class HomePresenter {
     }
     
     private func showProgress() {
-        if userDefaults.value(forKey: "isProgress") != nil,
+        let isProgress = userDefaults.value(forKey: "isProgress") as? Bool
+        if isProgress == true,
            let currencyRate = userDefaults.value(forKey: "currencyRate") as? Double,
            let currency = userDefaults.value(forKey: "currency") as? Int,
            let currentCurrency = Currency(rawValue: currency),

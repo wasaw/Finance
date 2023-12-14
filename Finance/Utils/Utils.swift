@@ -20,6 +20,7 @@ class Utils {
 
         let label = UILabel()
         label.text = title
+        label.textColor = .totalTintColor
         label.font = UIFont.boldSystemFont(ofSize: 21)
         button.addSubview(label)
         label.centerYAnchor.constraint(equalTo: button.centerYAnchor).isActive = true
