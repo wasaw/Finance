@@ -58,6 +58,11 @@ extension CoreDataService: CoreDataServiceProtocol {
         return try viewContext.fetch(fetchRequest)
     }
     
+    func fetchAccounts() throws -> [AccountManagedObject] {
+        let fetchRequest = AccountManagedObject.fetchRequest()
+        return try viewContext.fetch(fetchRequest)
+    }
+    
     func save(completion: @escaping(NSManagedObjectContext) throws -> Void) {
         let backgroundContext = persistentContainer.newBackgroundContext()
         backgroundContext.perform {

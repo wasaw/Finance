@@ -5,18 +5,28 @@
 //  Created by Александр Меренков on 28.06.2023.
 //
 
-import Foundation
+import UIKit
 
 final class DefaultValueService {
     
 // MARK: - Properties
     
     private let fileStore: FileStoreProtocol
+    private let coreData: CoreDataServiceProtocol
+    private let accounts: [ChoiceTypeRevenue]
     
 // MARK: - Lifecycle
     
-    init(fileStore: FileStoreProtocol) {
+    init(fileStore: FileStoreProtocol, coreData: CoreDataServiceProtocol) {
         self.fileStore = fileStore
+        self.coreData = coreData
+        
+        accounts = [ChoiceTypeRevenue(name: "Зарплата", img: "calendar.png"),
+                   ChoiceTypeRevenue(name: "Продажа", img: "sales.png"),
+                   ChoiceTypeRevenue(name: "Проценты", img: "price-tag.png"),
+                   ChoiceTypeRevenue(name: "Наличные", img: "salary.png"),
+                   ChoiceTypeRevenue(name: "Вклад", img: "deposit.png"),
+                   ChoiceTypeRevenue(name: "Иное", img: "other.png")]
     }
     
 }
@@ -24,6 +34,27 @@ final class DefaultValueService {
 // MARK: - DefaultValueServiceProtocol
 
 extension DefaultValueService: DefaultValueServiceProtocol {
+    func saveValue() {
+        accounts.forEach { account in
+            let id = UUID()
+            coreData.save { context in
+                let accountManagedObject = AccountManagedObject(context: context)
+                accountManagedObject.id = id
+                accountManagedObject.title = account.name
+                accountManagedObject.amount = 0
+            }
+            guard let imageData = UIImage(named: account.img)?.pngData() else { return }
+            fileStore.saveImage(data: imageData, with: id.uuidString) { result in
+                switch result {
+                case .success:
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
     func fetchValue() throws -> ([ChoiceCategoryExpense], [ChoiceTypeRevenue]) {
         var category = [ChoiceCategoryExpense]()
         var revenue = [ChoiceTypeRevenue]()

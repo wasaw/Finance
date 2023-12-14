@@ -7,14 +7,24 @@
 
 import Foundation
 
+struct AccountCellModel {
+    let title: String
+    let image: Data
+    let amount: Double
+    let currency: Currency
+    let currencyRate: Double
+}
+
 final class AddTransactionPresenter {
     
 // MARK: - Properties
     
     weak var input: AddTransactionInput?
     
+    private let accountService: AccountServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
     private let defaultValueService: DefaultValueServiceProtocol
+    private let fileStore: FileStoreProtocol
     
     private var revenue = [ChoiceTypeRevenue]()
     private var category = [ChoiceCategoryExpense]()
@@ -26,9 +36,14 @@ final class AddTransactionPresenter {
 
 // MARK: - Lifecycle
     
-    init(transactionsService: TransactionsServiceProtocol, defaultValueService: DefaultValueServiceProtocol) {
+    init(accountService: AccountServiceProtocol,
+         transactionsService: TransactionsServiceProtocol,
+         defaultValueService: DefaultValueServiceProtocol,
+         fileStore: FileStoreProtocol) {
+        self.accountService = accountService
         self.transactionsService = transactionsService
         self.defaultValueService = defaultValueService
+        self.fileStore = fileStore
     }
     
     deinit {
@@ -39,9 +54,36 @@ final class AddTransactionPresenter {
     
     private func loadData() {
         do {
-            (category, revenue) = try defaultValueService.fetchValue()
+            (category, _) = try defaultValueService.fetchValue()
             selectedCategory = category.first
-            selectedRevenue = revenue.first
+            accountService.fetchAccounts { [weak self] result in
+                switch result {
+                case .success(let accounts):
+                    guard let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
+                          let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
+                          let currentCurrency = Currency(rawValue: currency) else { return }
+                    let accountModelView: [AccountCellModel] = accounts.compactMap { account in
+                        var data: Data = Data()
+                        self?.fileStore.getImage(account.id.uuidString) { result in
+                            switch result {
+                            case .success(let imageData):
+                                data = imageData
+                            case .failure(let error):
+                                self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
+                            }
+                        }
+                        return AccountCellModel(title: account.title,
+                                                image: data,
+                                                amount: account.amount,
+                                                currency: currentCurrency,
+                                                currencyRate: currencyRate)
+                    }
+                    self?.input?.setAccount(accountModelView)
+                case .failure(let error):
+                    self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
+                }
+            }
+//            selectedRevenue = revenue.first
         } catch {
             input?.showAlert(with: "Ошибка", and: error.localizedDescription)
         }

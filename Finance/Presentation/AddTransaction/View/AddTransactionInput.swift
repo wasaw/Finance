@@ -12,6 +12,7 @@ protocol AddTransactionInput: AnyObject {
                   revenue: [ChoiceTypeRevenue],
                   currency: Currency,
                   currencyRate: Double)
+    func setAccount(_ account: [AccountCellModel])
     func dismissView()
     func showAlert(with title: String, and text: String)
 }

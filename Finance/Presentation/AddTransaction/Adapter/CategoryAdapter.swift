@@ -46,7 +46,8 @@ extension CategoryAdapter: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifire,
                                                             for: indexPath) as? CategoryCell else { return UICollectionViewCell() }
         let currentCategory = category[indexPath.row]
-        cell.setInfornation(title: currentCategory.name, img: currentCategory.img, currency: currency)
+        guard let image = UIImage(named: currentCategory.img) else { return UICollectionViewCell() }
+        cell.setInfornation(title: currentCategory.name, image: image, currency: currency)
         cell.disableSelect()
         if isSelected == indexPath.row {
             cell.setSelect()

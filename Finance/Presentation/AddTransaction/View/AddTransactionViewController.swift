@@ -32,7 +32,7 @@ final class AddTransactionViewController: UIViewController {
 // MARK: - Properties
     
     private let output: AddTransactionOutput
-    private let revenueAdapter = RevenueAdaper()
+    private let accountAdapter = AccountAdaper()
     private let categoryAdapter = CategoryAdapter()
     
     private lazy var scrollView = UIScrollView()
@@ -164,7 +164,7 @@ final class AddTransactionViewController: UIViewController {
                                 paddingTop: Constants.paddingTopContent,
                                 paddingTrailing: -Constants.horizontalPadding,
                                 height: Constants.titleHeight)
-        revenueTitleView.setTitle(title: "Выбрать тип дохода")
+        revenueTitleView.setTitle(title: "Выбрать счет")
     }
     
     private func configureRevenueCollectionView() {
@@ -172,9 +172,9 @@ final class AddTransactionViewController: UIViewController {
         revenueLayout.scrollDirection = .horizontal
         revenueCollectionView = UICollectionView(frame: .zero, collectionViewLayout: revenueLayout)
         guard let revenueCollectionView = revenueCollectionView else { return }
-        revenueCollectionView.register(RevenueCell.self, forCellWithReuseIdentifier: RevenueCell.identifire)
+        revenueCollectionView.register(AccountCell.self, forCellWithReuseIdentifier: AccountCell.identifire)
         revenueCollectionView.delegate = self
-        revenueCollectionView.dataSource = revenueAdapter
+        revenueCollectionView.dataSource = accountAdapter
         revenueCollectionView.showsHorizontalScrollIndicator = false
         revenueCollectionView.backgroundColor = .white
         contentView.addSubview(revenueCollectionView)
@@ -364,11 +364,15 @@ final class AddTransactionViewController: UIViewController {
 // MARK: - AddTransactionInput
 
 extension AddTransactionViewController: AddTransactionInput {
+    func setAccount(_ account: [AccountCellModel]) {
+        accountAdapter.configure(account)
+    }
+    
     func showData(category: [ChoiceCategoryExpense],
                   revenue: [ChoiceTypeRevenue],
                   currency: Currency,
                   currencyRate: Double) {
-        revenueAdapter.configure(RevenueCellValues(revenue: revenue, currency: currency, currencyRate: currencyRate))
+//        revenueAdapter.configure(RevenueCellValues(revenue: revenue, currency: currency, currencyRate: currencyRate))
         categoryAdapter.configure(CategoryCellValues(category: category, currency: currency, currencyRate: currencyRate))
         revenueCollectionView?.reloadData()
         categoryCollectionView?.reloadData()
@@ -388,7 +392,7 @@ extension AddTransactionViewController: AddTransactionInput {
 extension AddTransactionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.revenueCollectionView {
-            revenueAdapter.setSelected(at: indexPath.row)
+            accountAdapter.setSelected(at: indexPath.row)
             output.selectedRevenue(indexPath.row)
             collectionView.reloadData()
         }

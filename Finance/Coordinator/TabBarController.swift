@@ -21,8 +21,10 @@ final class TabBarController: UITabBarController {
     private let addAssembly: AddTransactionAssembly
     private let profileCoordinator: ProfileCoordinator
     private let coreData: CoreDataServiceProtocol
+    private let accountService: AccountServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
     private let defaultValueService: DefaultValueServiceProtocol
+    private let fileStore: FileStoreProtocol
         
 // MARK: - Lifecycle
     
@@ -30,15 +32,19 @@ final class TabBarController: UITabBarController {
          addAssembly: AddTransactionAssembly,
          profileCoordinator: ProfileCoordinator,
          coreData: CoreDataServiceProtocol,
+         accountService: AccountServiceProtocol,
          transactionsService: TransactionsServiceProtocol,
-         defaultValueService: DefaultValueServiceProtocol) {
+         defaultValueService: DefaultValueServiceProtocol,
+         fileStore: FileStoreProtocol) {
         
         self.homeCoordinator = homeCoordinator
         self.addAssembly = addAssembly
         self.profileCoordinator = profileCoordinator
         self.coreData = coreData
+        self.accountService = accountService
         self.transactionsService = transactionsService
         self.defaultValueService = defaultValueService
+        self.fileStore = fileStore
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -69,7 +75,10 @@ final class TabBarController: UITabBarController {
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = "Домашняя"
         
-        let addVC = addAssembly.makeAddTransactionModul(transactionsService: transactionsService, defaultValueService: defaultValueService)
+        let addVC = addAssembly.makeAddTransactionModul(accountService: accountService,
+                                                        transactionsService: transactionsService,
+                                                        defaultValueService: defaultValueService,
+                                                        fileStore: fileStore)
         let named = (view.frame.height < 700) ? "plus-2.png" : "plus-1.png"
         addVC.tabBarItem.image = UIImage(named: named)?.withRenderingMode(.alwaysOriginal)
         let top: CGFloat = (view.frame.height < 700) ? 10 : 25
@@ -90,7 +99,10 @@ extension TabBarController: UITabBarControllerDelegate {
         let isAddVC = viewController is AddTransactionViewController
 
         if isAddVC {
-            let addVC = addAssembly.makeAddTransactionModul(transactionsService: transactionsService, defaultValueService: defaultValueService)
+            let addVC = addAssembly.makeAddTransactionModul(accountService: accountService,
+                                                            transactionsService: transactionsService,
+                                                            defaultValueService: defaultValueService,
+                                                            fileStore: fileStore)
             if let sheet = addVC.sheetPresentationController {
                 sheet.detents = [.large()]
             }

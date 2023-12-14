@@ -80,7 +80,7 @@
 		BB6BDB9729891CBD0000584A /* StockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB9629891CBD0000584A /* StockCell.swift */; };
 		BB6BDB99298942130000584A /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB98298942130000584A /* RequestBuilder.swift */; };
 		BB6BDB9D2989574C0000584A /* ModelNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDB9C2989574C0000584A /* ModelNetwork.swift */; };
-		BB6BDBA1298B994C0000584A /* RevenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDBA0298B994C0000584A /* RevenueCell.swift */; };
+		BB6BDBA1298B994C0000584A /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6BDBA0298B994C0000584A /* AccountCell.swift */; };
 		BB6C96AE2AA1BE74002338C9 /* ListCurrencyAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6C96AD2AA1BE74002338C9 /* ListCurrencyAdapter.swift */; };
 		BB6D21942A33CADB000C22D7 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21932A33CADB000C22D7 /* HomePresenter.swift */; };
 		BB6D21972A33CB1A000C22D7 /* HomeOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D21962A33CB1A000C22D7 /* HomeOutput.swift */; };
@@ -112,6 +112,8 @@
 		BB76B05E2AF3A69200786B23 /* StocksRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB76B05D2AF3A69200786B23 /* StocksRequest.swift */; };
 		BB76B0602AF3A91200786B23 /* NewsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB76B05F2AF3A91200786B23 /* NewsRequest.swift */; };
 		BB7B1BCB2AF12D1800EF781B /* CachePolice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B1BCA2AF12D1800EF781B /* CachePolice.swift */; };
+		BB7B26022B2B20DF005E5A20 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B26012B2B20DF005E5A20 /* AccountService.swift */; };
+		BB7B26042B2B20FD005E5A20 /* AccountServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B26032B2B20FD005E5A20 /* AccountServiceProtocol.swift */; };
 		BB8031212AFD2913000D8307 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031202AFD2913000D8307 /* ProgressView.swift */; };
 		BB8031262B0217B8000D8307 /* ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031252B0217B8000D8307 /* ProgressPresenter.swift */; };
 		BB8031282B0217D5000D8307 /* ProgressViewCotroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031272B0217D5000D8307 /* ProgressViewCotroller.swift */; };
@@ -146,7 +148,7 @@
 		BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */; };
 		BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC052851F3FF003F9197 /* TitleView.swift */; };
 		BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */; };
-		BBD518642A9CD50F0052B895 /* RevenueAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD518632A9CD50F0052B895 /* RevenueAdapter.swift */; };
+		BBD518642A9CD50F0052B895 /* AccountAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD518632A9CD50F0052B895 /* AccountAdapter.swift */; };
 		BBD518692A9CE44A0052B895 /* CategoryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD518682A9CE44A0052B895 /* CategoryAdapter.swift */; };
 		BBD5186C2AA0890C0052B895 /* ServiceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5186B2AA0890C0052B895 /* ServiceAdapter.swift */; };
 		BBD5186E2AA08B4A0052B895 /* LastTransactionsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5186D2AA08B4A0052B895 /* LastTransactionsAdapter.swift */; };
@@ -248,7 +250,7 @@
 		BB6BDB9629891CBD0000584A /* StockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCell.swift; sourceTree = "<group>"; };
 		BB6BDB98298942130000584A /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		BB6BDB9C2989574C0000584A /* ModelNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelNetwork.swift; sourceTree = "<group>"; };
-		BB6BDBA0298B994C0000584A /* RevenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCell.swift; sourceTree = "<group>"; };
+		BB6BDBA0298B994C0000584A /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		BB6C96AD2AA1BE74002338C9 /* ListCurrencyAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCurrencyAdapter.swift; sourceTree = "<group>"; };
 		BB6D21932A33CADB000C22D7 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		BB6D21962A33CB1A000C22D7 /* HomeOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOutput.swift; sourceTree = "<group>"; };
@@ -280,6 +282,8 @@
 		BB76B05D2AF3A69200786B23 /* StocksRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksRequest.swift; sourceTree = "<group>"; };
 		BB76B05F2AF3A91200786B23 /* NewsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRequest.swift; sourceTree = "<group>"; };
 		BB7B1BCA2AF12D1800EF781B /* CachePolice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachePolice.swift; sourceTree = "<group>"; };
+		BB7B26012B2B20DF005E5A20 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		BB7B26032B2B20FD005E5A20 /* AccountServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountServiceProtocol.swift; sourceTree = "<group>"; };
 		BB80311F2AFA2414000D8307 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		BB8031202AFD2913000D8307 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		BB8031252B0217B8000D8307 /* ProgressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPresenter.swift; sourceTree = "<group>"; };
@@ -315,7 +319,7 @@
 		BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionModalView.swift; sourceTree = "<group>"; };
 		BBCFDC052851F3FF003F9197 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionsCell.swift; sourceTree = "<group>"; };
-		BBD518632A9CD50F0052B895 /* RevenueAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueAdapter.swift; sourceTree = "<group>"; };
+		BBD518632A9CD50F0052B895 /* AccountAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAdapter.swift; sourceTree = "<group>"; };
 		BBD518682A9CE44A0052B895 /* CategoryAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAdapter.swift; sourceTree = "<group>"; };
 		BBD5186B2AA0890C0052B895 /* ServiceAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAdapter.swift; sourceTree = "<group>"; };
 		BBD5186D2AA08B4A0052B895 /* LastTransactionsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionsAdapter.swift; sourceTree = "<group>"; };
@@ -559,7 +563,6 @@
 		BB61DE802850A33300A08AC6 = {
 			isa = PBXGroup;
 			children = (
-				BB9EFC0F2863023700305776 /* Model.xcdatamodeld */,
 				BB5F1E862A4F076D0054F3A6 /* ApiKey.xcconfig */,
 				BB66A3402A810F40003A8871 /* TestPlans */,
 				BB61DE8B2850A33300A08AC6 /* Finance */,
@@ -582,6 +585,7 @@
 		BB61DE8B2850A33300A08AC6 /* Finance */ = {
 			isa = PBXGroup;
 			children = (
+				BB9EFC0F2863023700305776 /* Model.xcdatamodeld */,
 				BB6BDB9A2989550B0000584A /* App */,
 				BB61DEA32850A39800A08AC6 /* Models */,
 				BB5C40F32A442A3A002DC6A0 /* Assembly */,
@@ -716,7 +720,7 @@
 				BB6B5BB72A3C9C7200E16FFB /* AddTransactionInput.swift */,
 				BB6B5BB92A3C9C9B00E16FFB /* AddTransactionOutput.swift */,
 				BB9EFC09285E2A9200305776 /* CategoryCell.swift */,
-				BB6BDBA0298B994C0000584A /* RevenueCell.swift */,
+				BB6BDBA0298B994C0000584A /* AccountCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -827,6 +831,7 @@
 		BB6DF00E2A4B6F4300A1B4BD /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BB7B26002B2B20D0005E5A20 /* AccountService */,
 				BB6A7F672A4C66040028CC13 /* DefaultValueService */,
 				BB6A7F612A4C5FCB0028CC13 /* AuthService */,
 				BB659BA42A83C0EE009DB75B /* UserService */,
@@ -892,6 +897,15 @@
 				BB6BDB98298942130000584A /* RequestBuilder.swift */,
 			);
 			path = Builder;
+			sourceTree = "<group>";
+		};
+		BB7B26002B2B20D0005E5A20 /* AccountService */ = {
+			isa = PBXGroup;
+			children = (
+				BB7B26012B2B20DF005E5A20 /* AccountService.swift */,
+				BB7B26032B2B20FD005E5A20 /* AccountServiceProtocol.swift */,
+			);
+			path = AccountService;
 			sourceTree = "<group>";
 		};
 		BB8031222B021776000D8307 /* Progress */ = {
@@ -1000,7 +1014,7 @@
 		BBD518652A9CD8800052B895 /* Adapter */ = {
 			isa = PBXGroup;
 			children = (
-				BBD518632A9CD50F0052B895 /* RevenueAdapter.swift */,
+				BBD518632A9CD50F0052B895 /* AccountAdapter.swift */,
 				BBD518682A9CE44A0052B895 /* CategoryAdapter.swift */,
 			);
 			path = Adapter;
@@ -1217,7 +1231,7 @@
 				BB5E37432A4199B40093AB95 /* ExchangeRateInput.swift in Sources */,
 				BB5C40F02A4345CF002DC6A0 /* ProfileCoordinator.swift in Sources */,
 				BB5E37412A41996D0093AB95 /* ExchangeRateViewController.swift in Sources */,
-				BB6BDBA1298B994C0000584A /* RevenueCell.swift in Sources */,
+				BB6BDBA1298B994C0000584A /* AccountCell.swift in Sources */,
 				BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */,
 				BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */,
 				BB5E37322A4098B00093AB95 /* LastTransactionInput.swift in Sources */,
@@ -1233,6 +1247,7 @@
 				BB6BDB99298942130000584A /* RequestBuilder.swift in Sources */,
 				BB9B6FCF28CB5A59000B1D53 /* Constants.swift in Sources */,
 				BB44C5F72988079600776D4E /* Animations.swift in Sources */,
+				BB7B26022B2B20DF005E5A20 /* AccountService.swift in Sources */,
 				BB6D21942A33CADB000C22D7 /* HomePresenter.swift in Sources */,
 				BB6A7F632A4C5FF60028CC13 /* AuthServiceProtocol.swift in Sources */,
 				BB5C40F92A443AB2002DC6A0 /* ProfileAssembly.swift in Sources */,
@@ -1243,7 +1258,7 @@
 				BB76B05C2AF3A18D00786B23 /* ExchangeRateRequest.swift in Sources */,
 				BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */,
 				BBA2424E2AE007C900756EAA /* NewsAssembly.swift in Sources */,
-				BBD518642A9CD50F0052B895 /* RevenueAdapter.swift in Sources */,
+				BBD518642A9CD50F0052B895 /* AccountAdapter.swift in Sources */,
 				BBD5186E2AA08B4A0052B895 /* LastTransactionsAdapter.swift in Sources */,
 				BB9EFC0A285E2A9200305776 /* CategoryCell.swift in Sources */,
 				BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */,
@@ -1306,6 +1321,7 @@
 				BB715F942A864CCB004266A0 /* ProfilePresenterOutput.swift in Sources */,
 				BB80312A2B0217F4000D8307 /* ProgressInput.swift in Sources */,
 				BB8031282B0217D5000D8307 /* ProgressViewCotroller.swift in Sources */,
+				BB7B26042B2B20FD005E5A20 /* AccountServiceProtocol.swift in Sources */,
 				BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */,
 				BB9B6FD828CF79E9000B1D53 /* ProfileImageView.swift in Sources */,
 				BB5E374D2A41CCE30093AB95 /* StocksPresenter.swift in Sources */,

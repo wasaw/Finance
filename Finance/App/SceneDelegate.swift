@@ -29,9 +29,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let requestBuilder = RequestBuilder()
         let fileStore = FileStore()
         let coreData = CoreDataService()
-        let defaultValueService = DefaultValueService(fileStore: fileStore)
+        let defaultValueService = DefaultValueService(fileStore: fileStore, coreData: coreData)
         let firebaseService = FirebaseService(network: network, fileStore: fileStore)
         let transactionsService = TransactionsService(coreData: coreData, firebaseService: firebaseService)
+        let accountService = AccountService(coreData: coreData)
         let exchangeRequest = ExchangeRateRequest()
         let stocksRequest = StocksRequest()
         let newsRequest = NewsRequest()
@@ -75,6 +76,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                                     authCoordinator: authCoordinator,
                                                     exchageRateService: exchangeRateService,
                                                     transactionsService: transactionsService)
+        
+        if UserDefaults.standard.value(forKey: "isFirstLaunce") == nil {
+            defaultValueService.saveValue()
+            UserDefaults.standard.set(false, forKey: "isFirstLaunce")
+        }
 
         guard let scene = (scene as? UIWindowScene) else { return }
         
@@ -83,8 +89,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = TabBarController(homeCoordinator: homeCoordinator,
                                                       addAssembly: addAssembly,
                                                       profileCoordinator: profileCoordinator, coreData: coreData,
+                                                      accountService: accountService,
                                                       transactionsService: transactionsService,
-                                                      defaultValueService: defaultValueService)
+                                                      defaultValueService: defaultValueService,
+                                                      fileStore: fileStore)
         window?.makeKeyAndVisible()
     }
 }

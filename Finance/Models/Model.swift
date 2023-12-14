@@ -7,6 +7,12 @@
 
 import UIKit
 
+struct Account {
+    let id: UUID
+    let title: String
+    let amount: Double
+}
+
 struct ChoiceService {
     let name: String
     let img: String

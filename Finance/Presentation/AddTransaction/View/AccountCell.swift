@@ -1,5 +1,5 @@
 //
-//  RevenueCell.swift
+//  AccountCell.swift
 //  Finance
 //
 //  Created by Александр Меренков on 02.02.2023.
@@ -11,7 +11,7 @@ private enum Constants {
     static let amountLabelHeight: CGFloat = 20
 }
 
-final class RevenueCell: CategoryCell {
+final class AccountCell: CategoryCell {
     
 // MARK: - Properties
     
@@ -41,8 +41,9 @@ final class RevenueCell: CategoryCell {
         amountLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
-    override func setInfornation(title: String, img: String, amount: Double = 0, currency: Currency) {
-        amountLabel.text = String(format: "%.0f", amount) + currency.getMark()
-        super.setInfornation(title: title, img: img, amount: amount, currency: currency)
+    func setInfornation(account: AccountCellModel) {
+        amountLabel.text = String(format: "%.0f", account.amount) + account.currency.getMark()
+        guard let image = UIImage(data: account.image) else { return }
+        super.setInfornation(title: account.title, image: image, amount: account.amount, currency: account.currency)
     }
 }
