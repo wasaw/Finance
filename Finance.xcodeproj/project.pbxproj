@@ -114,6 +114,8 @@
 		BB7B1BCB2AF12D1800EF781B /* CachePolice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B1BCA2AF12D1800EF781B /* CachePolice.swift */; };
 		BB7B26022B2B20DF005E5A20 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B26012B2B20DF005E5A20 /* AccountService.swift */; };
 		BB7B26042B2B20FD005E5A20 /* AccountServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B26032B2B20FD005E5A20 /* AccountServiceProtocol.swift */; };
+		BB7B26072B2B4907005E5A20 /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B26062B2B4907005E5A20 /* CategoryService.swift */; };
+		BB7B26092B2B4923005E5A20 /* CategoryServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B26082B2B4923005E5A20 /* CategoryServiceProtocol.swift */; };
 		BB8031212AFD2913000D8307 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031202AFD2913000D8307 /* ProgressView.swift */; };
 		BB8031262B0217B8000D8307 /* ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031252B0217B8000D8307 /* ProgressPresenter.swift */; };
 		BB8031282B0217D5000D8307 /* ProgressViewCotroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031272B0217D5000D8307 /* ProgressViewCotroller.swift */; };
@@ -284,6 +286,8 @@
 		BB7B1BCA2AF12D1800EF781B /* CachePolice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachePolice.swift; sourceTree = "<group>"; };
 		BB7B26012B2B20DF005E5A20 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		BB7B26032B2B20FD005E5A20 /* AccountServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountServiceProtocol.swift; sourceTree = "<group>"; };
+		BB7B26062B2B4907005E5A20 /* CategoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
+		BB7B26082B2B4923005E5A20 /* CategoryServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryServiceProtocol.swift; sourceTree = "<group>"; };
 		BB80311F2AFA2414000D8307 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		BB8031202AFD2913000D8307 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		BB8031252B0217B8000D8307 /* ProgressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPresenter.swift; sourceTree = "<group>"; };
@@ -832,6 +836,7 @@
 			isa = PBXGroup;
 			children = (
 				BB7B26002B2B20D0005E5A20 /* AccountService */,
+				BB7B26052B2B48F3005E5A20 /* CategoryService */,
 				BB6A7F672A4C66040028CC13 /* DefaultValueService */,
 				BB6A7F612A4C5FCB0028CC13 /* AuthService */,
 				BB659BA42A83C0EE009DB75B /* UserService */,
@@ -906,6 +911,15 @@
 				BB7B26032B2B20FD005E5A20 /* AccountServiceProtocol.swift */,
 			);
 			path = AccountService;
+			sourceTree = "<group>";
+		};
+		BB7B26052B2B48F3005E5A20 /* CategoryService */ = {
+			isa = PBXGroup;
+			children = (
+				BB7B26062B2B4907005E5A20 /* CategoryService.swift */,
+				BB7B26082B2B4923005E5A20 /* CategoryServiceProtocol.swift */,
+			);
+			path = CategoryService;
 			sourceTree = "<group>";
 		};
 		BB8031222B021776000D8307 /* Progress */ = {
@@ -1234,6 +1248,7 @@
 				BB6BDBA1298B994C0000584A /* AccountCell.swift in Sources */,
 				BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */,
 				BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */,
+				BB7B26072B2B4907005E5A20 /* CategoryService.swift in Sources */,
 				BB5E37322A4098B00093AB95 /* LastTransactionInput.swift in Sources */,
 				BB72DEFE2AE93924001A3722 /* NewsPresenterOutput.swift in Sources */,
 				BB5E372E2A4098850093AB95 /* LastTransactionPresenter.swift in Sources */,
@@ -1312,6 +1327,7 @@
 				BB61DEAA2850DA9F00A08AC6 /* TotalAccountView.swift in Sources */,
 				BB61DEAD2850DE3F00A08AC6 /* Extensions.swift in Sources */,
 				BB5E8D822A979C4100BC1010 /* FirebaseServiceProtocol.swift in Sources */,
+				BB7B26092B2B4923005E5A20 /* CategoryServiceProtocol.swift in Sources */,
 				BB5C410E2A446D49002DC6A0 /* AuthCoordinator.swift in Sources */,
 				BB659BA32A83776E009DB75B /* ProfilePresenterInput.swift in Sources */,
 				BB9EFC13286B234700305776 /* CoreDataService.swift in Sources */,

@@ -9,40 +9,45 @@ import Foundation
 
 struct AccountCellModel {
     let title: String
-    let image: Data
+    let imageData: Data
     let amount: Double
     let currency: Currency
     let currencyRate: Double
 }
 
+struct CategoryCellModel {
+    let title: String
+    let imageData: Data
+}
+
 final class AddTransactionPresenter {
     
-// MARK: - Properties
+    // MARK: - Properties
     
     weak var input: AddTransactionInput?
     
     private let accountService: AccountServiceProtocol
+    private let categoryService: CategoryServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
-    private let defaultValueService: DefaultValueServiceProtocol
     private let fileStore: FileStoreProtocol
     
-    private var revenue = [ChoiceTypeRevenue]()
-    private var category = [ChoiceCategoryExpense]()
-    private var selectedRevenue: ChoiceTypeRevenue?
-    private var selectedCategory: ChoiceCategoryExpense?
+    private var account = [Account]()
+    private var category = [Category]()
+    private var selectedAccount: Account?
+    private var selectedCategory: Category?
     private var isRevenue = false
-        
+    
     private let notification = NotificationCenter.default
-
-// MARK: - Lifecycle
+    
+    // MARK: - Lifecycle
     
     init(accountService: AccountServiceProtocol,
+         categoryService: CategoryServiceProtocol,
          transactionsService: TransactionsServiceProtocol,
-         defaultValueService: DefaultValueServiceProtocol,
          fileStore: FileStoreProtocol) {
         self.accountService = accountService
+        self.categoryService = categoryService
         self.transactionsService = transactionsService
-        self.defaultValueService = defaultValueService
         self.fileStore = fileStore
     }
     
@@ -50,66 +55,67 @@ final class AddTransactionPresenter {
         notification.removeObserver(self)
     }
     
-// MARK: - Helpers
+    // MARK: - Helpers
     
     private func loadData() {
-        do {
-            (category, _) = try defaultValueService.fetchValue()
-            selectedCategory = category.first
-            accountService.fetchAccounts { [weak self] result in
-                switch result {
-                case .success(let accounts):
-                    guard let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
-                          let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
-                          let currentCurrency = Currency(rawValue: currency) else { return }
-                    let accountModelView: [AccountCellModel] = accounts.compactMap { account in
-                        var data: Data = Data()
-                        self?.fileStore.getImage(account.id.uuidString) { result in
-                            switch result {
-                            case .success(let imageData):
-                                data = imageData
-                            case .failure(let error):
-                                self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
-                            }
+        accountService.fetchAccounts { [weak self] result in
+            switch result {
+            case .success(let accounts):
+                guard let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
+                      let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
+                      let currentCurrency = Currency(rawValue: currency) else { return }
+                let accountCellModel: [AccountCellModel] = accounts.compactMap { account in
+                    var data: Data = Data()
+                    self?.fileStore.getImage(account.id.uuidString) { result in
+                        switch result {
+                        case .success(let imageData):
+                            data = imageData
+                        case .failure(let error):
+                            self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
                         }
-                        return AccountCellModel(title: account.title,
-                                                image: data,
-                                                amount: account.amount,
-                                                currency: currentCurrency,
-                                                currencyRate: currencyRate)
                     }
-                    self?.input?.setAccount(accountModelView)
-                case .failure(let error):
-                    self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
+                    self?.account.append(account)
+                    return AccountCellModel(title: account.title,
+                                            imageData: data,
+                                            amount: account.amount,
+                                            currency: currentCurrency,
+                                            currencyRate: currencyRate)
                 }
-            }
-//            selectedRevenue = revenue.first
-        } catch {
-            input?.showAlert(with: "Ошибка", and: error.localizedDescription)
-        }
-        guard let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
-              let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
-              let currentCurrency = Currency(rawValue: currency) else { return }
-        for (index, type) in revenue.enumerated() {
-            do {
-                let amount = try transactionsService.fetchAmountBy(type.name)
-                revenue[index].amount = amount / currencyRate
-            } catch {
-                revenue[index].amount = 0
+                self?.input?.setAccount(accountCellModel)
+            case .failure(let error):
+                self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
             }
         }
-        input?.showData(category: category,
-                        revenue: revenue,
-                        currency: currentCurrency,
-                        currencyRate: currencyRate)
+        
+        categoryService.fetchCategory { [weak self] result in
+            switch result {
+            case .success(let categories):
+                let categoriesCellModel = categories.compactMap { category in
+                    var data: Data = Data()
+                    self?.fileStore.getImage(category.id.uuidString) { result in
+                        switch result {
+                        case .success(let imageData):
+                            data = imageData
+                        case .failure(let error):
+                            self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
+                        }
+                    }
+                    self?.category.append(category)
+                    return CategoryCellModel(title: category.title, imageData: data)
+                }
+                self?.input?.setCategory(categoriesCellModel)
+            case .failure(let error):
+                self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
+            }
+        }
     }
 }
 
 // MARK: - AddTransactionOutput
 
 extension AddTransactionPresenter: AddTransactionOutput {
-    func selectedRevenue(_ index: Int) {
-        selectedRevenue = revenue[index]
+    func selectedAccount(_ index: Int) {
+        selectedAccount = account[index]
     }
     
     func selectedCategory(_ index: Int) {
@@ -125,29 +131,29 @@ extension AddTransactionPresenter: AddTransactionOutput {
     }
     
     func saveTransaction(_ transaction: SaveTransaction) {
-        guard let type = selectedRevenue?.name,
-              let amountString = transaction.amount,
-              let img = selectedCategory?.img,
-              let category = selectedCategory?.name,
-              let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
-              let amount = Double(amountString) else {
-            if transaction.amount == "" {
-                input?.showAlert(with: "Внимание", and: "Не заполнено поле сумма")
-            }
-            return
-        }
-        let signedAmount = isRevenue ? amount : -amount
-        let convertedAmount = signedAmount * currencyRate
-        
-        let lastTransaction = Transaction(type: type,
-                                              amount: convertedAmount,
-                                              img: img,
-                                              date: transaction.date,
-                                              comment: transaction.comment ?? "",
-                                              category: category)
-        transactionsService.saveTransaction(lastTransaction)
-        let addTransaction: [String: Transaction] = ["lastTransaction": lastTransaction]
-        notification.post(Notification(name: .addTransactions, object: nil, userInfo: addTransaction))
-        input?.dismissView()
+//        guard let type = selectedAccount?.name,
+//              let amountString = transaction.amount,
+//              let img = selectedCategory?.img,
+//              let category = selectedCategory?.name,
+//              let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
+//              let amount = Double(amountString) else {
+//            if transaction.amount == "" {
+//                input?.showAlert(with: "Внимание", and: "Не заполнено поле сумма")
+//            }
+//            return
+//        }
+//        let signedAmount = isRevenue ? amount : -amount
+//        let convertedAmount = signedAmount * currencyRate
+//
+//        let lastTransaction = Transaction(type: type,
+//                                              amount: convertedAmount,
+//                                              img: img,
+//                                              date: transaction.date,
+//                                              comment: transaction.comment ?? "",
+//                                              category: category)
+//        transactionsService.saveTransaction(lastTransaction)
+//        let addTransaction: [String: Transaction] = ["lastTransaction": lastTransaction]
+//        notification.post(Notification(name: .addTransactions, object: nil, userInfo: addTransaction))
+//        input?.dismissView()
     }
 }

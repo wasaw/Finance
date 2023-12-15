@@ -73,7 +73,7 @@ class CategoryCell: UICollectionViewCell {
         imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
-    func setInfornation(title: String, image: UIImage, amount: Double = 0, currency: Currency) {
+    func setInfornation(title: String, image: UIImage) {
         titleLabel.text = title
         imageView.image = image
     }

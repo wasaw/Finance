@@ -33,6 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let firebaseService = FirebaseService(network: network, fileStore: fileStore)
         let transactionsService = TransactionsService(coreData: coreData, firebaseService: firebaseService)
         let accountService = AccountService(coreData: coreData)
+        let categoryService = CategoryService(coreData: coreData)
         let exchangeRequest = ExchangeRateRequest()
         let stocksRequest = StocksRequest()
         let newsRequest = NewsRequest()
@@ -90,6 +91,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                                       addAssembly: addAssembly,
                                                       profileCoordinator: profileCoordinator, coreData: coreData,
                                                       accountService: accountService,
+                                                      categoryService: categoryService,
                                                       transactionsService: transactionsService,
                                                       defaultValueService: defaultValueService,
                                                       fileStore: fileStore)
