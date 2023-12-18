@@ -86,7 +86,7 @@ final class LastTransactionModalView: UIView {
     }
     
     func setInformation(_ transaction: Transaction) {
-        typeLabel.text = transaction.type
+        typeLabel.text = "transaction.type"
         amountLabel.text = transaction.amountOutput + transaction.currencyMark
         if transaction.amount >= 0 {
             amountLabel.textColor = .systemGreen
@@ -94,7 +94,7 @@ final class LastTransactionModalView: UIView {
             amountLabel.textColor = .red
         }
         commentLabel.text = transaction.comment
-        categoryLabel.text = transaction.category
+        categoryLabel.text = "transaction.category"
         dateLabel.text = transaction.dateString
     }
 }

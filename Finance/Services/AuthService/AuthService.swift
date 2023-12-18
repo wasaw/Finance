@@ -79,9 +79,9 @@ extension AuthService: AuthServiceProtocol {
                         transactions.forEach { transaction in
                             self?.coreData.save { context in
                                 let transactionManagedObject = TransactionManagedObject(context: context)
-                                transactionManagedObject.type = transaction.type
-                                transactionManagedObject.category = transaction.category
-                                transactionManagedObject.img = transaction.img
+//                                transactionManagedObject.type = transaction.type
+//                                transactionManagedObject.category = transaction.category
+//                                transactionManagedObject.img = transaction.img
                                 transactionManagedObject.date = transaction.date
                                 transactionManagedObject.amount = transaction.amount
                                 transactionManagedObject.comment = transaction.comment

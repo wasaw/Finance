@@ -20,6 +20,12 @@ struct CategoryCellModel {
     let imageData: Data
 }
 
+struct SaveTransaction {
+    let amount: String?
+    let date: Date
+    let comment: String?
+}
+
 final class AddTransactionPresenter {
     
     // MARK: - Properties
@@ -74,6 +80,9 @@ final class AddTransactionPresenter {
                             self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
                         }
                     }
+                    if self?.selectedAccount == nil {
+                        self?.selectedAccount = account
+                    }
                     self?.account.append(account)
                     return AccountCellModel(title: account.title,
                                             imageData: data,
@@ -99,6 +108,9 @@ final class AddTransactionPresenter {
                         case .failure(let error):
                             self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
                         }
+                    }
+                    if self?.selectedCategory == nil {
+                        self?.selectedCategory = category
                     }
                     self?.category.append(category)
                     return CategoryCellModel(title: category.title, imageData: data)
@@ -131,29 +143,26 @@ extension AddTransactionPresenter: AddTransactionOutput {
     }
     
     func saveTransaction(_ transaction: SaveTransaction) {
-//        guard let type = selectedAccount?.name,
-//              let amountString = transaction.amount,
-//              let img = selectedCategory?.img,
-//              let category = selectedCategory?.name,
-//              let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
-//              let amount = Double(amountString) else {
-//            if transaction.amount == "" {
-//                input?.showAlert(with: "Внимание", and: "Не заполнено поле сумма")
-//            }
-//            return
-//        }
-//        let signedAmount = isRevenue ? amount : -amount
-//        let convertedAmount = signedAmount * currencyRate
-//
-//        let lastTransaction = Transaction(type: type,
-//                                              amount: convertedAmount,
-//                                              img: img,
-//                                              date: transaction.date,
-//                                              comment: transaction.comment ?? "",
-//                                              category: category)
-//        transactionsService.saveTransaction(lastTransaction)
-//        let addTransaction: [String: Transaction] = ["lastTransaction": lastTransaction]
-//        notification.post(Notification(name: .addTransactions, object: nil, userInfo: addTransaction))
-//        input?.dismissView()
+        guard let accountId = selectedAccount?.id,
+              let amountString = transaction.amount,
+              let categoryId = selectedCategory?.id,
+              let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
+              let amount = Double(amountString) else {
+            if transaction.amount == "" {
+                input?.showAlert(with: "Внимание", and: "Не заполнено поле сумма")
+            }
+            return
+        }
+        let signedAmount = isRevenue ? amount : -amount
+        let convertedAmount = signedAmount * currencyRate
+        let lastTransaction = Transaction(account: accountId,
+                                          category: categoryId,
+                                          amount: convertedAmount,
+                                          date: transaction.date,
+                                          comment: transaction.comment ?? "")
+        transactionsService.saveTransaction(lastTransaction)
+        let addTransaction: [String: Transaction] = ["lastTransaction": lastTransaction]
+        notification.post(Notification(name: .addTransactions, object: nil, userInfo: addTransaction))
+        input?.dismissView()
     }
 }

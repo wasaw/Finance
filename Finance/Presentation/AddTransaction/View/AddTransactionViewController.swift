@@ -344,9 +344,10 @@ final class AddTransactionViewController: UIViewController {
     }
     
     @objc private func handleDoneButton() {
-        output.saveTransaction(SaveTransaction(amount: amountTextField.text,
-                                               date: datePicker.date,
-                                               comment: commentTextField.text))
+        let transaction = SaveTransaction(amount: amountTextField.text,
+                                          date: datePicker.date,
+                                          comment: commentTextField.text)
+        output.saveTransaction(transaction)
     }
     
     @objc private func tapSwitcher(sender: UISwitch) {
@@ -386,12 +387,6 @@ extension AddTransactionViewController: AddTransactionInput {
     
     func setCategory(_ categories: [CategoryCellModel]) {
         categoryAdapter.configure(categories)
-    }
-    
-    func showData(category: [ChoiceCategoryExpense],
-                  revenue: [ChoiceTypeRevenue],
-                  currency: Currency,
-                  currencyRate: Double) {
     }
     
     func dismissView() {

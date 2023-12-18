@@ -30,20 +30,21 @@ extension TransactionsService: TransactionsServiceProtocol {
         do {
             let transactionManagedObject = try self.coreData.fetchTransactions(limit: limit)
             let lastTransaction: [Transaction] = transactionManagedObject.compactMap { transaction in
-                guard let type = transaction.type,
-                      let img = transaction.img,
+                guard
                       let date = transaction.date,
                       let comment = transaction.comment,
-                      let category = transaction.category
+                      let account = transaction.account,
+                      let accountId = account.id,
+                      let category = transaction.category,
+                      let categoryId = category.id
                 else {
                     return nil
                 }
-                return Transaction(type: type,
+                return Transaction(account: accountId,
+                                   category: categoryId,
                                        amount: transaction.amount,
-                                       img: img,
                                        date: date,
-                                       comment: comment,
-                                       category: category)
+                                       comment: comment)
             }
             return lastTransaction
         } catch {
@@ -63,20 +64,17 @@ extension TransactionsService: TransactionsServiceProtocol {
         do {
             let transactionManagedObject = try coreData.fetchTransactionsByMonth(startDate: startDateOfMonth, endDate: endDateOfMonth)
             let transactions: [Transaction] = transactionManagedObject.compactMap { transaction in
-                guard let type = transaction.type,
-                      let img = transaction.img,
+                guard
                       let date = transaction.date,
-                      let comment = transaction.comment,
-                      let category = transaction.category
+                      let comment = transaction.comment
                 else {
                     return nil
                 }
-                return Transaction(type: type,
+                return Transaction(account: UUID(),
+                                   category: UUID(),
                                        amount: transaction.amount,
-                                       img: img,
                                        date: date,
-                                       comment: comment,
-                                       category: category)
+                                       comment: comment)
             }
             return transactions
         } catch {
@@ -99,16 +97,28 @@ extension TransactionsService: TransactionsServiceProtocol {
         guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
             return
         }
-        coreData.save { context in
-            let transactionManagedObject = TransactionManagedObject(context: context)
-            transactionManagedObject.type = transaction.type
-            transactionManagedObject.category = transaction.category
-            transactionManagedObject.img = transaction.img
-            transactionManagedObject.date = transaction.date
-            transactionManagedObject.amount = transaction.amount * currencyRate
-            transactionManagedObject.comment = transaction.comment
-        }
-        firebaseService.saveTransaction(transaction)
+//        do {
+            coreData.save { context in
+                let transactionManagedObject = TransactionManagedObject(context: context)
+                transactionManagedObject.date = transaction.date
+                transactionManagedObject.amount = transaction.amount * currencyRate
+                transactionManagedObject.comment = transaction.comment
+                let fetchRequest = CategoryManagedObject.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "id == %@", transaction.category as CVarArg)
+                let categoriesManagedObject = try context.fetch(fetchRequest).first
+//                let categoriesManagedObject = try coreData.fetchCategories(transaction.category)
+
+                categoriesManagedObject?.addToTransactions(transactionManagedObject)
+                
+                let fetchRequestAccount = AccountManagedObject.fetchRequest()
+                fetchRequestAccount.predicate = NSPredicate(format: "id == %@", transaction.account as CVarArg)
+                let accountManagedObject = try context.fetch(fetchRequestAccount).first
+                accountManagedObject?.addToTransactions(transactionManagedObject)
+            }
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//        firebaseService.saveTransaction(transaction)
     }
     
     func upload(_ transactions: [Transaction]) {

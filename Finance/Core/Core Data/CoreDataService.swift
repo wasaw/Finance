@@ -63,8 +63,11 @@ extension CoreDataService: CoreDataServiceProtocol {
         return try viewContext.fetch(fetchRequest)
     }
     
-    func fetchCategories() throws -> [CategoryManagedObject] {
+    func fetchCategories(_ id: UUID?) throws -> [CategoryManagedObject] {
         let fetchRequest = CategoryManagedObject.fetchRequest()
+        if let id = id {
+            fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        }
         return try viewContext.fetch(fetchRequest)
     }
     

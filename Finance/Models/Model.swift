@@ -26,22 +26,12 @@ enum TypeService: Int {
     case news
 }
 
-struct ChoiceTypeRevenue: Codable {
-    let name: String
-    let img: String
-    var amount: Double = 0
-}
-struct ChoiceCategoryExpense: Codable {
-    let name: String
-    let img: String
-}
 struct Transaction {
-    var type: String
+    var account: UUID
+    var category: UUID
     var amount: Double
-    var img: String
     var date: Date
     var comment: String
-    var category: String
     
     private static let dateFormatter: DateFormatter = {
         let df = DateFormatter()
@@ -67,12 +57,6 @@ struct Transaction {
         }
         return currency.getMark()
     }
-}
-
-struct SaveTransaction {
-    let amount: String?
-    let date: Date
-    let comment: String?
 }
 
 struct CurrentExchangeRate {

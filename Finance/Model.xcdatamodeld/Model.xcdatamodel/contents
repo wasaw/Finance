@@ -4,18 +4,19 @@
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TransactionManagedObject" inverseName="account" inverseEntity="TransactionManagedObject"/>
     </entity>
     <entity name="CategoryManagedObject" representedClassName="CategoryManagedObject" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TransactionManagedObject" inverseName="category" inverseEntity="TransactionManagedObject"/>
     </entity>
     <entity name="TransactionManagedObject" representedClassName="TransactionManagedObject" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="comment" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="img" optional="YES" attributeType="String"/>
-        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountManagedObject" inverseName="transactions" inverseEntity="AccountManagedObject"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryManagedObject" inverseName="transactions" inverseEntity="CategoryManagedObject"/>
     </entity>
     <entity name="UserManagedObject" representedClassName="UserManagedObject" syncable="YES" codeGenerationType="class">
         <attribute name="email" optional="YES" attributeType="String"/>

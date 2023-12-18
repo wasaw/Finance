@@ -30,7 +30,7 @@ final class CategoryService {
 extension CategoryService: CategoryServiceProtocol {
     func fetchCategory(completion: @escaping (Result<[Category], Error>) -> Void) {
         do {
-            let categoriesManagedObject = try coreData.fetchCategories()
+            let categoriesManagedObject = try coreData.fetchCategories(nil)
             let categories: [Category] = categoriesManagedObject.compactMap { category in
                 guard let id = category.id,
                       let title = category.title else { return nil }
