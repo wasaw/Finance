@@ -203,12 +203,15 @@ extension HomeViewController: HomeInput {
         totalAccountView.setAccountLabel(total)
         serviceAdapter.configure(service)
         servicesCollectionView?.reloadData()
-        lastTransactionsAdapter.configure(transaction: lastTransaction)
         lastTransactionsCollectionView?.reloadData()
     }
     
     func showLastTransaction() {
         lastTransactionsCollectionView?.isHidden = false
+    }
+    
+    func showLastTransactions(_ transactions: [TransactionCellModel]) {
+        lastTransactionsAdapter.configure(transaction: transactions)
     }
     
     func showAlert(message: String) {

@@ -7,6 +7,15 @@
 
 import UIKit
 
+struct TransactionCellModel {
+    let category: String
+    let image: Data
+    let amount: String
+    let date: String
+    let comment: String
+    let isRevenue: Bool
+}
+
 final class HomePresenter {
     
 // MARK: - Properties
@@ -14,6 +23,7 @@ final class HomePresenter {
     weak var input: HomeInput?
     private let output: HomePresenterOutput
     private let transactionsService: TransactionsServiceProtocol
+    private let categoryService: CategoryServiceProtocol
     private let userService: UserServiceProtocol
     
     private let service = [ChoiceService(name: "Курс валют", img: "exchange-rate.png", type: .exchange),
@@ -22,6 +32,11 @@ final class HomePresenter {
                            ChoiceService(name: "Новости", img: "newspaper", type: .news)]
 
     private var lastTransaction = [Transaction]()
+    private let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "dd.MM.yyyy"
+        return df
+    }()
     
     private let notification = NotificationCenter.default
     private let userDefaults = UserDefaults.standard
@@ -30,9 +45,11 @@ final class HomePresenter {
     
     init(homeCoordinator: HomePresenterOutput,
          transactionsService: TransactionsServiceProtocol,
+         categoryService: CategoryServiceProtocol,
          userService: UserServiceProtocol) {
         self.output = homeCoordinator
         self.transactionsService = transactionsService
+        self.categoryService = categoryService
         self.userService = userService
         registerNotification()
     }
@@ -64,6 +81,18 @@ final class HomePresenter {
         }
         do {
             lastTransaction = try transactionsService.fetchTransactions(limit: 5)
+            let lastTransactionsCellModel: [TransactionCellModel] = lastTransaction.compactMap { transaction in
+                let category = try? categoryService.fetchCategory(for: transaction.category)
+                guard let category = category else { return nil }
+                let isRevenue = (transaction.amount >= 0) ? true : false
+                return TransactionCellModel(category: category.title,
+                                            image: category.image,
+                                            amount: String(format: "%.2f", transaction.amount),
+                                            date: dateFormatter.string(from: transaction.date),
+                                            comment: transaction.comment,
+                                            isRevenue: isRevenue)
+            }
+            input?.showLastTransactions(lastTransactionsCellModel)
         } catch {
             self.input?.showAlert(message: error.localizedDescription)
         }

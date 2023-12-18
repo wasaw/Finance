@@ -26,6 +26,7 @@ final class LastTransactionCell: UICollectionViewCell {
     
     private let amountLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 19)
         label.textAlignment = .right
         return label
     }()
@@ -83,10 +84,12 @@ final class LastTransactionCell: UICollectionViewCell {
     
 // MARK: - Helpers
     
-    func setInformation(lastTransaction: Transaction) {
-        amountLabel.text = lastTransaction.amountOutput + lastTransaction.currencyMark
-//        categoryLabel.text = lastTransaction.category
-//        imageView.image = UIImage(named: lastTransaction.img)
-        dateLabel.text = lastTransaction.dateString
+    func setInformation(lastTransaction: TransactionCellModel) {
+        amountLabel.text = lastTransaction.amount
+        categoryLabel.text = lastTransaction.category
+        dateLabel.text = lastTransaction.date
+        amountLabel.textColor = lastTransaction.isRevenue ? .incomeCash : .outboxCash
+        guard let image = UIImage(data: lastTransaction.image) else { return }
+        imageView.image = image
     }
 }

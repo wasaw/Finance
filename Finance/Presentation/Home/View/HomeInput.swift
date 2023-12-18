@@ -12,6 +12,7 @@ protocol HomeInput: AnyObject {
                   service: [ChoiceService],
                   lastTransaction: [Transaction])
     func showLastTransaction()
+    func showLastTransactions(_ transactions: [TransactionCellModel])
     func showAlert(message: String)
     func setUserName(_ name: String)
     func showProgress(_ progress: Progress)

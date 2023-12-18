@@ -24,6 +24,7 @@ final class HomeCoordinator {
     private let lastTransaction: LastTransactionAssembly
     private let coreData: CoreDataServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
+    private let categoryService: CategoryServiceProtocol
     private let userService: UserServiceProtocol
     private let stocksService: StocksServiceProtocol
     private let exchangeRateService: ExchangeRateServiceProtocol
@@ -38,6 +39,7 @@ final class HomeCoordinator {
          lastTransaction: LastTransactionAssembly,
          coreData: CoreDataServiceProtocol,
          transactionsService: TransactionsServiceProtocol,
+         categoryService: CategoryServiceProtocol,
          userService: UserServiceProtocol,
          stocksService: StocksServiceProtocol,
          exchangeRateService: ExchangeRateServiceProtocol) {
@@ -49,6 +51,7 @@ final class HomeCoordinator {
         self.lastTransaction = lastTransaction
         self.coreData = coreData
         self.transactionsService = transactionsService
+        self.categoryService = categoryService
         self.userService = userService
         self.stocksService = stocksService
         self.exchangeRateService = exchangeRateService
@@ -59,6 +62,7 @@ final class HomeCoordinator {
     func start() -> UINavigationController {
         let homeVC = homeAssembly.makeHomeModule(homeCoordinator: self,
                                                  transactionsService: transactionsService,
+                                                 categoryService: categoryService,
                                                  userService: userService)
         let nav = UINavigationController(rootViewController: homeVC)
         navigation = nav

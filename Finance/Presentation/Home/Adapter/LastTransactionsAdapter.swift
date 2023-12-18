@@ -11,11 +11,11 @@ final class LastTransactionsAdapter: NSObject {
     
 // MARK: - Properties
     
-    private var transaction: [Transaction] = []
+    private var transaction: [TransactionCellModel] = []
 
 // MARK: - Helpers
     
-    func configure(transaction: [Transaction]) {
+    func configure(transaction: [TransactionCellModel]) {
         self.transaction = transaction
     }
 }

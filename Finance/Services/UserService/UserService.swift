@@ -36,14 +36,14 @@ extension UserService: UserServiceProtocol {
                let login = loadedUser.login,
                let email = loadedUser.email {
                    var image: UIImage?
-                   fileStore.getImage(uid) { result in
-                       switch result {
-                       case .success(let data):
-                           image = UIImage(data: data)
-                       case .failure:
-                           image = UIImage(named: "add-photo")
-                       }
-                   }
+//                   fileStore.getImage(uid) { result in
+//                       switch result {
+//                       case .success(let data):
+//                           image = UIImage(data: data)
+//                       case .failure:
+//                           image = UIImage(named: "add-photo")
+//                       }
+//                   }
                    let user = User(uid: uid, login: login, email: email, profileImage: image)
                    completion(.success(user))
            } else {

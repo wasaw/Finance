@@ -20,6 +20,8 @@ extension UIColor {
     static let logInBackgroundColor = UIColor(displayP3Red: 245 / 255, green: 246 / 255, blue: 255 / 255, alpha: 1)
 //    Add
     static let selectedCellBackground = UIColor(displayP3Red: 228 / 255, green: 252 / 255, blue: 255 / 255, alpha: 1)
+    static let incomeCash = UIColor(displayP3Red: 11 / 255, green: 222 / 255, blue: 22 / 255, alpha: 1)
+    static let outboxCash = UIColor(displayP3Red: 222 / 255, green: 11 / 255, blue: 57 / 255, alpha: 1)
 }
 
 // MARK: - UITextField

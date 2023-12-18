@@ -32,8 +32,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let defaultValueService = DefaultValueService(fileStore: fileStore, coreData: coreData)
         let firebaseService = FirebaseService(network: network, fileStore: fileStore)
         let transactionsService = TransactionsService(coreData: coreData, firebaseService: firebaseService)
-        let accountService = AccountService(coreData: coreData)
-        let categoryService = CategoryService(coreData: coreData)
+        let accountService = AccountService(fileStore: fileStore, coreData: coreData)
+        let categoryService = CategoryService(fileStore: fileStore, coreData: coreData)
         let exchangeRequest = ExchangeRateRequest()
         let stocksRequest = StocksRequest()
         let newsRequest = NewsRequest()
@@ -64,6 +64,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                               lastTransaction: lastTransaction,
                                               coreData: coreData,
                                               transactionsService: transactionsService,
+                                              categoryService: categoryService,
                                               userService: userService,
                                               stocksService: stocksService,
                                               exchangeRateService: exchangeRateService)

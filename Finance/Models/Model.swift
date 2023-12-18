@@ -11,6 +11,7 @@ struct Account {
     let id: UUID
     let title: String
     let amount: Double
+    let image: Data
 }
 
 struct ChoiceService {

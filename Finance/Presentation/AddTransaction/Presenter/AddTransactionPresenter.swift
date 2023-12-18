@@ -71,21 +71,12 @@ final class AddTransactionPresenter {
                       let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
                       let currentCurrency = Currency(rawValue: currency) else { return }
                 let accountCellModel: [AccountCellModel] = accounts.compactMap { account in
-                    var data: Data = Data()
-                    self?.fileStore.getImage(account.id.uuidString) { result in
-                        switch result {
-                        case .success(let imageData):
-                            data = imageData
-                        case .failure(let error):
-                            self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
-                        }
-                    }
                     if self?.selectedAccount == nil {
                         self?.selectedAccount = account
                     }
                     self?.account.append(account)
                     return AccountCellModel(title: account.title,
-                                            imageData: data,
+                                            imageData: account.image,
                                             amount: account.amount,
                                             currency: currentCurrency,
                                             currencyRate: currencyRate)
@@ -96,24 +87,15 @@ final class AddTransactionPresenter {
             }
         }
         
-        categoryService.fetchCategory { [weak self] result in
+        categoryService.fetchCategories { [weak self] result in
             switch result {
             case .success(let categories):
                 let categoriesCellModel = categories.compactMap { category in
-                    var data: Data = Data()
-                    self?.fileStore.getImage(category.id.uuidString) { result in
-                        switch result {
-                        case .success(let imageData):
-                            data = imageData
-                        case .failure(let error):
-                            self?.input?.showAlert(with: "Ошибка", and: error.localizedDescription)
-                        }
-                    }
                     if self?.selectedCategory == nil {
                         self?.selectedCategory = category
                     }
                     self?.category.append(category)
-                    return CategoryCellModel(title: category.title, imageData: data)
+                    return CategoryCellModel(title: category.title, imageData: category.image)
                 }
                 self?.input?.setCategory(categoriesCellModel)
             case .failure(let error):
