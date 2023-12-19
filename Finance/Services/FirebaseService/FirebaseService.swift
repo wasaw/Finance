@@ -106,7 +106,7 @@ extension FirebaseService: FirebaseServiceProtocol {
         }
     }
     
-    func saveImage(dataImage: Data, with uid: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func saveImage(dataImage: Data, with uid: String, completion: @escaping (Result<Data, Error>) -> Void) {
         let fileName = UUID().uuidString
         let storageImageRef = REF_PROFILE_IMAGE.child(fileName)
         storageImageRef.putData(dataImage) { _, error in

@@ -62,24 +62,17 @@ struct RegCredentials {
 }
 
 struct User {
+    let uid: String
     let login: String
     let email: String
-    var profileImage: UIImage?
-    let uid: String
+    var profileImage: Data?
     
-    init(uid: String, dictionary: [String: AnyObject]) {
-        self.uid = uid
-        self.login = dictionary["login"] as? String ?? ""
-        self.email = dictionary["email"] as? String ?? ""
-        self.profileImage = nil
-    }
-    
-    init(uid: String, login: String, email: String, profileImage: UIImage? = nil) {
-        self.uid = uid
-        self.login = login
-        self.email = email
-        self.profileImage = profileImage
-    }
+//    init(uid: String, dictionary: [String: AnyObject]) {
+//        self.uid = uid
+//        self.login = dictionary["login"] as? String ?? ""
+//        self.email = dictionary["email"] as? String ?? ""
+//        self.profileImage = nil
+//    }
 }
 
 enum Currency: Int {

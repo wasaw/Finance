@@ -35,16 +35,8 @@ extension UserService: UserServiceProtocol {
             if let loadedUser = userManagedObject.first,
                let login = loadedUser.login,
                let email = loadedUser.email {
-                   var image: UIImage?
-//                   fileStore.getImage(uid) { result in
-//                       switch result {
-//                       case .success(let data):
-//                           image = UIImage(data: data)
-//                       case .failure:
-//                           image = UIImage(named: "add-photo")
-//                       }
-//                   }
-                   let user = User(uid: uid, login: login, email: email, profileImage: image)
+                   let data = try fileStore.getImage(uid)
+                   let user = User(uid: uid, login: login, email: email, profileImage: data)
                    completion(.success(user))
            } else {
                completion(.failure(.isEmptyUser))
@@ -54,7 +46,7 @@ extension UserService: UserServiceProtocol {
         }
     }
     
-    func saveImage(image: UIImage, for uid: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
+    func saveImage(image: UIImage, for uid: String, completion: @escaping ((Result<Data, Error>) -> Void)) {
         guard let dataImage = image.jpegData(compressionQuality: 0.7) else { return }
         fileStore.saveImage(data: dataImage, with: uid, completion: completion)
         firebaseService.saveImage(dataImage: dataImage, with: uid, completion: completion)

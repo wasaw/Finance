@@ -104,12 +104,8 @@ final class ProfilePresenter {
                 switch result {
                 case .success(let user):
                     self?.input?.showUserCredential(user)
-                    if let image = user.profileImage {
-                        self?.input?.setUserImage(image)
-                    } else {
-                        guard let image = UIImage(named: "add-photo.png") else { return }
-                        self?.input?.setUserImage(image)
-                    }
+                    guard let data = user.profileImage else { return }
+                    self?.input?.setUserImage(data)
                 case .failure(let error):
                     switch error {
                     case .isEmptyUser:
@@ -158,8 +154,8 @@ extension ProfilePresenter: ProfileOutput {
         if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
             userService.saveImage(image: image, for: uid) { [weak self] result in
                 switch result {
-                case .success:
-                    self?.input?.setUserImage(image)
+                case .success(let data):
+                    self?.input?.setUserImage(data)
                 case .failure:
                     DispatchQueue.main.async {
                         self?.input?.showAlert(with: "Внимание", and: "Не удалось сохранить фотографию, попобуйте еще раз.")

@@ -45,30 +45,16 @@ extension FileStore: FileStoreProtocol {
         }
     }
     
-    func saveImage(data: Data, with name: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
+    func saveImage(data: Data, with name: String, completion: @escaping ((Result<Data, Error>) -> Void)) {
         guard let directlyUrl = manager.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let fileUrl = directlyUrl.appendingPathComponent(name)
         do {
             try data.write(to: fileUrl)
-            completion(.success(()))
+            completion(.success(data))
         } catch {
             completion(.failure(error))
         }
     }
-    
-//    func getImage(_ uid: String, completion: @escaping ((Result<Data, Error>) -> Void)) {
-//        guard let directoryUrl = manager.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-//        let fileUrl = directoryUrl.appendingPathComponent(uid)
-//        
-//        if manager.fileExists(atPath: fileUrl.path) {
-//            do {
-//                let fileData = try Data(contentsOf: fileUrl)
-//                completion(.success(fileData))
-//            } catch {
-//                completion(.failure(error))
-//            }
-//        }
-//    }
     
     func getImage(_ uid: String) throws -> Data {
         guard let directoryUrl = manager.urls(for: .documentDirectory, in: .userDomainMask).first else { throw FileManagerError.fileNotExists}

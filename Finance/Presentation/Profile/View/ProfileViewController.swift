@@ -136,8 +136,13 @@ extension ProfileViewController: ProfileInput {
         loginLabel.text = user.login
     }
     
-    func setUserImage(_ image: UIImage) {
-        imageView.setImage(image: image)
+    func setUserImage(_ image: Data) {
+        if let image = UIImage(data: image) {
+            imageView.setImage(image: image)
+        } else {
+            guard let image = UIImage(named: "add-photo.png") else { return }
+            imageView.setImage(image: image)
+        }
     }
     
     func updateCurrencyMenu(_ currencyButton: [CurrencyButton]) {

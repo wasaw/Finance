@@ -198,6 +198,7 @@ final class HomeViewController: UIViewController {
 
 extension HomeViewController: HomeInput {
     func showLastTransactions(_ transactions: [TransactionCellModel]) {
+        guard !transactions.isEmpty else { return }
         lastTransactionsCollectionView?.isHidden = false
         lastTransactionsAdapter.configure(transaction: transactions)
         lastTransactionsCollectionView?.reloadData()
