@@ -157,9 +157,6 @@ struct Progress {
         Float(amount / purpose)
     }
     let currencyRate: Double
-    var amountOutput: String {
-        return String(format: "%.2f", amount / currencyRate)
-    }
     var purposeOutput: String {
         return String(format: "%.2f", purpose / currencyRate)
     }

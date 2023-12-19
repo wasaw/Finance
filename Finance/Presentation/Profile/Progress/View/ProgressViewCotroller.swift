@@ -39,7 +39,6 @@ final class ProgressViewController: UIViewController {
     
     private lazy var expenseTextField: UITextField = {
         let tf = UITextField()
-//        tf.becomeFirstResponder()
         tf.layer.borderWidth = 0.3
         tf.layer.borderColor = UIColor.lightGray.cgColor
         return tf
@@ -103,7 +102,7 @@ final class ProgressViewController: UIViewController {
         currencyLabel.anchor(trailing: expenseView.trailingAnchor,
                              paddingTrailing: -Constants.horizontalPadding)
         
-        view.addSubview(expenseTextField)
+        expenseView.addSubview(expenseTextField)
         expenseTextField.centerYAnchor.constraint(equalTo: expenseView.centerYAnchor).isActive = true
         expenseTextField.anchor(trailing: currencyLabel.leadingAnchor,
                                paddingTrailing: -Constants.horizontalPadding,
@@ -123,11 +122,11 @@ final class ProgressViewController: UIViewController {
         expenseTextField.inputAccessoryView = toolBar
     }
     
-    private func setupDataSource(_ items: [ProgressItem]) {
+    private func setupDataSource(_ item: ProgressItem) {
         var snapshot = dataSource.snapshot()
         snapshot.deleteAllItems()
         snapshot.appendSections(ProgressSection.allCases)
-        snapshot.appendItems(items)
+        snapshot.appendItems([item])
         dataSource.apply(snapshot)
     }
     
@@ -141,13 +140,15 @@ final class ProgressViewController: UIViewController {
 // ProgressInput
 
 extension ProgressViewController: ProgressInput {
-    func setProgressItem(_ items: [ProgressItem]) {
-        guard !items.isEmpty else { return }
-        expenseView.isHidden = !items[0].isShow
-        expenseTextField.text = String(format: "%0.2f", items[0].expense)
-        currencyLabel.text = items[0].currency.getMark()
+    func setProgressItem(_ item: ProgressItem) {
+        expenseView.isHidden = !item.isShow
+        if item.isShow {
+            expenseTextField.becomeFirstResponder()
+        }
+        expenseTextField.text = String(format: "%0.2f", item.expense)
+        currencyLabel.text = item.currency.getMark()
         configureUI()
-        setupDataSource(items)
+        setupDataSource(item)
     }
 }
 
@@ -163,6 +164,9 @@ extension ProgressViewController: UITableViewDelegate {
 
 extension ProgressViewController: ProgressCellDelegate {
     func showDetails(isShow: Bool) {
+        if isShow {
+            expenseTextField.becomeFirstResponder()
+        }
         expenseView.isHidden = !isShow
         output.setProgress(isShow)
     }

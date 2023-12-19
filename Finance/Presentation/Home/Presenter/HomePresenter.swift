@@ -127,7 +127,7 @@ final class HomePresenter {
                 let date = Date()
                 let calendar = Calendar.current
                 let day = calendar.component(.day, from: date)
-                let progress = Progress(amount: -amount,
+                let progress = Progress(amount: amount,
                                         purpose: purpose,
                                         currentDay: day,
                                         currency: currentCurrency,

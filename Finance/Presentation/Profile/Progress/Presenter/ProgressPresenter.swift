@@ -44,16 +44,16 @@ extension ProgressPresenter: ProgressOutput {
               let currency = userDefaults.value(forKey: "currency") as? Int,
               let currentCurrency = Currency(rawValue: currency),
               let currencyRate = userDefaults.value(forKey: "currencyRate") as? Double else {
-            input?.setProgressItem([ProgressItem(title: "Отображать прогресс",
+            input?.setProgressItem(ProgressItem(title: "Отображать прогресс",
                                                  isShow: false,
                                                  expense: 0,
-                                                 currency: Currency.rub)])
+                                                 currency: Currency.rub))
             return
         }
-        input?.setProgressItem([ProgressItem(title: "Отображать прогресс",
+        input?.setProgressItem(ProgressItem(title: "Отображать прогресс",
                                              isShow: isShow,
                                              expense: expense / currencyRate,
-                                             currency: currentCurrency)])
+                                             currency: currentCurrency))
     }
     
     func saveExpense(_ expense: String) {

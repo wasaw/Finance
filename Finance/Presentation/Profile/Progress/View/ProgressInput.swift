@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ProgressInput: AnyObject {
-    func setProgressItem(_ items: [ProgressItem])
+    func setProgressItem(_ item: ProgressItem)
 }
