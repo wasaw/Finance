@@ -97,27 +97,23 @@ extension TransactionsService: TransactionsServiceProtocol {
         guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
             return
         }
-//        do {
-            coreData.save { context in
-                let transactionManagedObject = TransactionManagedObject(context: context)
-                transactionManagedObject.date = transaction.date
-                transactionManagedObject.amount = transaction.amount * currencyRate
-                transactionManagedObject.comment = transaction.comment
-                let fetchRequest = CategoryManagedObject.fetchRequest()
-                fetchRequest.predicate = NSPredicate(format: "id == %@", transaction.category as CVarArg)
-                let categoriesManagedObject = try context.fetch(fetchRequest).first
-//                let categoriesManagedObject = try coreData.fetchCategories(transaction.category)
+        coreData.save { context in
+            let transactionManagedObject = TransactionManagedObject(context: context)
+            transactionManagedObject.date = transaction.date
+            transactionManagedObject.amount = transaction.amount * currencyRate
+            transactionManagedObject.comment = transaction.comment
+            let fetchRequest = CategoryManagedObject.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id == %@", transaction.category as CVarArg)
+            let categoriesManagedObject = try context.fetch(fetchRequest).first
 
-                categoriesManagedObject?.addToTransactions(transactionManagedObject)
-                
-                let fetchRequestAccount = AccountManagedObject.fetchRequest()
-                fetchRequestAccount.predicate = NSPredicate(format: "id == %@", transaction.account as CVarArg)
-                let accountManagedObject = try context.fetch(fetchRequestAccount).first
-                accountManagedObject?.addToTransactions(transactionManagedObject)
-            }
-//        } catch {
-//            print(error.localizedDescription)
-//        }
+            categoriesManagedObject?.addToTransactions(transactionManagedObject)
+            
+            let fetchRequestAccount = AccountManagedObject.fetchRequest()
+            fetchRequestAccount.predicate = NSPredicate(format: "id == %@", transaction.account as CVarArg)
+            let accountManagedObject = try context.fetch(fetchRequestAccount).first
+            accountManagedObject?.addToTransactions(transactionManagedObject)
+            accountManagedObject?.amount += transaction.amount
+        }
 //        firebaseService.saveTransaction(transaction)
     }
     

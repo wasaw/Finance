@@ -28,36 +28,11 @@ enum TypeService: Int {
 }
 
 struct Transaction {
-    var account: UUID
-    var category: UUID
-    var amount: Double
-    var date: Date
-    var comment: String
-    
-    private static let dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateFormat = "dd.MM.yyyy"
-        return df
-    }()
-    
-    var dateString: String {
-        Transaction.dateFormatter.string(from: date)
-    }
-    
-    var amountOutput: String {
-        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
-            return String(format: "%.2f", amount)
-        }
-        return String(format: "%.2f", amount / currencyRate)
-    }
-    
-    var currencyMark: String {
-        guard let rawValue = UserDefaults.standard.value(forKey: "currency") as? Int,
-        let currency = Currency(rawValue: rawValue) else {
-            return Currency.rub.getMark()
-        }
-        return currency.getMark()
-    }
+    let account: UUID
+    let category: UUID
+    let amount: Double
+    let date: Date
+    let comment: String
 }
 
 struct CurrentExchangeRate {

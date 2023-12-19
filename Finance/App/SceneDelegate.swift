@@ -24,7 +24,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let authAssembly = AuthAssembly()
         let atmAssembly = ATMAssembly()
         let newsAssembly = NewsAssembly()
-        let lastTransaction = LastTransactionAssembly()
         let network = Network()
         let requestBuilder = RequestBuilder()
         let fileStore = FileStore()
@@ -61,8 +60,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                               stocksAssembly: stocksAssembly,
                                               atmAssembly: atmAssembly,
                                               newsCoordinator: newsCoordinator,
-                                              lastTransaction: lastTransaction,
                                               coreData: coreData,
+                                              accountService: accountService,
                                               transactionsService: transactionsService,
                                               categoryService: categoryService,
                                               userService: userService,

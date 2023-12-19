@@ -21,8 +21,8 @@ final class HomeCoordinator {
     private let stocksAssembly: StocksAssembly
     private let atmAssembly: ATMAssembly
     private let newsCoordinator: NewsCoordinator
-    private let lastTransaction: LastTransactionAssembly
     private let coreData: CoreDataServiceProtocol
+    private let accountService: AccountServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
     private let categoryService: CategoryServiceProtocol
     private let userService: UserServiceProtocol
@@ -36,8 +36,8 @@ final class HomeCoordinator {
          stocksAssembly: StocksAssembly,
          atmAssembly: ATMAssembly,
          newsCoordinator: NewsCoordinator,
-         lastTransaction: LastTransactionAssembly,
          coreData: CoreDataServiceProtocol,
+         accountService: AccountServiceProtocol,
          transactionsService: TransactionsServiceProtocol,
          categoryService: CategoryServiceProtocol,
          userService: UserServiceProtocol,
@@ -48,8 +48,8 @@ final class HomeCoordinator {
         self.stocksAssembly = stocksAssembly
         self.atmAssembly = atmAssembly
         self.newsCoordinator = newsCoordinator
-        self.lastTransaction = lastTransaction
         self.coreData = coreData
+        self.accountService = accountService
         self.transactionsService = transactionsService
         self.categoryService = categoryService
         self.userService = userService
@@ -61,6 +61,7 @@ final class HomeCoordinator {
     
     func start() -> UINavigationController {
         let homeVC = homeAssembly.makeHomeModule(homeCoordinator: self,
+                                                 accountService: accountService,
                                                  transactionsService: transactionsService,
                                                  categoryService: categoryService,
                                                  userService: userService)
@@ -91,14 +92,5 @@ extension HomeCoordinator: HomePresenterOutput {
     func showNews() {
         let vc = newsCoordinator.start()
         navigation?.pushViewController(vc, animated: true)
-    }
-    
-    func showLastTransaction(_ transaction: Transaction) {
-        let vc = lastTransaction.makeLastTransactionModule(transaction)
-        if let sheet = vc.sheetPresentationController {
-            sheet.detents = [.medium()]
-            sheet.preferredCornerRadius = Constants.viewCorner
-        }
-        navigation?.present(vc, animated: true)
     }
 }

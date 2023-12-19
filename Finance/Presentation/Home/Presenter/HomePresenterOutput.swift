@@ -12,5 +12,4 @@ protocol HomePresenterOutput: AnyObject {
     func showStock()
     func showATM()
     func showNews()
-    func showLastTransaction(_ transaction: Transaction)
 }

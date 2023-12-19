@@ -9,10 +9,12 @@ import UIKit
 
 final class HomeAssembly {
     func makeHomeModule(homeCoordinator: HomePresenterOutput,
+                        accountService: AccountServiceProtocol,
                         transactionsService: TransactionsServiceProtocol,
                         categoryService: CategoryServiceProtocol,
                         userService: UserServiceProtocol) -> UIViewController {
         let presenter = HomePresenter(homeCoordinator: homeCoordinator,
+                                      accountService: accountService,
                                       transactionsService: transactionsService,
                                       categoryService: categoryService,
                                       userService: userService)

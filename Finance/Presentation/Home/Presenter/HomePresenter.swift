@@ -22,6 +22,7 @@ final class HomePresenter {
     
     weak var input: HomeInput?
     private let output: HomePresenterOutput
+    private let accountService: AccountServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
     private let categoryService: CategoryServiceProtocol
     private let userService: UserServiceProtocol
@@ -32,6 +33,7 @@ final class HomePresenter {
                            ChoiceService(name: "Новости", img: "newspaper", type: .news)]
 
     private var lastTransaction = [Transaction]()
+    private var balance: Double?
     private let dateFormatter: DateFormatter = {
         let df = DateFormatter()
         df.dateFormat = "dd.MM.yyyy"
@@ -44,10 +46,12 @@ final class HomePresenter {
 // MARK: - Lifecycle
     
     init(homeCoordinator: HomePresenterOutput,
+         accountService: AccountServiceProtocol,
          transactionsService: TransactionsServiceProtocol,
          categoryService: CategoryServiceProtocol,
          userService: UserServiceProtocol) {
         self.output = homeCoordinator
+        self.accountService = accountService
         self.transactionsService = transactionsService
         self.categoryService = categoryService
         self.userService = userService
@@ -69,6 +73,18 @@ final class HomePresenter {
     }
     
     private func loadInformation() {
+        userInformation()
+        totalAmount()
+        do {
+            lastTransaction = try transactionsService.fetchTransactions(limit: 5)
+            prepareTransactionCellModel(lastTransaction)
+        } catch {
+            self.input?.showAlert(message: error.localizedDescription)
+        }
+        showProgress()
+    }
+    
+    private func userInformation() {
         if let uid = userDefaults.value(forKey: "uid") as? String {
             userService.getUser(uid) { [weak self] result in
                 switch result {
@@ -79,42 +95,20 @@ final class HomePresenter {
                 }
             }
         }
-        do {
-            lastTransaction = try transactionsService.fetchTransactions(limit: 5)
-            let lastTransactionsCellModel: [TransactionCellModel] = lastTransaction.compactMap { transaction in
-                let category = try? categoryService.fetchCategory(for: transaction.category)
-                guard let category = category else { return nil }
-                let isRevenue = (transaction.amount >= 0) ? true : false
-                return TransactionCellModel(category: category.title,
-                                            image: category.image,
-                                            amount: String(format: "%.2f", transaction.amount),
-                                            date: dateFormatter.string(from: transaction.date),
-                                            comment: transaction.comment,
-                                            isRevenue: isRevenue)
-            }
-            input?.showLastTransactions(lastTransactionsCellModel)
-        } catch {
-            self.input?.showAlert(message: error.localizedDescription)
-        }
-        showRevenue()
-        showProgress()
     }
     
-    private func showRevenue() {
-        guard let currencyRate = userDefaults.value(forKey: "currencyRate") as? Double,
-              let currency = userDefaults.value(forKey: "currency") as? Int,
-              let currentCurrency = Currency(rawValue: currency) else { return }
-        var revenue: Double = 0
-        if !self.lastTransaction.isEmpty {
-            self.input?.showLastTransaction()
-            revenue = lastTransaction.reduce(0) { $0 + $1.amount }
+    private func totalAmount() {
+        accountService.fetchAccounts { [weak self] result in
+            switch result {
+            case .success(let accounts):
+                let total = accounts.reduce(0) { $0 + $1.amount }
+                self?.balance = total
+                let showTotal = String(format: "%.2f", total)
+                self?.input?.showTotal(showTotal)
+            case .failure(let error):
+                self?.input?.showAlert(message: error.localizedDescription)
+            }
         }
-        
-        revenue /= currencyRate
-        let total = String(format: "%.2f", revenue) + currentCurrency.getMark()
-        self.input?.showData(total: total,
-                             service: self.service,
-                             lastTransaction: self.lastTransaction)
     }
     
     private func showProgress() {
@@ -145,13 +139,32 @@ final class HomePresenter {
         }
     }
     
+    private func prepareTransactionCellModel(_ transactions: [Transaction]) {
+        let lastTransactionsCellModel: [TransactionCellModel] = transactions.compactMap { transaction in
+            let category = try? categoryService.fetchCategory(for: transaction.category)
+            guard let category = category else { return nil }
+            let isRevenue = (transaction.amount >= 0) ? true : false
+            return TransactionCellModel(category: category.title,
+                                        image: category.image,
+                                        amount: String(format: "%.2f", transaction.amount),
+                                        date: dateFormatter.string(from: transaction.date),
+                                        comment: transaction.comment,
+                                        isRevenue: isRevenue)
+        }
+        input?.showLastTransactions(lastTransactionsCellModel)
+    }
+
 // MARK: - Selectors
     
     @objc private func reloadView(_ notification: NSNotification) {
         if let dictionary = notification.userInfo as? NSDictionary {
             if let transaction = dictionary["lastTransaction"] as? Transaction {
                 lastTransaction.append(transaction)
-                showRevenue()
+                prepareTransactionCellModel(lastTransaction)
+                guard var balance = balance else { return }
+                balance += transaction.amount
+                let total = String(format: "%.2f", balance)
+                input?.showTotal(total)
             }
             showProgress()
         }
@@ -192,6 +205,7 @@ final class HomePresenter {
 
 extension HomePresenter: HomeOutput {
     func viewIsReady() {
+        input?.showService(service)
         loadInformation()
     }
     
@@ -208,9 +222,5 @@ extension HomePresenter: HomeOutput {
         case .none:
             break
         }
-    }
-    
-    func showTransaction(for index: Int) {
-        output.showLastTransaction(lastTransaction[index])
     }
 }

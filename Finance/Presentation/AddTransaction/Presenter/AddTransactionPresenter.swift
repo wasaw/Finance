@@ -41,6 +41,7 @@ final class AddTransactionPresenter {
     private var category = [Category]()
     private var selectedAccount: Account?
     private var selectedCategory: Category?
+    private var revenueCategory: Category?
     private var isRevenue = false
     
     private let notification = NotificationCenter.default
@@ -95,6 +96,9 @@ final class AddTransactionPresenter {
                         self?.selectedCategory = category
                     }
                     self?.category.append(category)
+                    if category.title == "Прочее" {
+                        self?.revenueCategory = category
+                    }
                     return CategoryCellModel(title: category.title, imageData: category.image)
                 }
                 self?.input?.setCategory(categoriesCellModel)
@@ -117,6 +121,7 @@ extension AddTransactionPresenter: AddTransactionOutput {
     }
     
     func isRevenue(_ value: Bool) {
+        selectedCategory = revenueCategory
         isRevenue = value
     }
     

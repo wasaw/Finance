@@ -35,10 +35,6 @@
 		BB5C411C2A463050002DC6A0 /* FileStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C411B2A463050002DC6A0 /* FileStoreProtocol.swift */; };
 		BB5C411E2A4996D1002DC6A0 /* DefaultValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C411D2A4996D1002DC6A0 /* DefaultValue.swift */; };
 		BB5C41202A4ACC6F002DC6A0 /* CoreDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C411F2A4ACC6F002DC6A0 /* CoreDataServiceProtocol.swift */; };
-		BB5E372E2A4098850093AB95 /* LastTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */; };
-		BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */; };
-		BB5E37322A4098B00093AB95 /* LastTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */; };
-		BB5E37342A4098BE0093AB95 /* LastTransactionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37332A4098BE0093AB95 /* LastTransactionOutput.swift */; };
 		BB5E37382A41888D0093AB95 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37372A41888D0093AB95 /* HomeCoordinator.swift */; };
 		BB5E373A2A418A4D0093AB95 /* HomePresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37392A418A4D0093AB95 /* HomePresenterOutput.swift */; };
 		BB5E373F2A4199440093AB95 /* ExchangeRatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E373E2A4199440093AB95 /* ExchangeRatePresenter.swift */; };
@@ -49,7 +45,6 @@
 		BB5E374D2A41CCE30093AB95 /* StocksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E374C2A41CCE30093AB95 /* StocksPresenter.swift */; };
 		BB5E374F2A41CD020093AB95 /* StocksInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E374E2A41CD020093AB95 /* StocksInput.swift */; };
 		BB5E37512A41CD1C0093AB95 /* StocksOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E37502A41CD1C0093AB95 /* StocksOutput.swift */; };
-		BB5E8D7D2A9737A700BC1010 /* LastTransactionAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E8D7C2A9737A700BC1010 /* LastTransactionAssembly.swift */; };
 		BB5E8D802A979C2800BC1010 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E8D7F2A979C2800BC1010 /* FirebaseService.swift */; };
 		BB5E8D822A979C4100BC1010 /* FirebaseServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E8D812A979C4100BC1010 /* FirebaseServiceProtocol.swift */; };
 		BB61DE8D2850A33300A08AC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DE8C2850A33300A08AC6 /* AppDelegate.swift */; };
@@ -147,7 +142,6 @@
 		BBA242512AE01A7B00756EAA /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA242502AE01A7B00756EAA /* NewsService.swift */; };
 		BBA242532AE01A8D00756EAA /* NewsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA242522AE01A8D00756EAA /* NewsServiceProtocol.swift */; };
 		BBA242552AE12C3700756EAA /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA242542AE12C3600756EAA /* NewsCell.swift */; };
-		BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */; };
 		BBCFDC062851F3FF003F9197 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC052851F3FF003F9197 /* TitleView.swift */; };
 		BBCFDC0A28532E4F003F9197 /* LastTransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */; };
 		BBD518642A9CD50F0052B895 /* AccountAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD518632A9CD50F0052B895 /* AccountAdapter.swift */; };
@@ -202,10 +196,6 @@
 		BB5C411B2A463050002DC6A0 /* FileStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStoreProtocol.swift; sourceTree = "<group>"; };
 		BB5C411D2A4996D1002DC6A0 /* DefaultValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValue.swift; sourceTree = "<group>"; };
 		BB5C411F2A4ACC6F002DC6A0 /* CoreDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceProtocol.swift; sourceTree = "<group>"; };
-		BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionPresenter.swift; sourceTree = "<group>"; };
-		BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionViewController.swift; sourceTree = "<group>"; };
-		BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionInput.swift; sourceTree = "<group>"; };
-		BB5E37332A4098BE0093AB95 /* LastTransactionOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionOutput.swift; sourceTree = "<group>"; };
 		BB5E37372A41888D0093AB95 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		BB5E37392A418A4D0093AB95 /* HomePresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenterOutput.swift; sourceTree = "<group>"; };
 		BB5E373E2A4199440093AB95 /* ExchangeRatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatePresenter.swift; sourceTree = "<group>"; };
@@ -216,7 +206,6 @@
 		BB5E374C2A41CCE30093AB95 /* StocksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksPresenter.swift; sourceTree = "<group>"; };
 		BB5E374E2A41CD020093AB95 /* StocksInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksInput.swift; sourceTree = "<group>"; };
 		BB5E37502A41CD1C0093AB95 /* StocksOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksOutput.swift; sourceTree = "<group>"; };
-		BB5E8D7C2A9737A700BC1010 /* LastTransactionAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionAssembly.swift; sourceTree = "<group>"; };
 		BB5E8D7F2A979C2800BC1010 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		BB5E8D812A979C4100BC1010 /* FirebaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServiceProtocol.swift; sourceTree = "<group>"; };
 		BB5F1E862A4F076D0054F3A6 /* ApiKey.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ApiKey.xcconfig; sourceTree = "<group>"; };
@@ -320,7 +309,6 @@
 		BBA242502AE01A7B00756EAA /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		BBA242522AE01A8D00756EAA /* NewsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServiceProtocol.swift; sourceTree = "<group>"; };
 		BBA242542AE12C3600756EAA /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
-		BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionModalView.swift; sourceTree = "<group>"; };
 		BBCFDC052851F3FF003F9197 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		BBCFDC0928532E4F003F9197 /* LastTransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionsCell.swift; sourceTree = "<group>"; };
 		BBD518632A9CD50F0052B895 /* AccountAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAdapter.swift; sourceTree = "<group>"; };
@@ -375,7 +363,6 @@
 			children = (
 				BB5C40F42A442A50002DC6A0 /* HomeAssembly.swift */,
 				BB5C40F62A443544002DC6A0 /* AddTransactionAssembly.swift */,
-				BB5E8D7C2A9737A700BC1010 /* LastTransactionAssembly.swift */,
 				BB5C40F82A443AB2002DC6A0 /* ProfileAssembly.swift */,
 				BB5C40FA2A443C5B002DC6A0 /* ExchangeRateAssembly.swift */,
 				BB5C40FC2A443FB1002DC6A0 /* StocksAssembly.swift */,
@@ -454,34 +441,6 @@
 				BB5C411B2A463050002DC6A0 /* FileStoreProtocol.swift */,
 			);
 			path = "File Store";
-			sourceTree = "<group>";
-		};
-		BB5E372A2A40983C0093AB95 /* LastTransaction */ = {
-			isa = PBXGroup;
-			children = (
-				BB5E372B2A4098680093AB95 /* Presenter */,
-				BB5E372C2A4098700093AB95 /* View */,
-			);
-			path = LastTransaction;
-			sourceTree = "<group>";
-		};
-		BB5E372B2A4098680093AB95 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				BB5E372D2A4098850093AB95 /* LastTransactionPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		BB5E372C2A4098700093AB95 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BB5E372F2A40989D0093AB95 /* LastTransactionViewController.swift */,
-				BBB9D94E28B6530F0037CC24 /* LastTransactionModalView.swift */,
-				BB5E37312A4098B00093AB95 /* LastTransactionInput.swift */,
-				BB5E37332A4098BE0093AB95 /* LastTransactionOutput.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		BB5E37362A41886D0093AB95 /* Coordinator */ = {
@@ -756,7 +715,6 @@
 				BB6D218F2A33CA1B000C22D7 /* Home */,
 				BB6B5BAF2A3C9BBA00E16FFB /* AddTransaction */,
 				BB6D219C2A38A807000C22D7 /* Profile */,
-				BB5E372A2A40983C0093AB95 /* LastTransaction */,
 				BB5E373B2A41991B0093AB95 /* ExchangeRate */,
 				BB5E37462A41CC160093AB95 /* Stocks */,
 				BBA242352ADD5EA200756EAA /* ATM */,
@@ -1249,9 +1207,7 @@
 				BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */,
 				BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */,
 				BB7B26072B2B4907005E5A20 /* CategoryService.swift in Sources */,
-				BB5E37322A4098B00093AB95 /* LastTransactionInput.swift in Sources */,
 				BB72DEFE2AE93924001A3722 /* NewsPresenterOutput.swift in Sources */,
-				BB5E372E2A4098850093AB95 /* LastTransactionPresenter.swift in Sources */,
 				BB66934D285B885A002DFAAD /* Model.swift in Sources */,
 				BBD5186C2AA0890C0052B895 /* ServiceAdapter.swift in Sources */,
 				BB5C41162A44829A002DC6A0 /* NetworkProtocol.swift in Sources */,
@@ -1271,7 +1227,6 @@
 				BB61DEA52850A3C200A08AC6 /* TabBarController.swift in Sources */,
 				BB6BDB9D2989574C0000584A /* ModelNetwork.swift in Sources */,
 				BB76B05C2AF3A18D00786B23 /* ExchangeRateRequest.swift in Sources */,
-				BB5E37302A40989D0093AB95 /* LastTransactionViewController.swift in Sources */,
 				BBA2424E2AE007C900756EAA /* NewsAssembly.swift in Sources */,
 				BBD518642A9CD50F0052B895 /* AccountAdapter.swift in Sources */,
 				BBD5186E2AA08B4A0052B895 /* LastTransactionsAdapter.swift in Sources */,
@@ -1285,7 +1240,6 @@
 				BB5E37382A41888D0093AB95 /* HomeCoordinator.swift in Sources */,
 				BB6A7F6E2A4DCE470028CC13 /* ModelError.swift in Sources */,
 				BB72DEF82AE806D6001A3722 /* ImageCache.swift in Sources */,
-				BB5E8D7D2A9737A700BC1010 /* LastTransactionAssembly.swift in Sources */,
 				BB715F9B2A8B6750004266A0 /* StocksServiceProtocol.swift in Sources */,
 				BB5C41022A44464F002DC6A0 /* AuthPresenter.swift in Sources */,
 				BB5C41142A4481BD002DC6A0 /* Network.swift in Sources */,
@@ -1314,7 +1268,6 @@
 				BB61DE8F2850A33300A08AC6 /* SceneDelegate.swift in Sources */,
 				BBA2423F2ADD5F0700756EAA /* ATMOutput.swift in Sources */,
 				BBD518742AA0969D0052B895 /* StockAdapter.swift in Sources */,
-				BB5E37342A4098BE0093AB95 /* LastTransactionOutput.swift in Sources */,
 				BB715FA22A8CAE40004266A0 /* TopView.swift in Sources */,
 				BB5E374F2A41CD020093AB95 /* StocksInput.swift in Sources */,
 				BBA2424C2AE004F800756EAA /* NewsOutput.swift in Sources */,
@@ -1338,7 +1291,6 @@
 				BB80312A2B0217F4000D8307 /* ProgressInput.swift in Sources */,
 				BB8031282B0217D5000D8307 /* ProgressViewCotroller.swift in Sources */,
 				BB7B26042B2B20FD005E5A20 /* AccountServiceProtocol.swift in Sources */,
-				BBB9D94F28B6530F0037CC24 /* LastTransactionModalView.swift in Sources */,
 				BB9B6FD828CF79E9000B1D53 /* ProfileImageView.swift in Sources */,
 				BB5E374D2A41CCE30093AB95 /* StocksPresenter.swift in Sources */,
 				BBA242462AE0047B00756EAA /* NewsPresenter.swift in Sources */,

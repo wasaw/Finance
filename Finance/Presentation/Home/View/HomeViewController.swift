@@ -118,6 +118,7 @@ final class HomeViewController: UIViewController {
                             paddingTop: Constants.paddingTopTwenty,
                             paddingTrailing: -Constants.horizontalPadding,
                             height: Constants.centralViewHeight)
+        progressView.isHidden = true
     }
     
     private func configureServicesTitleView() {
@@ -196,22 +197,10 @@ final class HomeViewController: UIViewController {
 // MARK: - HomeInput
 
 extension HomeViewController: HomeInput {
-    func showData(total: String,
-                  service: [ChoiceService],
-                  lastTransaction: [Transaction]) {
-        progressView.isHidden = true
-        totalAccountView.setAccountLabel(total)
-        serviceAdapter.configure(service)
-        servicesCollectionView?.reloadData()
-        lastTransactionsCollectionView?.reloadData()
-    }
-    
-    func showLastTransaction() {
-        lastTransactionsCollectionView?.isHidden = false
-    }
-    
     func showLastTransactions(_ transactions: [TransactionCellModel]) {
+        lastTransactionsCollectionView?.isHidden = false
         lastTransactionsAdapter.configure(transaction: transactions)
+        lastTransactionsCollectionView?.reloadData()
     }
     
     func showAlert(message: String) {
@@ -220,6 +209,15 @@ extension HomeViewController: HomeInput {
     
     func setUserName(_ name: String) {
         fullNameLabel.text = name
+    }
+    
+    func showService(_ service: [ChoiceService]) {
+        serviceAdapter.configure(service)
+//        servicesCollectionView?.reloadData()
+    }
+    
+    func showTotal(_ total: String) {
+        totalAccountView.setAccountLabel(total)
     }
     
     func showProgress(_ progress: Progress) {
@@ -235,10 +233,6 @@ extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.servicesCollectionView {
             output.showService(at: indexPath.row)
-        }
-        
-        if collectionView == self.lastTransactionsCollectionView {
-            output.showTransaction(for: indexPath.row)
         }
     }
 }
