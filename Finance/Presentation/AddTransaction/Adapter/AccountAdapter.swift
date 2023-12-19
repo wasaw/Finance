@@ -35,8 +35,6 @@ extension AccountAdaper: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AccountCell.identifire,
                                                             for: indexPath) as? AccountCell else { return UICollectionViewCell() }
-        let currentRevenue = account[indexPath.row]
-//        let amount = currentRevenue.amount / currencyRate
         cell.setInfornation(account: account[indexPath.row])
         cell.disableSelect()
         if isSelected == indexPath.row {

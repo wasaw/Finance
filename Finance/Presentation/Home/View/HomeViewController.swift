@@ -218,6 +218,8 @@ extension HomeViewController: HomeInput {
     }
     
     func showTotal(_ total: String) {
+        totalAccountView.isHidden = false
+        progressView.isHidden = true
         totalAccountView.setAccountLabel(total)
     }
     

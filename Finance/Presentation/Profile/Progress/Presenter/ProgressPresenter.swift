@@ -65,5 +65,6 @@ extension ProgressPresenter: ProgressOutput {
     
     func setProgress(_ isOn: Bool) {
         userDefaults.set(isOn, forKey: "isProgress")
+        notification.post(Notification(name: .updateProgress, object: nil))
     }
 }

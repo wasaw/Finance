@@ -12,7 +12,6 @@ struct AccountCellModel {
     let imageData: Data
     let amount: Double
     let currency: Currency
-    let currencyRate: Double
 }
 
 struct CategoryCellModel {
@@ -78,9 +77,8 @@ final class AddTransactionPresenter {
                     self?.account.append(account)
                     return AccountCellModel(title: account.title,
                                             imageData: account.image,
-                                            amount: account.amount,
-                                            currency: currentCurrency,
-                                            currencyRate: currencyRate)
+                                            amount: account.amount / currencyRate,
+                                            currency: currentCurrency)
                 }
                 self?.input?.setAccount(accountCellModel)
             case .failure(let error):

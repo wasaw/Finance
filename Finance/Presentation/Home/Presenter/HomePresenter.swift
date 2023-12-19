@@ -34,6 +34,8 @@ final class HomePresenter {
 
     private var lastTransaction = [Transaction]()
     private var balance: Double?
+    private var currencyRate: Double?
+    private var currentCurrency: Currency?
     private let dateFormatter: DateFormatter = {
         let df = DateFormatter()
         df.dateFormat = "dd.MM.yyyy"
@@ -73,6 +75,7 @@ final class HomePresenter {
     }
     
     private func loadInformation() {
+        defaultsValue()
         userInformation()
         totalAmount()
         do {
@@ -103,7 +106,9 @@ final class HomePresenter {
             case .success(let accounts):
                 let total = accounts.reduce(0) { $0 + $1.amount }
                 self?.balance = total
-                let showTotal = String(format: "%.2f", total)
+                guard let currencyRate = self?.currencyRate,
+                      let currentCurrency = self?.currentCurrency else { return }
+                let showTotal = String(format: "%.2f", total / currencyRate) + currentCurrency.getMark()
                 self?.input?.showTotal(showTotal)
             case .failure(let error):
                 self?.input?.showAlert(message: error.localizedDescription)
@@ -111,12 +116,15 @@ final class HomePresenter {
         }
     }
     
-    private func showProgress() {
+    private func defaultsValue() {
+        guard let currency = userDefaults.value(forKey: "currency") as? Int else { return }
+        currencyRate = userDefaults.value(forKey: "currencyRate") as? Double
+        currentCurrency = Currency(rawValue: currency)
+    }
+    
+    private func showProgress(_ addTransaction: Transaction? = nil) {
         let isProgress = userDefaults.value(forKey: "isProgress") as? Bool
         if isProgress == true,
-           let currencyRate = userDefaults.value(forKey: "currencyRate") as? Double,
-           let currency = userDefaults.value(forKey: "currency") as? Int,
-           let currentCurrency = Currency(rawValue: currency),
            let purpose = userDefaults.value(forKey: "expenseLimit") as? Double {
             do {
                 let transactions = try transactionsService.fetchTransactionByMonth()
@@ -127,7 +135,12 @@ final class HomePresenter {
                 let date = Date()
                 let calendar = Calendar.current
                 let day = calendar.component(.day, from: date)
-                let progress = Progress(amount: amount,
+                guard let currentCurrency = currentCurrency,
+                      let currencyRate = currencyRate else { return }
+                if let addTransaction = addTransaction {
+                    amount += addTransaction.amount
+                }
+                let progress = Progress(amount: abs(amount) / currencyRate,
                                         purpose: purpose,
                                         currentDay: day,
                                         currency: currentCurrency,
@@ -136,17 +149,22 @@ final class HomePresenter {
             } catch {
                 self.input?.showAlert(message: error.localizedDescription)
             }
+        } else {
+            totalAmount()
         }
     }
     
     private func prepareTransactionCellModel(_ transactions: [Transaction]) {
         let lastTransactionsCellModel: [TransactionCellModel] = transactions.compactMap { transaction in
             let category = try? categoryService.fetchCategory(for: transaction.category)
-            guard let category = category else { return nil }
+            guard let category = category,
+                  let currency = currentCurrency,
+                  let rate = currencyRate else { return nil }
             let isRevenue = (transaction.amount >= 0) ? true : false
+            let amount = String(format: "%.2f", transaction.amount / rate) + currency.getMark()
             return TransactionCellModel(category: category.title,
                                         image: category.image,
-                                        amount: String(format: "%.2f", transaction.amount),
+                                        amount: amount,
                                         date: dateFormatter.string(from: transaction.date),
                                         comment: transaction.comment,
                                         isRevenue: isRevenue)
@@ -165,8 +183,8 @@ final class HomePresenter {
                 balance += transaction.amount
                 let total = String(format: "%.2f", balance)
                 input?.showTotal(total)
+                showProgress(transaction)
             }
-            showProgress()
         }
     }
     

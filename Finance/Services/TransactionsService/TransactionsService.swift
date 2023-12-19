@@ -42,9 +42,9 @@ extension TransactionsService: TransactionsServiceProtocol {
                 }
                 return Transaction(account: accountId,
                                    category: categoryId,
-                                       amount: transaction.amount,
-                                       date: date,
-                                       comment: comment)
+                                   amount: transaction.amount,
+                                   date: date,
+                                   comment: comment)
             }
             return lastTransaction
         } catch {
@@ -66,15 +66,20 @@ extension TransactionsService: TransactionsServiceProtocol {
             let transactions: [Transaction] = transactionManagedObject.compactMap { transaction in
                 guard
                       let date = transaction.date,
-                      let comment = transaction.comment
+                      let comment = transaction.comment,
+                      let account = transaction.account,
+                      let accountId = account.id,
+                      let category = transaction.category,
+                      let categoryId = category.id,
+                      transaction.amount < 0
                 else {
                     return nil
                 }
-                return Transaction(account: UUID(),
-                                   category: UUID(),
-                                       amount: transaction.amount,
-                                       date: date,
-                                       comment: comment)
+                return Transaction(account: accountId,
+                                   category: categoryId,
+                                   amount: transaction.amount,
+                                   date: date,
+                                   comment: comment)
             }
             return transactions
         } catch {
