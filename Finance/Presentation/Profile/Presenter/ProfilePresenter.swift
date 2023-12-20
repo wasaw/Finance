@@ -142,7 +142,7 @@ extension ProfilePresenter: ProfileOutput {
                 UserDefaults.standard.set(nil, forKey: "uid")
                 self?.transactionsService.delete()
                 self?.output.showAuth()
-                self?.notification.post(Notification(name: .addTransactions, object: nil))
+                self?.notification.post(Notification(name: .updateCredential, object: nil))
             case .failure:
                 self?.input?.showAlert(with: "Ошибка", and: "Не удалось разлогиниться")
             }

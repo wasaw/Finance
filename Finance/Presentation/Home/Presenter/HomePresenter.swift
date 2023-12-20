@@ -203,6 +203,8 @@ final class HomePresenter {
                     }
                 }
             }
+        } else {
+            input?.setUserName("Здравствуйте")
         }
     }
     
