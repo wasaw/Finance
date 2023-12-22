@@ -73,7 +73,7 @@ extension CoreDataService: CoreDataServiceProtocol {
     
     func save(completion: @escaping(NSManagedObjectContext) throws -> Void) {
         let backgroundContext = persistentContainer.newBackgroundContext()
-        backgroundContext.perform {
+        backgroundContext.performAndWait {
             do {
                 try completion(backgroundContext)
                 if backgroundContext.hasChanges {

@@ -8,19 +8,34 @@
 import Foundation
 import FirebaseAuth
 
+struct FirebaseTransaction {
+    let account: String
+    let category: String
+    let amount: Double
+    let date: Date
+    let comment: String
+}
+
 final class FirebaseService {
     
 // MARK: - Properties
     
     private let network: NetworkProtocol
     private let fileStore: FileStoreProtocol
+    private let accountService: AccountServiceProtocol
+    private let categoryService: CategoryServiceProtocol
     private let notification = NotificationCenter.default
     
 // MARK: - Lifecycle
     
-    init(network: NetworkProtocol, fileStore: FileStoreProtocol) {
+    init(network: NetworkProtocol,
+         fileStore: FileStoreProtocol,
+         accountService: AccountServiceProtocol,
+         categoryService: CategoryServiceProtocol) {
         self.network = network
         self.fileStore = fileStore
+        self.accountService = accountService
+        self.categoryService = categoryService
     }
     
     deinit {
@@ -125,45 +140,47 @@ extension FirebaseService: FirebaseServiceProtocol {
         }
     }
     
-    func saveTransaction(_ transaction: Transaction) {
-//        if let uid = Auth.auth().currentUser?.uid {
-//            let value: [String: Any] = ["type": transaction.type,
-//                         "amount": transaction.amount,
-//                         "img": transaction.img,
-//                         "date": transaction.dateString,
-//                         "comment": transaction.comment,
-//                         "category": transaction.category]
-//            REF_USER_TRANSACTIONS.child(uid).childByAutoId().updateChildValues(value)
-//        }
+    func saveTransaction(_ transaction: FirebaseTransaction) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        
+        if let uid = Auth.auth().currentUser?.uid {
+            let value: [String: Any] = [
+                        "account": transaction.account,
+                        "amount": transaction.amount,
+                        "date": dateFormatter.string(from: transaction.date),
+                        "comment": transaction.comment,
+                        "category": transaction.category]
+            REF_USER_TRANSACTIONS.child(uid).childByAutoId().updateChildValues(value)
+        }
     }
     
-    func fetchTransactions(_ uid: String, completion: @escaping (Result<[Transaction], TransactionError>) -> Void) {
-//        REF_USER_TRANSACTIONS.child(uid).getData { error, snapshot in
-//            if error != nil {
-//                completion(.failure(TransactionError.notFound))
-//            }
-//            guard let value = snapshot?.value as? NSDictionary else { return }
-//            var transactions: [Transaction] = []
-//            let formatter = DateFormatter()
-//            formatter.dateFormat = "dd.MM.yyyy"
-//            for item in value {
-//                guard let list = item.value as? NSDictionary,
-//                      let amount = list["amount"] as? Double,
-//                      let category = list["category"] as? String,
-//                      let comment = list["comment"] as? String,
-//                      let dateString = list["date"] as? String,
-//                      let img = list["img"] as? String,
-//                      let type = list["type"] as? String,
-//                      let date = formatter.date(from: dateString) else { return }
-//                let transaction = Transaction(type: type,
-//                                              amount: amount,
-//                                              img: img,
-//                                              date: date,
-//                                              comment: comment,
-//                                              category: category)
-//                transactions.append(transaction)
-//            }
-//            completion(.success(transactions))
-//        }
+    func fetchTransactions(_ uid: String, completion: @escaping (Result<[FirebaseTransaction], TransactionError>) -> Void) {
+        REF_USER_TRANSACTIONS.child(uid).getData { error, snapshot in
+            if error != nil {
+                completion(.failure(TransactionError.notFound))
+            }
+            
+            guard let value = snapshot?.value as? NSDictionary else { return }
+            var transactions: [FirebaseTransaction] = []
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd.MM.yyyy"
+            for item in value {
+                guard let list = item.value as? NSDictionary,
+                      let account = list["account"] as? String,
+                      let amount = list["amount"] as? Double,
+                      let category = list["category"] as? String,
+                      let comment = list["comment"] as? String,
+                      let dateString = list["date"] as? String,
+                      let date = formatter.date(from: dateString) else { return }
+                let transaction = FirebaseTransaction(account: account,
+                                              category: category,
+                                              amount: amount,
+                                              date: date,
+                                              comment: comment)
+                transactions.append(transaction)
+            }
+            completion(.success(transactions))
+        }
     }
 }

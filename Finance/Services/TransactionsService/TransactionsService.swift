@@ -102,7 +102,7 @@ extension TransactionsService: TransactionsServiceProtocol {
         guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
             return
         }
-        coreData.save { context in
+        coreData.save { [weak self] context in
             let transactionManagedObject = TransactionManagedObject(context: context)
             transactionManagedObject.date = transaction.date
             transactionManagedObject.amount = transaction.amount * currencyRate
@@ -110,7 +110,6 @@ extension TransactionsService: TransactionsServiceProtocol {
             let fetchRequest = CategoryManagedObject.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "id == %@", transaction.category as CVarArg)
             let categoriesManagedObject = try context.fetch(fetchRequest).first
-
             categoriesManagedObject?.addToTransactions(transactionManagedObject)
             
             let fetchRequestAccount = AccountManagedObject.fetchRequest()
@@ -118,14 +117,22 @@ extension TransactionsService: TransactionsServiceProtocol {
             let accountManagedObject = try context.fetch(fetchRequestAccount).first
             accountManagedObject?.addToTransactions(transactionManagedObject)
             accountManagedObject?.amount += transaction.amount
+            
+            guard let accountTitle = accountManagedObject?.title,
+                  let categoryTitle = categoriesManagedObject?.title else { return }
+            let firebaseTransaction = FirebaseTransaction(account: accountTitle,
+                                                  category: categoryTitle,
+                                                  amount: transaction.amount,
+                                                  date: transaction.date,
+                                                  comment: transaction.comment)
+            self?.firebaseService.saveTransaction(firebaseTransaction)
         }
-//        firebaseService.saveTransaction(transaction)
     }
     
     func upload(_ transactions: [Transaction]) {
-        for item in transactions {
-            firebaseService.saveTransaction(item)
-        }
+//        for item in transactions {
+//            firebaseService.saveTransaction(item)
+//        }
     }
     
     func delete() {

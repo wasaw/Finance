@@ -42,6 +42,27 @@ final class AuthService {
         }
     }
     
+    private func saveTransactions(_ transactions: [FirebaseTransaction]) {
+        transactions.forEach { transaction in
+            coreData.save { context in
+                let transactionManagedObject = TransactionManagedObject(context: context)
+                transactionManagedObject.date = transaction.date
+                transactionManagedObject.amount = transaction.amount
+                transactionManagedObject.comment = transaction.comment
+                let fetchRequest = CategoryManagedObject.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "title == %@", transaction.category as CVarArg)
+                let categoriesManagedObject = try context.fetch(fetchRequest).first
+                categoriesManagedObject?.addToTransactions(transactionManagedObject)
+
+                let fetchRequestAccount = AccountManagedObject.fetchRequest()
+                fetchRequestAccount.predicate = NSPredicate(format: "title == %@", transaction.account as CVarArg)
+                let accountManagedObject = try context.fetch(fetchRequestAccount).first
+                accountManagedObject?.addToTransactions(transactionManagedObject)
+                accountManagedObject?.amount += transaction.amount
+            }
+        }
+    }
+    
 // MARK: - Selectors
     
     @objc private func endSaving(_ notification: Notification) {
@@ -76,17 +97,7 @@ extension AuthService: AuthServiceProtocol {
                 self?.firebaseService.fetchTransactions(user.uid, completion: { result in
                     switch result {
                     case .success(let transactions):
-                        transactions.forEach { transaction in
-                            self?.coreData.save { context in
-                                let transactionManagedObject = TransactionManagedObject(context: context)
-//                                transactionManagedObject.type = transaction.type
-//                                transactionManagedObject.category = transaction.category
-//                                transactionManagedObject.img = transaction.img
-                                transactionManagedObject.date = transaction.date
-                                transactionManagedObject.amount = transaction.amount
-                                transactionManagedObject.comment = transaction.comment
-                            }
-                        }
+                        self?.saveTransactions(transactions)
                         self?.notification.post(Notification(name: .addTransactions, object: nil))
                     case .failure(let error):
                         switch error {

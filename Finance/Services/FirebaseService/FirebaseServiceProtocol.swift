@@ -13,6 +13,6 @@ protocol FirebaseServiceProtocol: AnyObject {
     func authVerification(compeltion: @escaping (Result<String, Error>) -> Void)
     func logOut(completion: @escaping (Result<Void, AuthError>) -> Void)
     func saveImage(dataImage: Data, with uid: String, completion: @escaping (Result<Data, Error>) -> Void)
-    func saveTransaction(_ transaction: Transaction)
-    func fetchTransactions(_ uid: String, completion: @escaping (Result<[Transaction], TransactionError>) -> Void)
+    func saveTransaction(_ transaction: FirebaseTransaction)
+    func fetchTransactions(_ uid: String, completion: @escaping (Result<[FirebaseTransaction], TransactionError>) -> Void)
 }
