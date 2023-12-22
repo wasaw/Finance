@@ -13,12 +13,19 @@ final class TransactionsService {
     
     private let coreData: CoreDataServiceProtocol
     private let firebaseService: FirebaseServiceProtocol
+    private let accountService: AccountServiceProtocol
+    private let categoryService: CategoryServiceProtocol
     
 // MARK: - Lifecycle
     
-    init(coreData: CoreDataServiceProtocol, firebaseService: FirebaseServiceProtocol) {
+    init(coreData: CoreDataServiceProtocol,
+         firebaseService: FirebaseServiceProtocol,
+         accountService: AccountServiceProtocol,
+         categoryService: CategoryServiceProtocol) {
         self.coreData = coreData
         self.firebaseService = firebaseService
+        self.accountService = accountService
+        self.categoryService = categoryService
     }
     
 }
@@ -130,9 +137,16 @@ extension TransactionsService: TransactionsServiceProtocol {
     }
     
     func upload(_ transactions: [Transaction]) {
-//        for item in transactions {
-//            firebaseService.saveTransaction(item)
-//        }
+        for item in transactions {
+            guard let account = try? accountService.fetchAccount(for: item.account),
+                  let category = try? categoryService.fetchCategory(for: item.category) else { return }
+            let firebaseTransaction = FirebaseTransaction(account: account.title,
+                                                          category: category.title,
+                                                          amount: item.amount,
+                                                          date: item.date,
+                                                          comment: item.comment)
+            firebaseService.saveTransaction(firebaseTransaction)
+        }
     }
     
     func delete() {

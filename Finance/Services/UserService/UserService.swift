@@ -42,7 +42,7 @@ extension UserService: UserServiceProtocol {
                completion(.failure(.isEmptyUser))
            }
         } catch {
-            completion(.failure(UserLoadError.somethingError))
+            completion(.failure(.isEmptyUser))
         }
     }
     

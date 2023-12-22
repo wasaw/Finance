@@ -35,7 +35,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                               fileStore: fileStore,
                                               accountService: accountService,
                                               categoryService: categoryService)
-        let transactionsService = TransactionsService(coreData: coreData, firebaseService: firebaseService)
+        let transactionsService = TransactionsService(coreData: coreData,
+                                                      firebaseService: firebaseService,
+                                                      accountService: accountService,
+                                                      categoryService: categoryService)
         let exchangeRequest = ExchangeRateRequest()
         let stocksRequest = StocksRequest()
         let newsRequest = NewsRequest()

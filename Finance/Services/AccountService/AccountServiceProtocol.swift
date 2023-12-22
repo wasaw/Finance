@@ -9,4 +9,5 @@ import Foundation
 
 protocol AccountServiceProtocol: AnyObject {
     func fetchAccounts(completion: @escaping (Result<[Account], Error>) -> Void)
+    func fetchAccount(for uid: UUID) throws -> Account
 }

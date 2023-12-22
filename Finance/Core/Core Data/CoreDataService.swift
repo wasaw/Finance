@@ -58,8 +58,11 @@ extension CoreDataService: CoreDataServiceProtocol {
         return try viewContext.fetch(fetchRequest)
     }
     
-    func fetchAccounts() throws -> [AccountManagedObject] {
+    func fetchAccounts(_ id: UUID?) throws -> [AccountManagedObject] {
         let fetchRequest = AccountManagedObject.fetchRequest()
+        if let id = id {
+            fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        }
         return try viewContext.fetch(fetchRequest)
     }
     
@@ -99,10 +102,15 @@ extension CoreDataService: CoreDataServiceProtocol {
         let backgroundContext = persistentContainer.newBackgroundContext()
         backgroundContext.perform {
             let fetchRequest = TransactionManagedObject.fetchRequest()
+            let accountFetchRequest = AccountManagedObject.fetchRequest()
             do {
                 let items = try backgroundContext.fetch(fetchRequest)
                 for item in items {
                     backgroundContext.delete(item)
+                }
+                let accounts = try backgroundContext.fetch(accountFetchRequest)
+                for account in accounts {
+                    account.amount = 0
                 }
                 try backgroundContext.save()
             } catch {

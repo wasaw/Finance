@@ -13,7 +13,7 @@ protocol CoreDataServiceProtocol: AnyObject {
     func fetchTransactionsByRevenue(_ predicate: String) throws -> [TransactionManagedObject]
     func fetchTransactionsByMonth(startDate: Date, endDate: Date) throws -> [TransactionManagedObject]
     func fetchUserInformation(uid: String) throws -> [UserManagedObject]
-    func fetchAccounts() throws -> [AccountManagedObject]
+    func fetchAccounts(_ id: UUID?) throws -> [AccountManagedObject]
     func fetchCategories(_ id: UUID?) throws -> [CategoryManagedObject]
     func save(completion: @escaping(NSManagedObjectContext) throws -> Void)
     func deleteUser()
