@@ -33,8 +33,8 @@ final class AddTransactionViewController: UIViewController {
 // MARK: - Properties
     
     private let output: AddTransactionOutput
-    private let accountAdapter = AccountAdaper()
-    private let categoryAdapter = CategoryAdapter()
+    private let accountAdapter: AccountAdaper
+    private let categoryAdapter: CategoryAdapter
     
     private lazy var scrollView = UIScrollView()
     private lazy var contentView = UIView()
@@ -98,8 +98,12 @@ final class AddTransactionViewController: UIViewController {
     
     // MARK: - Lifecycle
     
-    init(output: AddTransactionOutput) {
+    init(output: AddTransactionOutput,
+         accountAdapter: AccountAdaper,
+         categoryAdapter: CategoryAdapter) {
         self.output = output
+        self.accountAdapter = accountAdapter
+        self.categoryAdapter = categoryAdapter
         super.init(nibName: nil, bundle: nil)
     }
     

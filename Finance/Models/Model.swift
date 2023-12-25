@@ -66,13 +66,6 @@ struct User {
     let login: String
     let email: String
     var profileImage: Data?
-    
-//    init(uid: String, dictionary: [String: AnyObject]) {
-//        self.uid = uid
-//        self.login = dictionary["login"] as? String ?? ""
-//        self.email = dictionary["email"] as? String ?? ""
-//        self.profileImage = nil
-//    }
 }
 
 enum Currency: Int {
@@ -80,36 +73,27 @@ enum Currency: Int {
     case dollar
     case euro
     
-    func getMark() -> String {
+    var symbol: String {
         switch self {
-        case .rub:
-            return " ₽"
-        case .dollar:
-            return " $"
-        case .euro:
-            return " €"
+        case .rub: return " ₽"
+        case .dollar: return " $"
+        case .euro: return " €"
         }
     }
     
-    func getDescription() -> String {
+    var description: String {
         switch self {
-        case .rub:
-            return "рубли"
-        case .dollar:
-            return "доллары"
-        case .euro:
-            return "евро"
+        case .rub: return "рубли"
+        case .dollar: return "доллары"
+        case .euro: return "евро"
         }
     }
     
-    func forRequest() -> String {
+    var request: String {
         switch self {
-        case .rub:
-            return "RUB"
-        case .dollar:
-            return "USD"
-        case .euro:
-            return "EUR"
+        case .rub: return "RUB"
+        case .dollar: return "USD"
+        case .euro: return "EUR"
         }
     }
 }
@@ -150,7 +134,7 @@ struct News {
 
 struct Progress {
     let amount: Double
-    let purpose: Double
+    var purpose: Double
     let currentDay: Int
     let currency: Currency
     var ratio: Float {

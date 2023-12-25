@@ -19,12 +19,13 @@ final class StocksViewController: UIViewController {
     
     private lazy var loadAnimationView = CircleAnimation()
     private var tableView: UITableView?
-    private let stockAdapter = StockAdapter()
+    private let stockAdapter: StockAdapter
     
 // MARK: - Lifecycle
     
-    init(output: StocksPresenter) {
+    init(output: StocksPresenter, stockAdapter: StockAdapter) {
         self.output = output
+        self.stockAdapter = stockAdapter
         super.init(nibName: nil, bundle: nil)
     }
     

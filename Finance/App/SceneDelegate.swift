@@ -32,9 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let accountService = AccountService(fileStore: fileStore, coreData: coreData)
         let categoryService = CategoryService(fileStore: fileStore, coreData: coreData)
         let firebaseService = FirebaseService(network: network,
-                                              fileStore: fileStore,
-                                              accountService: accountService,
-                                              categoryService: categoryService)
+                                              fileStore: fileStore)
         let transactionsService = TransactionsService(coreData: coreData,
                                                       firebaseService: firebaseService,
                                                       accountService: accountService,

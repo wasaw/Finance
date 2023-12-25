@@ -42,7 +42,7 @@ final class AccountCell: CategoryCell {
     }
     
     func setInfornation(account: AccountCellModel) {
-        amountLabel.text = String(format: "%.0f", account.amount) + account.currency.getMark()
+        amountLabel.text = String(format: "%.0f", account.amount) + account.currency.symbol
         guard let image = UIImage(data: account.imageData) else { return }
         super.setInfornation(title: account.title, image: image)
     }

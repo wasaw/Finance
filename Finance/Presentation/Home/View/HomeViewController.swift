@@ -52,14 +52,18 @@ final class HomeViewController: UIViewController {
     }()
 
     private var servicesCollectionView: UICollectionView?
-    private let serviceAdapter = ServiceAdapter()
+    private let serviceAdapter: ServiceAdapter
     private var lastTransactionsCollectionView: UICollectionView?
-    private let lastTransactionsAdapter = LastTransactionsAdapter()
+    private let lastTransactionsAdapter: LastTransactionsAdapter
     
 // MARK: - Lifecycle
     
-    init(output: HomeOutput) {
+    init(output: HomeOutput,
+         serviceAdapter: ServiceAdapter,
+         lastTransactionsAdapter: LastTransactionsAdapter) {
         self.output = output
+        self.serviceAdapter = serviceAdapter
+        self.lastTransactionsAdapter = lastTransactionsAdapter
         super.init(nibName: nil, bundle: nil)
     }
     

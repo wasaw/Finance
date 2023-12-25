@@ -133,10 +133,10 @@ final class ProgressView: UIView {
     }
     
     func setValue(_ progress: Progress) {
-        expenseLabel.text = String(format: "%.0f", progress.amount) + progress.currency.getMark()
+        expenseLabel.text = String(format: "%.0f", progress.amount) + progress.currency.symbol
         daysLabel.text = String(progress.currentDay) + " дней"
         progressBar.setProgress(progress.ratio, animated: true)
-        purposeLabel.text = "Цель " + progress.purposeOutput + progress.currency.getMark()
+        purposeLabel.text = "Цель " + progress.purposeOutput + progress.currency.symbol
         if progress.amount > progress.purpose {
             progressBar.tintColor = .red
             progressBar.trackTintColor = .white

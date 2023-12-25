@@ -5,7 +5,7 @@
 //  Created by Александр Меренков on 10.06.2023.
 //
 
-import UIKit
+import Foundation
 
 struct TransactionCellModel {
     let category: String
@@ -108,7 +108,7 @@ final class HomePresenter {
                 self?.balance = total
                 guard let currencyRate = self?.currencyRate,
                       let currentCurrency = self?.currentCurrency else { return }
-                let showTotal = String(format: "%.2f", total / currencyRate) + currentCurrency.getMark()
+                let showTotal = String(format: "%.2f", total / currencyRate) + currentCurrency.symbol
                 self?.input?.showTotal(showTotal)
             case .failure(let error):
                 self?.input?.showAlert(message: error.localizedDescription)
@@ -161,7 +161,7 @@ final class HomePresenter {
                   let currency = currentCurrency,
                   let rate = currencyRate else { return nil }
             let isRevenue = (transaction.amount >= 0) ? true : false
-            let amount = String(format: "%.2f", transaction.amount / rate) + currency.getMark()
+            let amount = String(format: "%.2f", transaction.amount / rate) + currency.symbol
             return TransactionCellModel(category: category.title,
                                         image: category.image,
                                         amount: amount,

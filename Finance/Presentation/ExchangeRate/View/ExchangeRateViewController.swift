@@ -23,12 +23,13 @@ final class ExchangeRateViewController: UIViewController {
     private lazy var topView = TopView()
     private lazy var loadAnimateView = CircleAnimation()
     private var listCurrencyCollectionView: UICollectionView?
-    private let listCurrencyAdapter = ListCurrencyAdapter()
+    private let listCurrencyAdapter: ListCurrencyAdapter
     
 // MARK: - Lifecycle
     
-    init(output: ExchangeRatePresenter) {
+    init(output: ExchangeRatePresenter, listCurrencyAdapter: ListCurrencyAdapter) {
         self.output = output
+        self.listCurrencyAdapter = listCurrencyAdapter
         super.init(nibName: nil, bundle: nil)
     }
     

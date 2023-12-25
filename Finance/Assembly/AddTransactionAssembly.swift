@@ -12,11 +12,15 @@ final class AddTransactionAssembly {
                                  categoryService: CategoryServiceProtocol,
                                  transactionsService: TransactionsServiceProtocol,
                                  fileStore: FileStoreProtocol) -> UIViewController {
+        let accountAdapter = AccountAdaper()
+        let categoryAdapter = CategoryAdapter()
         let presenter = AddTransactionPresenter(accountService: accountService,
                                                 categoryService: categoryService,
                                                 transactionsService: transactionsService,
                                                 fileStore: fileStore)
-        let vc = AddTransactionViewController(output: presenter)
+        let vc = AddTransactionViewController(output: presenter,
+                                              accountAdapter: accountAdapter,
+                                              categoryAdapter: categoryAdapter)
         presenter.input = vc
         return vc
     }

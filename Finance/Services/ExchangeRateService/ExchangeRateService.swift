@@ -65,7 +65,7 @@ extension ExchangeRateService: ExchangeRateServiceProtocol {
     }
     
     func updateExchangeRate(for currency: Currency) {
-        fetchExchangeRate(currency.forRequest()) { result in
+        fetchExchangeRate(currency.request) { result in
             switch result {
             case .success(let answer):
                 if let currency = answer.first(where: { $0.name == "RUB" }) {

@@ -22,20 +22,14 @@ final class FirebaseService {
     
     private let network: NetworkProtocol
     private let fileStore: FileStoreProtocol
-    private let accountService: AccountServiceProtocol
-    private let categoryService: CategoryServiceProtocol
     private let notification = NotificationCenter.default
     
 // MARK: - Lifecycle
     
     init(network: NetworkProtocol,
-         fileStore: FileStoreProtocol,
-         accountService: AccountServiceProtocol,
-         categoryService: CategoryServiceProtocol) {
+         fileStore: FileStoreProtocol) {
         self.network = network
         self.fileStore = fileStore
-        self.accountService = accountService
-        self.categoryService = categoryService
     }
     
     deinit {

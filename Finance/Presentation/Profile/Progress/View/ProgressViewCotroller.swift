@@ -146,7 +146,7 @@ extension ProgressViewController: ProgressInput {
             expenseTextField.becomeFirstResponder()
         }
         expenseTextField.text = String(format: "%0.2f", item.expense)
-        currencyLabel.text = item.currency.getMark()
+        currencyLabel.text = item.currency.symbol
         configureUI()
         setupDataSource(item)
     }
