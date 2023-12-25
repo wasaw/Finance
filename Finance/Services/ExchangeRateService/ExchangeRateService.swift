@@ -16,6 +16,8 @@ final class ExchangeRateService {
     private let defaultValueService: DefaultValueServiceProtocol
     private let exchanteRequest: NetworkRequestProtocol
     
+    private let defaults = CustomUserDefaults.shared
+    
     private var fullName = [String]()
     private var img = [String]()
     
@@ -65,14 +67,14 @@ extension ExchangeRateService: ExchangeRateServiceProtocol {
     }
     
     func updateExchangeRate(for currency: Currency) {
-        fetchExchangeRate(currency.request) { result in
+        fetchExchangeRate(currency.request) { [weak self] result in
             switch result {
             case .success(let answer):
                 if let currency = answer.first(where: { $0.name == "RUB" }) {
-                    UserDefaults.standard.set(currency.amount, forKey: "currencyRate")
+                    self?.defaults.set(currency.amount, key: .currencyRate)
                 }
             case .failure:
-                UserDefaults.standard.set(1, forKey: "currencyRate")
+                self?.defaults.set(1, key: .currencyRate)
             }
         }
     }

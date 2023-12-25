@@ -43,7 +43,7 @@ final class HomePresenter {
     }()
     
     private let notification = NotificationCenter.default
-    private let userDefaults = UserDefaults.standard
+    private let defaults = CustomUserDefaults.shared
     
 // MARK: - Lifecycle
     
@@ -88,7 +88,7 @@ final class HomePresenter {
     }
     
     private func userInformation() {
-        if let uid = userDefaults.value(forKey: "uid") as? String {
+        if let uid = defaults.get(for: .uid) as? String {
             userService.getUser(uid) { [weak self] result in
                 switch result {
                 case .success(let user):
@@ -117,15 +117,15 @@ final class HomePresenter {
     }
     
     private func defaultsValue() {
-        guard let currency = userDefaults.value(forKey: "currency") as? Int else { return }
-        currencyRate = userDefaults.value(forKey: "currencyRate") as? Double
+        guard let currency = defaults.get(for: .currency) as? Int else { return }
+        currencyRate = defaults.get(for: .currencyRate) as? Double
         currentCurrency = Currency(rawValue: currency)
     }
     
     private func showProgress(_ addTransaction: Transaction? = nil) {
-        let isProgress = userDefaults.value(forKey: "isProgress") as? Bool
+        let isProgress = defaults.get(for: .isProgress) as? Bool
         if isProgress == true,
-           let purpose = userDefaults.value(forKey: "expenseLimit") as? Double {
+           let purpose = defaults.get(for: .expenseLimit) as? Double {
             do {
                 let transactions = try transactionsService.fetchTransactionByMonth()
                 var amount: Double = 0

@@ -16,6 +16,8 @@ final class TransactionsService {
     private let accountService: AccountServiceProtocol
     private let categoryService: CategoryServiceProtocol
     
+    private let defaults = CustomUserDefaults.shared
+    
 // MARK: - Lifecycle
     
     init(coreData: CoreDataServiceProtocol,
@@ -106,7 +108,7 @@ extension TransactionsService: TransactionsServiceProtocol {
     }
     
     func saveTransaction(_ transaction: Transaction) {
-        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
+        guard let currencyRate = defaults.get(for: .currencyRate) as? Double else {
             return
         }
         coreData.save { [weak self] context in

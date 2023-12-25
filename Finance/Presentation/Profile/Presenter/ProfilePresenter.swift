@@ -18,6 +18,7 @@ final class ProfilePresenter {
     private let exchangeRateService: ExchangeRateServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
     private let notification = NotificationCenter.default
+    private let defaults = CustomUserDefaults.shared
     
     private var currencyButtons = [CurrencyButton(title: "Рубль",
                                                     image: "ruble-currency.png",
@@ -76,7 +77,7 @@ final class ProfilePresenter {
     }
     
     private func setMenu() {
-        if let currencyRaw = UserDefaults.standard.value(forKey: "currency") as? Int {
+        if let currencyRaw = defaults.get(for: .currency) as? Int {
             guard let currency = Currency(rawValue: currencyRaw) else { return }
             for (index, button) in currencyButtons.enumerated() {
                 currencyButtons[index].isSelected = button.displayCurrency == currency
@@ -90,8 +91,8 @@ final class ProfilePresenter {
         if currency != .rub {
             exchangeRateService.updateExchangeRate(for: currency)
         } else {
-            UserDefaults.standard.set(0, forKey: "currency")
-            UserDefaults.standard.set(1, forKey: "currencyRate")
+            defaults.set(0, key: .currency)
+            defaults.set(1, key: .currencyRate)
         }
         notification.post(Notification(name: .updateCurrency))
     }
@@ -139,7 +140,7 @@ extension ProfilePresenter: ProfileOutput {
         authService.logOut { [weak self] result in
             switch result {
             case .success:
-                UserDefaults.standard.set(nil, forKey: "uid")
+                self?.defaults.set(nil, key: .uid)
                 self?.transactionsService.delete()
                 self?.output.showAuth()
                 self?.notification.post(Notification(name: .updateCredential, object: nil))
@@ -151,7 +152,7 @@ extension ProfilePresenter: ProfileOutput {
     
     func saveImage(_ imageData: Any?) {
         guard let image = imageData as? UIImage else { return }
-        if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
+        if let uid = defaults.get(for: .uid) as? String {
             userService.saveImage(image: image, for: uid) { [weak self] result in
                 switch result {
                 case .success(let data):
@@ -181,7 +182,7 @@ extension ProfilePresenter: ProfilePresenterInput {
         for (index, button) in currencyButtons.enumerated() {
             currencyButtons[index].isSelected = button.title == currencyButton.title
         }
-        UserDefaults.standard.set(currencyButton.displayCurrency.rawValue, forKey: "currency")
+        defaults.set(currencyButton.displayCurrency.rawValue, key: .currency)
         updateCurrency(currencyButton.displayCurrency)
     }
 }

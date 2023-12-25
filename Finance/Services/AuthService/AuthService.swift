@@ -14,6 +14,7 @@ final class AuthService {
     private let coreData: CoreDataServiceProtocol
     private let firebaseService: FirebaseServiceProtocol
     private let notification = NotificationCenter.default
+    private let defaults = CustomUserDefaults.shared
     
 // MARK: - Lifecycle
     
@@ -29,7 +30,7 @@ final class AuthService {
 // MARK: - Helpers
     
     private func saveUser(uid: String, login: String, email: String) {
-        UserDefaults.standard.set(uid, forKey: "uid")
+        defaults.set(uid, key: .uid)
         self.coreData.save { context in
             let userManagedObject = UserManagedObject(context: context)
             userManagedObject.uid = uid
@@ -66,7 +67,7 @@ final class AuthService {
 // MARK: - Selectors
     
     @objc private func endSaving(_ notification: Notification) {
-        if let uid = UserDefaults.standard.value(forKey: "uid") as? String {
+        if let uid = defaults.get(for: .uid) as? String {
             let uidDataDict: [String: String] = ["uid": uid]
             DispatchQueue.main.async {
                 self.notification.post(Notification(name: .updateCredential, object: nil, userInfo: uidDataDict))

@@ -10,6 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    private let defaults = CustomUserDefaults.shared
         
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -82,9 +84,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                                     exchageRateService: exchangeRateService,
                                                     transactionsService: transactionsService)
         
-        if UserDefaults.standard.value(forKey: "isFirstLaunce") == nil {
+        if defaults.get(for: .isFirstLaunce) == nil {
             defaultValueService.saveValue()
-            UserDefaults.standard.set(false, forKey: "isFirstLaunce")
+            defaults.set(false, key: .isFirstLaunce)
         }
 
         guard let scene = (scene as? UIWindowScene) else { return }

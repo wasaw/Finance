@@ -44,6 +44,7 @@ final class AddTransactionPresenter {
     private var isRevenue = false
     
     private let notification = NotificationCenter.default
+    private let defaults = CustomUserDefaults.shared
     
     // MARK: - Lifecycle
     
@@ -67,8 +68,8 @@ final class AddTransactionPresenter {
         accountService.fetchAccounts { [weak self] result in
             switch result {
             case .success(let accounts):
-                guard let currency = UserDefaults.standard.value(forKey: "currency") as? Int,
-                      let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
+                guard let currency = self?.defaults.get(for: .currency) as? Int,
+                      let currencyRate = self?.defaults.get(for: .currencyRate) as? Double,
                       let currentCurrency = Currency(rawValue: currency) else { return }
                 let accountCellModel: [AccountCellModel] = accounts.compactMap { account in
                     if self?.selectedAccount == nil {
@@ -131,7 +132,7 @@ extension AddTransactionPresenter: AddTransactionOutput {
         guard let accountId = selectedAccount?.id,
               let amountString = transaction.amount,
               let categoryId = selectedCategory?.id,
-              let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double,
+              let currencyRate = defaults.get(for: .currencyRate) as? Double,
               let amount = Double(amountString) else {
             if transaction.amount == "" {
                 input?.showAlert(with: "Внимание", and: "Не заполнено поле сумма")

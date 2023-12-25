@@ -25,7 +25,7 @@ final class ProgressPresenter {
     
     weak var input: ProgressInput?
     private let output: ProfilePresenterOutput
-    private let userDefaults = UserDefaults.standard
+    private let defaults = CustomUserDefaults.shared
     private let notification = NotificationCenter.default
     
 // MARK: - Lifecycle
@@ -39,11 +39,11 @@ final class ProgressPresenter {
 
 extension ProgressPresenter: ProgressOutput {
     func viewIsReady() {
-        guard let isShow = userDefaults.value(forKey: "isProgress") as? Bool,
-              let expense = userDefaults.value(forKey: "expenseLimit") as? Double,
-              let currency = userDefaults.value(forKey: "currency") as? Int,
+        guard let isShow = defaults.get(for: .isProgress) as? Bool,
+              let expense = defaults.get(for: .expenseLimit) as? Double,
+              let currency = defaults.get(for: .currency) as? Int,
               let currentCurrency = Currency(rawValue: currency),
-              let currencyRate = userDefaults.value(forKey: "currencyRate") as? Double else {
+              let currencyRate = defaults.get(for: .currencyRate) as? Double else {
             input?.setProgressItem(ProgressItem(title: "Отображать прогресс",
                                                  isShow: false,
                                                  expense: 0,
@@ -58,13 +58,13 @@ extension ProgressPresenter: ProgressOutput {
     
     func saveExpense(_ expense: String) {
         guard let expense = Double(expense),
-        let currencyRate = userDefaults.value(forKey: "currencyRate") as? Double else { return }
-        userDefaults.set(expense * currencyRate, forKey: "expenseLimit")
+              let currencyRate = defaults.get(for: .currencyRate) as? Double else { return }
+        defaults.set(expense * currencyRate, key: .expenseLimit)
         notification.post(Notification(name: .updateProgress, object: nil))
     }
     
     func setProgress(_ isOn: Bool) {
-        userDefaults.set(isOn, forKey: "isProgress")
+        defaults.set(isOn, key: .isProgress)
         notification.post(Notification(name: .updateProgress, object: nil))
     }
 }

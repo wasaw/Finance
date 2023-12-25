@@ -9,6 +9,10 @@ import Foundation
 
 final class DefaultValue {
     
+// MARK: - Properties
+    
+    private let defaults = CustomUserDefaults.shared
+    
 // MARK: - setDefaultValue
     
     private let stocks = [Stock(symbol: "ABNB", company: "Airbnb"),
@@ -88,9 +92,9 @@ final class DefaultValue {
             }
         }
         
-        if UserDefaults.standard.value(forKey: "currencyRate") == nil {
-            UserDefaults.standard.set(1, forKey: "currencyRate")
-            UserDefaults.standard.set(0, forKey: "currency")
+        if defaults.get(for: .currencyRate) == nil {
+            defaults.set(1, key: .currencyRate)
+            defaults.set(0, key: .currency)
         }
     }
 }

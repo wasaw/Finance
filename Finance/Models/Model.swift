@@ -42,7 +42,7 @@ struct CurrentExchangeRate {
     let img: String
     
     var amountOutput: String {
-        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
+        guard let currencyRate = CustomUserDefaults.shared.get(for: .currencyRate) as? Double else {
             return String(format: "%.2f", amount)
         }
         return String(format: "%.2f", amount / currencyRate)
@@ -110,7 +110,7 @@ struct Stock: Codable {
     }
     
     var valueOutput: String {
-        guard let currencyRate = UserDefaults.standard.value(forKey: "currencyRate") as? Double else {
+        guard let currencyRate = CustomUserDefaults.shared.get(for: .currencyRate) as? Double else {
             return String(format: "%.2f", value)
         }
         return String(format: "%.2f", value / currencyRate)

@@ -111,6 +111,7 @@
 		BB7B26042B2B20FD005E5A20 /* AccountServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B26032B2B20FD005E5A20 /* AccountServiceProtocol.swift */; };
 		BB7B26072B2B4907005E5A20 /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B26062B2B4907005E5A20 /* CategoryService.swift */; };
 		BB7B26092B2B4923005E5A20 /* CategoryServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B26082B2B4923005E5A20 /* CategoryServiceProtocol.swift */; };
+		BB7F99622B39B5EC0035222C /* CustomUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99612B39B5EC0035222C /* CustomUserDefaults.swift */; };
 		BB8031212AFD2913000D8307 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031202AFD2913000D8307 /* ProgressView.swift */; };
 		BB8031262B0217B8000D8307 /* ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031252B0217B8000D8307 /* ProgressPresenter.swift */; };
 		BB8031282B0217D5000D8307 /* ProgressViewCotroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031272B0217D5000D8307 /* ProgressViewCotroller.swift */; };
@@ -277,6 +278,7 @@
 		BB7B26032B2B20FD005E5A20 /* AccountServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountServiceProtocol.swift; sourceTree = "<group>"; };
 		BB7B26062B2B4907005E5A20 /* CategoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
 		BB7B26082B2B4923005E5A20 /* CategoryServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryServiceProtocol.swift; sourceTree = "<group>"; };
+		BB7F99612B39B5EC0035222C /* CustomUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserDefaults.swift; sourceTree = "<group>"; };
 		BB80311F2AFA2414000D8307 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		BB8031202AFD2913000D8307 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		BB8031252B0217B8000D8307 /* ProgressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPresenter.swift; sourceTree = "<group>"; };
@@ -580,6 +582,7 @@
 				BB9B6FCE28CB5A59000B1D53 /* Constants.swift */,
 				BB61DEAC2850DE3F00A08AC6 /* Extensions.swift */,
 				BB836F7028D1BECA008F22C7 /* Utils.swift */,
+				BB7F99612B39B5EC0035222C /* CustomUserDefaults.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1207,6 +1210,7 @@
 				BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */,
 				BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */,
 				BB7B26072B2B4907005E5A20 /* CategoryService.swift in Sources */,
+				BB7F99622B39B5EC0035222C /* CustomUserDefaults.swift in Sources */,
 				BB72DEFE2AE93924001A3722 /* NewsPresenterOutput.swift in Sources */,
 				BB66934D285B885A002DFAAD /* Model.swift in Sources */,
 				BBD5186C2AA0890C0052B895 /* ServiceAdapter.swift in Sources */,
