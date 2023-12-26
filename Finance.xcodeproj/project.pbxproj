@@ -112,6 +112,9 @@
 		BB7B26072B2B4907005E5A20 /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B26062B2B4907005E5A20 /* CategoryService.swift */; };
 		BB7B26092B2B4923005E5A20 /* CategoryServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B26082B2B4923005E5A20 /* CategoryServiceProtocol.swift */; };
 		BB7F99622B39B5EC0035222C /* CustomUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99612B39B5EC0035222C /* CustomUserDefaults.swift */; };
+		BB7F99642B3ABEF80035222C /* AccountServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99632B3ABEF80035222C /* AccountServiceMock.swift */; };
+		BB7F99662B3ABF490035222C /* CategoryServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99652B3ABF490035222C /* CategoryServiceMock.swift */; };
+		BB7F99682B3AF4870035222C /* NetworkRequestMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99672B3AF4870035222C /* NetworkRequestMock.swift */; };
 		BB8031212AFD2913000D8307 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031202AFD2913000D8307 /* ProgressView.swift */; };
 		BB8031262B0217B8000D8307 /* ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031252B0217B8000D8307 /* ProgressPresenter.swift */; };
 		BB8031282B0217D5000D8307 /* ProgressViewCotroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031272B0217D5000D8307 /* ProgressViewCotroller.swift */; };
@@ -279,6 +282,9 @@
 		BB7B26062B2B4907005E5A20 /* CategoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
 		BB7B26082B2B4923005E5A20 /* CategoryServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryServiceProtocol.swift; sourceTree = "<group>"; };
 		BB7F99612B39B5EC0035222C /* CustomUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserDefaults.swift; sourceTree = "<group>"; };
+		BB7F99632B3ABEF80035222C /* AccountServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountServiceMock.swift; sourceTree = "<group>"; };
+		BB7F99652B3ABF490035222C /* CategoryServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryServiceMock.swift; sourceTree = "<group>"; };
+		BB7F99672B3AF4870035222C /* NetworkRequestMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestMock.swift; sourceTree = "<group>"; };
 		BB80311F2AFA2414000D8307 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		BB8031202AFD2913000D8307 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		BB8031252B0217B8000D8307 /* ProgressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPresenter.swift; sourceTree = "<group>"; };
@@ -637,8 +643,11 @@
 				BB5142262AA1DC3500663609 /* StocksServiceMock.swift */,
 				BB5142222AA1D74C00663609 /* ExchangeRateMock.swift */,
 				BB51422A2AA1DDBB00663609 /* NetworkServiceMock.swift */,
+				BB7F99672B3AF4870035222C /* NetworkRequestMock.swift */,
 				BB5142302AA1E82D00663609 /* FirebaseServiceMock.swift */,
 				BB76B0572AF2868F00786B23 /* RequestBuilderMock.swift */,
+				BB7F99632B3ABEF80035222C /* AccountServiceMock.swift */,
+				BB7F99652B3ABF490035222C /* CategoryServiceMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1332,6 +1341,7 @@
 				BB72DEFA2AE914F5001A3722 /* NewsServiceTests.swift in Sources */,
 				BB66A33C2A7D2FDE003A8871 /* CoreDataServiceMock.swift in Sources */,
 				BB66A33E2A7D3315003A8871 /* TestCoreDataStack.swift in Sources */,
+				BB7F99662B3ABF490035222C /* CategoryServiceMock.swift in Sources */,
 				BB5142252AA1DBCA00663609 /* StocksServiceTests.swift in Sources */,
 				BB5142272AA1DC3500663609 /* StocksServiceMock.swift in Sources */,
 				BB69A5D12A7D1554001941F0 /* DefaultValueServiceTests.swift in Sources */,
@@ -1339,6 +1349,8 @@
 				BB5142312AA1E82D00663609 /* FirebaseServiceMock.swift in Sources */,
 				BB5142232AA1D74C00663609 /* ExchangeRateMock.swift in Sources */,
 				BB66A33A2A7D2F1C003A8871 /* TransactionsServiceTest.swift in Sources */,
+				BB7F99682B3AF4870035222C /* NetworkRequestMock.swift in Sources */,
+				BB7F99642B3ABEF80035222C /* AccountServiceMock.swift in Sources */,
 				BB5142332AA200D500663609 /* AuthServiceTests.swift in Sources */,
 				BB51422F2AA1E77E00663609 /* UserServiceTests.swift in Sources */,
 				BB8056C62AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift in Sources */,

@@ -26,8 +26,8 @@ final class FileStoreMock: FileStoreProtocol {
     var invokedReadAppInformationCount = 0
     var invokedReadAppInformationParameters: (value: String, Void)?
     var invokedReadAppInformationParametersList = [(value: String, Void)]()
-    typealias T = Any
     var stubbedReadAppInformationCompletionResult: (Result<T, FileManagerError>, Void)?
+    typealias T = Any
 
     func readAppInformation<T: Codable>(_ value: String, completion: @escaping(Result<T, FileManagerError>) -> Void) {
         invokedReadAppInformation = true
@@ -43,9 +43,9 @@ final class FileStoreMock: FileStoreProtocol {
     var invokedSaveImageCount = 0
     var invokedSaveImageParameters: (data: Data, name: String)?
     var invokedSaveImageParametersList = [(data: Data, name: String)]()
-    var stubbedSaveImageCompletionResult: (Result<Void, Error>, Void)?
+    var stubbedSaveImageCompletionResult: (Result<Data, Error>, Void)?
 
-    func saveImage(data: Data, with name: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
+    func saveImage(data: Data, with name: String, completion: @escaping ((Result<Data, Error>) -> Void)) {
         invokedSaveImage = true
         invokedSaveImageCount += 1
         invokedSaveImageParameters = (data, name)
@@ -59,15 +59,17 @@ final class FileStoreMock: FileStoreProtocol {
     var invokedGetImageCount = 0
     var invokedGetImageParameters: (uid: String, Void)?
     var invokedGetImageParametersList = [(uid: String, Void)]()
-    var stubbedGetImageCompletionResult: (Result<Data, Error>, Void)?
+    var stubbedGetImageError: Error?
+    var stubbedGetImageResult: Data!
 
-    func getImage(_ uid: String, completion: @escaping ((Result<Data, Error>) -> Void)) {
+    func getImage(_ uid: String) throws -> Data {
         invokedGetImage = true
         invokedGetImageCount += 1
         invokedGetImageParameters = (uid, ())
         invokedGetImageParametersList.append((uid, ()))
-        if let result = stubbedGetImageCompletionResult {
-            completion(result.0)
+        if let error = stubbedGetImageError {
+            throw error
         }
+        return stubbedGetImageResult
     }
 }

@@ -12,25 +12,19 @@ final class DefaultValueServiceTests: XCTestCase {
     
     var fileStore: FileStoreMock!
     var defautlValueService: DefaultValueService!
+    var coreData: CoreDataServiceMock!
     
     override func setUp() {
         fileStore = FileStoreMock()
-        defautlValueService = DefaultValueService(fileStore: fileStore)
+        coreData = CoreDataServiceMock()
+        defautlValueService = DefaultValueService(fileStore: fileStore,
+                                                  coreData: coreData)
     }
     
     override func tearDown() {
         fileStore = nil
         fileStore = nil
-    }
-
-    func testFetchValue() throws {
-        do {
-            _ = try defautlValueService.fetchValue()
-            XCTAssertEqual(fileStore.invokedReadAppInformation, true)
-            XCTAssertEqual(fileStore.invokedReadAppInformationCount, 2)
-        } catch {
-            XCTAssertThrowsError(true)
-        }
+        coreData = nil
     }
     
     func testFetchStocks() {

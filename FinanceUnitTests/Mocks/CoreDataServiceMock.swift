@@ -12,12 +12,16 @@ final class CoreDataServiceMock: CoreDataServiceProtocol {
 
     var invokedFetchTransactions = false
     var invokedFetchTransactionsCount = 0
+    var invokedFetchTransactionsParameters: (limit: Int?, Void)?
+    var invokedFetchTransactionsParametersList = [(limit: Int?, Void)]()
     var stubbedFetchTransactionsError: Error?
     var stubbedFetchTransactionsResult: [TransactionManagedObject]! = []
 
-    func fetchTransactions() throws -> [TransactionManagedObject] {
+    func fetchTransactions(limit: Int?) throws -> [TransactionManagedObject] {
         invokedFetchTransactions = true
         invokedFetchTransactionsCount += 1
+        invokedFetchTransactionsParameters = (limit, ())
+        invokedFetchTransactionsParametersList.append((limit, ()))
         if let error = stubbedFetchTransactionsError {
             throw error
         }
@@ -42,6 +46,24 @@ final class CoreDataServiceMock: CoreDataServiceProtocol {
         return stubbedFetchTransactionsByRevenueResult
     }
 
+    var invokedFetchTransactionsByMonth = false
+    var invokedFetchTransactionsByMonthCount = 0
+    var invokedFetchTransactionsByMonthParameters: (startDate: Date, endDate: Date)?
+    var invokedFetchTransactionsByMonthParametersList = [(startDate: Date, endDate: Date)]()
+    var stubbedFetchTransactionsByMonthError: Error?
+    var stubbedFetchTransactionsByMonthResult: [TransactionManagedObject]! = []
+
+    func fetchTransactionsByMonth(startDate: Date, endDate: Date) throws -> [TransactionManagedObject] {
+        invokedFetchTransactionsByMonth = true
+        invokedFetchTransactionsByMonthCount += 1
+        invokedFetchTransactionsByMonthParameters = (startDate, endDate)
+        invokedFetchTransactionsByMonthParametersList.append((startDate, endDate))
+        if let error = stubbedFetchTransactionsByMonthError {
+            throw error
+        }
+        return stubbedFetchTransactionsByMonthResult
+    }
+
     var invokedFetchUserInformation = false
     var invokedFetchUserInformationCount = 0
     var invokedFetchUserInformationParameters: (uid: String, Void)?
@@ -58,6 +80,42 @@ final class CoreDataServiceMock: CoreDataServiceProtocol {
             throw error
         }
         return stubbedFetchUserInformationResult
+    }
+
+    var invokedFetchAccounts = false
+    var invokedFetchAccountsCount = 0
+    var invokedFetchAccountsParameters: (id: UUID?, Void)?
+    var invokedFetchAccountsParametersList = [(id: UUID?, Void)]()
+    var stubbedFetchAccountsError: Error?
+    var stubbedFetchAccountsResult: [AccountManagedObject]! = []
+
+    func fetchAccounts(_ id: UUID?) throws -> [AccountManagedObject] {
+        invokedFetchAccounts = true
+        invokedFetchAccountsCount += 1
+        invokedFetchAccountsParameters = (id, ())
+        invokedFetchAccountsParametersList.append((id, ()))
+        if let error = stubbedFetchAccountsError {
+            throw error
+        }
+        return stubbedFetchAccountsResult
+    }
+
+    var invokedFetchCategories = false
+    var invokedFetchCategoriesCount = 0
+    var invokedFetchCategoriesParameters: (id: UUID?, Void)?
+    var invokedFetchCategoriesParametersList = [(id: UUID?, Void)]()
+    var stubbedFetchCategoriesError: Error?
+    var stubbedFetchCategoriesResult: [CategoryManagedObject]! = []
+
+    func fetchCategories(_ id: UUID?) throws -> [CategoryManagedObject] {
+        invokedFetchCategories = true
+        invokedFetchCategoriesCount += 1
+        invokedFetchCategoriesParameters = (id, ())
+        invokedFetchCategoriesParametersList.append((id, ()))
+        if let error = stubbedFetchCategoriesError {
+            throw error
+        }
+        return stubbedFetchCategoriesResult
     }
 
     var invokedSave = false

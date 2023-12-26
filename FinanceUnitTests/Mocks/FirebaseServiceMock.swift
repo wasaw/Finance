@@ -70,9 +70,9 @@ final class FirebaseServiceMock: FirebaseServiceProtocol {
     var invokedSaveImageCount = 0
     var invokedSaveImageParameters: (dataImage: Data, uid: String)?
     var invokedSaveImageParametersList = [(dataImage: Data, uid: String)]()
-    var stubbedSaveImageCompletionResult: (Result<Void, Error>, Void)?
+    var stubbedSaveImageCompletionResult: (Result<Data, Error>, Void)?
 
-    func saveImage(dataImage: Data, with uid: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func saveImage(dataImage: Data, with uid: String, completion: @escaping (Result<Data, Error>) -> Void) {
         invokedSaveImage = true
         invokedSaveImageCount += 1
         invokedSaveImageParameters = (dataImage, uid)
@@ -84,10 +84,10 @@ final class FirebaseServiceMock: FirebaseServiceProtocol {
 
     var invokedSaveTransaction = false
     var invokedSaveTransactionCount = 0
-    var invokedSaveTransactionParameters: (transaction: Transaction, Void)?
-    var invokedSaveTransactionParametersList = [(transaction: Transaction, Void)]()
+    var invokedSaveTransactionParameters: (transaction: FirebaseTransaction, Void)?
+    var invokedSaveTransactionParametersList = [(transaction: FirebaseTransaction, Void)]()
 
-    func saveTransaction(_ transaction: Transaction) {
+    func saveTransaction(_ transaction: FirebaseTransaction) {
         invokedSaveTransaction = true
         invokedSaveTransactionCount += 1
         invokedSaveTransactionParameters = (transaction, ())
@@ -98,9 +98,9 @@ final class FirebaseServiceMock: FirebaseServiceProtocol {
     var invokedFetchTransactionsCount = 0
     var invokedFetchTransactionsParameters: (uid: String, Void)?
     var invokedFetchTransactionsParametersList = [(uid: String, Void)]()
-    var stubbedFetchTransactionsCompletionResult: (Result<[Transaction], TransactionError>, Void)?
+    var stubbedFetchTransactionsCompletionResult: (Result<[FirebaseTransaction], TransactionError>, Void)?
 
-    func fetchTransactions(_ uid: String, completion: @escaping (Result<[Transaction], TransactionError>) -> Void) {
+    func fetchTransactions(_ uid: String, completion: @escaping (Result<[FirebaseTransaction], TransactionError>) -> Void) {
         invokedFetchTransactions = true
         invokedFetchTransactionsCount += 1
         invokedFetchTransactionsParameters = (uid, ())

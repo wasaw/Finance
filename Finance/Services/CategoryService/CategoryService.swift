@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Category {
+struct Categories {
     let id: UUID
     let title: String
     let image: Data
@@ -31,15 +31,15 @@ final class CategoryService {
 // MARK: - CategoryServiceProtocol
 
 extension CategoryService: CategoryServiceProtocol {
-    func fetchCategories(completion: @escaping (Result<[Category], Error>) -> Void) {
+    func fetchCategories(completion: @escaping (Result<[Categories], Error>) -> Void) {
         do {
             let categoriesManagedObject = try coreData.fetchCategories(nil)
-            let categories: [Category] = categoriesManagedObject.compactMap { category in
+            let categories: [Categories] = categoriesManagedObject.compactMap { category in
                 guard let id = category.id,
                       let data = try? fileStore.getImage(id.uuidString),
                       let title = category.title else { return nil }
                 
-                return Category(id: id, title: title, image: data)
+                return Categories(id: id, title: title, image: data)
             }
             completion(.success(categories))
         } catch {
@@ -47,7 +47,7 @@ extension CategoryService: CategoryServiceProtocol {
         }
     }
     
-    func fetchCategory(for id: UUID) throws -> Category {
+    func fetchCategory(for id: UUID) throws -> Categories {
         do {
             let categoriesManagedObject = try coreData.fetchCategories(id).first
             guard
@@ -58,7 +58,7 @@ extension CategoryService: CategoryServiceProtocol {
             else {
                 throw TransactionError.notFound
             }
-            return Category(id: id, title: title, image: data)
+            return Categories(id: id, title: title, image: data)
         } catch {
             throw error
         }

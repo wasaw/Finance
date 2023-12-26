@@ -10,18 +10,12 @@ import Foundation
 
 final class DefaultValueServiceMock: DefaultValueServiceProtocol {
 
-    var invokedFetchValue = false
-    var invokedFetchValueCount = 0
-    var stubbedFetchValueError: Error?
-    var stubbedFetchValueResult: ([ChoiceCategoryExpense], [ChoiceTypeRevenue])! = ([], [])
+    var invokedSaveValue = false
+    var invokedSaveValueCount = 0
 
-    func fetchValue() throws -> ([ChoiceCategoryExpense], [ChoiceTypeRevenue]) {
-        invokedFetchValue = true
-        invokedFetchValueCount += 1
-        if let error = stubbedFetchValueError {
-            throw error
-        }
-        return stubbedFetchValueResult
+    func saveValue() {
+        invokedSaveValue = true
+        invokedSaveValueCount += 1
     }
 
     var invokedFetchStocks = false

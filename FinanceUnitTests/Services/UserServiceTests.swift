@@ -37,9 +37,10 @@ final class UserServiceTests: XCTestCase {
         userManagedObject.uid = "0201"
         userManagedObject.login = "First"
         userManagedObject.email = "test@mail.com"
-        
+
         coreData.stubbedFetchUserInformationResult = ([userManagedObject])
-        
+        fileStore.stubbedGetImageResult = UIImage(named: "add-photo")?.pngData()
+
         userService.getUser("0201") { _ in
         }
         XCTAssertEqual(coreData.invokedFetchUserInformation, true)

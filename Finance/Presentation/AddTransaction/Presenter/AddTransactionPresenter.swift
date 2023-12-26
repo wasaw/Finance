@@ -37,10 +37,10 @@ final class AddTransactionPresenter {
     private let fileStore: FileStoreProtocol
     
     private var account = [Account]()
-    private var category = [Category]()
+    private var category = [Categories]()
     private var selectedAccount: Account?
-    private var selectedCategory: Category?
-    private var revenueCategory: Category?
+    private var selectedCategory: Categories?
+    private var revenueCategory: Categories?
     private var isRevenue = false
     
     private let notification = NotificationCenter.default

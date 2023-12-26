@@ -13,15 +13,18 @@ final class StocksServiceTests: XCTestCase {
     var networkService: NetworkServiceMock!
     var requestBuilder: RequestBuilderMock!
     var defaultValueService: DefaultValueServiceMock!
+    var stocksRequest: NetworkRequestMock!
     var stocksService: StocksServiceProtocol!
     
     override func setUp() {
         networkService = NetworkServiceMock()
         requestBuilder = RequestBuilderMock()
         defaultValueService = DefaultValueServiceMock()
+        stocksRequest = NetworkRequestMock()
         stocksService  = StocksService(network: networkService,
                                        requestBuilder: requestBuilder,
-                                       defaultValueService: defaultValueService)
+                                       defaultValueService: defaultValueService,
+                                       stocksRequest: stocksRequest)
     }
     
     override func tearDown() {
@@ -29,13 +32,20 @@ final class StocksServiceTests: XCTestCase {
         requestBuilder = nil
         defaultValueService = nil
         stocksService = nil
+        stocksRequest = nil
     }
     
     func testGetStocks() {
+        guard let apiKey = Bundle.main.infoDictionary?["STOCK_API_KEY"] as? String,
+              let url = URL(string: "https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-12-25?adjusted=true&apiKey=\(apiKey)") else {
+            return
+        }
+        requestBuilder.stubbedBuildResult = URLRequest(url: url)
+        
         stocksService.fetchStocks { _ in
         }
         
-        XCTAssert(requestBuilder.invokedGetStocksRequest)
-        XCTAssertEqual(requestBuilder.invokedGetStocksRequestCount, 1)
+        XCTAssert(requestBuilder.invokedBuild)
+        XCTAssertEqual(requestBuilder.invokedBuildCount, 1)
     }
 }

@@ -11,37 +11,52 @@ import XCTest
 final class TransactionsServiceTest: XCTestCase {
     
     var coreData: CoreDataServiceMock!
+    var accountService: AccountServiceProtocol!
+    var categoryService: CategoryServiceProtocol!
+    var firebaseService: FirebaseServiceMock!
     var transactionsService: TransactionsServiceProtocol!
-    var firebaseService: FirebaseServiceProtocol!
     
     override func setUp() {
         coreData = CoreDataServiceMock()
         firebaseService = FirebaseServiceMock()
-        transactionsService = TransactionsService(coreData: coreData, firebaseService: firebaseService)
+        accountService = AccountServiceMock()
+        categoryService = CategoryServiceMock()
+        transactionsService = TransactionsService(coreData: coreData,
+                                                  firebaseService: firebaseService,
+                                                  accountService: accountService,
+                                                  categoryService: categoryService)
     }
     
     override func tearDown() {
         coreData = nil
-        transactionsService = nil
         firebaseService = nil
+        accountService = nil
+        categoryService = nil
+        transactionsService = nil
     }
     
     func testFetchTransactions() throws {
         let context = TestCoreDataStack().getMenagedObjectContext()
+        let account = AccountManagedObject(usedContext: context)
+        account.amount = 2
+        account.title = ""
+        account.id = UUID()
+        let category = CategoryManagedObject(usedContext: context)
+        category.id = UUID()
+        category.title = ""
         let transactionsManagedObject = TransactionManagedObject(usedContext: context)
-        transactionsManagedObject.category = "Новая"
         transactionsManagedObject.amount = 2
         transactionsManagedObject.comment = "Пусто"
         transactionsManagedObject.date = Date(timeIntervalSince1970: 2000)
-        transactionsManagedObject.img = "house.fill"
-        transactionsManagedObject.type = "Доход"
+        transactionsManagedObject.account = account
+        transactionsManagedObject.category = category
         
         coreData.stubbedFetchTransactionsResult = ([transactionsManagedObject])
 
         do {
-            let answer = try transactionsService.fetchTransactions()
+            let answer = try transactionsService.fetchTransactions(limit: 1)
             XCTAssertEqual(coreData.invokedFetchTransactions, true)
-            XCTAssertEqual(answer[0].category, transactionsManagedObject.category)
+            XCTAssertEqual(answer[0].comment, transactionsManagedObject.comment)
         } catch {
             XCTAssertThrowsError(true)
         }
@@ -50,20 +65,14 @@ final class TransactionsServiceTest: XCTestCase {
     func testFetchAmountBy() {
         let context = TestCoreDataStack().getMenagedObjectContext()
         let transactionsManagedObject = TransactionManagedObject(usedContext: context)
-        transactionsManagedObject.category = "Зарплата"
         transactionsManagedObject.amount = 332
         transactionsManagedObject.comment = "Пусто"
         transactionsManagedObject.date = Date(timeIntervalSince1970: 1230)
-        transactionsManagedObject.img = "house.fill"
-        transactionsManagedObject.type = "Доход"
         
         let transactionsManagedObjectOther = TransactionManagedObject(usedContext: context)
-        transactionsManagedObjectOther.category = "Зарплата"
         transactionsManagedObjectOther.amount = 107
         transactionsManagedObjectOther.comment = "Добавлено"
         transactionsManagedObjectOther.date = Date(timeIntervalSince1970: 1250)
-        transactionsManagedObjectOther.img = "house.fill"
-        transactionsManagedObjectOther.type = "Доход"
         
         let checkResult = transactionsManagedObject.amount + transactionsManagedObjectOther.amount
         
@@ -79,7 +88,11 @@ final class TransactionsServiceTest: XCTestCase {
     }
     
     func testSaveTransaction() {
-        let lastTransaction = Transaction(type: "Доход", amount: 2, img: "house.fill", date: Date(timeIntervalSince1970: 2000), comment: "Пусто", category: "Новая")
+        let lastTransaction = Transaction(account: UUID(),
+                                          category: UUID(),
+                                          amount: 2,
+                                          date: Date(timeIntervalSince1970: 2000),
+                                          comment: "Пусто")
         
         transactionsService.saveTransaction(lastTransaction)
         

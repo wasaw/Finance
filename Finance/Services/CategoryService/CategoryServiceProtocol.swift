@@ -8,6 +8,6 @@
 import Foundation
 
 protocol CategoryServiceProtocol: AnyObject {
-    func fetchCategories(completion: @escaping (Result<[Category], Error>) -> Void)
-    func fetchCategory(for id: UUID) throws -> Category
+    func fetchCategories(completion: @escaping (Result<[Categories], Error>) -> Void)
+    func fetchCategory(for id: UUID) throws -> Categories
 }
