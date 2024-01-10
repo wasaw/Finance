@@ -12,6 +12,8 @@ protocol RequestBuilderProtocol: AnyObject {
 }
 
 final class RequestBuilder: RequestBuilderProtocol {
+    static let shared = RequestBuilder()
+    
     func build(request: NetworkRequestProtocol) throws -> URLRequest {
         guard let url = URL(string: "https://\(request.host)\(request.path)") else {
             throw NetworkError.cantBuildUrl

@@ -17,12 +17,10 @@ final class NewsService {
     
 // MARK: - Lifecycle
     
-    init(network: NetworkProtocol,
-         requestBuilder: RequestBuilderProtocol,
-         newsRequest: NetworkRequestProtocol) {
+    init(network: NetworkProtocol) {
         self.network = network
-        self.requestBuilder = requestBuilder
-        self.newsRequest = newsRequest
+        self.requestBuilder = RequestBuilder.shared
+        self.newsRequest = NewsRequest()
     }
     
 }

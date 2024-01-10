@@ -21,13 +21,11 @@ final class StocksService {
 // MARK: - Lifecycle
     
     init(network: NetworkProtocol,
-         requestBuilder: RequestBuilderProtocol,
-         defaultValueService: DefaultValueServiceProtocol,
-         stocksRequest: NetworkRequestProtocol) {
+         defaultValueService: DefaultValueServiceProtocol) {
         self.network = network
-        self.requestBuilder = requestBuilder
+        self.requestBuilder = RequestBuilder.shared
         self.defaultValueService = defaultValueService
-        self.stocksRequest = stocksRequest
+        self.stocksRequest = StocksRequest()
     }
     
 // MARK: - Helpers

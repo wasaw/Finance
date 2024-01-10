@@ -24,13 +24,11 @@ final class ExchangeRateService {
 // MARK: - Lifecycle
     
     init(network: NetworkProtocol,
-         requestBuilder: RequestBuilderProtocol,
-         defaultValueService: DefaultValueServiceProtocol,
-         exchangeRequest: NetworkRequestProtocol) {
+         defaultValueService: DefaultValueServiceProtocol) {
         self.network = network
-        self.requestBuilder = requestBuilder
+        self.requestBuilder = RequestBuilder.shared
         self.defaultValueService = defaultValueService
-        self.exchanteRequest = exchangeRequest
+        self.exchanteRequest = ExchangeRateRequest()
     }
     
 // MARK: - Helpers
