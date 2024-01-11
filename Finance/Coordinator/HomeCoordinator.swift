@@ -17,6 +17,7 @@ final class HomeCoordinator {
     
     private var navigation: UINavigationController?
     private let homeAssembly: HomeAssembly
+    private let chartAssembly: ChartAssembly
     private let exchangeAssembly: ExchangeRateAssembly
     private let stocksAssembly: StocksAssembly
     private let atmAssembly: ATMAssembly
@@ -32,6 +33,7 @@ final class HomeCoordinator {
 // MARK: - Lifecycle
     
     init(homeAssembly: HomeAssembly,
+         chartAssembly: ChartAssembly,
          exchangeAssembly: ExchangeRateAssembly,
          stocksAssembly: StocksAssembly,
          atmAssembly: ATMAssembly,
@@ -44,6 +46,7 @@ final class HomeCoordinator {
          stocksService: StocksServiceProtocol,
          exchangeRateService: ExchangeRateServiceProtocol) {
         self.homeAssembly = homeAssembly
+        self.chartAssembly = chartAssembly
         self.exchangeAssembly = exchangeAssembly
         self.stocksAssembly = stocksAssembly
         self.atmAssembly = atmAssembly
@@ -74,6 +77,11 @@ final class HomeCoordinator {
 // MARK: - HomePresenterOutput
 
 extension HomeCoordinator: HomePresenterOutput {
+    func showChart() {
+        let vc = chartAssembly.makeChartModule()
+        navigation?.pushViewController(vc, animated: true)
+    }
+    
     func showExchangeRate() {
         let vc = exchangeAssembly.makeExchangeRateModule(coreData: coreData, exchangeRateService: exchangeRateService)
         navigation?.pushViewController(vc, animated: true)

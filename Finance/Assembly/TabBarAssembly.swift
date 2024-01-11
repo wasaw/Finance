@@ -17,6 +17,7 @@ final class TabBarAssembly {
     private let addAssembly: AddTransactionAssembly
     private let profileAssembly: ProfileAssembly
     private let progressAssembly: ProgressAssembly
+    private let chartAssembly: ChartAssembly
     private let exchangeAssembly: ExchangeRateAssembly
     private let stocksAssembly: StocksAssembly
     private let authAssembly: AuthAssembly
@@ -56,6 +57,7 @@ final class TabBarAssembly {
         self.addAssembly = AddTransactionAssembly()
         self.profileAssembly = ProfileAssembly()
         self.progressAssembly = ProgressAssembly()
+        self.chartAssembly = ChartAssembly()
         self.exchangeAssembly = ExchangeRateAssembly()
         self.stocksAssembly = StocksAssembly()
         self.authAssembly = AuthAssembly()
@@ -88,27 +90,28 @@ final class TabBarAssembly {
         
         self.newsCoordinator = NewsCoordinator(newsAssembly: newsAssembly, newsService: newsService)
         self.homeCoordinator = HomeCoordinator(homeAssembly: homeAssembly,
-                                              exchangeAssembly: exchangeAssembly,
-                                              stocksAssembly: stocksAssembly,
-                                              atmAssembly: atmAssembly,
-                                              newsCoordinator: newsCoordinator,
-                                              coreData: coreData,
-                                              accountService: accountService,
-                                              transactionsService: transactionsService,
-                                              categoryService: categoryService,
-                                              userService: userService,
-                                              stocksService: stocksService,
-                                              exchangeRateService: exchangeRateService)
+                                               chartAssembly: chartAssembly,
+                                               exchangeAssembly: exchangeAssembly,
+                                               stocksAssembly: stocksAssembly,
+                                               atmAssembly: atmAssembly,
+                                               newsCoordinator: newsCoordinator,
+                                               coreData: coreData,
+                                               accountService: accountService,
+                                               transactionsService: transactionsService,
+                                               categoryService: categoryService,
+                                               userService: userService,
+                                               stocksService: stocksService,
+                                               exchangeRateService: exchangeRateService)
         self.authCoordinator = AuthCoordinator(authAssembly: authAssembly,
-                                              authService: authService,
-                                              transactionsService: transactionsService)
+                                               authService: authService,
+                                               transactionsService: transactionsService)
         self.profileCoordinator = ProfileCoordinator(profileAssembly: profileAssembly,
-                                                    progressAssembly: progressAssembly,
-                                                    authService: authService,
-                                                    userService: userService,
-                                                    authCoordinator: authCoordinator,
-                                                    exchageRateService: exchangeRateService,
-                                                    transactionsService: transactionsService)
+                                                     progressAssembly: progressAssembly,
+                                                     authService: authService,
+                                                     userService: userService,
+                                                     authCoordinator: authCoordinator,
+                                                     exchageRateService: exchangeRateService,
+                                                     transactionsService: transactionsService)
         
         if defaults.get(for: .isFirstLaunce) == nil {
             defaultValueService.saveValue()

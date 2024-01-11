@@ -117,6 +117,11 @@
 		BB7F99682B3AF4870035222C /* NetworkRequestMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99672B3AF4870035222C /* NetworkRequestMock.swift */; };
 		BB7F996A2B3AFD250035222C /* AccountServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99692B3AFD250035222C /* AccountServiceTests.swift */; };
 		BB7F996C2B4EBF6E0035222C /* TabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F996B2B4EBF6D0035222C /* TabBarAssembly.swift */; };
+		BB7F99712B4FD5400035222C /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99702B4FD5400035222C /* ChartViewController.swift */; };
+		BB7F99732B4FD5780035222C /* ChartInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99722B4FD5780035222C /* ChartInput.swift */; };
+		BB7F99752B4FD5A10035222C /* ChartOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99742B4FD5A10035222C /* ChartOutput.swift */; };
+		BB7F99772B4FD8D50035222C /* ChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99762B4FD8D50035222C /* ChartPresenter.swift */; };
+		BB7F99792B4FE3490035222C /* ChartAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99782B4FE3490035222C /* ChartAssembly.swift */; };
 		BB8031212AFD2913000D8307 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031202AFD2913000D8307 /* ProgressView.swift */; };
 		BB8031262B0217B8000D8307 /* ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031252B0217B8000D8307 /* ProgressPresenter.swift */; };
 		BB8031282B0217D5000D8307 /* ProgressViewCotroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031272B0217D5000D8307 /* ProgressViewCotroller.swift */; };
@@ -289,6 +294,11 @@
 		BB7F99672B3AF4870035222C /* NetworkRequestMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestMock.swift; sourceTree = "<group>"; };
 		BB7F99692B3AFD250035222C /* AccountServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountServiceTests.swift; sourceTree = "<group>"; };
 		BB7F996B2B4EBF6D0035222C /* TabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAssembly.swift; sourceTree = "<group>"; };
+		BB7F99702B4FD5400035222C /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		BB7F99722B4FD5780035222C /* ChartInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartInput.swift; sourceTree = "<group>"; };
+		BB7F99742B4FD5A10035222C /* ChartOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartOutput.swift; sourceTree = "<group>"; };
+		BB7F99762B4FD8D50035222C /* ChartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPresenter.swift; sourceTree = "<group>"; };
+		BB7F99782B4FE3490035222C /* ChartAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartAssembly.swift; sourceTree = "<group>"; };
 		BB80311F2AFA2414000D8307 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		BB8031202AFD2913000D8307 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		BB8031252B0217B8000D8307 /* ProgressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPresenter.swift; sourceTree = "<group>"; };
@@ -383,6 +393,7 @@
 				BBA2424D2AE007C900756EAA /* NewsAssembly.swift */,
 				BB80312D2B021A16000D8307 /* ProgressAssembly.swift */,
 				BB7F996B2B4EBF6D0035222C /* TabBarAssembly.swift */,
+				BB7F99782B4FE3490035222C /* ChartAssembly.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -730,6 +741,7 @@
 		BB6D218E2A33C9FB000C22D7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				BB7F996D2B4FD47B0035222C /* Chart */,
 				BB6D218F2A33CA1B000C22D7 /* Home */,
 				BB6B5BAF2A3C9BBA00E16FFB /* AddTransaction */,
 				BB6D219C2A38A807000C22D7 /* Profile */,
@@ -896,6 +908,33 @@
 				BB7B26082B2B4923005E5A20 /* CategoryServiceProtocol.swift */,
 			);
 			path = CategoryService;
+			sourceTree = "<group>";
+		};
+		BB7F996D2B4FD47B0035222C /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				BB7F996F2B4FD51B0035222C /* Presenter */,
+				BB7F996E2B4FD5120035222C /* View */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		BB7F996E2B4FD5120035222C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB7F99702B4FD5400035222C /* ChartViewController.swift */,
+				BB7F99722B4FD5780035222C /* ChartInput.swift */,
+				BB7F99742B4FD5A10035222C /* ChartOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB7F996F2B4FD51B0035222C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB7F99762B4FD8D50035222C /* ChartPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		BB8031222B021776000D8307 /* Progress */ = {
@@ -1225,6 +1264,7 @@
 				BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */,
 				BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */,
 				BB7B26072B2B4907005E5A20 /* CategoryService.swift in Sources */,
+				BB7F99732B4FD5780035222C /* ChartInput.swift in Sources */,
 				BB7F99622B39B5EC0035222C /* CustomUserDefaults.swift in Sources */,
 				BB72DEFE2AE93924001A3722 /* NewsPresenterOutput.swift in Sources */,
 				BB66934D285B885A002DFAAD /* Model.swift in Sources */,
@@ -1238,6 +1278,7 @@
 				BB9B6FCF28CB5A59000B1D53 /* Constants.swift in Sources */,
 				BB44C5F72988079600776D4E /* Animations.swift in Sources */,
 				BB7B26022B2B20DF005E5A20 /* AccountService.swift in Sources */,
+				BB7F99772B4FD8D50035222C /* ChartPresenter.swift in Sources */,
 				BB6D21942A33CADB000C22D7 /* HomePresenter.swift in Sources */,
 				BB6A7F632A4C5FF60028CC13 /* AuthServiceProtocol.swift in Sources */,
 				BB5C40F92A443AB2002DC6A0 /* ProfileAssembly.swift in Sources */,
@@ -1258,6 +1299,7 @@
 				BB659BA62A83C101009DB75B /* UserService.swift in Sources */,
 				BB5E37382A41888D0093AB95 /* HomeCoordinator.swift in Sources */,
 				BB6A7F6E2A4DCE470028CC13 /* ModelError.swift in Sources */,
+				BB7F99712B4FD5400035222C /* ChartViewController.swift in Sources */,
 				BB72DEF82AE806D6001A3722 /* ImageCache.swift in Sources */,
 				BB715F9B2A8B6750004266A0 /* StocksServiceProtocol.swift in Sources */,
 				BB5C41022A44464F002DC6A0 /* AuthPresenter.swift in Sources */,
@@ -1323,6 +1365,7 @@
 				BB5C40F72A443544002DC6A0 /* AddTransactionAssembly.swift in Sources */,
 				BB76B0602AF3A91200786B23 /* NewsRequest.swift in Sources */,
 				BB5C411A2A462D6A002DC6A0 /* FileStore.swift in Sources */,
+				BB7F99792B4FE3490035222C /* ChartAssembly.swift in Sources */,
 				BBA242552AE12C3700756EAA /* NewsCell.swift in Sources */,
 				BBA242412ADD613D00756EAA /* ATMAssembly.swift in Sources */,
 				BB5E37512A41CD1C0093AB95 /* StocksOutput.swift in Sources */,
@@ -1334,6 +1377,7 @@
 				BB5E373A2A418A4D0093AB95 /* HomePresenterOutput.swift in Sources */,
 				BBA2423D2ADD5EFD00756EAA /* ATMInput.swift in Sources */,
 				BB7F996C2B4EBF6E0035222C /* TabBarAssembly.swift in Sources */,
+				BB7F99752B4FD5A10035222C /* ChartOutput.swift in Sources */,
 				BB5E8D802A979C2800BC1010 /* FirebaseService.swift in Sources */,
 				BB76B05E2AF3A69200786B23 /* StocksRequest.swift in Sources */,
 				BB715F962A8653F8004266A0 /* AuthPresenterOutput.swift in Sources */,

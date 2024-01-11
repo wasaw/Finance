@@ -21,6 +21,7 @@ struct ChoiceService {
 }
 
 enum TypeService: Int {
+    case chart
     case exchange
     case stocks
     case atm

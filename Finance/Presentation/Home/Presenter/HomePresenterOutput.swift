@@ -8,6 +8,7 @@
 import Foundation
 
 protocol HomePresenterOutput: AnyObject {
+    func showChart()
     func showExchangeRate()
     func showStock()
     func showATM()

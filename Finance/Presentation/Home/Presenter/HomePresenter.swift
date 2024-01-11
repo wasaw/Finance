@@ -27,7 +27,8 @@ final class HomePresenter {
     private let categoryService: CategoryServiceProtocol
     private let userService: UserServiceProtocol
     
-    private let service = [ChoiceService(name: "Курс валют", img: "exchange-rate.png", type: .exchange),
+    private let service = [ChoiceService(name: "Траты", img: "pie-chart.png", type: .chart),
+                           ChoiceService(name: "Курс валют", img: "exchange-rate.png", type: .exchange),
                            ChoiceService(name: "Акции", img: "stock-market.png", type: .stocks),
                            ChoiceService(name: "Банкоматы", img: "atm-machine", type: .atm),
                            ChoiceService(name: "Новости", img: "newspaper", type: .news)]
@@ -231,6 +232,8 @@ extension HomePresenter: HomeOutput {
     
     func showService(at index: Int) {
         switch TypeService(rawValue: index) {
+        case .chart:
+            output.showChart()
         case .exchange:
             output.showExchangeRate()
         case .stocks:
