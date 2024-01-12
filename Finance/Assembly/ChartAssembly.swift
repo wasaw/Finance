@@ -8,8 +8,8 @@
 import UIKit
 
 final class ChartAssembly {
-    func makeChartModule() -> UIViewController {
-        let presenter = ChartPresenter()
+    func makeChartModule(categoryService: CategoryServiceProtocol) -> UIViewController {
+        let presenter = ChartPresenter(categoryService: categoryService)
         let view = ChartViewController(output: presenter)
         presenter.input = view
         return view

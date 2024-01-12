@@ -122,6 +122,8 @@
 		BB7F99752B4FD5A10035222C /* ChartOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99742B4FD5A10035222C /* ChartOutput.swift */; };
 		BB7F99772B4FD8D50035222C /* ChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99762B4FD8D50035222C /* ChartPresenter.swift */; };
 		BB7F99792B4FE3490035222C /* ChartAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F99782B4FE3490035222C /* ChartAssembly.swift */; };
+		BB7F997B2B4FED160035222C /* ChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F997A2B4FED150035222C /* ChartCell.swift */; };
+		BB7F997E2B4FEE000035222C /* ChartDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F997D2B4FEE000035222C /* ChartDataSource.swift */; };
 		BB8031212AFD2913000D8307 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031202AFD2913000D8307 /* ProgressView.swift */; };
 		BB8031262B0217B8000D8307 /* ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031252B0217B8000D8307 /* ProgressPresenter.swift */; };
 		BB8031282B0217D5000D8307 /* ProgressViewCotroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031272B0217D5000D8307 /* ProgressViewCotroller.swift */; };
@@ -299,6 +301,8 @@
 		BB7F99742B4FD5A10035222C /* ChartOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartOutput.swift; sourceTree = "<group>"; };
 		BB7F99762B4FD8D50035222C /* ChartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPresenter.swift; sourceTree = "<group>"; };
 		BB7F99782B4FE3490035222C /* ChartAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartAssembly.swift; sourceTree = "<group>"; };
+		BB7F997A2B4FED150035222C /* ChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCell.swift; sourceTree = "<group>"; };
+		BB7F997D2B4FEE000035222C /* ChartDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataSource.swift; sourceTree = "<group>"; };
 		BB80311F2AFA2414000D8307 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		BB8031202AFD2913000D8307 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		BB8031252B0217B8000D8307 /* ProgressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPresenter.swift; sourceTree = "<group>"; };
@@ -915,6 +919,7 @@
 			children = (
 				BB7F996F2B4FD51B0035222C /* Presenter */,
 				BB7F996E2B4FD5120035222C /* View */,
+				BB7F997C2B4FEDE00035222C /* DataSource */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -925,6 +930,7 @@
 				BB7F99702B4FD5400035222C /* ChartViewController.swift */,
 				BB7F99722B4FD5780035222C /* ChartInput.swift */,
 				BB7F99742B4FD5A10035222C /* ChartOutput.swift */,
+				BB7F997A2B4FED150035222C /* ChartCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -935,6 +941,14 @@
 				BB7F99762B4FD8D50035222C /* ChartPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB7F997C2B4FEDE00035222C /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				BB7F997D2B4FEE000035222C /* ChartDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		BB8031222B021776000D8307 /* Progress */ = {
@@ -1259,7 +1273,9 @@
 				BB715FA02A8BAA19004266A0 /* ExchangeRateServiceProtocol.swift in Sources */,
 				BB5E37432A4199B40093AB95 /* ExchangeRateInput.swift in Sources */,
 				BB5C40F02A4345CF002DC6A0 /* ProfileCoordinator.swift in Sources */,
+				BB7F997B2B4FED160035222C /* ChartCell.swift in Sources */,
 				BB5E37412A41996D0093AB95 /* ExchangeRateViewController.swift in Sources */,
+				BB7F997E2B4FEE000035222C /* ChartDataSource.swift in Sources */,
 				BB6BDBA1298B994C0000584A /* AccountCell.swift in Sources */,
 				BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */,
 				BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */,

@@ -78,7 +78,7 @@ final class HomeCoordinator {
 
 extension HomeCoordinator: HomePresenterOutput {
     func showChart() {
-        let vc = chartAssembly.makeChartModule()
+        let vc = chartAssembly.makeChartModule(categoryService: categoryService)
         navigation?.pushViewController(vc, animated: true)
     }
     

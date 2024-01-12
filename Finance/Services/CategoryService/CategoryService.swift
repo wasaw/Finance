@@ -13,6 +13,12 @@ struct Categories {
     let image: Data
 }
 
+struct CategoriesList {
+    let title: String
+    let image: Data
+    let amount: Double
+}
+
 final class CategoryService {
     
 // MARK: - Properties
@@ -61,6 +67,25 @@ extension CategoryService: CategoryServiceProtocol {
             return Categories(id: id, title: title, image: data)
         } catch {
             throw error
+        }
+    }
+    
+    func fetchCategoriesAmount(completion: @escaping (Result<[CategoriesList], Error>) -> Void) {
+        do {
+            let categoriesManagedObject = try coreData.fetchCategories(nil)
+            let categoriesList: [CategoriesList] = categoriesManagedObject.compactMap { category in
+                guard let transactionsManagedObject = category.transactions?.array as? [TransactionManagedObject],
+                          let id = category.id,
+                          let title = category.title,
+                          let data = try? fileStore.getImage(id.uuidString) else { return nil }
+                guard !transactionsManagedObject.isEmpty else { return CategoriesList(title: title, image: data, amount: 0)}
+                var amount: Double = 0
+                transactionsManagedObject.forEach({ amount += $0.amount })
+                return CategoriesList(title: title, image: data, amount: amount)
+            }
+            completion(.success(categoriesList))
+        } catch {
+            completion(.failure(error))
         }
     }
 }

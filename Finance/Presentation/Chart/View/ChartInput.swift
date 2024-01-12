@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ChartInput: AnyObject {
-    
+    func showData(_ displayData: [ChartCell.DisplayData])
 }

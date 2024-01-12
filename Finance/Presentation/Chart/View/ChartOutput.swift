@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ChartOutput: AnyObject {
-    
+    func viewIsReady()
 }

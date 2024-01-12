@@ -51,31 +51,7 @@ final class LastTransactionCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(imageView)
-        imageView.anchor(leading: leadingAnchor,
-                         paddingLeading: Constants.horizontalPadding,
-                         width: Constants.imageViewDimensions,
-                         height: Constants.imageViewDimensions)
-        imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-        addSubview(amountLabel)
-        amountLabel.anchor(trailing: trailingAnchor)
-        amountLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-        let stack = UIStackView(arrangedSubviews: [categoryLabel, dateLabel])
-        stack.axis = .vertical
-        stack.distribution = .fillProportionally
-        addSubview(stack)
-        stack.anchor(leading: imageView.trailingAnchor,
-                     top: topAnchor,
-                     trailing: amountLabel.leadingAnchor,
-                     bottom: bottomAnchor,
-                     paddingLeading: Constants.horizontalPadding,
-                     paddingTop: Constants.stackVerticalPadding,
-                     paddingTrailing: -Constants.horizontalPadding,
-                     paddingBottom: -Constants.stackVerticalPadding)
-        
-        backgroundColor = .white
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -83,6 +59,34 @@ final class LastTransactionCell: UICollectionViewCell {
     }
     
 // MARK: - Helpers
+    
+    private func configureUI() {
+        contentView.addSubview(imageView)
+        imageView.anchor(leading: contentView.leadingAnchor,
+                         paddingLeading: Constants.horizontalPadding,
+                         width: Constants.imageViewDimensions,
+                         height: Constants.imageViewDimensions)
+        imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        
+        contentView.addSubview(amountLabel)
+        amountLabel.anchor(trailing: contentView.trailingAnchor)
+        amountLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        
+        let stack = UIStackView(arrangedSubviews: [categoryLabel, dateLabel])
+        stack.axis = .vertical
+        stack.distribution = .fillProportionally
+        contentView.addSubview(stack)
+        stack.anchor(leading: imageView.trailingAnchor,
+                     top: contentView.topAnchor,
+                     trailing: amountLabel.leadingAnchor,
+                     bottom: contentView.bottomAnchor,
+                     paddingLeading: Constants.horizontalPadding,
+                     paddingTop: Constants.stackVerticalPadding,
+                     paddingTrailing: -Constants.horizontalPadding,
+                     paddingBottom: -Constants.stackVerticalPadding)
+        
+        backgroundColor = .white
+    }
     
     func setInformation(lastTransaction: TransactionCellModel) {
         amountLabel.text = lastTransaction.amount
