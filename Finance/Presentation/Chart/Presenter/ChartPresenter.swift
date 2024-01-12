@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DGCharts
 
 final class ChartPresenter {
     
@@ -19,6 +20,22 @@ final class ChartPresenter {
     init(categoryService: CategoryServiceProtocol) {
         self.categoryService = categoryService
     }
+    
+// MARK: - Helpers
+    
+    private func prepareTableData(_ categories: [CategoriesList]) {
+        let displayData = categories.compactMap({ ChartCell.DisplayData(image: $0.image, title: $0.title, amount: String(abs($0.amount))) })
+        input?.showData(displayData)
+    }
+    
+    private func preparePieData(_ categories: [CategoriesList]) {
+        var entries: [PieChartDataEntry] = Array()
+        categories.forEach({ entries.append(PieChartDataEntry(value: abs($0.amount))) })
+        let dataSet = PieChartDataSet(entries: entries)
+        dataSet.valueTextColor = .black
+        dataSet.colors = [.cyan, .orange, .blue, .magenta, .purple]
+        input?.showPieData(dataSet)
+    }
 }
 
 // MARK: - ChartOutput
@@ -28,8 +45,8 @@ extension ChartPresenter: ChartOutput {
         categoryService.fetchCategoriesAmount { [weak self] result in
             switch result {
             case .success(let categories):
-                let displayData = categories.compactMap({ ChartCell.DisplayData(image: $0.image, title: $0.title, amount: String(abs($0.amount))) })
-                self?.input?.showData(displayData)
+                self?.prepareTableData(categories)
+                self?.preparePieData(categories)
             case .failure(let error):
                 print(error.localizedDescription)
             }

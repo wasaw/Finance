@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import DGCharts
+
+private enum Constants {
+    static let pieHeight: CGFloat = 230
+}
 
 final class ChartViewController: UIViewController {
     
@@ -14,6 +19,13 @@ final class ChartViewController: UIViewController {
     private let output: ChartOutput
     private lazy var tableView = UITableView(frame: .zero)
     private lazy var dataSource = ChartDataSource(tableView)
+    private lazy var pieView: PieChartView = {
+        let view = PieChartView()
+        view.rotationAngle = 0
+        view.rotationEnabled = false
+        view.legend.enabled = false
+        return view
+    }()
     
 // MARK: - Lifecycle
     
@@ -39,12 +51,18 @@ final class ChartViewController: UIViewController {
     private func configureUI() {
         navigationItem.title = "Траты"
         
+        view.addSubview(pieView)
+        pieView.anchor(leading: view.leadingAnchor,
+                       top: view.safeAreaLayoutGuide.topAnchor,
+                       trailing: view.trailingAnchor,
+                       height: Constants.pieHeight)
+        
         view.addSubview(tableView)
         tableView.register(ChartCell.self, forCellReuseIdentifier: ChartCell.reuseIdentifire)
         tableView.dataSource = dataSource
         tableView.delegate = self
         tableView.anchor(leading: view.leadingAnchor,
-                         top: view.safeAreaLayoutGuide.topAnchor,
+                         top: pieView.bottomAnchor,
                          trailing: view.trailingAnchor,
                          bottom: view.bottomAnchor)
         view.backgroundColor = .white
@@ -64,6 +82,10 @@ final class ChartViewController: UIViewController {
 extension ChartViewController: ChartInput {
     func showData(_ displayData: [ChartCell.DisplayData]) {
         setupDataSource(displayData)
+    }
+    
+    func showPieData(_ displayData: PieChartDataSet) {
+        pieView.data = PieChartData(dataSet: displayData)
     }
 }
 

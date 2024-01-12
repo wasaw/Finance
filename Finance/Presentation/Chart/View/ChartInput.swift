@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import DGCharts
 
 protocol ChartInput: AnyObject {
     func showData(_ displayData: [ChartCell.DisplayData])
+    func showPieData(_ displayData: PieChartDataSet)
 }

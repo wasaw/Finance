@@ -12,6 +12,7 @@ pod 'FirebaseAuth'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
 pod 'SwiftLint'
+pod 'DGCharts'
 
   target 'FinanceUnitTests' do
     inherit! :search_paths
