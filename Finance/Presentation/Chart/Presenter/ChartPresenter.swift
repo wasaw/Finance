@@ -25,6 +25,7 @@ final class ChartPresenter {
     
     private func prepareTableData(_ categories: [CategoriesList]) {
         let displayData = categories.compactMap({ ChartCell.DisplayData(image: $0.image, title: $0.title, amount: String(abs($0.amount))) })
+        input?.setLoading(enable: false)
         input?.showData(displayData)
     }
     
@@ -34,6 +35,7 @@ final class ChartPresenter {
         let dataSet = PieChartDataSet(entries: entries)
         dataSet.valueTextColor = .black
         dataSet.colors = [.cyan, .orange, .blue, .magenta, .purple]
+        input?.setLoading(enable: false)
         input?.showPieData(dataSet)
     }
 }
@@ -42,13 +44,14 @@ final class ChartPresenter {
 
 extension ChartPresenter: ChartOutput {
     func viewIsReady() {
+        input?.setLoading(enable: true)
         categoryService.fetchCategoriesAmount { [weak self] result in
             switch result {
             case .success(let categories):
                 self?.prepareTableData(categories)
                 self?.preparePieData(categories)
             case .failure(let error):
-                print(error.localizedDescription)
+                self?.input?.showAlert(error.localizedDescription)
             }
         }
     }

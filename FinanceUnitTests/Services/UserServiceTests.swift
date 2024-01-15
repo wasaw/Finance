@@ -41,7 +41,13 @@ final class UserServiceTests: XCTestCase {
         coreData.stubbedFetchUserInformationResult = ([userManagedObject])
         fileStore.stubbedGetImageResult = UIImage(named: "add-photo")?.pngData()
 
-        userService.getUser("0201") { _ in
+        userService.getUser("0201") { result in
+            switch result {
+            case .success(let success):
+                XCTAssertEqual(success.email, userManagedObject.email)
+            case .failure:
+                XCTAssertThrowsError(true)
+            }
         }
         XCTAssertEqual(coreData.invokedFetchUserInformation, true)
         XCTAssertEqual(coreData.invokedFetchUserInformationCount, 1)

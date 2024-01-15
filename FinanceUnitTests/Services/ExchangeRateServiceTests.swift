@@ -11,34 +11,23 @@ import XCTest
 final class ExchangeRateServiceTests: XCTestCase {
     
     var network: NetworkServiceMock!
-    var requestBuilder: RequestBuilderMock!
     var defaultValueService: DefaultValueServiceMock!
-    var exchangeRequest: NetworkRequestMock!
     var exchangeRateService: ExchangeRateServiceProtocol!
     
     override func setUp() {
         network = NetworkServiceMock()
-        requestBuilder = RequestBuilderMock()
         defaultValueService = DefaultValueServiceMock()
-        exchangeRequest = NetworkRequestMock()
         exchangeRateService = ExchangeRateService(network: network,
-                                                  requestBuilder: requestBuilder,
-                                                  defaultValueService: defaultValueService,
-                                                  exchangeRequest: exchangeRequest)
+                                                  defaultValueService: defaultValueService)
     }
     
     override func tearDown() {
         network = nil
-        requestBuilder = nil
         defaultValueService = nil
         exchangeRateService = nil
-        exchangeRequest = nil
     }
     
     func testFetchExchangeRate() {
-        guard let apiKey = Bundle.main.infoDictionary?["EXCHANGE_API_KEY"] as? String,
-              let url = URL(string: "https://v6.exchangerate-api.com/v6/\(apiKey)/latest/USD") else { return }
-        requestBuilder.stubbedBuildResult = URLRequest(url: url)
         exchangeRateService.fetchExchangeRate("USD") { _ in
         }
         

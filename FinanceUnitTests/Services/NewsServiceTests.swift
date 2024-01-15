@@ -11,31 +11,37 @@ import XCTest
 final class NewsServiceTests: XCTestCase {
     
     var networkService: NetworkServiceMock!
-    var requestBuilder: RequestBuilderMock!
     var newsRequest: NetworkRequestMock!
     var newsService: NewsService!
     
     override func setUp() {
         networkService = NetworkServiceMock()
-        requestBuilder = RequestBuilderMock()
         newsRequest = NetworkRequestMock()
-        newsService = NewsService(network: networkService,
-                                  requestBuilder: requestBuilder,
-                                  newsRequest: newsRequest)
+        newsService = NewsService(network: networkService)
     }
     
     override func tearDown() {
         networkService = nil
-        requestBuilder = nil
         newsService = nil
         newsRequest = nil
     }
     
     func testFetchNews() {
-        guard let apiKey = Bundle.main.infoDictionary?["NEWS_API_KEY"] as? String,
-              let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(apiKey)") else { return }
-        requestBuilder.stubbedBuildResult = URLRequest(url: url)
-        newsService.fetchNews { _ in
+        let articles = [NewsDataModel.NewsArticles(title: "title",
+                                                   description: "description",
+                                                   url: "url",
+                                                   urlToImage: "nil",
+                                                   publishedAt: "2025-02-15")]
+        let news = NewsDataModel(status: "true",
+                                 totalResults: 2,
+                                 articles: articles)
+        newsService.fetchNews { result in
+            switch result {
+            case .success(let success):
+                XCTAssertEqual(success[0].title, articles[0].title)
+            case .failure:
+                XCTAssertThrowsError(true)
+            }
         }
         
         XCTAssert(networkService.invokedLoadData)

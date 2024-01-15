@@ -39,4 +39,16 @@ final class CategoryServiceMock: CategoryServiceProtocol {
         }
         return stubbedFetchCategoryResult
     }
+
+    var invokedFetchCategoriesAmount = false
+    var invokedFetchCategoriesAmountCount = 0
+    var stubbedFetchCategoriesAmountCompletionResult: (Result<[CategoriesList], Error>, Void)?
+
+    func fetchCategoriesAmount(completion: @escaping (Result<[CategoriesList], Error>) -> Void) {
+        invokedFetchCategoriesAmount = true
+        invokedFetchCategoriesAmountCount += 1
+        if let result = stubbedFetchCategoriesAmountCompletionResult {
+            completion(result.0)
+        }
+    }
 }

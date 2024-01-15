@@ -17,6 +17,7 @@ final class ChartViewController: UIViewController {
 // MARK: - Properties
     
     private let output: ChartOutput
+    private lazy var loadAnimateView = CircleAnimation()
     private lazy var tableView = UITableView(frame: .zero)
     private lazy var dataSource = ChartDataSource(tableView)
     private lazy var pieView: PieChartView = {
@@ -50,6 +51,11 @@ final class ChartViewController: UIViewController {
     
     private func configureUI() {
         navigationItem.title = "Траты"
+        
+        view.addSubview(loadAnimateView)
+        loadAnimateView.anchor(top: view.safeAreaLayoutGuide.topAnchor)
+        loadAnimateView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loadAnimateView.configureAnimation()
         
         view.addSubview(pieView)
         pieView.anchor(leading: view.leadingAnchor,
@@ -86,6 +92,18 @@ extension ChartViewController: ChartInput {
     
     func showPieData(_ displayData: PieChartDataSet) {
         pieView.data = PieChartData(dataSet: displayData)
+    }
+    
+    func showAlert(_ message: String) {
+        alert(with: "Внимание", message: message)
+    }
+    
+    func setLoading(enable: Bool) {
+        if enable {
+            loadAnimateView.isHidden = false
+        } else {
+            loadAnimateView.isHidden = true
+        }
     }
 }
 
