@@ -9,4 +9,5 @@ import Foundation
 
 protocol ChartOutput: AnyObject {
     func viewIsReady()
+    func didSelectItem(at index: Int)
 }

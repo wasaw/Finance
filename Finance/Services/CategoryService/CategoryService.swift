@@ -14,6 +14,7 @@ struct Categories {
 }
 
 struct CategoriesList {
+    let id: UUID
     let title: String
     let image: Data
     let amount: Double
@@ -78,10 +79,10 @@ extension CategoryService: CategoryServiceProtocol {
                           let id = category.id,
                           let title = category.title,
                           let data = try? fileStore.getImage(id.uuidString) else { return nil }
-                guard !transactionsManagedObject.isEmpty else { return CategoriesList(title: title, image: data, amount: 0)}
+                guard !transactionsManagedObject.isEmpty else { return CategoriesList(id: id, title: title, image: data, amount: 0)}
                 var amount: Double = 0
                 transactionsManagedObject.forEach({ amount += $0.amount })
-                return CategoriesList(title: title, image: data, amount: amount)
+                return CategoriesList(id: id, title: title, image: data, amount: amount)
             }
             completion(.success(categoriesList))
         } catch {

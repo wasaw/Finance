@@ -23,6 +23,7 @@ final class TabBarAssembly {
     private let authAssembly: AuthAssembly
     private let atmAssembly: ATMAssembly
     private let newsAssembly: NewsAssembly
+    private let allTransactionsAssembly: AllTransactionsAssembly
     
 // MARK: - Core
 
@@ -63,6 +64,7 @@ final class TabBarAssembly {
         self.authAssembly = AuthAssembly()
         self.atmAssembly = ATMAssembly()
         self.newsAssembly = NewsAssembly()
+        self.allTransactionsAssembly = AllTransactionsAssembly()
         
         self.network = Network()
         self.coreData = CoreDataService()
@@ -94,6 +96,7 @@ final class TabBarAssembly {
                                                exchangeAssembly: exchangeAssembly,
                                                stocksAssembly: stocksAssembly,
                                                atmAssembly: atmAssembly,
+                                               allTransactionsAssembly: allTransactionsAssembly,
                                                newsCoordinator: newsCoordinator,
                                                coreData: coreData,
                                                accountService: accountService,

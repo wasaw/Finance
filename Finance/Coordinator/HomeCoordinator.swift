@@ -21,6 +21,7 @@ final class HomeCoordinator {
     private let exchangeAssembly: ExchangeRateAssembly
     private let stocksAssembly: StocksAssembly
     private let atmAssembly: ATMAssembly
+    private let allTransactionsAssembly: AllTransactionsAssembly
     private let newsCoordinator: NewsCoordinator
     private let coreData: CoreDataServiceProtocol
     private let accountService: AccountServiceProtocol
@@ -37,6 +38,7 @@ final class HomeCoordinator {
          exchangeAssembly: ExchangeRateAssembly,
          stocksAssembly: StocksAssembly,
          atmAssembly: ATMAssembly,
+         allTransactionsAssembly: AllTransactionsAssembly,
          newsCoordinator: NewsCoordinator,
          coreData: CoreDataServiceProtocol,
          accountService: AccountServiceProtocol,
@@ -50,6 +52,7 @@ final class HomeCoordinator {
         self.exchangeAssembly = exchangeAssembly
         self.stocksAssembly = stocksAssembly
         self.atmAssembly = atmAssembly
+        self.allTransactionsAssembly = allTransactionsAssembly
         self.newsCoordinator = newsCoordinator
         self.coreData = coreData
         self.accountService = accountService
@@ -78,7 +81,7 @@ final class HomeCoordinator {
 
 extension HomeCoordinator: HomePresenterOutput {
     func showChart() {
-        let vc = chartAssembly.makeChartModule(categoryService: categoryService)
+        let vc = chartAssembly.makeChartModule(moduleOutput: self, categoryService: categoryService)
         navigation?.pushViewController(vc, animated: true)
     }
     
@@ -99,6 +102,15 @@ extension HomeCoordinator: HomePresenterOutput {
     
     func showNews() {
         let vc = newsCoordinator.start()
+        navigation?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - ChartPresetnerOutput
+
+extension HomeCoordinator: ChartPresenterOutput {
+    func showAllTransactions(for id: UUID) {
+        let vc = allTransactionsAssembly.makeAllTransactionsModule(for: id)
         navigation?.pushViewController(vc, animated: true)
     }
 }

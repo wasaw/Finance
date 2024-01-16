@@ -13,11 +13,14 @@ final class ChartPresenter {
 // MARK: - Properties
     
     weak var input: ChartInput?
+    private weak var moduleOutput: ChartPresenterOutput?
     private let categoryService: CategoryServiceProtocol
+    private var categories = [CategoriesList]()
 
 // MARK: - Lifecycle
 
-    init(categoryService: CategoryServiceProtocol) {
+    init(moduleOutput: ChartPresenterOutput, categoryService: CategoryServiceProtocol) {
+        self.moduleOutput = moduleOutput
         self.categoryService = categoryService
     }
     
@@ -48,11 +51,17 @@ extension ChartPresenter: ChartOutput {
         categoryService.fetchCategoriesAmount { [weak self] result in
             switch result {
             case .success(let categories):
+                self?.categories = categories
                 self?.prepareTableData(categories)
                 self?.preparePieData(categories)
             case .failure(let error):
                 self?.input?.showAlert(error.localizedDescription)
             }
         }
+    }
+    
+    func didSelectItem(at index: Int) {
+        guard categories.indices.contains(index) else { return }
+        moduleOutput?.showAllTransactions(for: categories[index].id)
     }
 }
