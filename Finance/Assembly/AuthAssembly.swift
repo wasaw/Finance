@@ -8,10 +8,10 @@
 import UIKit
 
 final class AuthAssembly {
-    func makeAuthModul(output: AuthPresenterOutput,
+    func makeAuthModul(moduleOutput: AuthPresenterOutput,
                        authService: AuthServiceProtocol,
                        transactionsService: TransactionsServiceProtocol) -> UIViewController {
-        let presenter = AuthPresenter(output: output,
+        let presenter = AuthPresenter(moduleOutput: moduleOutput,
                                       authService: authService,
                                       transactionsService: transactionsService)
         let vc = AuthViewController(output: presenter)

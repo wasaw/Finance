@@ -139,6 +139,8 @@
 		BB8031332B023C7D000D8307 /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8031322B023C7D000D8307 /* ProgressCell.swift */; };
 		BB8056C62AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */; };
 		BB836F7128D1BECA008F22C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB836F7028D1BECA008F22C7 /* Utils.swift */; };
+		BB8575A42B56AED00049F48F /* AllTransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8575A32B56AED00049F48F /* AllTransactionsCell.swift */; };
+		BB8575A72B56B0AF0049F48F /* AllTransactionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8575A62B56B0AF0049F48F /* AllTransactionsDataSource.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
 		BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */; };
 		BB9B6FCF28CB5A59000B1D53 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCE28CB5A59000B1D53 /* Constants.swift */; };
@@ -324,6 +326,8 @@
 		BB8031322B023C7D000D8307 /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		BB8056C52AA1CF4200ED6EDB /* ExchangeRateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceTests.swift; sourceTree = "<group>"; };
 		BB836F7028D1BECA008F22C7 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		BB8575A32B56AED00049F48F /* AllTransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsCell.swift; sourceTree = "<group>"; };
+		BB8575A62B56B0AF0049F48F /* AllTransactionsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsDataSource.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		BB9B6FCE28CB5A59000B1D53 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -968,6 +972,7 @@
 			children = (
 				BB7F99832B56879D0035222C /* Presenter */,
 				BB7F99822B5687980035222C /* View */,
+				BB8575A52B56AF710049F48F /* DataSource */,
 			);
 			path = AllTransactions;
 			sourceTree = "<group>";
@@ -978,6 +983,7 @@
 				BB7F99862B5687C40035222C /* AllTransactionsViewController.swift */,
 				BB7F99882B5687E40035222C /* AllTransactionsInput.swift */,
 				BB7F998A2B5687F20035222C /* AllTransactionsOutput.swift */,
+				BB8575A32B56AED00049F48F /* AllTransactionsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1023,6 +1029,14 @@
 			isa = PBXGroup;
 			children = (
 				BB8031302B022406000D8307 /* ProgressDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		BB8575A52B56AF710049F48F /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				BB8575A62B56B0AF0049F48F /* AllTransactionsDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -1318,6 +1332,7 @@
 				BB7F997E2B4FEE000035222C /* ChartDataSource.swift in Sources */,
 				BB6BDBA1298B994C0000584A /* AccountCell.swift in Sources */,
 				BB6D219B2A33CD05000C22D7 /* HomeViewController.swift in Sources */,
+				BB8575A42B56AED00049F48F /* AllTransactionsCell.swift in Sources */,
 				BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */,
 				BB7B26072B2B4907005E5A20 /* CategoryService.swift in Sources */,
 				BB7F99732B4FD5780035222C /* ChartInput.swift in Sources */,
@@ -1429,6 +1444,7 @@
 				BB7F99792B4FE3490035222C /* ChartAssembly.swift in Sources */,
 				BBA242552AE12C3700756EAA /* NewsCell.swift in Sources */,
 				BBA242412ADD613D00756EAA /* ATMAssembly.swift in Sources */,
+				BB8575A72B56B0AF0049F48F /* AllTransactionsDataSource.swift in Sources */,
 				BB5E37512A41CD1C0093AB95 /* StocksOutput.swift in Sources */,
 				BB6A7F692A4C66210028CC13 /* DefaultValueService.swift in Sources */,
 				BB5C410A2A444D27002DC6A0 /* AuthAssembly.swift in Sources */,

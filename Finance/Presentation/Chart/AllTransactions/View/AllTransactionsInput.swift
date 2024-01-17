@@ -8,5 +8,7 @@
 import Foundation
 
 protocol AllTransactionsInput: AnyObject {
-    
+    func setLoading(enable: Bool)
+    func showData(_ displayData: [AllTransactionsCell.DisplayData])
+    func showAlert(_ message: String)
 }

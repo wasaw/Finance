@@ -21,7 +21,7 @@ final class HomePresenter {
 // MARK: - Properties
     
     weak var input: HomeInput?
-    private let output: HomePresenterOutput
+    private weak var moduleOutput: HomePresenterOutput?
     private let accountService: AccountServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
     private let categoryService: CategoryServiceProtocol
@@ -53,7 +53,7 @@ final class HomePresenter {
          transactionsService: TransactionsServiceProtocol,
          categoryService: CategoryServiceProtocol,
          userService: UserServiceProtocol) {
-        self.output = homeCoordinator
+        self.moduleOutput = homeCoordinator
         self.accountService = accountService
         self.transactionsService = transactionsService
         self.categoryService = categoryService
@@ -233,15 +233,15 @@ extension HomePresenter: HomeOutput {
     func showService(at index: Int) {
         switch TypeService(rawValue: index) {
         case .chart:
-            output.showChart()
+            moduleOutput?.showChart()
         case .exchange:
-            output.showExchangeRate()
+            moduleOutput?.showExchangeRate()
         case .stocks:
-            output.showStock()
+            moduleOutput?.showStock()
         case .atm:
-            output.showATM()
+            moduleOutput?.showATM()
         case .news:
-            output.showNews()
+            moduleOutput?.showNews()
         case .none:
             break
         }

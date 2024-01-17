@@ -8,5 +8,5 @@
 import Foundation
 
 protocol AllTransactionsOutput: AnyObject {
-    
+    func viewIsReady()
 }

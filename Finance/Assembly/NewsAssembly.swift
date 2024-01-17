@@ -8,8 +8,8 @@
 import UIKit
 
 final class NewsAssembly {
-    func makeNewsModule(output: NewsPresenterOutput, newsService: NewsServiceProtocol) -> UIViewController {
-        let presenter = NewsPresenter(output: output, newsService: newsService)
+    func makeNewsModule(moduleOutput: NewsPresenterOutput, newsService: NewsServiceProtocol) -> UIViewController {
+        let presenter = NewsPresenter(moduleOutput: moduleOutput, newsService: newsService)
         let vc = NewsViewController(output: presenter)
         presenter.input = vc
         return vc

@@ -30,7 +30,7 @@ final class AuthCoordinator {
 // MARK: - Helpers
     
     func start() -> UIViewController {
-        let vc = authAssembly.makeAuthModul(output: self,
+        let vc = authAssembly.makeAuthModul(moduleOutput: self,
                                             authService: authService,
                                             transactionsService: transactionsService)
         authViewController = vc

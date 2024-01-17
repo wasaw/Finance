@@ -107,6 +107,32 @@ extension TransactionsService: TransactionsServiceProtocol {
         }
     }
     
+    func fetchTransactionsByCategory(for id: UUID) throws -> [Transaction] {
+        do {
+            let categoryManagedObject = try coreData.fetchCategories(id).first
+            guard let transactionsManagedObject = categoryManagedObject?.transactions?.array as? [TransactionManagedObject] else {
+                throw TransactionError.notFound
+            }
+            
+            let transactions: [Transaction] = transactionsManagedObject.compactMap { transaction in
+                guard let account = transaction.account,
+                      let accountId = account.id,
+                      let date = transaction.date,
+                      let comment = transaction.comment else {
+                    return nil
+                }
+                return Transaction(account: accountId,
+                                   category: id,
+                                   amount: transaction.amount,
+                                   date: date,
+                                   comment: comment)
+            }
+            return transactions
+        } catch {
+            throw error
+        }
+    }
+    
     func saveTransaction(_ transaction: Transaction) {
         guard let currencyRate = defaults.get(for: .currencyRate) as? Double else {
             return

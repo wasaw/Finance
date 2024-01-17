@@ -12,17 +12,17 @@ final class AuthPresenter {
 // MARK: - Properties
     
     weak var input: AuthInput?
-    private let output: AuthPresenterOutput
+    private weak var moduleOutput: AuthPresenterOutput?
     private let authService: AuthServiceProtocol
     private let transactionsService: TransactionsServiceProtocol
     private let notification = NotificationCenter.default
     
 // MARK: - Lifecycle
     
-    init(output: AuthPresenterOutput,
+    init(moduleOutput: AuthPresenterOutput,
          authService: AuthServiceProtocol,
          transactionsService: TransactionsServiceProtocol) {
-        self.output = output
+        self.moduleOutput = moduleOutput
         self.authService = authService
         self.transactionsService = transactionsService
     }
@@ -61,7 +61,7 @@ extension AuthPresenter: AuthOutput {
                     switch result {
                     case .success:
                         if transactions.isEmpty {
-                            self?.output.dismissView()
+                            self?.moduleOutput?.dismissView()
                         } else {
                             self?.input?.showAsk()
                         }
@@ -85,7 +85,7 @@ extension AuthPresenter: AuthOutput {
                     switch result {
                     case .success:
                         if transactions.isEmpty {
-                            self?.output.dismissView()
+                            self?.moduleOutput?.dismissView()
                         } else {
                             self?.input?.showAsk()
                         }
@@ -112,6 +112,6 @@ extension AuthPresenter: AuthOutput {
             transactionsService.delete()
             notification.post(Notification(name: .addTransactions, object: nil))
         }
-        output.dismissView()
+        moduleOutput?.dismissView()
     }
 }

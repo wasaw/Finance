@@ -19,6 +19,7 @@ final class ChartCell: UITableViewCell {
 // MARK: - Properties
     
     struct DisplayData: Hashable {
+        let id = UUID()
         let image: Data
         let title: String
         let amount: String

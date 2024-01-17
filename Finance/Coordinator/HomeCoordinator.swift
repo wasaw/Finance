@@ -110,7 +110,7 @@ extension HomeCoordinator: HomePresenterOutput {
 
 extension HomeCoordinator: ChartPresenterOutput {
     func showAllTransactions(for id: UUID) {
-        let vc = allTransactionsAssembly.makeAllTransactionsModule(for: id)
+        let vc = allTransactionsAssembly.makeAllTransactionsModule(for: id, transactionsService: transactionsService)
         navigation?.pushViewController(vc, animated: true)
     }
 }

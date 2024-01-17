@@ -25,7 +25,7 @@ final class NewsCoordinator {
 // MARK: - Helpers
     
     func start() -> UIViewController {
-        let vc = newsAssembly.makeNewsModule(output: self, newsService: newsService)
+        let vc = newsAssembly.makeNewsModule(moduleOutput: self, newsService: newsService)
         viewController = vc
         return vc
     }

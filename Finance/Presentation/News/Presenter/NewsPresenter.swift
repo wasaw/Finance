@@ -23,14 +23,14 @@ final class NewsPresenter {
 // MARK: - Properties
     
     weak var input: NewsInput?
-    private let output: NewsPresenterOutput
+    private weak var moduleOutput: NewsPresenterOutput?
     private let newsService: NewsServiceProtocol
     private var news: [News]
     
 // MARK: - Lifecycle
     
-    init(output: NewsPresenterOutput, newsService: NewsServiceProtocol) {
-        self.output = output
+    init(moduleOutput: NewsPresenterOutput, newsService: NewsServiceProtocol) {
+        self.moduleOutput = moduleOutput
         self.newsService = newsService
         self.news = []
     }
@@ -77,6 +77,6 @@ extension NewsPresenter: NewsOutput {
     
     func showWebView(for index: Int) {
         guard index <= news.count else { return }
-        output.showWebView(for: news[index].url)
+        moduleOutput?.showWebView(for: news[index].url)
     }
 }
