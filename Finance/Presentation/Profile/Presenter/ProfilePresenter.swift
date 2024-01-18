@@ -89,12 +89,19 @@ final class ProfilePresenter {
     private func updateCurrency(_ currency: Currency) {
         input?.updateCurrencyMenu(currencyButtons)
         if currency != .rub {
-            exchangeRateService.updateExchangeRate(for: currency)
+            exchangeRateService.updateExchangeRate(for: currency) { [weak self] result in
+                switch result {
+                case .success:
+                    self?.notification.post(Notification(name: .updateCurrency))
+                case .failure(let error):
+                    self?.input?.showAlert(with: "Внимание", and: error.localizedDescription)
+                }
+            }
         } else {
             defaults.set(0, key: .currency)
             defaults.set(1, key: .currencyRate)
+            notification.post(Notification(name: .updateCurrency))
         }
-        notification.post(Notification(name: .updateCurrency))
     }
     
 // MARK: - Selectors

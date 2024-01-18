@@ -14,6 +14,7 @@ final class AllTransactionsPresenter {
     weak var input: AllTransactionsInput?
     private let id: UUID
     private let transactionsService: TransactionsServiceProtocol
+    private let userDefaults = CustomUserDefaults.shared
     private let dateFormatter: DateFormatter = {
         let df = DateFormatter()
         df.dateFormat = "dd.MM.yyyy"
@@ -30,8 +31,15 @@ final class AllTransactionsPresenter {
 // MARK: - Helpers
     
     private func prepareTableData(_ transactions: [Transaction]) {
-        let displayData = transactions.compactMap({ AllTransactionsCell.DisplayData(title: String($0.amount),
-                                                                                    date: dateFormatter.string(from: $0.date)) })
+        guard let currency = userDefaults.get(for: .currency) as? Int,
+              let currencyRate = userDefaults.get(for: .currencyRate) as? Double,
+              let currentCurrency = Currency(rawValue: currency)?.symbol else { return }
+        
+        let displayData = transactions.compactMap({
+            AllTransactionsCell.DisplayData(title: String(format: "%.2f",
+                                                          $0.amount / currencyRate) + " \(currentCurrency)",
+                                            date: dateFormatter.string(from: $0.date))
+        })
         input?.setLoading(enable: false)
         input?.showData(displayData)
     }

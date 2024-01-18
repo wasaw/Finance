@@ -16,30 +16,52 @@ final class ChartPresenter {
     private weak var moduleOutput: ChartPresenterOutput?
     private let categoryService: CategoryServiceProtocol
     private var categories = [CategoriesList]()
+    private let userDefaults = CustomUserDefaults.shared
+    private let notification = NotificationCenter.default
 
 // MARK: - Lifecycle
 
     init(moduleOutput: ChartPresenterOutput, categoryService: CategoryServiceProtocol) {
         self.moduleOutput = moduleOutput
         self.categoryService = categoryService
+        
+        registerNotification()
     }
     
 // MARK: - Helpers
     
+    private func registerNotification() {
+        notification.addObserver(self, selector: #selector(updateCurrency), name: .updateCurrency, object: nil)
+    }
+    
     private func prepareTableData(_ categories: [CategoriesList]) {
-        let displayData = categories.compactMap({ ChartCell.DisplayData(image: $0.image, title: $0.title, amount: String(abs($0.amount))) })
+        guard let currency = userDefaults.get(for: .currency) as? Int,
+              let currencyRate = userDefaults.get(for: .currencyRate) as? Double,
+              let currentCurrency = Currency(rawValue: currency)?.symbol else { return }
+       
+        let displayData = categories.compactMap({ ChartCell.DisplayData(image: $0.image,
+                                                                        title: $0.title,
+                                                                        amount: String(Int(abs($0.amount / currencyRate))) + " \(currentCurrency)") })
         input?.setLoading(enable: false)
         input?.showData(displayData)
     }
     
     private func preparePieData(_ categories: [CategoriesList]) {
+         guard let currencyRate = userDefaults.get(for: .currencyRate) as? Double else { return }
+        
         var entries: [PieChartDataEntry] = Array()
-        categories.forEach({ entries.append(PieChartDataEntry(value: abs($0.amount), label: $0.title)) })
+        categories.forEach({ entries.append(PieChartDataEntry(value: abs($0.amount / currencyRate), label: $0.title)) })
         let dataSet = PieChartDataSet(entries: entries)
         dataSet.valueTextColor = .white
         dataSet.colors = [.brown, .orange, .purple]
         input?.setLoading(enable: false)
         input?.showPieData(dataSet)
+    }
+    
+// MARK: - Selectors
+    
+    @objc private func updateCurrency() {
+        viewIsReady()
     }
 }
 

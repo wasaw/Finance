@@ -64,15 +64,19 @@ extension ExchangeRateService: ExchangeRateServiceProtocol {
         }
     }
     
-    func updateExchangeRate(for currency: Currency) {
+    func updateExchangeRate(for currency: Currency, completion: @escaping (Result<Void, Error>) -> Void) {
         fetchExchangeRate(currency.request) { [weak self] result in
             switch result {
             case .success(let answer):
                 if let currency = answer.first(where: { $0.name == "RUB" }) {
                     self?.defaults.set(currency.amount, key: .currencyRate)
+                    DispatchQueue.main.async {
+                        completion(.success(()))
+                    }
                 }
             case .failure:
                 self?.defaults.set(1, key: .currencyRate)
+                completion(.failure(SaveError.dontSave))
             }
         }
     }

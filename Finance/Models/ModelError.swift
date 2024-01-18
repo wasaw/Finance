@@ -114,3 +114,16 @@ enum UserLoadError: Error {
 enum TransactionError: Error {
     case notFound
 }
+
+enum SaveError: Error {
+     case dontSave
+}
+
+extension SaveError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .dontSave:
+            return NSLocalizedString("Не удалось сохранить", comment: "")
+        }
+    }
+}

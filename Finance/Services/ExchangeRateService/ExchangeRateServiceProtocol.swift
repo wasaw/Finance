@@ -9,5 +9,5 @@ import Foundation
 
 protocol ExchangeRateServiceProtocol: AnyObject {
     func fetchExchangeRate(_ requestCurrency: String, completion: @escaping (Result<[CurrentExchangeRate], Error>) -> Void)
-    func updateExchangeRate(for currency: Currency)
+    func updateExchangeRate(for currency: Currency, completion: @escaping (Result<Void, Error>) -> Void)
 }
