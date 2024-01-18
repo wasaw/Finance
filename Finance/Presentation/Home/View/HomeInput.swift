@@ -14,4 +14,5 @@ protocol HomeInput: AnyObject {
     func showService(_ service: [ChoiceService])
     func showTotal(_ total: String)
     func showProgress(_ progress: Progress)
+    func showNotice(_ title: String)
 }

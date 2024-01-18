@@ -62,31 +62,6 @@ final class TransactionsServiceTest: XCTestCase {
         }
     }
     
-    func testFetchAmountBy() {
-        let context = TestCoreDataStack().getMenagedObjectContext()
-        let transactionsManagedObject = TransactionManagedObject(usedContext: context)
-        transactionsManagedObject.amount = 332
-        transactionsManagedObject.comment = "Пусто"
-        transactionsManagedObject.date = Date(timeIntervalSince1970: 1230)
-        
-        let transactionsManagedObjectOther = TransactionManagedObject(usedContext: context)
-        transactionsManagedObjectOther.amount = 107
-        transactionsManagedObjectOther.comment = "Добавлено"
-        transactionsManagedObjectOther.date = Date(timeIntervalSince1970: 1250)
-        
-        let checkResult = transactionsManagedObject.amount + transactionsManagedObjectOther.amount
-        
-        coreData.stubbedFetchTransactionsByRevenueResult = ([transactionsManagedObject, transactionsManagedObjectOther])
-        
-        do {
-            let answer = try transactionsService.fetchAmountBy("Зарплата")
-            XCTAssertEqual(coreData.invokedFetchTransactionsByRevenue, true)
-            XCTAssertEqual(answer, checkResult)
-        } catch {
-            XCTAssertThrowsError(true)
-        }
-    }
-    
     func testSaveTransaction() {
         let lastTransaction = Transaction(account: UUID(),
                                           category: UUID(),

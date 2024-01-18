@@ -34,10 +34,10 @@ final class ChartPresenter {
     
     private func preparePieData(_ categories: [CategoriesList]) {
         var entries: [PieChartDataEntry] = Array()
-        categories.forEach({ entries.append(PieChartDataEntry(value: abs($0.amount))) })
+        categories.forEach({ entries.append(PieChartDataEntry(value: abs($0.amount), label: $0.title)) })
         let dataSet = PieChartDataSet(entries: entries)
-        dataSet.valueTextColor = .black
-        dataSet.colors = [.cyan, .orange, .blue, .magenta, .purple]
+        dataSet.valueTextColor = .white
+        dataSet.colors = [.brown, .orange, .purple]
         input?.setLoading(enable: false)
         input?.showPieData(dataSet)
     }

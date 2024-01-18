@@ -82,14 +82,14 @@ final class AddTransactionViewController: UIViewController {
         tf.returnKeyType = .done
         return tf
     }()
-    private lazy var doneButton: UIButton = {
+    private lazy var saveButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("Готово", for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 27)
         btn.setTitleColor(UIColor.white, for: .normal)
         btn.layer.cornerRadius = 20
         btn.backgroundColor = .systemGreen
-        btn.addTarget(self, action: #selector(handleDoneButton), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(handleSaveButton), for: .touchUpInside)
         return btn
     }()
     private var switcherTopContraint: NSLayoutConstraint?
@@ -295,8 +295,8 @@ final class AddTransactionViewController: UIViewController {
                                 paddingTrailing: -Constants.horizontalPadding,
                                 height: Constants.textFieldHeight)
         
-        contentView.addSubview(doneButton)
-        doneButton.anchor(leading: contentView.leadingAnchor,
+        contentView.addSubview(saveButton)
+        saveButton.anchor(leading: contentView.leadingAnchor,
                           top: commentTextField.bottomAnchor,
                           trailing: contentView.trailingAnchor,
                           paddingLeading: Constants.horizontalPadding,
@@ -347,7 +347,7 @@ final class AddTransactionViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @objc private func handleDoneButton() {
+    @objc private func handleSaveButton() {
         let transaction = SaveTransaction(amount: amountTextField.text,
                                           date: datePicker.date,
                                           comment: commentTextField.text)

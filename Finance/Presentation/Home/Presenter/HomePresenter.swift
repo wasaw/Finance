@@ -176,6 +176,7 @@ final class HomePresenter {
 // MARK: - Selectors
     
     @objc private func reloadView(_ notification: NSNotification) {
+        input?.showNotice("Транзакция добавлена")
         if let dictionary = notification.userInfo as? NSDictionary {
             if let transaction = dictionary["lastTransaction"] as? Transaction {
                 lastTransaction.append(transaction)

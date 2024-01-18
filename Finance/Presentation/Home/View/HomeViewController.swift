@@ -50,6 +50,7 @@ final class HomeViewController: UIViewController {
         label.textColor = .totalTintColor
         return label
     }()
+    private lazy var notice = Notice.shared
 
     private var servicesCollectionView: UICollectionView?
     private let serviceAdapter: ServiceAdapter
@@ -90,6 +91,7 @@ final class HomeViewController: UIViewController {
         configureServicesCollectionView()
         configureTransactionTitleView()
         configureLastTransactionsCollectionView()
+        configureNotice()
     }
     
     private func configurefullNameLabel() {
@@ -196,6 +198,11 @@ final class HomeViewController: UIViewController {
         lastTransactionsCollectionView.backgroundColor = .white
         lastTransactionsCollectionView.isHidden = true
     }
+    
+    private func configureNotice() {
+        view.addSubview(notice)
+        notice.positionView = view
+    }
 }
 
 // MARK: - HomeInput
@@ -218,7 +225,6 @@ extension HomeViewController: HomeInput {
     
     func showService(_ service: [ChoiceService]) {
         serviceAdapter.configure(service)
-//        servicesCollectionView?.reloadData()
     }
     
     func showTotal(_ total: String) {
@@ -231,6 +237,11 @@ extension HomeViewController: HomeInput {
         totalAccountView.isHidden = true
         progressView.isHidden = false
         progressView.setValue(progress)
+    }
+    
+    func showNotice(_ title: String) {
+        notice.configure(title)
+        notice.show()
     }
 }
 
