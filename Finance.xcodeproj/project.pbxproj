@@ -142,6 +142,7 @@
 		BB8575A42B56AED00049F48F /* AllTransactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8575A32B56AED00049F48F /* AllTransactionsCell.swift */; };
 		BB8575A72B56B0AF0049F48F /* AllTransactionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8575A62B56B0AF0049F48F /* AllTransactionsDataSource.swift */; };
 		BB8575A92B57CFD90049F48F /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8575A82B57CFD90049F48F /* Notice.swift */; };
+		BB8575CB2B5E56E60049F48F /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8575CA2B5E56E50049F48F /* DateFormat.swift */; };
 		BB9B6FCA28CA3158000B1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */; };
 		BB9B6FCD28CB3E45000B1D53 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */; };
 		BB9B6FCF28CB5A59000B1D53 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B6FCE28CB5A59000B1D53 /* Constants.swift */; };
@@ -330,6 +331,7 @@
 		BB8575A32B56AED00049F48F /* AllTransactionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsCell.swift; sourceTree = "<group>"; };
 		BB8575A62B56B0AF0049F48F /* AllTransactionsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsDataSource.swift; sourceTree = "<group>"; };
 		BB8575A82B57CFD90049F48F /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
+		BB8575CA2B5E56E50049F48F /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		BB9B6FC928CA3158000B1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB9B6FCC28CB3E45000B1D53 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		BB9B6FCE28CB5A59000B1D53 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -627,6 +629,7 @@
 				BB836F7028D1BECA008F22C7 /* Utils.swift */,
 				BB7F99612B39B5EC0035222C /* CustomUserDefaults.swift */,
 				BB8575A82B57CFD90049F48F /* Notice.swift */,
+				BB8575CA2B5E56E50049F48F /* DateFormat.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1339,6 +1342,7 @@
 				BB6B5BB82A3C9C7200E16FFB /* AddTransactionInput.swift in Sources */,
 				BB7B26072B2B4907005E5A20 /* CategoryService.swift in Sources */,
 				BB7F99732B4FD5780035222C /* ChartInput.swift in Sources */,
+				BB8575CB2B5E56E60049F48F /* DateFormat.swift in Sources */,
 				BB7F99622B39B5EC0035222C /* CustomUserDefaults.swift in Sources */,
 				BB7F99892B5687E40035222C /* AllTransactionsInput.swift in Sources */,
 				BB72DEFE2AE93924001A3722 /* NewsPresenterOutput.swift in Sources */,

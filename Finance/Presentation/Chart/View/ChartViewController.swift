@@ -9,7 +9,7 @@ import UIKit
 import DGCharts
 
 private enum Constants {
-    static let pieHeight: CGFloat = 230
+    static let pieHeight: CGFloat = 290
 }
 
 final class ChartViewController: UIViewController {

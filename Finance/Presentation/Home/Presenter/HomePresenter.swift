@@ -37,11 +37,7 @@ final class HomePresenter {
     private var balance: Double?
     private var currencyRate: Double?
     private var currentCurrency: Currency?
-    private let dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateFormat = "dd.MM.yyyy"
-        return df
-    }()
+    private let dateFormatter = DateFormat.shared
     
     private let notification = NotificationCenter.default
     private let defaults = CustomUserDefaults.shared
@@ -166,7 +162,7 @@ final class HomePresenter {
             return TransactionCellModel(category: category.title,
                                         image: category.image,
                                         amount: amount,
-                                        date: dateFormatter.string(from: transaction.date),
+                                        date: dateFormatter.formatter(from: transaction.date),
                                         comment: transaction.comment,
                                         isRevenue: isRevenue)
         }

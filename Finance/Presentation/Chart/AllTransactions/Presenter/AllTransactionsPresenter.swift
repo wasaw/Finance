@@ -15,11 +15,7 @@ final class AllTransactionsPresenter {
     private let id: UUID
     private let transactionsService: TransactionsServiceProtocol
     private let userDefaults = CustomUserDefaults.shared
-    private let dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateFormat = "dd.MM.yyyy"
-        return df
-    }()
+    private let dateFormatter = DateFormat.shared
     
 // MARK: - Lifecycle
     
@@ -38,7 +34,7 @@ final class AllTransactionsPresenter {
         let displayData = transactions.compactMap({
             AllTransactionsCell.DisplayData(title: String(format: "%.2f",
                                                           $0.amount / currencyRate) + " \(currentCurrency)",
-                                            date: dateFormatter.string(from: $0.date))
+                                            date: dateFormatter.formatter(from: $0.date))
         })
         input?.setLoading(enable: false)
         input?.showData(displayData)

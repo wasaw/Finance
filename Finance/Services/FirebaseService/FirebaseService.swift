@@ -135,14 +135,13 @@ extension FirebaseService: FirebaseServiceProtocol {
     }
     
     func saveTransaction(_ transaction: FirebaseTransaction) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let dateFormatter = DateFormat.shared
         
         if let uid = Auth.auth().currentUser?.uid {
             let value: [String: Any] = [
                         "account": transaction.account,
                         "amount": transaction.amount,
-                        "date": dateFormatter.string(from: transaction.date),
+                        "date": dateFormatter.formatter(from: transaction.date),
                         "comment": transaction.comment,
                         "category": transaction.category]
             REF_USER_TRANSACTIONS.child(uid).childByAutoId().updateChildValues(value)

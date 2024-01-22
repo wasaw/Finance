@@ -337,9 +337,8 @@ final class AddTransactionViewController: UIViewController {
     // MARK: - Selectors
     
     @objc private func doneAction() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        dateTextField.text = formatter.string(from: datePicker.date)
+        let dateFormatter = DateFormat.shared
+        dateTextField.text = dateFormatter.formatter(from: datePicker.date)
         view.endEditing(true)
     }
     
