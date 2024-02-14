@@ -309,7 +309,7 @@ final class AddTransactionViewController: UIViewController {
     private func configureKeyboard() {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 50))
         toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(cancelAction))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(setAmountAction))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         toolBar.setItems([flexSpace, doneButton], animated: true)
         amountTextField.inputAccessoryView = toolBar
@@ -326,7 +326,7 @@ final class AddTransactionViewController: UIViewController {
         toolBar.sizeToFit()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAction))
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(setAmountAction))
         toolBar.setItems([cancelButton, flexSpace, doneButton], animated: true)
         toolBar.sizeToFit()
         
@@ -339,10 +339,12 @@ final class AddTransactionViewController: UIViewController {
     @objc private func doneAction() {
         let dateFormatter = DateFormat.shared
         dateTextField.text = dateFormatter.formatter(from: datePicker.date)
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         view.endEditing(true)
     }
     
-    @objc private func cancelAction() {
+    @objc private func setAmountAction() {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         view.endEditing(true)
     }
     
@@ -374,7 +376,9 @@ final class AddTransactionViewController: UIViewController {
     
     @objc private func keyboardWillShow(_ notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if commentTextField.isFirstResponder {
+            if amountTextField.isFirstResponder ||
+                dateTextField.isFirstResponder ||
+                commentTextField.isFirstResponder {
                 scrollView.setContentOffset(CGPoint(x: 0, y: keyboardSize.height), animated: true)
             }
         }
@@ -444,9 +448,7 @@ extension AddTransactionViewController: UICollectionViewDelegateFlowLayout {
 
 extension AddTransactionViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if commentTextField.isFirstResponder {
-            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        }
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         commentTextField.resignFirstResponder()
         return true
     }
