@@ -5,7 +5,7 @@
 //  Created by Александр Меренков on 13.06.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol ProfileInput: AnyObject {
     func showProfile()
@@ -13,4 +13,5 @@ protocol ProfileInput: AnyObject {
     func setUserImage(_ image: Data)
     func updateCurrencyMenu(_ currencyButton: [CurrencyButton])
     func showAlert(with title: String, and message: String)
+    func feedback(_ type: UINotificationFeedbackGenerator.FeedbackType)
 }

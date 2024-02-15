@@ -136,6 +136,7 @@ extension AddTransactionPresenter: AddTransactionOutput {
               let amount = Double(amountString) else {
             if transaction.amount == "" {
                 input?.showAlert(with: "Внимание", and: "Не заполнено поле сумма")
+                input?.feedBack(.error)
             }
             return
         }
@@ -150,5 +151,6 @@ extension AddTransactionPresenter: AddTransactionOutput {
         let addTransaction: [String: Transaction] = ["lastTransaction": lastTransaction]
         notification.post(Notification(name: .addTransactions, object: nil, userInfo: addTransaction))
         input?.dismissView()
+        input?.feedBack(.success)
     }
 }

@@ -95,6 +95,7 @@ final class AddTransactionViewController: UIViewController {
     private var switcherTopContraint: NSLayoutConstraint?
     
     private let datePicker = UIDatePicker()
+    private let feedbackGenerator: UINotificationFeedbackGenerator
     
     // MARK: - Lifecycle
     
@@ -104,6 +105,7 @@ final class AddTransactionViewController: UIViewController {
         self.output = output
         self.accountAdapter = accountAdapter
         self.categoryAdapter = categoryAdapter
+        self.feedbackGenerator = UINotificationFeedbackGenerator()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -402,6 +404,10 @@ extension AddTransactionViewController: AddTransactionInput {
     
     func showAlert(with title: String, and text: String) {
         self.alert(with: title, message: text)
+    }
+    
+    func feedBack(_ type: UINotificationFeedbackGenerator.FeedbackType) {
+        feedbackGenerator.notificationOccurred(type)
     }
 }
 

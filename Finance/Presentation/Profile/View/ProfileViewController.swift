@@ -36,10 +36,13 @@ final class ProfileViewController: UIViewController {
     private lazy var currentCurrencyBtn = Utils().menuItemButton(image: "currencies.png", title: "Текущая валюта")
     private lazy var logOutBtn = Utils().menuItemButton(image: "logout.png", title: "Выход")
     
+    private let feedbackGenerator: UINotificationFeedbackGenerator
+    
 // MARK: - Lifecycle
     
     init(output: ProfileOutput) {
         self.output = output
+        self.feedbackGenerator = UINotificationFeedbackGenerator()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -151,6 +154,10 @@ extension ProfileViewController: ProfileInput {
     
     func showAlert(with title: String, and message: String) {
         alert(with: title, message: message)
+    }
+    
+    func feedback(_ type: UINotificationFeedbackGenerator.FeedbackType) {
+        feedbackGenerator.notificationOccurred(type)
     }
 }
 

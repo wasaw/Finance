@@ -54,12 +54,14 @@ extension AuthPresenter: AuthOutput {
     func logIn(_ credentials: AuthCredentials) {
         if credentials.email == "" || credentials.password == "" {
             input?.showAlert(message: "Заполнены не все поля")
+            input?.feedback(.warning)
         } else {
             do {
                 let transactions = try transactionsService.fetchTransactions(limit: nil)
                 authService.logInUser(credentials: credentials) { [weak self] result in
                     switch result {
                     case .success:
+                        self?.input?.feedback(.success)
                         if transactions.isEmpty {
                             self?.moduleOutput?.dismissView()
                         } else {
@@ -67,10 +69,12 @@ extension AuthPresenter: AuthOutput {
                         }
                     case .failure(let error):
                         self?.input?.showAlert(message: error.localizedDescription)
+                        self?.input?.feedback(.error)
                     }
                 }
             } catch {
                 self.input?.showAlert(message: "Не удается авторизоваться")
+                self.input?.feedback(.error)
             }
         }
     }
@@ -84,6 +88,7 @@ extension AuthPresenter: AuthOutput {
                 authService.signInUser(credentials: credentials) { [weak self] result in
                     switch result {
                     case .success:
+                        self?.input?.feedback(.success)
                         if transactions.isEmpty {
                             self?.moduleOutput?.dismissView()
                         } else {
@@ -91,13 +96,16 @@ extension AuthPresenter: AuthOutput {
                         }
                     case .failure:
                         self?.input?.showAlert(message: "Ошибка. Попробуйте снова.")
+                        self?.input?.feedback(.error)
                     }
                 }
             } catch {
                 self.input?.showAlert(message: "Не удается зарегистрироваться")
+                self.input?.feedback(.error)
             }
         case .failure(let error):
             input?.showAlert(message: error.localizedDescription)
+            input?.feedback(.error)
         }
     }
     

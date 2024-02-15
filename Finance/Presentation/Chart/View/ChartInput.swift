@@ -13,4 +13,5 @@ protocol ChartInput: AnyObject {
     func showPieData(_ displayData: PieChartDataSet)
     func showAlert(_ message: String)
     func setLoading(enable: Bool)
+    func hideChart()
 }

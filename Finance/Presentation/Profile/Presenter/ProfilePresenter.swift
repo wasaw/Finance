@@ -151,8 +151,10 @@ extension ProfilePresenter: ProfileOutput {
                 self?.transactionsService.delete()
                 self?.output.showAuth()
                 self?.notification.post(Notification(name: .updateCredential, object: nil))
+                self?.input?.feedback(.success)
             case .failure:
                 self?.input?.showAlert(with: "Ошибка", and: "Не удалось разлогиниться")
+                self?.input?.feedback(.error)
             }
         }
     }
@@ -164,9 +166,11 @@ extension ProfilePresenter: ProfileOutput {
                 switch result {
                 case .success(let data):
                     self?.input?.setUserImage(data)
+                    self?.input?.feedback(.success)
                 case .failure:
                     DispatchQueue.main.async {
                         self?.input?.showAlert(with: "Внимание", and: "Не удалось сохранить фотографию, попобуйте еще раз.")
+                        self?.input?.feedback(.error)
                     }
                 }
             }

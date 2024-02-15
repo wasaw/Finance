@@ -48,14 +48,23 @@ final class ChartPresenter {
     
     private func preparePieData(_ categories: [CategoriesList]) {
          guard let currencyRate = userDefaults.get(for: .currencyRate) as? Double else { return }
-        
+        var isEmptyValue = true
         var entries: [PieChartDataEntry] = Array()
-        categories.forEach({ entries.append(PieChartDataEntry(value: abs($0.amount / currencyRate), label: $0.title)) })
+        categories.forEach({
+            entries.append(PieChartDataEntry(value: abs($0.amount / currencyRate), label: $0.title))
+            if $0.amount != 0 {
+                isEmptyValue = false
+            }
+        })
         let dataSet = PieChartDataSet(entries: entries)
         dataSet.valueTextColor = .white
         dataSet.colors = [.brown, .orange, .purple]
         input?.setLoading(enable: false)
-        input?.showPieData(dataSet)
+        if isEmptyValue {
+            input?.hideChart()
+        } else {
+            input?.showPieData(dataSet)
+        }
     }
     
 // MARK: - Selectors

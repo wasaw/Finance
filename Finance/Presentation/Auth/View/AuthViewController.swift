@@ -21,6 +21,7 @@ private enum Constants {
     static let segmentedControllerHeight: CGFloat = 45
     static let segmentedControllerWidth: CGFloat = 270
     static let logInButtonPaddingBottom: CGFloat = 20
+    static let authViewConstraint: CGFloat = 90
 }
 
 final class AuthViewController: UIViewController {
@@ -121,11 +122,14 @@ final class AuthViewController: UIViewController {
     }()
     
     private lazy var segmentedController = UISegmentedControl(items: ["Вход", "Регистрация"])
+    private var authViewCenterYConstraint: NSLayoutConstraint?
+    private let feedbackGenerator: UINotificationFeedbackGenerator
     
 // MARK: - Lifecycle
     
     init(output: AuthOutput) {
         self.output = output
+        self.feedbackGenerator = UINotificationFeedbackGenerator()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -177,7 +181,8 @@ final class AuthViewController: UIViewController {
                                               constant: AuthState.authorization.rawValue)
         guard let heightConstraint = heightConstraint else { return }
         authView.addConstraint(heightConstraint)
-        authView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        authViewCenterYConstraint = authView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        authViewCenterYConstraint?.isActive = true
         let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGuesture)
     }
@@ -361,6 +366,10 @@ extension AuthViewController: AuthInput {
         }))
         self.present(alert, animated: true)
     }
+    
+    func feedback(_ type: UINotificationFeedbackGenerator.FeedbackType) {
+        feedbackGenerator.notificationOccurred(type)
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -373,6 +382,16 @@ extension AuthViewController: UITextFieldDelegate {
         emailRegTextField.resignFirstResponder()
         passRegTextField.resignFirstResponder()
         confirmPassTextField.resignFirstResponder()
+        
+        if textField == confirmPassTextField || textField == passRegTextField {
+            authViewCenterYConstraint?.constant = 0
+        }
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == confirmPassTextField || textField == passRegTextField {
+            authViewCenterYConstraint?.constant = -Constants.authViewConstraint
+        }
     }
 }

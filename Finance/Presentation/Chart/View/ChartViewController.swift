@@ -28,6 +28,8 @@ final class ChartViewController: UIViewController {
         return view
     }()
     
+    private var pieViewHeightConstraint: NSLayoutConstraint?
+    
 // MARK: - Lifecycle
     
     init(output: ChartOutput) {
@@ -60,8 +62,9 @@ final class ChartViewController: UIViewController {
         view.addSubview(pieView)
         pieView.anchor(leading: view.leadingAnchor,
                        top: view.safeAreaLayoutGuide.topAnchor,
-                       trailing: view.trailingAnchor,
-                       height: Constants.pieHeight)
+                       trailing: view.trailingAnchor)
+        pieViewHeightConstraint = pieView.heightAnchor.constraint(equalToConstant: Constants.pieHeight)
+        pieViewHeightConstraint?.isActive = true
         
         view.addSubview(tableView)
         tableView.register(ChartCell.self, forCellReuseIdentifier: ChartCell.reuseIdentifire)
@@ -104,6 +107,10 @@ extension ChartViewController: ChartInput {
         } else {
             loadAnimateView.isHidden = true
         }
+    }
+    
+    func hideChart() {
+        pieViewHeightConstraint?.constant = 0
     }
 }
 
