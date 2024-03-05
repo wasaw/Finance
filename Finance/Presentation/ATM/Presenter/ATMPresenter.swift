@@ -18,7 +18,6 @@ final class ATMPresenter: NSObject {
     
     weak var input: ATMInput?
     private let locationManager = CLLocationManager()
-    private var region: MKCoordinateRegion?
     
 // MARK: - Lifecycle
     
@@ -49,10 +48,9 @@ final class ATMPresenter: NSObject {
         }
     }
     
-    private func searchATM() {
-        guard let region = region else { return }
+    private func searchATM(in region: MKCoordinateRegion) {
         let searchRequest = MKLocalSearch.Request()
-        searchRequest.naturalLanguageQuery = "ATM"
+        searchRequest.naturalLanguageQuery = "Сбербанк"
         searchRequest.region = region
         
         let search = MKLocalSearch(request: searchRequest)
@@ -70,8 +68,7 @@ final class ATMPresenter: NSObject {
 // MARK: - ATMOutput
 
 extension ATMPresenter: ATMOutput {
-    func viewIsReady(_ region: MKCoordinateRegion) {
-        self.region = region
+    func viewIsReady() {
         checkAuthLockStatus()
     }
 }
@@ -89,6 +86,6 @@ extension ATMPresenter: CLLocationManagerDelegate {
                                                   latitudinalMeters: Constants.regionRadius,
                                                   longitudinalMeters: Constants.regionRadius)
         input?.setUserLocation(coordinateRegion, animated: true)
-        searchATM()
+        searchATM(in: coordinateRegion)
     }
 }

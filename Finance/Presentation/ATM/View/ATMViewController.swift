@@ -20,7 +20,6 @@ final class ATMViewController: UIViewController {
     
     private lazy var mapView: MKMapView = {
         let map = MKMapView()
-        map.delegate = self
         return map
     }()
     
@@ -50,7 +49,7 @@ final class ATMViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.viewIsReady(mapView.region)
+        output.viewIsReady()
         configureUI()
     }
     
@@ -91,10 +90,4 @@ extension ATMViewController: ATMInput {
             mapView.selectAnnotation(annotation, animated: false)
         }
     }
-}
-
-// MARK: - MKMapViewDelegate
-
-extension ATMViewController: MKMapViewDelegate {
-    
 }

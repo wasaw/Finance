@@ -9,5 +9,5 @@ import Foundation
 import MapKit
 
 protocol ATMOutput: AnyObject {
-    func viewIsReady(_ region: MKCoordinateRegion)
+    func viewIsReady()
 }

@@ -84,6 +84,7 @@ final class ChartViewController: UIViewController {
         snapshot.appendItems(displayData)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
+
 }
 
 // MARK: - ChartInput
